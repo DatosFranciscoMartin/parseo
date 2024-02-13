@@ -148,10 +148,13 @@ for archivo in lista_archivos:
         END_OFFSET = linea[234:246]
         DEVICE_STREAM = linea[246:279]
         RECONCILE_KEY = linea[279:312]
+        HOUSE_ID = linea[312:345]
+        STATUS = linea[345:371]
+        DEFAULT = "                                                                    "
+        #TEST = "123456789012345678901234567890123456789012345678901234567890"
 
-        # Comprobamos que sea media Event
-        if EVENT == "Media Event          ":
-         
+        # Comprobamos que sea media Event y el status no sea missed
+        if EVENT == "Media Event          " and STATUS != "Missed                    ":
             # Iteramos sobre cada carácter en la cadena
             for caracter in RECONCILE_KEY:
                 # Ignoramos los espacios en blanco
@@ -159,12 +162,6 @@ for archivo in lista_archivos:
                     # Incrementamos el recuento para el carácter actual
                     RECONCILE_KEY = " " * 27
                     break
-
-                
-            HOUSE_ID = linea[312:345]
-            STATUS = linea[345:371]
-            DEFAULT = "                                                                    "
-            #TEST = "123456789012345678901234567890123456789012345678901234567890"
 
             A = START_TIME[11:22]
             B = MEDIA_ID[:18]
