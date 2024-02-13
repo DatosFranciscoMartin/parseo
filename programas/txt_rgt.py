@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
+import os
+import datetime
 
 def seleccionar_directorio_salida():
     """
@@ -95,6 +97,16 @@ ventana.mainloop()
 #                                                                                                                            #
 #                                                                                                                            #
 ##############################################################################################################################
+
+
+# Se genera el fichero de log
+
+# se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
+fecha_actual = datetime.date.today()
+Archivo_log=open(directorio_salida + "\\" + "archivo_log" +".log","a",encoding="utf-8")
+Archivo_log.write(fecha_actual.strftime("%d/%m/%Y%H:%M")+"\n")
+
+
 
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
@@ -213,4 +225,14 @@ for archivo in lista_archivos:
         else:
             continue
     # Cerramos el archivo de entrada y el archivo de salida
+
+    # Agregamos al fichero de log los ficheros que se ha procesado.
+
+    nombre_archivo = os.path.basename(archivo)
+    Archivo_log.write("     "+ nombre_archivo+"\n")
+
     fichero.close()
+
+
+
+
