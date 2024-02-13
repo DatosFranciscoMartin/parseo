@@ -149,67 +149,71 @@ for archivo in lista_archivos:
         DEVICE_STREAM = linea[246:279]
         RECONCILE_KEY = linea[279:312]
 
-        # Iteramos sobre cada carácter en la cadena
-        for caracter in RECONCILE_KEY:
-            # Ignoramos los espacios en blanco
-            if caracter == " ":
-                # Incrementamos el recuento para el carácter actual
-                RECONCILE_KEY = " " * 27
-                break
+        # Comprobamos que sea media Event
+        if EVENT == "Media Event          ":
+         
+            # Iteramos sobre cada carácter en la cadena
+            for caracter in RECONCILE_KEY:
+                # Ignoramos los espacios en blanco
+                if caracter == " ":
+                    # Incrementamos el recuento para el carácter actual
+                    RECONCILE_KEY = " " * 27
+                    break
 
-            
-        HOUSE_ID = linea[312:345]
-        STATUS = linea[345:371]
-        DEFAULT = "                                                                    "
-        #TEST = "123456789012345678901234567890123456789012345678901234567890"
+                
+            HOUSE_ID = linea[312:345]
+            STATUS = linea[345:371]
+            DEFAULT = "                                                                    "
+            #TEST = "123456789012345678901234567890123456789012345678901234567890"
 
-        A = START_TIME[11:22]
-        B = MEDIA_ID[:18]
-        C = DEFAULT[:2]
-        D = TITLE[:32]
-        E = DURATION[:11]
-        F = RECONCILE_KEY[3:4]
-        G = RECONCILE_KEY[1:2]
-        if G == " " or G == "0":
-            G = "2"
-        H = RECONCILE_KEY[4:11]
-        I = RECONCILE_KEY[11:14]
-        J = DEFAULT[:5]
-        K = RECONCILE_KEY[14:25]
-        L = RECONCILE_KEY[25:27]
-        M = DEFAULT[:14]
-        N = DEFAULT[:2]
-        O = DEFAULT[:2]
-        P = RECONCILE_KEY[0:1]
-        if P == " " or P == "0":
-            P = "7"
-        Q = DEFAULT[:1]
-        R = RECONCILE_KEY[2:3]
-        S = DEFAULT[:3]
-        if S == "   ":
-            S = "EST"
-        T = DEFAULT[:1]
-        U = DEFAULT[:4]
-        V = DEFAULT[:1]
-        W = DEFAULT[:1]
-        ESPECIAL = DEFAULT[:2]
-        X = RECONCILE_KEY[28:]
-        # Iteramos sobre cada carácter en la cadena
-        for caracter in X:
-            # Ignoramos los espacios en blanco
-            if caracter == " ":
-                break
-            else:
-                X = X+":00"
-                break
+            A = START_TIME[11:22]
+            B = MEDIA_ID[:18]
+            C = DEFAULT[:2]
+            D = TITLE[:32]
+            E = DURATION[:11]
+            F = RECONCILE_KEY[3:4]
+            G = RECONCILE_KEY[1:2]
+            if G == " " or G == "0":
+                G = "2"
+            H = RECONCILE_KEY[4:11]
+            I = RECONCILE_KEY[11:14]
+            J = DEFAULT[:5]
+            K = RECONCILE_KEY[14:25]
+            L = RECONCILE_KEY[25:27]
+            M = DEFAULT[:14]
+            N = DEFAULT[:2]
+            O = DEFAULT[:2]
+            P = RECONCILE_KEY[0:1]
+            if P == " " or P == "0":
+                P = "7"
+            Q = DEFAULT[:1]
+            R = RECONCILE_KEY[2:3]
+            S = DEFAULT[:3]
+            if S == "   ":
+                S = "EST"
+            T = DEFAULT[:1]
+            U = DEFAULT[:4]
+            V = DEFAULT[:1]
+            W = DEFAULT[:1]
+            ESPECIAL = DEFAULT[:2]
+            X = RECONCILE_KEY[28:]
+            # Iteramos sobre cada carácter en la cadena
+            for caracter in X:
+                # Ignoramos los espacios en blanco
+                if caracter == " ":
+                    break
+                else:
+                    X = X+":00"
+                    break
 
-        Y = DEFAULT[:1]
+            Y = DEFAULT[:1]
 
-        # Escribimos en el archivo de salida la línea formateada correctamente.
+            # Escribimos en el archivo de salida la línea formateada correctamente.
 
-        Archivo_salida.write(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y+"\n")
+            Archivo_salida.write(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y+"\n")
 
-        #print(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y, end='')
-
+            #print(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y, end='')
+        else:
+            continue
     # Cerramos el archivo de entrada y el archivo de salida
     fichero.close()
