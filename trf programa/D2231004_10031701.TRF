@@ -1,0 +1,76 @@
+D220234403LA 2            40202304/10/23
+1  S2CONNCX       D06:00:00:0001:26:26:00-CONEXION CON LA 2---                                                                        D    
+2N          00:00:00:0001:26:26:000  HA 06:00:00   
+1  71004519       C07:26:26:0000:00:05:00   CT: CT. CONTINUIDAD - HIPSTER                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  57072954       C07:26:31:0000:00:07:00   Prom: CT.RTVE.CLASICA MONUMENTAL(ORQUESTA Y CORO RTVE) OBOE       3EST                    G    
+2NPASARELA  10:00:00:0010:00:07:000               NC 00:00:00:00
+1  11003483       C07:26:38:0000:00:09:00   CP: CABECERA AJUSTES LA2 EXPRES                                   3                       G    
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00
+1  A711PGU02762   A07:26:47:0000:03:18:00AJUSTE QUE ANIMAL MONOGAMOS 1                                         EST                    G L  
+2N          00:00:00:0000:03:18:000  HA 00:00:00   
+1  14002182       C07:30:05:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004523       C07:30:10:0000:00:05:00   CT: CT. CONTINUIDAD - CUBO                                        3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P799PGS00222029E07:30:15:0000:29:45:00VA DE VERD (29)                                                       ESTPT                  GSL  
+2N          00:00:00:0000:29:45:000  HA 07:30:00   
+1  P799PDS00021596E08:00:00:0001:55:12:00CAF� D' IDEES (596)                                                   ESTPT                  DSL  
+2N          00:00:00:0001:55:12:000  HA 08:00:00   
+5 CAT
+1  51243530       C09:55:12:0000:00:43:00   Prom: CAT- PROMO PUNTUAL NOMS PROPIS FERRAN CARDENAL              3EST                    G    
+2N          00:00:00:0000:00:43:000               NC 00:00:00:00
+1  14002159       C09:55:55:0000:00:05:00   IN: SIN FIN LA 2 (1'20") 07-09-2015                               3                       G    
+2N019C0009  10:00:00:0010:00:05:000               NC 00:00:00:00
+1  S2CONNCX       D09:56:00:0000:58:17:00-CONEXION CON LA 2---                                                                        D    
+2N          00:00:00:0000:58:17:000  HA 09:55:00   
+1  71004521       C10:54:17:0000:00:05:00   CT: CT. CONTINUIDAD - TEXTURA                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P799PGS00265018E10:54:22:0000:26:00:00AQU� HAY TRABAJO (18)                                                 ESTPT                  G L  
+2N          00:00:00:0000:26:00:000  HA 10:55:00   
+1  P699PGS00995253E11:20:22:0000:26:17:00FLASH MODA (253)                                                      ESTPT                  GSL  
+2N          00:00:00:0000:26:17:000  HA 11:21:00   
+1  71004521       C11:46:39:0000:00:05:00   CT: CT. CONTINUIDAD - TEXTURA                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  11003483       C11:46:44:0000:00:09:00   CP: CABECERA AJUSTES LA2 EXPRES                                   3                       G    
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00
+1  A599PGU00714   A11:46:53:0000:09:58:00AJUSTE AGROSFERA TR MAGACENA                                          EST                    G L  
+2N          00:00:00:0000:09:58:000  HA 00:00:00   
+1  14002182       C11:56:51:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243511       C11:56:56:0000:00:21:00   Prom: GEN.DOCUMASTER_ESPA�A S.XX COLOR (X4, 22H00) E. NOCHE       3EST                    G    
+2NPASARELA  10:00:00:0010:00:21:000               NC 00:00:00:00
+1  71004520       C11:57:17:0000:00:05:00   CT: CT. CONTINUIDAD - ZOOM                                        3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P711AGU05205   P11:57:22:0000:50:38:00OTO�O - UN MUNDO DE COLORES                                           DUAPT                  GSL  
+2N          00:00:00:0000:50:38:000  HA 11:55:00   
+1  S2CONNCX       D12:48:00:0003:41:17:00-CONEXION CON LA 2---                                                                        D    
+2N          00:00:00:0003:41:17:000  HA 12:50:00   
+1  P711AGS02543003E16:29:17:0000:45:43:00CAZADORES DE AFRICA (3)                                               DUAPT                  GSL  
+2N          00:00:00:0000:45:43:000  HA 16:30:00   
+1  P711AGS02325003E17:15:00:0000:44:42:00EL MAR DE FRISIA (3)                                                  DUANR7                 GSL  
+2N          00:00:00:0000:44:42:000  HA 17:15:00   
+1  P899PGS00076003E17:59:42:0000:05:22:00D�U N'HI DO (3)                                                       ESTPT                  GSL  
+2N          00:00:00:0000:05:22:000  HA 18:00:00   
+1  52035834       C18:05:04:0000:00:32:00   Prom: CAT- PROMO GENERICA RTVE PLAY CAT ARXIU                     3EST                    G    
+2N          00:00:00:0000:00:32:000               NC 00:00:00:00
+1  P241PGS00190001E18:05:36:0001:00:19:00BENVINGUTS, GUILLERMINA MOTTA (1)                                     ESTNR7                 GSL  
+2N          00:00:00:0001:00:19:000  HA 18:05:00   
+1  51243530       C19:05:55:0000:00:43:00   Prom: CAT- PROMO PUNTUAL NOMS PROPIS FERRAN CARDENAL              3EST                    G    
+2N          00:00:00:0000:00:43:000               NC 00:00:00:00
+1  51239729       C19:06:38:0000:00:33:00   Prom: CAT-PROMO LATEXOU / ELS DIUMENGES A LA 1                    3EST                    G    
+2N          00:00:00:0000:00:33:000               NC 00:00:00:00
+1  71004516       C19:07:11:0000:00:05:00   CT: CT. CONTINUIDAD - ESPEJOS                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  11003483       C19:07:16:0000:00:09:00   CP: CABECERA AJUSTES LA2 EXPRES                                   3                       G    
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00
+1  A699PGU04115   A19:07:25:0000:01:30:00 AJUSTE RUTA 17 SALINAS ROMANAS                                       EST                    G L  
+2N          00:00:00:0000:01:30:000  HA 00:00:00   
+1  14002182       C19:08:55:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  57074833       C19:09:00:0000:00:11:00   Prom: CUENTAME COMO PASO_MAKING OFF (+12)                         3EST                    G    
+2NPASARELA  10:00:00:0010:00:11:000               NC 00:00:00:00
+1  14002159       C19:09:11:0000:00:05:00   IN: SIN FIN LA 2 (1'20") 07-09-2015                               3                       G    
+2N019C0009  10:00:00:0010:00:05:000               NC 00:00:00:00
+1  S2CONNCX       D19:09:16:0010:50:44:00-CONEXION CON LA 2---                                                                        D    
+2N          00:00:00:0010:50:44:000  HA 19:10:00   

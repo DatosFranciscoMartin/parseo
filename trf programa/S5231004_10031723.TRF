@@ -1,0 +1,281 @@
+S520234403TELEDEPORTE     40202304/10/23
+1  A699PGU03146   A06:00:00:0000:45:00:00AJUSTE DE PROGRAMACION                                                                       G L  
+2N          00:00:00:0000:45:00:000  HA 00:00:00   
+5 NO INGESTAR NINGUN PROGRAMA CON ESTE ID
+1  71004041       C06:45:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - ATLETISMO                             2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P454PDS00149001E06:45:05:0001:12:50:00ATLETISMO CTO MUNDO RUTA 2023 (1)                                     ESTPT  F               GSL  
+2N          00:00:00:0001:12:50:000  HA 06:45:00   
+1  14002182       C07:57:55:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004048       C07:58:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - TENIS                                 2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  12002340       C07:58:05:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  P477PDS00119264E07:58:35:0001:58:50:00TENIS - WTA TORNEOS 2023 (264)                                        ESTPT  F               DSL  
+2N          00:00:00:0001:58:50:000  HA 08:00:00   
+1  12002340       C09:57:25:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  14002182       C09:57:55:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  12002340       C09:58:00:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  P477PDS00119265E09:58:30:0002:00:55:00TENIS - WTA TORNEOS 2023 (265)                                        ESTPT  F               DSL  
+2N          00:00:00:0002:00:55:000  HA 10:00:00   
+1  12002340       C11:59:25:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  14002182       C11:59:55:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004042       C12:00:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - BALONCESTO                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P456EGS00037001E12:00:05:0000:04:50:00BALONCESTO AL DIA (1)                                                 ESTPT  F               GSL  
+2N          00:00:00:0000:04:50:000  HA 12:00:00   
+1  14002182       C12:04:55:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004048       C12:05:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - TENIS                                 2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  12002340       C12:05:05:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  P477PDS00119266E12:05:35:0001:50:00:00TENIS - WTA TORNEOS 2023 (266)                                        ESTPT  F               DSL  
+2N          00:00:00:0001:50:00:000  HA 12:05:00   
+1  12002340       C13:55:35:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  14002182       C13:56:05:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004049       C13:56:10:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 1                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  57074589       C13:56:15:0000:00:22:00   Prom: RTVE_RNE_PROMO NOVEDADES OTOÑO                              3EST                    G    
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00
+1  71004050       C13:56:37:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 2                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  A599PGU14288   A13:56:42:0000:02:44:00AJUSTE DD REBAÑOS DIGITALES V MEDIA                                   EST                    GSL  
+2N          00:00:00:0000:02:44:000  HA 00:00:00   
+1  71004051       C13:59:26:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 3                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243514       C13:59:31:0000:00:17:00   Prom: TDP-PROMO GIMNASIA ARTÍSTICA CTO MUNDO 3-8 OCTUBRE          3EST                    G    
+2N          00:00:00:0000:00:17:000               NC 00:00:00:00
+1  52035684       C13:59:48:0000:00:12:00   Prom: TDP-PROMO MOTOR MOTOGP GENÉRICA                             3EST                    G    
+2N          00:00:00:0000:00:12:000               NC 00:00:00:00
+1  71004052       C14:00:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 4                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P465EGS00051021E14:00:05:0000:12:00:00PROGRAMA HOLAGOLF 2023 (21)                                           ESTPT  F               GSL  
+2N          00:00:00:0000:12:00:000  HA 14:00:00   
+1  14002182       C14:12:05:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004049       C14:12:10:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 1                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/1415T)                     
+1  O520234001D01  B14:12:15:0000:01:20:00COMITÉ PARALÍMPICO E                                                 2EST     026744812209909G 
+2NR00000    00:00:00:0000:01:20:000               NC 00:01:20:00
+1  O520234001D02  B14:13:35:0000:00:20:00ALIMAÑAS-SOMOS CINE                                                  2EST     026791200509903G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  51243585       C14:13:55:0000:00:23:00   Prom: TDP-PROMO BALONMANO LIGA ASOBAL JOR5 DOMINGO 8 OCTUBRE      3EST                    G    
+2N          00:00:00:0000:00:23:000               NC 00:00:00:00
+1  51243507       C14:14:18:0000:00:21:00   Prom: MASTERCHEF CELEBRITY_PGM 5 (+7) (J5, 22H30) MAÑANA          3EST                    G    
+2NPASARELA  10:00:00:0010:00:21:000               NC 00:00:00:00
+1  51243515       C14:14:39:0000:00:21:00   Prom: TDP-PROMO FÚTBOL SALA ESLOVENIA - ESPAÑA VIERNES 6 OCTUBR   3EST                    G    
+2N          00:00:00:0000:00:21:000               NC 00:00:00:00
+1  12002444       C14:15:00:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  P464PDS00018001E14:15:22:0002:41:24:00GIMNASIA ARTISTICA CTO MUNDO 2023 (1)                                 ESTPT  F               GSL  
+2N          00:00:00:0002:41:24:000  HA 14:15:00   
+1  12002444       C16:56:46:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  14002182       C16:57:08:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004050       C16:57:13:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 2                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243582       C16:57:18:0000:00:22:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS JOR6 SÁBADO 7 OCTUBRE    3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+4(NAC5/X/1656T) Promo Balonm. Liga G
+1  O520234001E01  B16:57:40:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775718109808G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  71004051       C16:57:50:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 3                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  A599PGU14263   A16:57:55:0000:00:47:00AJUSTE DD CONECTANDO LA ESPAÑA RURAL V CORTA                          EST                    GSL  
+2N          00:00:00:0000:00:47:000  HA 00:00:00   
+1  71004052       C16:58:42:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 4                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243588       C16:58:47:0000:00:20:00   Prom: TDP-PROMO BALONCESTO LIGA ENDESA JOR2 SÁBADO 7 OCTUBRE      3EST                    G    
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00
+4(NAC5/X/1658T) Promo Balonc. Liga F
+1  O520234001F01  B16:59:07:0000:00:10:00PATROC. BALONC. LIGA                                                 2EST     026781202609155G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  51243512       C16:59:17:0000:00:27:00   Prom: TDP-PROMO TENIS WTA BEIJING 1-8 OCTUBRE                     3EST                    G    
+2N          00:00:00:0000:00:27:000               NC 00:00:00:00
+1  51243591       C16:59:44:0000:00:16:00   Prom: TDP-PROMO WATERPOLO LIGA EUROPEA MASCULINA JOR2 VIERNES 6   3EST                    G    
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00
+1  71004049       C17:00:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 1                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P489EGS00475019E17:00:05:0000:18:40:00PROGRAMA EVASION TV 2023 (19)                                         ESTPT  F               GSL  
+2N          00:00:00:0000:18:40:000  HA 17:00:00   
+1  14002182       C17:18:45:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004050       C17:18:50:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 2                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243512       C17:18:55:0000:00:27:00   Prom: TDP-PROMO TENIS WTA BEIJING 1-8 OCTUBRE                     3EST                    G    
+2N          00:00:00:0000:00:27:000               NC 00:00:00:00
+1  57074899       C17:19:22:0000:00:21:00   Prom: FUTBOL UEFA ESPAÑA-ESCOCIA _TEASER 2 (12 OCT)               3EST                    G    
+2NPASARELA  10:00:00:0010:00:21:000               NC 00:00:00:00
+1  51243514       C17:19:43:0000:00:17:00   Prom: TDP-PROMO GIMNASIA ARTÍSTICA CTO MUNDO 3-8 OCTUBRE          3EST                    G    
+2N          00:00:00:0000:00:17:000               NC 00:00:00:00
+1  71004043       C17:20:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - BALONMANO                             2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P457EGS00042005E17:20:05:0000:23:10:00BALONMANO PROGRAMA GUERRERAS 2023 24 AÑO 2023 (5)                     ESTPT  F               GSL  
+2N          00:00:00:0000:23:10:000  HA 17:20:00   
+1  14002182       C17:43:15:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004051       C17:43:20:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 3                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/1755T)                     
+1  O520234002001  B17:43:25:0000:00:30:00AGENDA ESPAÑA DIGITA                                                 2EST     026786702709860G 
+2NR00000    00:00:00:0000:00:30:000               NC 00:00:30:00
+1  51243582       C17:43:55:0000:00:22:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS JOR6 SÁBADO 7 OCTUBRE    3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+4(NAC5/X/1758T) Promo Balonm. Liga G
+1  O520234002101  B17:44:17:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775718009808G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  51243514       C17:44:27:0000:00:17:00   Prom: TDP-PROMO GIMNASIA ARTÍSTICA CTO MUNDO 3-8 OCTUBRE          3EST                    G    
+2N          00:00:00:0000:00:17:000               NC 00:00:00:00
+1  51243591       C17:44:44:0000:00:16:00   Prom: TDP-PROMO WATERPOLO LIGA EUROPEA MASCULINA JOR2 VIERNES 6   3EST                    G    
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00
+1  71004048       C17:45:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - TENIS                                 2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  12002340       C17:45:05:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  P477PDS00119264E17:45:35:0001:45:48:00TENIS - WTA TORNEOS 2023 (264)                                        ESTPT  F               GSL  
+2N          00:00:00:0001:45:48:000  HA 17:45:00   
+1  12002340       C19:31:23:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  14002182       C19:31:53:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/1930T)                     
+1  O520234002201  B19:31:58:0000:00:10:00SENSIBILIZACIÓN FISC                                                 2EST     026789701409894G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  O520234002202  B19:32:08:0000:00:20:00BONO CULTURAL JOVEN                                                  2EST     026792000309912G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  51243582       C19:32:28:0000:00:22:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS JOR6 SÁBADO 7 OCTUBRE    3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+4(NAC5/X/1934T) Promo Balonm. Liga G
+1  O520234002301  B19:32:50:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775717909808G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  12002444       C19:33:00:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  P464PDS00018002E19:33:22:0002:06:44:00GIMNASIA ARTISTICA CTO MUNDO 2023 (2)                                 ESTPT  F               DSL  
+2N          00:00:00:0002:06:44:000  HA 19:35:00   
+1  12002444       C21:40:06:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  14002182       C21:40:28:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004052       C21:40:33:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 4                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/2140T)                     
+1  O520234002401  B21:40:38:0000:00:20:00AYUDAS AL TRANSPORTE                                                 2EST     026783801209281G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  O520234002402  B21:40:58:0000:00:20:00ALIMAÑAS-SOMOS CINE                                                  2EST     026791200609903G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  O520234002403  B21:41:18:0000:00:20:00BONO CULTURAL JOVEN                                                  2EST     026792000409912G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  71004049       C21:41:38:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 1                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  A599PGU14336   A21:41:43:0000:02:04:00AJUSTE DD DE PALENCIA A TIMES SQUARE V MEDIA                          EST                    GSL  
+2N          00:00:00:0000:02:04:000  HA 00:00:00   
+1  71004050       C21:43:47:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 2                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243582       C21:43:52:0000:00:22:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS JOR6 SÁBADO 7 OCTUBRE    3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+4(NAC5/X/2144T) Promo Balonm. Liga G
+1  O520234002501  B21:44:14:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775717809808G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  51243515       C21:44:24:0000:00:21:00   Prom: TDP-PROMO FÚTBOL SALA ESLOVENIA - ESPAÑA VIERNES 6 OCTUBR   3EST                    G    
+2N          00:00:00:0000:00:21:000               NC 00:00:00:00
+1  52036004       C21:44:45:0000:00:15:00   Prom: TDP-PROMO ESTUDIO ESTADIO 23 GENÉRICA                       3EST                    G    
+2N          00:00:00:0000:00:15:000               NC 00:00:00:00
+1  71004048       C21:45:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - TENIS                                 2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  12002340       C21:45:05:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  P477PDS00119265E21:45:35:0001:10:20:00TENIS - WTA TORNEOS 2023 (265)                                        ESTPT  F               GSL  
+2N          00:00:00:0001:10:20:000  HA 21:45:00   
+1  12002340       C22:55:55:0000:00:30:00   CD: TDP-CABECERA TENIS WTA IN/OUT 2023                            3EST                    G    
+2N          00:00:00:0000:00:30:000               NC 00:00:00:00
+1  14002182       C22:56:25:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/2255T)                     
+1  O520234002601  B22:56:30:0000:00:20:01LA TERNURA - SOMOS C                                                 2EST     026782902309892G 
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00
+1  O520234002602  B22:56:50:0100:00:30:00AGENDA ESPAÑA DIGITA                                                 2EST     026786702809890G 
+2NR00000    00:00:00:0000:00:30:000               NC 00:00:30:00
+1  O520234002603  B22:57:20:0100:00:10:00SENSIBILIZACIÓN FISC                                                 2EST     026789701109894G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  51243588       C22:57:30:0000:00:20:00   Prom: TDP-PROMO BALONCESTO LIGA ENDESA JOR2 SÁBADO 7 OCTUBRE      3EST                    G    
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00
+4(NAC5/X/2258T) Promo Balonc. Liga F
+1  O520234002701  B22:57:50:0000:00:10:00PATROC. BALONC. LIGA                                                 2EST     026781202509155G 
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00
+1  71004045       C22:58:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - FUTBOL                                2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+4(NAC5/X/2259U) Ent. Estudio Estadio
+1  O520234002801  B22:58:05:0000:00:30:00ALLIANZ-LA LIGA                                                      2EST     026774603609743G 
+2NR00000    00:00:00:0000:00:30:000               NC 00:00:30:00
+1  P463PDS00285027E22:58:35:0001:33:58:00ESTUDIO ESTADIO 2023-2024 (27)                                    w   ESTPT  F               DSL  
+2N          00:00:00:0001:33:58:000  HA 23:00:00   
+4(NAC5/X/2429P) Sal. Estudio Estadio
+1  O520234002901  B00:32:33:0000:00:30:00ALLIANZ-LA LIGA                                                      2EST     026774605009743G 
+2NR00000    00:00:00:0000:00:30:000               NC 00:00:30:00
+1  71004051       C00:33:03:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 3                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243582       C00:33:08:0000:00:22:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS JOR6 SÁBADO 7 OCTUBRE    3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  57074589       C00:33:30:0000:00:22:00   Prom: RTVE_RNE_PROMO NOVEDADES OTOÑO                              3EST                    G    
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00
+1  51243558       C00:33:52:0000:00:25:00   Prom: EL CONQUISTADOR_PGM 16 +COLA DEBATE (+16) (L9, 22H45)       3EST                    G    
+2N          00:00:00:0000:00:25:000               NC 00:00:00:00
+1  51243512       C00:34:17:0000:00:27:00   Prom: TDP-PROMO TENIS WTA BEIJING 1-8 OCTUBRE                     3EST                    G    
+2N          00:00:00:0000:00:27:000               NC 00:00:00:00
+1  51243591       C00:34:44:0000:00:16:00   Prom: TDP-PROMO WATERPOLO LIGA EUROPEA MASCULINA JOR2 VIERNES 6   3EST                    G    
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00
+1  71004052       C00:35:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 4                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P489EGS00501001E00:35:05:0001:33:21:00PENTATLON MODERNO CHALLENGER SPAIN 2023 (1)                           ESTPT  F               GSL  
+2N          00:00:00:0001:33:21:000  HA 00:35:00   
+1  14002182       C02:08:26:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004049       C02:08:31:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 1                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243588       C02:08:36:0000:00:20:00   Prom: TDP-PROMO BALONCESTO LIGA ENDESA JOR2 SÁBADO 7 OCTUBRE      3EST                    G    
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00
+1  51243521       C02:08:56:0000:00:26:00   Prom: LE MANS 66 (+7) (D8, 22H00)                                 3EST                    G    
+2NPASARELA  10:00:00:0010:00:26:000               NC 00:00:00:00
+1  51243514       C02:09:22:0000:00:17:00   Prom: TDP-PROMO GIMNASIA ARTÍSTICA CTO MUNDO 3-8 OCTUBRE          3EST                    G    
+2N          00:00:00:0000:00:17:000               NC 00:00:00:00
+1  51243515       C02:09:39:0000:00:21:00   Prom: TDP-PROMO FÚTBOL SALA ESLOVENIA - ESPAÑA VIERNES 6 OCTUBR   3EST                    G    
+2N          00:00:00:0000:00:21:000               NC 00:00:00:00
+1  12002444       C02:10:00:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  P464PDS00018002E02:10:22:0002:12:18:00GIMNASIA ARTISTICA CTO MUNDO 2023 (2)                                 ESTPT  F               GSL  
+2N          00:00:00:0002:12:18:000  HA 02:10:00   
+1  12002444       C04:22:40:0000:00:22:00   CD: TDP-CABECERA IN/OUT GIMNASIA ARTÍSTICA CAMPEONATO MUNDO 202   3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+1  14002182       C04:23:02:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004050       C04:23:07:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 2                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243515       C04:23:12:0000:00:21:00   Prom: TDP-PROMO FÚTBOL SALA ESLOVENIA - ESPAÑA VIERNES 6 OCTUBR   3EST                    G    
+2N          00:00:00:0000:00:21:000               NC 00:00:00:00
+1  51243512       C04:23:33:0000:00:27:00   Prom: TDP-PROMO TENIS WTA BEIJING 1-8 OCTUBRE                     3EST                    G    
+2N          00:00:00:0000:00:27:000               NC 00:00:00:00
+1  57074372       C04:24:00:0000:00:21:00   Prom: MAIXABEL  (+12) MUY PRONTO                                  3EST                    G    
+2NPASARELA  00:00:00:0000:00:21:000               NC 00:00:00:00
+1  51243585       C04:24:21:0000:00:23:00   Prom: TDP-PROMO BALONMANO LIGA ASOBAL JOR5 DOMINGO 8 OCTUBRE      3EST                    G    
+2N          00:00:00:0000:00:23:000               NC 00:00:00:00
+1  51243591       C04:24:44:0000:00:16:00   Prom: TDP-PROMO WATERPOLO LIGA EUROPEA MASCULINA JOR2 VIERNES 6   3EST                    G    
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00
+1  71004051       C04:25:00:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 3                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P489EGS00501001E04:25:05:0001:34:45:00PENTATLON MODERNO CHALLENGER SPAIN 2023 (1)                           ESTPT  F               GSL  
+2N          00:00:00:0001:34:45:000  HA 04:25:00   
+1  14002182       C05:59:50:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  71004052       C05:59:55:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - GENERICA 4                            2EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00

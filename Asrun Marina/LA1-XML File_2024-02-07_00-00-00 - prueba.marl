@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href=""?>
+<marinaAsRun version="3.0" startTime="2024-02-07T01:00:00:00" endTime="2024-02-08T00:59:59:24">
+	<source channelName="LA1" />
+	<eventList>
+		<event enabled="true" timerMarker="false" type="Comment" uid="1823">
+			<asRun result="Descheduled" channelID="5066" txList="B) LA1" txListID="5067" state="Done" clsid="VCLSID_CPBSAutomationJobComment" channel="LA1" />
+			<properties>
+				<event reconcileKey="1371057495">
+					<comment>
+						07/02/2024 08:42:26:24 - User 'CLIENT-1A' Import Loaded List '//10.104.26.5/PBS Share/Neptune Playlists/D1240201_La1-cat.xml'.
+					</comment>
+				</event>
+				<schedule startType="Sequential" />
+			</properties>
+		</event>
+		<event enabled="true" timerMarker="false" type="Comment" uid="1824">
+			<asRun result="Descheduled" channelID="5066" txList="B) LA1" txListID="5067" state="Done" clsid="VCLSID_CPBSAutomationJobComment" channel="LA1" />
+			<properties>
+				<event title="" reconcileKey="1371057496">
+					<comment>
+						ERROR: Couldn't find Palette Record for EventType='Marker'!
+					</comment>
+					<classifications>
+						<classification category="" classification="EventType" />
+					</classifications>
+				</event>
+				<schedule startType="Sequential" />
+			</properties>
+			<childEvents>
+				<event enabled="true" timerMarker="false" type="Comment" uid="1825">
+					<asRun result="Descheduled" channelID="5067" txList="B) LA1" txListID="5067" state="Done" clsid="VCLSID_CPBSAutomationJobComment" channel="B) LA1" />
+					<properties>
+						<event reconcileKey="1371057497">
+							<comment>
+								No mapping for secondary type DESC OFF
+							</comment>
+						</event>
+						<schedule startType="Sequential" />
+					</properties>
+				</event>
+			</childEvents>
+		</event>
+	</eventList>
+</marinaAsRun>

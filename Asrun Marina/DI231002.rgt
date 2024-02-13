@@ -1,0 +1,13 @@
+DI231002.rgt
+06:00:00:00  ZSICONNCX               -CONEXION CON CANAL 24H---        01:59:55:08  D 2                                                           7 0EST      D   06:00:00
+07:59:55:08  Z71004054               SD CT; 24H. CT. CONTINUIDAD -2-   00:00:05:00  C 2                                                           7 0EST                  
+08:00:00:08  ZP799PDS00021594        CAFÈ D' IDEES (594)               01:54:59:14  E 2                                                      01   7 0EST      D   08:00:00
+09:54:59:22  Z71004055               SD CT; 24H. CT. CONTINUIDAD -3-   00:00:05:00  C 2                                                           7 0EST                  
+09:55:04:22  ZSICONNCX               -CONEXION CON CANAL 24H---        04:35:20:10  D 2                                                           7 0EST      D   09:55:00
+14:30:25:07  Z71004056               SD CT; 24H. CT. CONTINUIDAD -4-   00:00:05:00  C 2                                                           7 0EST                  
+14:30:30:07  ZP511PDS00140628        SD CAT; INFORMATIVO SOBREMESA CA  00:12:08:13  E 2                                                      01   8 0EST          14:30:00
+14:42:38:20  Z71004054               SD CT; 24H. CT. CONTINUIDAD -2-   00:00:05:00  C 2                                                           7 0EST                  
+14:42:43:20  ZSICONNCX               -CONEXION CON CANAL 24H---        04:17:48:12  D 2                                                           7 0EST      D   14:42:00
+19:00:32:07  Z71004055               SD CT; 24H. CT. CONTINUIDAD -3-   00:00:05:00  C 2                                                           7 0EST                  
+19:00:37:07  ZP599PDS00192625        EL VESPRE (625)                   00:47:18:17  E 2                                                      01   7 0EST      D   19:00:00
+19:47:55:24  Z71004056               SD CT; 24H. CT. CONTINUIDAD -4-   00:00:05:00  C 2                                                           7 0EST                  

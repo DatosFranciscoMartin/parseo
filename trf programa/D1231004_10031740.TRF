@@ -1,0 +1,32 @@
+D120234403LA 1            40202304/10/23
+1W2S1CONNCX       D06:00:00:0007:59:55:00-CONEXION CON LA 1---                                                                        D    
+2N          00:00:00:0007:59:55:000  HA 06:00:00   
+1  71004471       C13:59:55:0000:00:05:00   CT: CT. DESCONEXION CC.TT. (LA1)                                  3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P511PDS00140630E14:00:00:0000:10:35:00INFORMATIVO SOBREMESA CATALU�A (630)                                  ESTPT                  DSL  
+2N          00:00:00:0000:10:35:000  HA 14:00:00   
+1  71004482       C14:10:35:0000:00:05:00   CT: CT. CONEXION CC.TT. (LA1)                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51243530       C14:10:40:0000:00:43:00   Prom: CAT- PROMO PUNTUAL NOMS PROPIS FERRAN CARDENAL              3EST                    G    
+2N          00:00:00:0000:00:43:000               NC 00:00:00:00
+1  52035854       C14:11:23:0000:00:32:00   Prom: CAT- PROMO GENERICA RTVE PLAY CAT CULTURA                   3EST                    G    
+2N          00:00:00:0000:00:32:000               NC 00:00:00:00
+1  14002158       C14:11:55:0000:00:05:00   IN: SIN FIN DE LA 1 (1'37")                                       3                       G    
+2N765C5010  09:59:59:0010:00:04:000               NC 00:00:00:00
+1  S1CONNCX       D14:12:00:0001:38:00:00-CONEXION CON LA 1---                                                                        D    
+2N          00:00:00:0001:38:00:000  HA 14:12:00   
+1  71004471       C15:50:00:0000:00:05:00   CT: CT. DESCONEXION CC.TT. (LA1)                                  3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  P511PDS00132692E15:50:05:0000:24:08:00INFORMATIVO CATALU�A SOBREMESA RESUMEN (692)                          ESTPT                  DSL  
+2N          00:00:00:0000:24:08:000  HA 15:50:00   
+1  71004482       C16:14:13:0000:00:05:00   CT: CT. CONEXION CC.TT. (LA1)                                     3EST                    G    
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
+1  51238585       C16:14:18:0000:00:20:00   Prom: CAT-PROMO RECEPTA PERDUDA GEN / DIUMENGES A LA 2            3EST                    G    
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00
+1  51243219       C16:14:38:0000:00:22:00   Prom: CAT-PROMO DEU NHI DO 02 / NO T'HO PERDIS A RTVEPLAY.CAT     3EST                    G    
+2N          00:00:00:0000:00:22:000               NC 00:00:00:00
+5 FINS FINAL TEMPORADA
+1  14002158       C16:15:00:0000:00:05:00   IN: SIN FIN DE LA 1 (1'37")                                       3                       G    
+2N765C5010  09:59:59:0010:00:04:000               NC 00:00:00:00
+1  S1CONNCX       D16:15:05:0013:45:00:00-CONEXION CON LA 1---                                                                        D    
+2N          00:00:00:0013:45:00:000  HA 16:15:00   
