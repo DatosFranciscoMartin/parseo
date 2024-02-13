@@ -104,7 +104,7 @@ ventana.mainloop()
 # se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
 fecha_actual = datetime.date.today()
 Archivo_log=open(directorio_salida + "\\" + "archivo_log" +".log","a",encoding="utf-8")
-Archivo_log.write(fecha_actual.strftime("%d/%m/%Y%H:%M")+"\n")
+Archivo_log.write(fecha_actual.strftime("%d/%m/%Y-%H:%M")+"\n")
 
 
 
