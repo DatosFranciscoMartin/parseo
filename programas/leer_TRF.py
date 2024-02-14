@@ -1,4 +1,4 @@
-fichero = open(r"C:\Users\franciscojavier.mart\Desktop\parsear\trf programa\S5231004_10031723.TRF")
+fichero = open(r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S5231004_10031723.TRF")
 
 primera_linea = fichero.readline()
 
@@ -7,7 +7,7 @@ contador=0
 for linea in fichero:
     contador = contador + 1
     if linea[0:1] == '1':
-        #print("**********Tipo 1**********")
+        #print("**********Tipo 1**********") 
 
         print()
         print("**********Linea ", contador, "**********")
@@ -18,7 +18,7 @@ for linea in fichero:
         INDMULTI = linea[1:3]
         TICODELEMENMIN = linea[3:18]
         TITIPELEME = linea[18:19]
-        TIHOINMIN = linea[19:30]
+        TIHOINMIN = linea[19:30] # HORA DE INICIO
         TIDUMINUT = linea[30:41]
         TITITELEME = linea[41:107]
         LENGUAJE_DE_SIGNOS = linea[107:108]
@@ -60,8 +60,64 @@ for linea in fichero:
         "SUBTITULADO": linea[135:136],
         "INDLOGO": linea[136:137],
         "NUMERO_DE_LOGO": linea[137:139],
-        "DISTINTIVO_DE_CALIFMORAL": linea[140:141]
+        "DISTINTIVO_DE_CALIFMORAL": linea[140:141],
         }
+
+        # Linea donde vamos a gener la reconcilekey
+
+        if CALIFMORAL == "    ":
+            CLASIFICACION = "0"
+        elif CALIFMORAL == "ERI ":
+            CLASIFICACION = "1"
+        elif CALIFMORAL == "NR12":
+            CLASIFICACION = "2"
+        elif CALIFMORAL == "NR13":
+            CLASIFICACION = "3"
+        elif CALIFMORAL == "NR16":
+            CLASIFICACION = "4"
+        elif CALIFMORAL == "NR18":
+            CLASIFICACION = "5"
+        elif CALIFMORAL == "NR7 ":
+            CLASIFICACION = "6"
+        elif CALIFMORAL == "PT  ":
+            CLASIFICACION = "7"
+        elif CALIFMORAL == "SC  ":
+            CLASIFICACION = "8"
+        elif CALIFMORAL == "X   ":
+            CLASIFICACION = "9"
+        
+        if SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "0"
+        elif SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "1"
+        elif SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "2"
+        elif SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
+            TXTAUD = "3"
+        elif SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "4"
+        elif SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            TXTAUD = "5"
+        elif SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            TXTAUD = "6"
+        elif SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "7"
+        elif SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            TXTAUD = "8"
+        elif SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
+            TXTAUD = "9"
+        elif SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            TXTAUD = "A"
+
+        if TITIPELEME == "B":
+            #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
+            RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8]
+            print(RECONCILEKEY.replace(" ", "*"))
+        else:
+            RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8]
+            print(RECONCILEKEY.replace(" ", "*"))
+            #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])    
+        
 
         # Imprimir las variables en vertical
         for variable, valor in variables.items():
