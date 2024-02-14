@@ -3,48 +3,36 @@ from tkinter import filedialog
 import os
 import datetime
 import time
+import logging
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 
 def seleccionar_directorio_a_monitorizar():
     """
-    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'. 
-    If a directory is selected, updates the text of the label 'etiqueta_directorio_salida' to display the selected directory.
+    Esta función de Python pide al usuario que seleccione un directorio y almacena el directorio seleccionado en la variable global 'directorio_monitorizar'. 
+    Si se selecciona un directorio, actualiza el texto de una etiqueta para mostrar el directorio seleccionado.
     """
-    global directorio_monitorizar  # declare the global variable
-    directorio_monitorizar = filedialog.askdirectory()  # open a dialog box to select a directory
-    if directorio_monitorizar:  # check if a directory is selected
-        etiqueta_directorio_monitorizar.config(text="Directorio a monitorizar seleccionado:\n" + directorio_monitorizar)  # update the label text
+    global directorio_monitorizar  
+    directorio_monitorizar = filedialog.askdirectory()  
+    if directorio_monitorizar:  
+        etiqueta_directorio_monitorizar.config(text="Directorio a monitorizar seleccionado:\n" + directorio_monitorizar)
 
 def seleccionar_directorio_salida():
     """
-    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'. 
-    If a directory is selected, updates the text of the label 'etiqueta_directorio_salida' to display the selected directory.
+    seleccionar_directorio_salida que pide al usuario que seleccione un directorio y almacena el directorio seleccionado en la variable global directorio_salida. Si se selecciona un directorio, 
+    actualiza el texto de la etiqueta directorio_salida para mostrar el directorio seleccionado.
     """
-    global directorio_salida  # declare the global variable
-    directorio_salida = filedialog.askdirectory()  # open a dialog box to select a directory
-    if directorio_salida:  # check if a directory is selected
-        etiqueta_directorio_salida.config(text="Directorio de salida seleccionado:\n" + directorio_salida)  # update the label text
+    global directorio_salida  
+    directorio_salida = filedialog.askdirectory()  
+    if directorio_salida:
+        etiqueta_directorio_salida.config(text="Directorio de salida seleccionado:\n" + directorio_salida)  
 
 def salir():
     """
-    This function closes the window.
+    Esta funcion cierra la ventana.
     """
     ventana.destroy()
-
-
-
-##############################################################################################################################
-#                                                                                                                            #
-#                                                                                                                            #
-#                                       A partir de este punto se genera la interfaz.                                        #
-#                                                                                                                            #
-#                                                                                                                            #
-##############################################################################################################################
-
-
-
 
 # Crear la ventana principal
 ventana = tk.Tk()
@@ -73,26 +61,29 @@ etiqueta_directorio_salida.pack()
 boton_salida = tk.Button(ventana, text="Ejecutar", command=salir)
 boton_salida.pack(pady=10)
 
-
 # Ejecutar el bucle principal
 ventana.mainloop()
-
-fecha_actual = datetime.date.today()
-Archivo_log=open(directorio_salida + "\\" + "archivo_log" +".log","a",encoding="utf-8")
-Archivo_log.write(fecha_actual.strftime("%d/%m/%Y-%H:%M")+"\n")
 
 # Directorio a monitorear
 directorio_a_monitorear = directorio_monitorizar
 
+# Agregado lineas de para generar un log en tiempo real
+log_file = os.path.join(directorio_salida, "log.log")
+logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
+
 def procesar_archivo(archivo):
     """
-    Procesa un archivo txt.
+    Este fragmento de código Python define una función procesar_archivo que procesa un archivo txt. Extrae información del archivo de entrada, manipula los datos y escribe la salida formateada en un nuevo archivo. 
+    El código incluye operaciones como la lectura de líneas específicas, la extracción de subcadenas y la escritura de datos formateados en un archivo de salida. 
+    También registra el nombre del fichero procesado e imprime un mensaje en la consola.
     """
-    print("Procesando archivo:", archivo)
+    # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
+    nombre_archivo = os.path.basename(archivo)
+    logging.info(f"Archivo procesado: {nombre_archivo}")
 
-    # Mete el fichero en el log
-    #nombre_archivo = os.path.basename(archivo)
-    #Archivo_log.write("     "+ nombre_archivo+"\n")
+    #Mensaje en la consola de salida que se indica que fichero se esta procesando.
+
+    print("Procesando archivo:", archivo)
 
     # Abre cada archivo en modo lectura
     with open(archivo, "r", encoding="utf-8") as fichero:
@@ -114,8 +105,6 @@ def procesar_archivo(archivo):
         with open(os.path.join(directorio_salida, f"{circuito}{year}{mes}{dia}.rgt"), "w", encoding="utf-8") as Archivo_salida:
             Archivo_salida.write(circuito+year+mes+dia+"\n")
 
-            nombre_archivo = os.path.basename(archivo)
-            Archivo_log.write("     "+ nombre_archivo+"\n")
 
             # Otras operaciones para leer el archivo y escribir en el archivo de salida
             for _ in range(4):
@@ -201,11 +190,12 @@ def procesar_archivo(archivo):
 
                     
 
-
+# Generamoos una clase donde especificamos que se debe de hacer cuando se genera un fichero en el directorio a monitorear. Solo procesa fichero .txt
 class FileHandler(FileSystemEventHandler):
     def on_created(self, event):
         """
-        Acción a realizar cuando se crea un archivo.
+        Este código define un método on_created que se llama cuando se crea un fichero. Si el elemento creado es un directorio, no devuelve nada y no se llama a ninguna funcion adicional. 
+        Si el elemento creado es un archivo .txt, llama a una función procesar_archivo con la ruta del archivo creado como argumento.
         """
         if event.is_directory:
             return
@@ -213,10 +203,14 @@ class FileHandler(FileSystemEventHandler):
             procesar_archivo(event.src_path)
 
 
+# La siguiente funcion inicia el monitoreo en el directorio que, nosotros le indiquemos en el GUI que nos salta cuando iniciamos el programa
 def iniciar_monitoreo():
     """
-    Inicia el monitoreo del directorio especificado.
+    Este código define una función llamada iniciar_monitoreo que comienza a monitorear un directorio especificado en busca de cambios en los archivos usando las clases Observer y FileHandler de la librería watchdog. 
+    Cuando la función es llamada, comienza a monitorizar el directorio especificado recursivamente, imprime un mensaje indicando que el directorio está siendo monitorizado, 
+    y entonces entra en un bucle para dormir continuamente y comprobar si hay interrupciones de teclado para detener el proceso de monitorización.
     """
+
     event_handler = FileHandler()
     observer = Observer()
     observer.schedule(event_handler, directorio_a_monitorear, recursive=True)
@@ -230,5 +224,6 @@ def iniciar_monitoreo():
     observer.join()
 
 
+# Este fragmento de código comprueba si el script actual se está ejecutando como programa principal, y si es así, llama a la función iniciar_monitoreo().
 if __name__ == "__main__":
     iniciar_monitoreo()
