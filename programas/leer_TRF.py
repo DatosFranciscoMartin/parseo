@@ -2,15 +2,29 @@ fichero = open(r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S52
 
 primera_linea = fichero.readline()
 
+eventos = {}
+
+cabecera = """<?xml version="1.0" encoding="UTF-8"?>
+<marinaPlaylist version="3.1">
+<properties>
+<history>
+</history>
+</properties>
+<eventList>
+</eventList>
+</marinaPlaylist>
+"""
+
+print(cabecera)
 
 contador=0
 for linea in fichero:
-    contador = contador + 1
     if linea[0:1] == '1':
-        #print("**********Tipo 1**********") 
+        #print("**********Tipo 1**********")
+        contador = contador + 1
 
         print()
-        print("**********Linea ", contador, "**********")
+        #print("**********Linea ", contador, "**********")
 
         # Referencia Tipo 1
 
@@ -109,19 +123,16 @@ for linea in fichero:
         elif SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
             TXTAUD = "A"
 
-        if TITIPELEME == "B":
-            #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
-            RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8]
-            print(RECONCILEKEY.replace(" ", "*"))
-        else:
-            RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8]
-            print(RECONCILEKEY.replace(" ", "*"))
-            #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])    
+
+        #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
+        RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN[:11]+TICODELEMENMIN[11:13]+"_"+TIHOINMIN[:8]
+        #print(RECONCILEKEY.replace(" ", "*")) 
         
+        eventos[contador] = [TIPOREG]
 
         # Imprimir las variables en vertical
-        for variable, valor in variables.items():
-            print(f"{variable}: {valor}")
+        #for variable, valor in variables.items():
+        #    print(f"{variable}: {valor}")
 
         #print(TIPOREG,INDMULTI,TICODELEMENMIN,TITIPELEME,TIHOINMIN,TIDUMINUT,TITITELEME,LENGUAJE_DE_SIGNOS,AUDIODESCRIPCION,RELACION_DE_ASPECTO,TIPO_DE_AUDIO,CALIFMORAL,INDELEMFIJO,CONTRATO,PASE,CODLOCALI,NO_PA,DIRGRAB,SUBTITULADO,INDLOGO,NUMERO_DE_LOGO,DISTINTIVO_DE_CALIFMORAL)
 
@@ -132,7 +143,7 @@ for linea in fichero:
         #print("Tipo 2")
 
         print()
-        print("**********Linea ", contador, "**********")
+        #print("**********Linea ", contador, "**********")
 
         # Referencia de Tipo 2
 
@@ -164,16 +175,17 @@ for linea in fichero:
         }
 
         # Imprimir las variables en vertical
-        for variable, valor in variables.items():
-            print(f"{variable}: {valor}")
+        #for variable, valor in variables.items():
+        #    print(f"{variable}: {valor}")
 
         #print(TIPOREG,TIPOCINTA,CODCINTA,HORINIEMI,HORFINEMI,NUMSEGMENTO,ULTIMO,Literal1,HORA_ANUNCIADA,Literal2,NOCOMPUTA)
+        eventos[contador].append(TIPOREG)
 
     elif linea[0:1] == '3':
         #print("Tipo 3")
 
         print()
-        print("**********Linea ", contador, "**********")
+        #print("**********Linea ", contador, "**********")
 
         # Referencia de Tipo 3
 
@@ -193,16 +205,19 @@ for linea in fichero:
         }
 
         # Imprimir las variables en vertical
-        for variable, valor in variables.items():
-            print(f"{variable}: {valor}")
+        #for variable, valor in variables.items():
+        #    print(f"{variable}: {valor}")
 
         #print(TIPOREG,TIPO_DE_INSERCION,NUMERO_DE_LA_INCRUSTACION,HORA_DE_COMIENZO,DURACION)
 
+        eventos[contador].append(TIPOREG)
+
     elif linea[0:1] == '4':
         #print("Tipo 4")
+        contador = contador + 1
 
         print()
-        print("**********Linea ", contador, "**********")
+        #print("**********Linea ", contador, "**********")
 
         # Referencia de Tipo 4
 
@@ -216,16 +231,19 @@ for linea in fichero:
         }
 
         # Imprimir las variables en vertical
-        for variable, valor in variables.items():
-            print(f"{variable}: {valor}")
+        #for variable, valor in variables.items():
+        #    print(f"{variable}: {valor}")
 
         #print(TIPOREG,IDBLOQUE)
 
+        eventos[contador] = [TIPOREG]
+
     elif linea[0:1] == '5':
         #print("Tipo 5")
+        contador = contador + 1
 
         print()
-        print("**********Linea ", contador, "**********")
+        #print("**********Linea ", contador, "**********")
         
 
         # Referencia de Tipo 5
@@ -242,10 +260,14 @@ for linea in fichero:
         }
 
         # Imprimir las variables en vertical
-        for variable, valor in variables.items():
-            print(f"{variable}: {valor}")
+        #for variable, valor in variables.items():
+        #    print(f"{variable}: {valor}")
 
         #print(TIPOREG,ESPACIO,OBSERVACIONES)
 
+        eventos[contador] = [TIPOREG]
+
 
 fichero.close()
+
+print(eventos)
