@@ -230,7 +230,7 @@ for event, diccionario_interno in eventos.items():
         schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
         media1 = ET.SubElement(properties1, "media")
         media1.set("mediaType", "Live")
-        media1.set("mediaName", diccionario_interno["TICODELEMENMIN"]),
+        media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
 
         # Se agrega etiquetas comunes de ambos casos
         event1_2 = ET.SubElement(properties1, "event")
@@ -259,9 +259,9 @@ for event, diccionario_interno in eventos.items():
         schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
         media1 = ET.SubElement(properties1, "media")
         media1.set("mediaType", "Video")
-        media1.set("mediaName", diccionario_interno["TICODELEMENMIN"])
+        media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
         mediaStream1 = ET.SubElement(properties1, "mediaStream")
-        mediaStream1.set("som", diccionario_interno['TIHOINMIN'])
+        mediaStream1.set("som", diccionario_interno['TIHOINMIN'].rstrip())
         video1 = ET.SubElement(mediaStream1,"video")
         video1.set("jobType", "Play")
         segment1 = ET.SubElement(mediaStream1,"segment")
@@ -276,10 +276,10 @@ for event, diccionario_interno in eventos.items():
         classification1.set("classification", "EventType")
         classification1.set("category", diccionario_interno["TITIPELEME"])
         mediaStream1 = ET.SubElement(properties1, "mediaStream")
-        mediaStream1.set("som", diccionario_interno["TICODELEMENMIN"])
+        mediaStream1.set("som", diccionario_interno["TICODELEMENMIN"].rstrip())
         if diccionario_interno['INDELEMFIJO'] == "F":
             schedule1.set("startType", "Fixed")
-            schedule1.set("startOffset", diccionario_interno['TIHOINMIN'])
+            schedule1.set("startOffset", diccionario_interno['TIHOINMIN'].rstrip())
         else:
             schedule1.set("startType", "Sequential")
 
