@@ -288,14 +288,12 @@ for event, diccionario_interno in eventos.items():
 # Crear el objeto ElementTree para representar la estructura del XML
 tree = ET.ElementTree(marinaPlaylist)
 
-# Obtener una representación en cadena de texto del XML
-xml_str = ET.tostring(marinaPlaylist, encoding="utf-8")
+# Escribir el árbol XML en un archivo
+with open("prueba_final.xml", "w", encoding="utf-8") as xml_file:
+    # Obtener una representación en cadena de texto del XML y formatear el XML
+    xml_str = ET.tostring(marinaPlaylist, encoding="utf-8")
+    xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
 
-# Formatear el XML
-xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
-
-# Imprimir el XML formateado
-print(xml_formatted)
-
-## Escribir el árbol XML en un archivo
-xml_formatted.write("prueba_final.xml", encoding="utf-8", xml_declaration=True)
+    # Escribir el XML formateado en el archivo
+    xml_file.write(xml_formatted)
+    print("XML generado exitosamente.")
