@@ -163,27 +163,27 @@ fichero.close()
 
 # Imprimir los eventos con las variables ordenadas alfabéticamente
 
-for event, diccionario_interno in eventos.items():
-    if diccionario_interno['TIPOREG'] == "1":
-        if diccionario_interno['DIRGRAB'] == "G":
-            xml = f"""
-            <event type="PrimaryVideo">	 	 	 
- 	            <properties>	 	 	 	 	 
- 	 	            <schedule startType="{diccionario_interno['SCH_StartType']}" startOffset="{diccionario_interno['TIHOINMIN']}" endType="Duration" endOffset="{diccionario_interno['TIDUMINUT']}" />
- 	 	            <mediaStream>
- 	 	 	            <video jobType="Play" />	 
- 	 	            </mediaStream>	 	 	 
- 	 	            <event title="{diccionario_interno['TITITELEME']}" reconcileKey="{diccionario_interno['RECONCILEKEY']}">
- 	 	 	            <classifications>	 	 
- 	 	 	 	            <classification classification="EventType" category="{diccionario_interno['TITIPELEME']}" />
- 	 	 	            </classifications>	 	 
- 	 	            </event>	 	 	 	 
- 	 	            <media mediaType="Video" mediaName="{diccionario_interno['TICODELEMENMIN']}" />
- 	 	            <features />	 	 	 	 
- 	            </properties>	 	 	 	 
-            </event>		
-"""     
-            print(xml)
+#for event, diccionario_interno in eventos.items():
+#    if diccionario_interno['TIPOREG'] == "1":
+#        if diccionario_interno['DIRGRAB'] == "G":
+#            xml = f"""
+#            <event type="PrimaryVideo">	 	 	 
+# 	            <properties>	 	 	 	 	 
+# 	 	            <schedule startType="{diccionario_interno['SCH_StartType']}" startOffset="{diccionario_interno['TIHOINMIN']}" endType="Duration" endOffset="{diccionario_interno['TIDUMINUT']}" />
+# 	 	            <mediaStream>
+# 	 	 	            <video jobType="Play" />	 
+# 	 	            </mediaStream>	 	 	 
+# 	 	            <event title="{diccionario_interno['TITITELEME']}" reconcileKey="{diccionario_interno['RECONCILEKEY']}">
+# 	 	 	            <classifications>	 	 
+# 	 	 	 	            <classification classification="EventType" category="{diccionario_interno['TITIPELEME']}" />
+# 	 	 	            </classifications>	 	 
+# 	 	            </event>	 	 	 	 
+# 	 	            <media mediaType="Video" mediaName="{diccionario_interno['TICODELEMENMIN']}" />
+# 	 	            <features />	 	 	 	 
+# 	            </properties>	 	 	 	 
+#            </event>		
+#"""     
+#            print(xml)
 
     
 
