@@ -298,4 +298,4 @@ xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
 print(xml_formatted)
 
 ## Escribir el árbol XML en un archivo
-tree.write("prueba2.xml", encoding="utf-8", xml_declaration=True)
+xml_formatted.write("prueba_final.xml", encoding="utf-8", xml_declaration=True)
