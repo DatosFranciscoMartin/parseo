@@ -28,17 +28,6 @@ primera_linea = fichero.readline()
 
 eventos = {}
 
-cabecera = """<?xml version="1.0" encoding="UTF-8"?>
-<marinaPlaylist version="3.1">
-<properties>
-<history>
-</history>
-</properties>
-<eventList>
-</eventList>
-</marinaPlaylist>
-"""
-
 contador = 0
 contador_tipo_2 = 0
 contador_tipo_3 = 0
@@ -221,8 +210,8 @@ fichero.close()
 #            print(xml)
 
 
-for event, diccionario_interno in eventos.items():
-    print(diccionario_interno)
+#for event, diccionario_interno in eventos.items():
+#    print(diccionario_interno)
 
 
 # Crear el elemento raíz del XML, este debe de  
@@ -236,9 +225,12 @@ marinaPlaylist.set ("EndTime", str(fecha_fin_transformada)+"T00:59:59:24")
 properties = ET.SubElement(marinaPlaylist, "properties")
 eventlist = ET.SubElement(marinaPlaylist, "eventList")
 
-# Si tipo4
 
 for event, diccionario_interno in eventos.items():
+
+# Si tipo4
+
+
     if diccionario_interno['TIPOREG'] == "4":
         event4 = ET.SubElement(eventlist, "event")
         event4.set("type", "BlockStart")
@@ -287,6 +279,11 @@ for event, diccionario_interno in eventos.items():
                 schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
         else:
             schedule1.set("startType", "Sequential")
+        for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+            if clave.startswith('Tipo3_'):
+                print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+
+
 
 
 # Si en este caso es tipo grabado, o lo que es lo mismo, el valor del campo DIRGRAB es G
@@ -323,6 +320,10 @@ for event, diccionario_interno in eventos.items():
             schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
         else:
             schedule1.set("startType", "Sequential")
+        for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+            if clave.startswith('Tipo3_'):
+                print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+
 
 
 
