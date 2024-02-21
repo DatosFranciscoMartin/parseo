@@ -108,7 +108,6 @@ def procesar_archivo(archivo):
 
     # Generamos 3 contadores que nos van a ayudar a generar el numero de eventos que vamos a tener, con los contadores de tipo nos ayuda a poder generar diccionarios dentro de los eventos de tipo 1
         contador = 0
-        contador_tipo_2 = 0
         contador_tipo_3 = 0
         for linea in fichero:
 
@@ -229,10 +228,9 @@ def procesar_archivo(archivo):
             elif linea[0:1] == '2':
         
                 # Inicializamos el contador de tipo 2 para ir contando los eventos de tipo 2
-                contador_tipo_2 += 1
 
                 # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
-                eventos[contador]["Tipo2"+"_"+str(contador_tipo_2)] = {
+                eventos[contador]["Tipo2"] = {
                     "TIPOREG": linea[0:1],
                     "TIPOCINTA": linea[1:2],
                     "CODCINTA": linea[2:12],
