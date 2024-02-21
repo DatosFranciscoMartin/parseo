@@ -7,15 +7,18 @@ import tkinter as tk
 from tkinter import filedialog
 import logging
 
+
 def seleccionar_directorio_salida():
     """
-    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'. 
+    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'.
     If a directory is selected, updates the text of the label 'etiqueta_directorio_salida' to display the selected directory.
     """
     global directorio_salida  # declare the global variable
     directorio_salida = filedialog.askdirectory()  # open a dialog box to select a directory
     if directorio_salida:  # check if a directory is selected
-        etiqueta_directorio_salida.config(text="Directorio de salida seleccionado:\n" + directorio_salida)  # update the label text
+        etiqueta_directorio_salida.config(
+            text="Directorio de salida seleccionado:\n" + directorio_salida)  # update the label text
+
 
 def seleccionar_archivos():
     """
@@ -23,25 +26,27 @@ def seleccionar_archivos():
     """
     # Prompt the user to select multiple files
     archivos = filedialog.askopenfilenames(filetypes=(("Archivos TRF", "*.TRF"), ("Todos los archivos", "*.*")))
-    
+
     # If files were selected, extend the list of files with the selected ones
     if archivos:
         lista_archivos.extend(archivos)
         actualizar_etiqueta_archivos()
 
+
 def actualizar_etiqueta_archivos():
     """
-    Updates the label 'etiqueta_archivos' with the text "Archivos seleccionados:" 
+    Updates the label 'etiqueta_archivos' with the text "Archivos seleccionados:"
     followed by the elements of 'lista_archivos' joined by newlines.
-    
+
     Args:
         None
-    
+
     Returns:
         None
     """
     # Update the text of etiqueta_archivos
     etiqueta_archivos.config(text="Archivos seleccionados:\n" + "\n".join(lista_archivos))
+
 
 def salir():
     """
@@ -49,10 +54,11 @@ def salir():
     """
     ventana.destroy()
 
+
 # Crear la ventana principal
 ventana = tk.Tk()
 ventana.geometry("600x400")
-#ventana.iconbitmap(r"programas\icono_datos.ico")
+# ventana.iconbitmap(r"programas\icono_datos.ico")
 ventana.title("Seleccionar archivos y directorio de salida")
 
 # Botón para seleccionar archivos
@@ -65,7 +71,8 @@ etiqueta_archivos = tk.Label(ventana, text="Ningún archivo seleccionado")
 etiqueta_archivos.pack()
 
 # Botón para seleccionar directorio de salida
-boton_seleccionar_directorio = tk.Button(ventana, text="Seleccionar directorio de salida", command=seleccionar_directorio_salida)
+boton_seleccionar_directorio = tk.Button(ventana, text="Seleccionar directorio de salida",
+                                         command=seleccionar_directorio_salida)
 boton_seleccionar_directorio.pack(pady=10)
 
 # Etiqueta para mostrar el directorio de salida seleccionado
@@ -77,24 +84,43 @@ etiqueta_directorio_salida.pack()
 boton_salida = tk.Button(ventana, text="Ejecutar", command=salir)
 boton_salida.pack(pady=10)
 
-
 # Ejecutar el bucle principal
 ventana.mainloop()
 
 log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
 
-
 for archivo in lista_archivos:
-    fichero = open(archivo, "r", encoding="utf-8")
+    fichero = open(archivo, "r") #le he quitado encoding="utf-8"
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
 
     # Sacamos el nombre del fichero en el cual tenemos información acerca de la fecha y hora de creación
-    nombre_archivo = os.path.basename(archivo)
+    #nombre_archivo = os.path.basename(archivo)
 
     # La fecha de inicio la sacamos de la siguiente forma sobre el nombre del fichero
-    fecha_inicio = "20" + nombre_archivo[2:4]+"-"+nombre_archivo[4:6]+"-"+nombre_archivo[6:8]
+    #fecha_inicio = "20" + nombre_archivo[2:4] + "-" + nombre_archivo[4:6] + "-" + nombre_archivo[6:8]
+
+    # Transformamos la fecha de inicio a un objeto de tipo datetime
+    #fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
+
+    # Sumamos un dia a la fecha ya transformada
+    #fecha_fin = fecha_transformada + timedelta(days=1)
+
+    # Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
+    #fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
+
+    # Nos saltamos la primera linea del fichero y sacamos sus datos.
+    primera_linea = fichero.readline()
+
+    LICOMINUTA = primera_linea[0:10]
+    LICADENA = primera_linea[10:26]
+    LISEMANA = primera_linea[26:28]
+    LIANIO = primera_linea[28:32]
+    LIFECMINUT= primera_linea[32:40]
+
+    # La fecha de inicio
+    fecha_inicio = LIANIO + "-" + LIFECMINUT[3:5] + "-" + LIFECMINUT[:2]
 
     # Transformamos la fecha de inicio a un objeto de tipo datetime
     fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
@@ -105,9 +131,6 @@ for archivo in lista_archivos:
     # Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
     fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
 
-    # Nos saltamos la primera linea del fichero ya que este no es necesaria
-    primera_linea = fichero.readline()
-
     # Creamos un diccionario vacío en el que vamos a ir guardando diccionarios que van a corresponder a cada uno de los eventos que tenemos en los ficheros TRF, se guardarian solo los tiopos 1, 4 y 5 ya que los elementos
     # de tipo 2 y 3 siempre van dentro de los elementos de tipo 1
     eventos = {}
@@ -116,8 +139,7 @@ for archivo in lista_archivos:
     contador = 0
     contador_tipo_3 = 0
 
-
-# Creamos la primera iteración sobre el fichero que hemos cargado anteriormente, 
+    # Creamos la primera iteración sobre el fichero que hemos cargado anteriormente,
     for linea in fichero:
 
         # Primero comprobamos el tipo de evento que es mediante el primer caracter de la linea
@@ -129,13 +151,13 @@ for archivo in lista_archivos:
             INDMULTI = linea[1:3]
             TICODELEMENMIN = linea[3:18]
             TITIPELEME = linea[18:19]
-            TIHOINMIN = linea[19:30] # HORA DE INICIO
+            TIHOINMIN = linea[19:30]  # HORA DE INICIO
             TIDUMINUT = linea[30:41]
             TITITELEME = linea[41:107]
             LENGUAJE_DE_SIGNOS = linea[107:108]
             AUDIODESCRIPCION = linea[108:109]
             RELACION_DE_ASPECTO = linea[110:111]
-            TIPO_DE_AUDIO  = linea[111:114]
+            TIPO_DE_AUDIO = linea[111:114]
             CALIFMORAL = linea[114:118]
             INDELEMFIJO = linea[118:119]
 
@@ -200,10 +222,12 @@ for archivo in lista_archivos:
             elif SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                 TXTAUD = "A"
 
-
-            #print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
-            RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN[:11]+TICODELEMENMIN[11:13]+"_"+TIHOINMIN[:8]
-            #print(RECONCILEKEY.replace(" ", "*"))
+            # print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
+            RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[
+                                                                                                         :11] + TICODELEMENMIN[
+                                                                                                                11:13] + "_" + TIHOINMIN[
+                                                                                                                               :8]
+            # print(RECONCILEKEY.replace(" ", "*"))
 
             # Generamos el diccionario con la informacion que hemos extraid del fichero principal
             eventos[contador] = {
@@ -252,14 +276,14 @@ for archivo in lista_archivos:
                 "Literal2": linea[50:52],
                 "NOCOMPUTA": linea[53:]
             }
-    # Aqui comprobamos si es de tipo 3, si es de tipo seguimos la siguiente logica para extraer la informacion.
+        # Aqui comprobamos si es de tipo 3, si es de tipo seguimos la siguiente logica para extraer la informacion.
         elif linea[0:1] == '3':
 
             # Inicializamos el contador de tipo 3 para ir contando los eventos de tipo 3
             contador_tipo_3 += 1
 
             # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
-            eventos[contador]["Tipo3"+"_"+str(contador_tipo_3)] = {
+            eventos[contador]["Tipo3" + "_" + str(contador_tipo_3)] = {
                 "TIPOREG": linea[0:1],
                 "TIPO_DE_INSERCION": linea[1:2],
                 "NUMERO_DE_LA_INCRUSTACION": linea[3:7],
@@ -281,45 +305,47 @@ for archivo in lista_archivos:
                 "OBSERVACIONES": linea[2:34] if linea[0:1] == '5' else None
             }
 
-# Cerramos el fichero
+    # Cerramos el fichero
     fichero.close()
-
 
     for event, diccionario_interno in eventos.items():
         print(diccionario_interno)
 
-
-    # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:  
+    # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:
     marinaPlaylist = ET.Element("marinaPlaylist")
-    marinaPlaylist.set ("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
-    marinaPlaylist.set ("xsi:noNamespaceSchemaLocation","./../../../playlist/playlist.xsd")
-    marinaPlaylist.set ("version","3.1")
-    marinaPlaylist.set ("comment","PebbleBeach Marina playlist generated by DatosMedia")
-    marinaPlaylist.set ("StartTime", str(fecha_inicio)+"T01:00:00:00")
-    marinaPlaylist.set ("EndTime", str(fecha_fin_transformada)+"T00:59:59:24")
+    marinaPlaylist.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+    marinaPlaylist.set("xsi:noNamespaceSchemaLocation", "./../../../playlist/playlist.xsd")
+    marinaPlaylist.set("version", "3.1")
+    marinaPlaylist.set("comment", "PebbleBeach Marina playlist generated by DatosMedia")
+    marinaPlaylist.set("StartTime", str(fecha_inicio) + "T01:00:00:00")
+    marinaPlaylist.set("EndTime", str(fecha_fin_transformada) + "T00:59:59:24")
     properties = ET.SubElement(marinaPlaylist, "properties")
     eventlist = ET.SubElement(marinaPlaylist, "eventList")
 
-
-    # En la siguiente iteración vamos a recorrer los eventos que hemos guardado en el diccionario de eventos, y vamos a crear dos variables, event para saber el numero de evento y 
-    #diccionario_interno para saber el diccionario que vamos a usar para crear el evento
+    # En la siguiente iteración vamos a recorrer los eventos que hemos guardado en el diccionario de eventos, y vamos a crear dos variables, event para saber el numero de evento y
+    # diccionario_interno para saber el diccionario que vamos a usar para crear el evento
 
     for event, diccionario_interno in eventos.items():
 
-    # Si es tipo 4, vamos a seguir la siguiente logica para generar una rama XML de tipo 4
+        # Si es tipo 4, vamos a seguir la siguiente logica para generar una rama XML de tipo 4
 
         if diccionario_interno['TIPOREG'] == "4":
             event4 = ET.SubElement(eventlist, "event")
-            event4.set("type", "BlockStart")
-            properties5 = ET.SubElement(event4, "properties")
-            properties5.set("blockname", diccionario_interno["IDBLOQUE"].rstrip())
+            event4.set("type", "Comment")
+            #event4.set("type", "BlockStart")
+            properties4 = ET.SubElement(event4, "properties")
+            #properties4.set("blockname", diccionario_interno["IDBLOQUE"].rstrip())
+            schedule4 = ET.SubElement(properties4, "schedule")
+            schedule4.set("startType", "Sequential")
+            event4_1 = ET.SubElement(properties4, "event")
+            comment4 = ET.SubElement(event4_1, "comment")
+            comment4.text = "BLOQUE:"+" "+diccionario_interno["IDBLOQUE"].rstrip()
 
-
-    # Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
+        # Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
 
         if diccionario_interno['TIPOREG'] == "5":
             event5 = ET.SubElement(eventlist, "event")
-            event5.set("type", "Comment")  # Aquí puede variar el tipo
+            event5.set("type", "Comment")
             properties5 = ET.SubElement(event5, "properties")
             schedule5 = ET.SubElement(properties5, "schedule")
             schedule5.set("startType", "Sequential")
@@ -327,8 +353,8 @@ for archivo in lista_archivos:
             comment5 = ET.SubElement(event5_1, "comment")
             comment5.text = diccionario_interno["OBSERVACIONES"].rstrip()
 
-    # Si tipo1
-    # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
+        # Si tipo1
+        # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
 
         if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "D":
             event1 = ET.SubElement(eventlist, "event")
@@ -340,38 +366,41 @@ for archivo in lista_archivos:
             media1 = ET.SubElement(properties1, "media")
             media1.set("mediaType", "Live")
             media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
-            #media1.set("mediaName", "TESTOK"),
+            # media1.set("mediaName", "TESTOK"),
 
             # Se agrega etiquetas comunes de ambos casos
             event1_2 = ET.SubElement(properties1, "event")
-            event1_2.set("title", diccionario_interno["TITITELEME"].rstrip())
+            event1_2.set("title", diccionario_interno["TITITELEME"].strip())
             event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
             classifications1 = ET.SubElement(event1_2, "classifications")
             classification1 = ET.SubElement(classifications1, "classification")
             classification1.set("classification", "EventType")
             classification1.set("category", diccionario_interno["TITIPELEME"])
             mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno["TIHOINMIN"])
+            mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+
+            # Se comprueba si hay segmentos en el directo
+            if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
+                mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
 
             # Se comprueba si es tipo fijo o tipo secuencial
             if diccionario_interno['INDELEMFIJO'] == "F":
-                    schedule1.set("startType", "Fixed")
-                    schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
+                schedule1.set("startType", "Fixed")
+                schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
             else:
                 schedule1.set("startType", "Sequential")
 
+
+
             # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-            #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+            # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             #    if clave.startswith('Tipo3_'):
             #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
             #    elif clave.startswith('Tipo2_'):
             #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
 
-
-
-
-
-    # Si en este caso es tipo grabado, o lo que es lo mismo, el valor del campo DIRGRAB es G
+        # Si en este caso es tipo grabado, o lo que es lo mismo, el valor del campo DIRGRAB es G
         if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "G":
             event1 = ET.SubElement(eventlist, "event")
             event1.set("type", "PrimaryVideo")
@@ -382,49 +411,54 @@ for archivo in lista_archivos:
             media1 = ET.SubElement(properties1, "media")
             media1.set("mediaType", "Video")
             media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
-            #media1.set("mediaName", "TESTOK"),
+            # media1.set("mediaName", "TESTOK"),
             mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno['TIHOINMIN'].rstrip())
-            video1 = ET.SubElement(mediaStream1,"video")
+            mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+            video1 = ET.SubElement(mediaStream1, "video")
             video1.set("jobType", "Play")
-            segment1 = ET.SubElement(mediaStream1,"segment")
+            segment1 = ET.SubElement(mediaStream1, "segment")
             segment1.set("type", "Media")
 
             # Se agrega etiquetas comunes de ambos casos
             event1_2 = ET.SubElement(properties1, "event")
-            event1_2.set("title", diccionario_interno["TITITELEME"].rstrip())
+            event1_2.set("title", diccionario_interno["TITITELEME"].strip())
             event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
             classifications1 = ET.SubElement(event1_2, "classifications")
             classification1 = ET.SubElement(classifications1, "classification")
             classification1.set("classification", "EventType")
             classification1.set("category", diccionario_interno["TITIPELEME"])
             mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno["TIHOINMIN"].rstrip())
+            mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+
+            # Se comprueba si hay segmentos en el directo
+            if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
+                segment1.set("type", "Markup")
+                markup1 =ET.SubElement(segment1,"markup")
+                markup1.set("orderNo",diccionario_interno['Tipo2']['NUMSEGMENTO'])
+                mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
 
             # Se comprueba si es tipo fijo o tipo secuencial
             if diccionario_interno['INDELEMFIJO'] == "F":
                 schedule1.set("startType", "Fixed")
-                schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
+                schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
             else:
                 schedule1.set("startType", "Sequential")
 
             # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-            #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+            # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             #    if clave.startswith('Tipo3_'):
             #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
             #    elif clave.startswith('Tipo2_'):
             #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
 
-
-
-
     nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
-    with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="utf-8") as xml_file:
+    with open(directorio_salida + "/" + nombre_fichero_sin_extension + ".mpl", "w", encoding="utf-8") as xml_file:
         # Obtener una representación en cadena de texto del XML y formatear el XML
         xml_str = ET.tostring(marinaPlaylist, encoding="utf-8")
         xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
-    
+
         # Escribir el XML formateado en el archivo
         xml_file.write(xml_formatted)
         print("XML generado exitosamente.")
