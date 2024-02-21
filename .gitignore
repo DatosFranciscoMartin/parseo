@@ -1,3 +1,4 @@
 *.exe
 pruebas.py
 *.xml
+pruebas*/
