@@ -5,39 +5,51 @@ from datetime import timedelta, datetime
 
 
 # Fichero de prueba
-#fichero = open(r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S5231004_10031723.TRF")
-
-ruta = r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S1240220_12221817.TRF"
+#ruta = open(r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S5231004_10031723.TRF")
 
 #Fichero Real
+ruta = r"C:\Users\franciscojavier.mart\Documents\parseo\trf programa\S1240220_12221817.TRF"
+
+# Cargamos la ruta del fichero en una variable para tratarla mas tarde
 fichero = open(ruta, "r", encoding="utf-8")
 
+
+# Sacamos el nombre del fichero en el cual tenemos información acerca de la fecha y hora de creación
 nombre_archivo = os.path.basename(ruta)
 
+# La fecha de inicio la sacamos de la siguiente forma sobre el nombre del fichero
 fecha_inicio = "20" + nombre_archivo[2:4]+"-"+nombre_archivo[4:6]+"-"+nombre_archivo[6:8]
 
+# Transformamos la fecha de inicio a un objeto de tipo datetime
 fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
 
+# Sumamos un dia a la fecha ya transformada
 fecha_fin = fecha_transformada + timedelta(days=1)
 
+# Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
 fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
 
-print(fecha_inicio, fecha_fin_transformada)
-
+# Nos saltamos la primera linea del fichero ya que este no es necesaria
 primera_linea = fichero.readline()
 
+# Creamos un diccionario vacío en el que vamos a ir guardando diccionarios que van a corresponder a cada uno de los eventos que tenemos en los ficheros TRF, se guardarian solo los tiopos 1, 4 y 5 ya que los elementos
+# de tipo 2 y 3 siempre van dentro de los elementos de tipo 1
 eventos = {}
 
+# Generamos 3 contados que nos van a ayudar a generar el numero de eventos que vamos a tener, con los contadores de tipo nos ayuda a poder generar diccionarios dentro de los eventos de tipo 1
 contador = 0
 contador_tipo_2 = 0
 contador_tipo_3 = 0
 
 
-
+# Creamos la primera iteración sobre el fichero que hemos cargado anteriormente, 
 for linea in fichero:
+
+    # Primero comprobamos el tipo de evento que es mediante el primer caracter de la linea
     if linea[0:1] == '1':
         contador += 1
 
+        # Aqui tenemos la logica que vamos a seguir con los eventos de tipo 1, en el que se puede ver como la siguiente informacion se extrae de la siguiente manera
         TIPOREG = linea[0:1]
         INDMULTI = linea[1:3]
         TICODELEMENMIN = linea[3:18]
@@ -118,6 +130,7 @@ for linea in fichero:
         RECONCILEKEY = CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN[:11]+TICODELEMENMIN[11:13]+"_"+TIHOINMIN[:8]
         #print(RECONCILEKEY.replace(" ", "*"))
 
+        # Generamos el diccionario con la informacion que hemos extraid del fichero principal
         eventos[contador] = {
             "TIPOREG": linea[0:1],
             "INDMULTI": linea[1:3],
@@ -145,11 +158,13 @@ for linea in fichero:
             "RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
         }
 
-
+    # Aqui comprobamos si es de tipo 2, si es de tipo seguimos la siguiente logica para extraer la informacion.
     elif linea[0:1] == '2':
         
+        # Inicializamos el contador de tipo 2 para ir contando los eventos de tipo 2
         contador_tipo_2 += 1
 
+        # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
         eventos[contador]["Tipo2"+"_"+str(contador_tipo_2)] = {
             "TIPOREG": linea[0:1],
             "TIPOCINTA": linea[1:2],
@@ -163,10 +178,13 @@ for linea in fichero:
             "Literal2": linea[50:52],
             "NOCOMPUTA": linea[53:]
         }
+    # Aqui comprobamos si es de tipo 3, si es de tipo seguimos la siguiente logica para extraer la informacion.
     elif linea[0:1] == '3':
         
+        # Inicializamos el contador de tipo 3 para ir contando los eventos de tipo 3
         contador_tipo_3 += 1
 
+        # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
         eventos[contador]["Tipo3"+"_"+str(contador_tipo_3)] = {
             "TIPOREG": linea[0:1],
             "TIPO_DE_INSERCION": linea[1:2],
@@ -174,8 +192,14 @@ for linea in fichero:
             "HORA_DE_COMIENZO": linea[8:19],
             "DURACION": linea[20:31]
         }
+
+    # Aqui comprobamos si es de tipo 4 o 5, si es de tipo 4 o 5 seguimos la siguiente logica para extraer la informacion.
     elif linea[0:1] in ['4', '5']:
+
+        # En este caso, si usamos el contado de eventos para evitar que los tipo 4 y 5 esten en el mismo evento que los tipo 1
         contador += 1
+
+        # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
         eventos[contador] = {
             "TIPOREG": linea[0:1],
             "IDBLOQUE": linea[1:40] if linea[0:1] == '4' else None,
@@ -183,38 +207,15 @@ for linea in fichero:
             "OBSERVACIONES": linea[2:34] if linea[0:1] == '5' else None
         }
 
+# Cerramos el fichero
 fichero.close()
-
-# Imprimir los eventos con las variables ordenadas alfabéticamente
-
-#for event, diccionario_interno in eventos.items():
-#    if diccionario_interno['TIPOREG'] == "1":
-#        if diccionario_interno['DIRGRAB'] == "G":
-#            xml = f"""
-#            <event type="PrimaryVideo">	 	 	 
-# 	            <properties>	 	 	 	 	 
-# 	 	            <schedule startType="{diccionario_interno['SCH_StartType']}" startOffset="{diccionario_interno['TIHOINMIN']}" endType="Duration" endOffset="{diccionario_interno['TIDUMINUT']}" />
-# 	 	            <mediaStream>
-# 	 	 	            <video jobType="Play" />	 
-# 	 	            </mediaStream>	 	 	 
-# 	 	            <event title="{diccionario_interno['TITITELEME']}" reconcileKey="{diccionario_interno['RECONCILEKEY']}">
-# 	 	 	            <classifications>	 	 
-# 	 	 	 	            <classification classification="EventType" category="{diccionario_interno['TITIPELEME']}" />
-# 	 	 	            </classifications>	 	 
-# 	 	            </event>	 	 	 	 
-# 	 	            <media mediaType="Video" mediaName="{diccionario_interno['TICODELEMENMIN']}" />
-# 	 	            <features />	 	 	 	 
-# 	            </properties>	 	 	 	 
-#            </event>		
-#"""     
-#            print(xml)
 
 
 #for event, diccionario_interno in eventos.items():
 #    print(diccionario_interno)
 
 
-# Crear el elemento raíz del XML, este debe de  
+# Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:  
 marinaPlaylist = ET.Element("marinaPlaylist")
 marinaPlaylist.set ("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
 marinaPlaylist.set ("xsi:noNamespaceSchemaLocation","./../../../playlist/playlist.xsd")
@@ -226,10 +227,12 @@ properties = ET.SubElement(marinaPlaylist, "properties")
 eventlist = ET.SubElement(marinaPlaylist, "eventList")
 
 
+# En la siguiente iteración vamos a recorrer los eventos que hemos guardado en el diccionario de eventos, y vamos a crear dos variables, event para saber el numero de evento y 
+#diccionario_interno para saber el diccionario que vamos a usar para crear el evento
+
 for event, diccionario_interno in eventos.items():
 
-# Si tipo4
-
+# Si es tipo 4, vamos a seguir la siguiente logica para generar una rama XML de tipo 4
 
     if diccionario_interno['TIPOREG'] == "4":
         event4 = ET.SubElement(eventlist, "event")
@@ -237,7 +240,8 @@ for event, diccionario_interno in eventos.items():
         properties5 = ET.SubElement(event4, "properties")
         properties5.set("blockname", diccionario_interno["IDBLOQUE"].rstrip())
 
-# Si tipo5
+
+# Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
 
     if diccionario_interno['TIPOREG'] == "5":
         event5 = ET.SubElement(eventlist, "event")
@@ -250,7 +254,7 @@ for event, diccionario_interno in eventos.items():
         comment5.text = diccionario_interno["OBSERVACIONES"].rstrip()
     
 # Si tipo1
-# Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D
+# Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
         
     if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "D":
         event1 = ET.SubElement(eventlist, "event")
@@ -274,11 +278,15 @@ for event, diccionario_interno in eventos.items():
         classification1.set("category", diccionario_interno["TITIPELEME"])
         mediaStream1 = ET.SubElement(properties1, "mediaStream")
         mediaStream1.set("som", diccionario_interno["TIHOINMIN"])
+
+        # Se comprueba si es tipo fijo o tipo secuencial
         if diccionario_interno['INDELEMFIJO'] == "F":
                 schedule1.set("startType", "Fixed")
                 schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
         else:
             schedule1.set("startType", "Sequential")
+        
+        # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
         for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             if clave.startswith('Tipo3_'):
                 print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
@@ -315,11 +323,15 @@ for event, diccionario_interno in eventos.items():
         classification1.set("category", diccionario_interno["TITIPELEME"])
         mediaStream1 = ET.SubElement(properties1, "mediaStream")
         mediaStream1.set("som", diccionario_interno["TIHOINMIN"].rstrip())
+
+        # Se comprueba si es tipo fijo o tipo secuencial
         if diccionario_interno['INDELEMFIJO'] == "F":
             schedule1.set("startType", "Fixed")
             schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
         else:
             schedule1.set("startType", "Sequential")
+        
+        # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
         for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             if clave.startswith('Tipo3_'):
                 print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
