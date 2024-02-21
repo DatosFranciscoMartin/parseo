@@ -287,9 +287,12 @@ for event, diccionario_interno in eventos.items():
             schedule1.set("startType", "Sequential")
         
         # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-        for clave, diccionario_sobre_diccionario in diccionario_interno.items():
-            if clave.startswith('Tipo3_'):
-                print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+        #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+        #    if clave.startswith('Tipo3_'):
+        #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+        #    elif clave.startswith('Tipo2_'):
+        #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
+
 
 
 
@@ -332,9 +335,11 @@ for event, diccionario_interno in eventos.items():
             schedule1.set("startType", "Sequential")
         
         # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-        for clave, diccionario_sobre_diccionario in diccionario_interno.items():
-            if clave.startswith('Tipo3_'):
-                print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+        #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+        #    if clave.startswith('Tipo3_'):
+        #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+        #    elif clave.startswith('Tipo2_'):
+        #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
 
 
 
