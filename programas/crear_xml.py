@@ -517,6 +517,7 @@ for archivo in lista_archivos:
             # Creamos una rama de XML para todos los tipo 1, si cumple la siguiente condición, esta ira rellena, si no, ira vacia
             child_event = ET.SubElement(event1, "childEvents")
 
+            #A partir de aqui, creamos la condicion de que, si el campo TITIPELEME es A, D, E o P, se genera el branding
             if diccionario_interno["TITIPELEME"] in ["A","D","E","P"]:
                 # Las columnas de la tabla siguiente corresponde al Custom ID* | PT, SC or empty | NR7 | NR12 | NR16 |NR18 
 
@@ -550,9 +551,6 @@ for archivo in lista_archivos:
                 # Generamos el arbol xml que va a colgar de childevents
                 event_child_1 = ET.SubElement(child_event, "event")
                 event_child_1.set("type", "CG")
-                event_child_1.set("enabled", "true")
-                event_child_1.set("timerMarker", "false")
-                event_child_1.set("uid", "2378")
 
                 # Añadir el elemento 'properties' dentro de 'event'
                 properties_child = ET.SubElement(event_child_1, "properties")
@@ -576,6 +574,78 @@ for archivo in lista_archivos:
                 media_child = ET.SubElement(properties_child, "media")
                 media_child.set("mediaType", "CG")
                 media_child.set("mediaName", logo_branding)
+
+            if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V011"
+                    else:
+                        grafico_secundario = "V016"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V013"
+                    else:
+                        grafico_secundario = "V017"
+            elif diccionario_interno["TIPO_DE_AUDIO"] in ["DP2","DP1","DP3"]:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V030"
+                    else:
+                        grafico_secundario = "V034"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V032"
+                    else:  
+                        grafico_secundario = "V035"
+            elif diccionario_interno["TIPO_DE_AUDIO"] in ["DG1","DG2"]:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V031"
+                    else:
+                        grafico_secundario = "V036"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V033"
+                    else:
+                        grafico_secundario = "V037"
+            else:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] != " ":
+                        grafico_secundario = "V014"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] != " ":
+                        grafico_secundario = "V012"
+                    else:
+                        grafico_secundario = "V015"
+
+            # Generamos el arbol xml que va a colgar de childevents
+            event_child_2 = ET.SubElement(child_event, "event")
+            event_child_2.set("type", "CG1")
+
+            # Añadir el elemento 'properties' dentro de 'event'
+            properties_child = ET.SubElement(event_child_2, "properties")
+
+            # Añadir el elemento 'schedule' dentro de 'properties'
+            schedule_child = ET.SubElement(properties_child, "schedule")
+            schedule_child.set("endType", "-ParentEnd")
+            schedule_child.set("startType", "+ParentStart")
+            schedule_child.set("endOffset", "00:00:00:00")
+            schedule_child.set("startOffset", "00:00:00:00")
+            # Añadir el elemento 'mediaStream' dentro de 'properties'
+            mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+
+            # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+            cg = ET.SubElement(mediaStream_child, "cg")
+            cg.set("layer", "0")
+            cg.set("type", "Page")
+            
+            # Añadir el elemento 'media' dentro de 'properties'
+            media_child = ET.SubElement(properties_child, "media")
+            media_child.set("mediaType", "CG")
+            media_child.set("mediaName", grafico_secundario) 
+
+
+
 
             # Recorremos los diccionarios de tipo 3:
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
