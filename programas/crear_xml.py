@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import filedialog
 import logging
 
+media_id_espciales = ["P0*","P3*","A5*","P4*","P5*","P611PDS00049*","P699EDS00006*","P699EGS00121*","P611PGS00595*","P699PGS00568*","P699PGS00872*","P611PGS00547*","P899PGS00064*","P211PDS00033*","P211PDS00034*","P699PGS00961*","P211PDS00036*","P211EGS00006*","P531PGS00057*","P531PGS00056*","P211EGS00007*","P211PDS00037*","P211EGS00008*","P463PGS00057*","P211EGS00009*","P211PDS00038*","P469PDS00102*"]
 
 def seleccionar_directorio_salida():
     """
@@ -309,8 +310,8 @@ for archivo in lista_archivos:
     # Cerramos el fichero
     fichero.close()
 
-    #for event, diccionario_interno in eventos.items():
-    #    print(diccionario_interno)
+    for event, diccionario_interno in eventos.items():
+        print(diccionario_interno)
 
     # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:
     marinaPlaylist = ET.Element("marinaPlaylist")
@@ -512,6 +513,69 @@ for archivo in lista_archivos:
                 media_subtitle = ET.SubElement(mediaStream1_feature, "media")
                 media_subtitle.set("mediaType", "Subtitle")
                 media_subtitle.set("mediaName", "$INHERITS$")
+
+            # Creamos una rama de XML para todos los tipo 1, si cumple la siguiente condición, esta ira rellena, si no, ira vacia
+            child_event = ET.SubElement(event1, "childEvents")
+
+            if diccionario_interno["TITIPELEME"] in ["A","D","E","P"]:
+                # Las columnas de la tabla siguiente corresponde al Custom ID* | PT, SC or empty | NR7 | NR12 | NR16 |NR18 
+
+                tabla = {
+                    'LA 1': ['L101', 'L106', 'L107', 'L112', 'L116', 'L118'],
+                    'LA 2': ['L201', 'L206', 'L207', 'L212', 'L216', 'L218'],
+                    '24H': ['L401', 'L406', 'L407', 'L412', 'L416', 'L418'],
+                    'TDP': ['L702', 'L706', 'L707', 'L712', 'L716', 'L718'],
+                    'CLAN': ['L501', 'L506', 'L507', 'L512', 'L516', 'L518'],
+                    'STAR': ['L601', 'L606', 'L607', 'L612', 'L616', 'L618'],
+                    'INTERNACIONALES': ['L301', 'L306', 'L307', 'L312', 'L316', 'L318']
+                }
+
+                # Distintas decisiones dependiendo de la calificacion moral que tenga, nombramos la variable columna para poder recorrer la tabla
+                if diccionario_interno["TICODELEMENMIN"] in media_id_espciales:
+                    columna = 0
+                elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
+                    columna = 1
+                elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
+                    columna = 2
+                elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
+                    columna = 3
+                elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
+                    columna = 4
+                elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
+                    columna = 5
+                
+                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
+                logo_branding = tabla[LICADENA][columna]
+
+                # Generamos el arbol xml que va a colgar de childevents
+                event_child_1 = ET.SubElement(child_event, "event")
+                event_child_1.set("type", "CG")
+                event_child_1.set("enabled", "true")
+                event_child_1.set("timerMarker", "false")
+                event_child_1.set("uid", "2378")
+
+                # Añadir el elemento 'properties' dentro de 'event'
+                properties_child = ET.SubElement(event_child_1, "properties")
+
+                # Añadir el elemento 'schedule' dentro de 'properties'
+                schedule_child = ET.SubElement(properties_child, "schedule")
+                schedule_child.set("endType", "-ParentEnd")
+                schedule_child.set("startType", "+ParentStart")
+                schedule_child.set("endOffset", "00:00:00:00")
+                schedule_child.set("startOffset", "00:00:00:00")
+
+                # Añadir el elemento 'mediaStream' dentro de 'properties'
+                mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+
+                # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                cg = ET.SubElement(mediaStream_child, "cg")
+                cg.set("layer", "0")
+                cg.set("type", "Page")
+
+                # Añadir el elemento 'media' dentro de 'properties'
+                media_child = ET.SubElement(properties_child, "media")
+                media_child.set("mediaType", "CG")
+                media_child.set("mediaName", logo_branding)
 
             # Recorremos los diccionarios de tipo 3:
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():

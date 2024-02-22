@@ -15,7 +15,7 @@ D220234403LA 2            40202304/10/23
 2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
 1  P799PGS00222029E07:30:15:0000:29:45:00VA DE VERD (29)                                                       ESTPT                  GSL  
 2N          00:00:00:0000:29:45:000  HA 07:30:00   
-1  P799PDS00021596E08:00:00:0001:55:12:00CAFï¿½ D' IDEES (596)                                                   ESTPT                  DSL  
+1  P799PDS00021596E08:00:00:0001:55:12:00CAFÈ D' IDEES (596)                                                   ESTPT                  DSL  
 2N          00:00:00:0001:55:12:000  HA 08:00:00   
 5 CAT
 1  51243530       C09:55:12:0000:00:43:00   Prom: CAT- PROMO PUNTUAL NOMS PROPIS FERRAN CARDENAL              3EST                    G    
@@ -26,7 +26,7 @@ D220234403LA 2            40202304/10/23
 2N          00:00:00:0000:58:17:000  HA 09:55:00   
 1  71004521       C10:54:17:0000:00:05:00   CT: CT. CONTINUIDAD - TEXTURA                                     3EST                    G    
 2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
-1  P799PGS00265018E10:54:22:0000:26:00:00AQUï¿½ HAY TRABAJO (18)                                                 ESTPT                  G L  
+1  P799PGS00265018E10:54:22:0000:26:00:00AQUÍ HAY TRABAJO (18)                                                 ESTPT                  G L  
 2N          00:00:00:0000:26:00:000  HA 10:55:00   
 1  P699PGS00995253E11:20:22:0000:26:17:00FLASH MODA (253)                                                      ESTPT                  GSL  
 2N          00:00:00:0000:26:17:000  HA 11:21:00   
@@ -38,11 +38,11 @@ D220234403LA 2            40202304/10/23
 2N          00:00:00:0000:09:58:000  HA 00:00:00   
 1  14002182       C11:56:51:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       G    
 2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
-1  51243511       C11:56:56:0000:00:21:00   Prom: GEN.DOCUMASTER_ESPAï¿½A S.XX COLOR (X4, 22H00) E. NOCHE       3EST                    G    
+1  51243511       C11:56:56:0000:00:21:00   Prom: GEN.DOCUMASTER_ESPAÑA S.XX COLOR (X4, 22H00) E. NOCHE       3EST                    G    
 2NPASARELA  10:00:00:0010:00:21:000               NC 00:00:00:00
 1  71004520       C11:57:17:0000:00:05:00   CT: CT. CONTINUIDAD - ZOOM                                        3EST                    G    
 2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00
-1  P711AGU05205   P11:57:22:0000:50:38:00OTOï¿½O - UN MUNDO DE COLORES                                           DUAPT                  GSL  
+1  P711AGU05205   P11:57:22:0000:50:38:00OTOÑO - UN MUNDO DE COLORES                                           DUAPT                  GSL  
 2N          00:00:00:0000:50:38:000  HA 11:55:00   
 1  S2CONNCX       D12:48:00:0003:41:17:00-CONEXION CON LA 2---                                                                        D    
 2N          00:00:00:0003:41:17:000  HA 12:50:00   
@@ -50,7 +50,7 @@ D220234403LA 2            40202304/10/23
 2N          00:00:00:0000:45:43:000  HA 16:30:00   
 1  P711AGS02325003E17:15:00:0000:44:42:00EL MAR DE FRISIA (3)                                                  DUANR7                 GSL  
 2N          00:00:00:0000:44:42:000  HA 17:15:00   
-1  P899PGS00076003E17:59:42:0000:05:22:00Dï¿½U N'HI DO (3)                                                       ESTPT                  GSL  
+1  P899PGS00076003E17:59:42:0000:05:22:00DÉU N'HI DO (3)                                                       ESTPT                  GSL  
 2N          00:00:00:0000:05:22:000  HA 18:00:00   
 1  52035834       C18:05:04:0000:00:32:00   Prom: CAT- PROMO GENERICA RTVE PLAY CAT ARXIU                     3EST                    G    
 2N          00:00:00:0000:00:32:000               NC 00:00:00:00
