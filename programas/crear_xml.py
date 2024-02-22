@@ -10,8 +10,8 @@ import logging
 
 def seleccionar_directorio_salida():
     """
-    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'.
-    If a directory is selected, updates the text of the label 'etiqueta_directorio_salida' to display the selected directory.
+    Pide al usuario que seleccione un directorio y almacena el directorio seleccionado en la variable global 'directorio_salida'.
+    Si se selecciona un directorio, actualiza el texto de la etiqueta 'etiqueta_directorio_salida' para mostrar el directorio seleccionado.
     """
     global directorio_salida  # declare the global variable
     directorio_salida = filedialog.askdirectory()  # open a dialog box to select a directory
@@ -392,14 +392,110 @@ for archivo in lista_archivos:
             else:
                 schedule1.set("startType", "Sequential")
 
+            # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
+            
 
+
+                features_audio = ET.SubElement(properties1, "features")
+                feature_audio1 = ET.SubElement(features_audio, "feature")
+                feature_audio1.set("type", "AudioShaffle")
+                properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+                schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+                schedule_feature_audio.set("startType", "+ParentStart")
+                schedule_feature_audio.set("startOffset", "00:00:00:00")
+                effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+                effect_feature_audio.set("status", "On")
+                effect_feature_audio.set("type", "Audio Shuffle")
+                port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+                port_effect_feature_audio.set("type", "Auto")
+                auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+                auto_port_effect_feature_audio.set("type", "PGM")
+                audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                audioshaffle.set("type", "TrackPreset")
+                feature_audio2 = ET.SubElement(features_audio, "feature")
+                feature_audio2.set("type", "Subtitle")
+
+            if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "ESTEREO")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dual-Estereo")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "MONO")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "DUAL")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 1")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 2")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 3")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby DUAL DRUPO1")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby DUAL DRUPO2")
+
+
+
+            # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
+            if diccionario_interno['SUBTITULADO'] == "S":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang = ET.SubElement(language, "lang")
+                lang.text = "ESP"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
+            elif diccionario_interno['SUBTITULADO'] == "I":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang1 = ET.SubElement(language, "lang")
+                lang1.text = "ESP"
+                lang2 = ET.SubElement(language, "lang")
+                lang2.text = "ENG"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
 
             # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             #    if clave.startswith('Tipo3_'):
             #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
-            #    elif clave.startswith('Tipo2_'):
-            #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
+                
 
         # Si en este caso es tipo grabado, o lo que es lo mismo, el valor del campo DIRGRAB es G
         if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "G":
@@ -445,13 +541,105 @@ for archivo in lista_archivos:
                 schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
             else:
                 schedule1.set("startType", "Sequential")
+            
+            if diccionario_interno['SUBTITULADO'] == "S":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang = ET.SubElement(language, "lang")
+                lang.text = "ESP"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
+            elif diccionario_interno['SUBTITULADO'] == "I":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang1 = ET.SubElement(language, "lang")
+                lang1.text = "ESP"
+                lang2 = ET.SubElement(language, "lang")
+                lang2.text = "ENG"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
+            
+
+            features_audio = ET.SubElement(properties1, "features")
+            feature_audio1 = ET.SubElement(features_audio, "feature")
+            feature_audio1.set("type", "AudioShaffle")
+            properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+            schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+            schedule_feature_audio.set("startType", "+ParentStart")
+            schedule_feature_audio.set("startOffset", "00:00:00:00")
+            effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+            effect_feature_audio.set("status", "On")
+            effect_feature_audio.set("type", "Audio Shuffle")
+            port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+            port_effect_feature_audio.set("type", "Auto")
+            auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+            auto_port_effect_feature_audio.set("type", "PGM")
+            audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+            audioshaffle.set("type", "TrackPreset")
+            feature_audio2 = ET.SubElement(features_audio, "feature")
+            feature_audio2.set("type", "Subtitle")
+                
+            if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "ESTEREO")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dual-Estereo")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "MONO")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "DUAL")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 1")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 2")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby PAR 3")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby DUAL DRUPO1")
+            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
+                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                trackpreset.set("name", "Dolby DUAL DRUPO2")
 
             # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
             #    if clave.startswith('Tipo3_'):
             #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
-            #    elif clave.startswith('Tipo2_'):
-            #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
+
 
     nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
