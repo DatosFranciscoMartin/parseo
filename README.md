@@ -67,6 +67,47 @@ Este script de Python proporciona una interfaz gráfica de usuario (GUI) para se
 
 Este script proporciona una manera eficiente de monitorear directorios en busca de nuevos archivos y procesarlos automáticamente según un formato definido. Puede ser útil en situaciones donde se requiere procesamiento automático de archivos en tiempo real, como en sistemas de registro o análisis de datos continuo.
 
+# Script para el parseo de ficheros TRF a XML crear_xml.py
+
+Este script de Python está diseñado para procesar archivos TRF y generar archivos XML de tipo Marina Playlist (MPL) basados en la información contenida en los archivos TRF.
+
+## Funcionalidades Principales:
+
+1. Selección de Archivos y Directorio de Salida:
+
+    * Al ejecutar el script, se abrirá una ventana que permite al usuario seleccionar múltiples archivos TRF.
+    * También se puede elegir un directorio de salida donde se guardarán los archivos XML generados.
+
+2. Procesamiento de Archivos TRF:
+
+    * El script procesa los archivos TRF seleccionados y extrae la información relevante para la generación de archivos XML.
+    * Se utilizan técnicas de manipulación de archivos y cadenas de texto para extraer datos específicos de cada archivo TRF.
+
+3. Generación de Archivos XML MPL:
+
+    * Basándose en la información extraída de los archivos TRF, el script genera archivos XML MPL que siguen el estándar requerido.
+    * Los archivos XML MPL contienen información sobre los eventos programados, como eventos en vivo, comentarios y segmentos de video.
+
+### Requisitos:
+
+* Python 3.x
+* Librerías estándar de Python (xml.etree.ElementTree, xml.dom.minidom, os, datetime, tkinter, logging)
+
+### Uso:
+
+1. Ejecutar el script.
+2. mSeleccionar los archivos TRF deseados.
+3. Elegir un directorio de salida para los archivos XML generados.
+4. El script procesará los archivos TRF y generará archivos XML MPL en el directorio especificado.
+
+### Notas Adicionales:
+
+* Los archivos XML MPL generados seguirán el formato requerido para su uso en el sistema correspondiente.
+* Se proporcionan comentarios detallados en el código para facilitar la comprensión y la modificación según sea necesario.
+
+
+
+
 
 
 
