@@ -86,24 +86,30 @@ def procesar_archivo(archivo):
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
-    # La fecha de inicio la sacamos de la siguiente forma sobre el nombre del fichero
-    fecha_inicio = "20" + nombre_archivo[2:4]+"-"+nombre_archivo[4:6]+"-"+nombre_archivo[6:8]
-
-    # Transformamos la fecha de inicio a un objeto de tipo datetime
-    fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
-
-    # Sumamos un dia a la fecha ya transformada
-    fecha_fin = fecha_transformada + timedelta(days=1)
-
-    # Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
-    fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
-
-    #Mensaje en la consola de salida que se indica que fichero se esta procesando.
 
     print("Procesando archivo:", archivo)
 
     with open(archivo, "r", encoding="utf-8") as fichero:
         primera_linea = fichero.readline()
+
+        LICOMINUTA = primera_linea[0:10]
+        LICADENA = primera_linea[10:26]
+        LISEMANA = primera_linea[26:28]
+        LIANIO = primera_linea[28:32]
+        LIFECMINUT= primera_linea[32:40]
+
+        # La fecha de inicio
+        fecha_inicio = LIANIO + "-" + LIFECMINUT[3:5] + "-" + LIFECMINUT[:2]
+
+        # Transformamos la fecha de inicio a un objeto de tipo datetime
+        fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
+
+        # Sumamos un dia a la fecha ya transformada
+        fecha_fin = fecha_transformada + timedelta(days=1)
+
+        # Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
+        fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
+
         eventos = {}
 
     # Generamos 3 contadores que nos van a ayudar a generar el numero de eventos que vamos a tener, con los contadores de tipo nos ayuda a poder generar diccionarios dentro de los eventos de tipo 1
