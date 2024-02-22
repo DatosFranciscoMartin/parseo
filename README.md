@@ -105,7 +105,7 @@ Este script de Python está diseñado para procesar archivos TRF y generar archi
 * Los archivos XML MPL generados seguirán el formato requerido para su uso en el sistema correspondiente.
 * Se proporcionan comentarios detallados en el código para facilitar la comprensión y la modificación según sea necesario.
 
-# Código de Monitoreo y Procesamiento de Archivos TRF
+# Código de Monitoreo y Procesamiento de Archivos TRF crear_xml_watcher.py
 Este es un script de Python diseñado para monitorear un directorio específico en busca de archivos con extensión ".trf" o ".TRF". Cuando se detecta la creación de un archivo en este directorio, el script procesa automáticamente el archivo, extrae información relevante y genera un archivo XML correspondiente.
 
 ## Requisitos Previos
