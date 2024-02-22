@@ -309,8 +309,8 @@ for archivo in lista_archivos:
     # Cerramos el fichero
     fichero.close()
 
-    for event, diccionario_interno in eventos.items():
-        print(diccionario_interno)
+    #for event, diccionario_interno in eventos.items():
+    #    print(diccionario_interno)
 
     # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:
     marinaPlaylist = ET.Element("marinaPlaylist")
@@ -393,12 +393,12 @@ for archivo in lista_archivos:
                 schedule1.set("startType", "Sequential")
 
             # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
-            
 
+            if diccionario_interno['TIPO_DE_AUDIO'] != "   ":
 
                 features_audio = ET.SubElement(properties1, "features")
                 feature_audio1 = ET.SubElement(features_audio, "feature")
-                feature_audio1.set("type", "AudioShaffle")
+                feature_audio1.set("type", "AudioShuffle")
                 properties_feature_audio = ET.SubElement(feature_audio1, "properties")
                 schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
                 schedule_feature_audio.set("startType", "+ParentStart")
@@ -414,34 +414,34 @@ for archivo in lista_archivos:
                 audioshaffle.set("type", "TrackPreset")
                 feature_audio2 = ET.SubElement(features_audio, "feature")
                 feature_audio2.set("type", "Subtitle")
-
-            if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "ESTEREO")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dual-Estereo")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "MONO")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "DUAL")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 1")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 2")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 3")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby DUAL DRUPO1")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby DUAL DRUPO2")
+                    
+                if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "ESTEREO")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dual-Estereo")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "MONO")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "DUAL")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 1")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 2")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 3")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby DUAL DRUPO1")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby DUAL DRUPO2")
 
 
 
@@ -541,7 +541,9 @@ for archivo in lista_archivos:
                 schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
             else:
                 schedule1.set("startType", "Sequential")
-            
+
+            # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
+
             if diccionario_interno['SUBTITULADO'] == "S":
                 features1 = ET.SubElement(properties1, "features")
                 feature1 = ET.SubElement(features1, "feature")
@@ -588,52 +590,57 @@ for archivo in lista_archivos:
                 media_subtitle.set("mediaName", "$INHERITS$")
             
 
-            features_audio = ET.SubElement(properties1, "features")
-            feature_audio1 = ET.SubElement(features_audio, "feature")
-            feature_audio1.set("type", "AudioShaffle")
-            properties_feature_audio = ET.SubElement(feature_audio1, "properties")
-            schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
-            schedule_feature_audio.set("startType", "+ParentStart")
-            schedule_feature_audio.set("startOffset", "00:00:00:00")
-            effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
-            effect_feature_audio.set("status", "On")
-            effect_feature_audio.set("type", "Audio Shuffle")
-            port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
-            port_effect_feature_audio.set("type", "Auto")
-            auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
-            auto_port_effect_feature_audio.set("type", "PGM")
-            audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
-            audioshaffle.set("type", "TrackPreset")
-            feature_audio2 = ET.SubElement(features_audio, "feature")
-            feature_audio2.set("type", "Subtitle")
-                
-            if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "ESTEREO")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dual-Estereo")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "MONO")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "DUAL")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 1")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 2")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby PAR 3")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby DUAL DRUPO1")
-            elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
-                trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                trackpreset.set("name", "Dolby DUAL DRUPO2")
+            
+            # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO
+            
+            if diccionario_interno['TIPO_DE_AUDIO'] != "   ":
+
+                features_audio = ET.SubElement(properties1, "features")
+                feature_audio1 = ET.SubElement(features_audio, "feature")
+                feature_audio1.set("type", "AudioShuffle")
+                properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+                schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+                schedule_feature_audio.set("startType", "+ParentStart")
+                schedule_feature_audio.set("startOffset", "00:00:00:00")
+                effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+                effect_feature_audio.set("status", "On")
+                effect_feature_audio.set("type", "Audio Shuffle")
+                port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+                port_effect_feature_audio.set("type", "Auto")
+                auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+                auto_port_effect_feature_audio.set("type", "PGM")
+                audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                audioshaffle.set("type", "TrackPreset")
+                feature_audio2 = ET.SubElement(features_audio, "feature")
+                feature_audio2.set("type", "Subtitle")
+
+                if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "ESTEREO")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dual-Estereo")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "MONO")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "DUAL")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 1")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 2")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby PAR 3")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby DUAL DRUPO1")
+                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", "Dolby DUAL DRUPO2")
 
             # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
