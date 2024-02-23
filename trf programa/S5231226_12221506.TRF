@@ -1,0 +1,333 @@
+S520234522TELEDEPORTE     52202326/12/23\par
+1  A699PGU03146   A06:00:00:0000:15:00:00AJUSTE DE PROGRAMACION                                                                       GSL  \par
+2N          00:00:00:0000:15:00:000  HA 00:00:00   \par
+5 NO INGESTAR NINGUN PROGRAMA CON ESTE ID\par
+1  12002456       C06:15:00:0000:00:09:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 1                               3EST                    GS   \par
+2N          00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P472PDS00025013E06:15:09:0001:42:41:00PATINAJE ACONT FED ESPA\'d1OLA 2023 TRANSMISIONES (13)                   ESTPT                  GSL  \par
+2N          00:00:00:0001:42:41:000  HA 06:15:00   \par
+1  14002182       C07:57:50:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076328       C07:57:55:0000:00:10:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_3 CENA                 3EST                    GS   \par
+2N          00:00:00:0000:00:10:000               NC 00:00:00:00\par
+1  57075780       C07:58:05:0000:00:05:00   Prom: CT. RNE_PEPA FERNANDEZ                                      3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52035620       C07:58:10:0000:01:00:00   Prom: TDP PROMO GENERICA TENIS WTA 50 A\'d1OS                        3EST                    GS   \par
+2N          00:00:00:0000:01:00:000               NC 00:00:00:00\par
+1  51245154       C07:59:10:0000:00:16:00   Prom: TDP-PROMO BALONCESTA ENDESA J14 / BAR\'c7A - CASADEMONT ZGZ    3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  52036104       C07:59:26:0000:00:20:00   Prom: LA NAVIDAD ESTA EN TUS MANOS PROMO 1                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  51245160       C07:59:46:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+1  12002457       C08:00:00:0000:00:11:00   CD: TDP-CABECERA LO MEJOR DEL A\'d1O 2                               3EST                    GS   \par
+2N          00:00:00:0000:00:11:000               NC 00:00:00:00\par
+1  P489PDS00084002E08:00:11:0002:28:21:00TENIS DE MESA FEDEDERACION ESPA\'d1OLA 2023 (TX) (2)                     ESTPT                  GSL  \par
+2N          00:00:00:0002:28:21:000  HA 08:00:00   \par
+1  14002182       C10:28:32:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076252       C10:28:37:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  51245144       C10:28:44:0000:00:08:00   Prom: CT.HOMBRES G_CONCIERTO (TP) (V29, 22H15)                    3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:08:000               NC 00:00:00:00\par
+1  51245154       C10:28:52:0000:00:16:00   Prom: TDP-PROMO BALONCESTA ENDESA J14 / BAR\'c7A - CASADEMONT ZGZ    3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  52036004       C10:29:08:0000:00:15:00   Prom: TDP-PROMO ESTUDIO ESTADIO 23 GEN\'c9RICA                       3EST                    GS   \par
+2N          00:00:00:0000:00:15:000               NC 00:00:00:00\par
+1  57076180       C10:29:23:0000:00:21:00   Prom: RTVE- EUROCOPA GENERICA                                     3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:21:000               NC 00:00:00:00\par
+1  52036110       C10:29:44:0000:00:16:00   Prom: TDP-PROMO HOCKEY HIERBA LIGA IBERDROLA Y LIGA MGS GEN       3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  12002458       C10:30:00:0000:00:13:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 3                               3EST                    GS   \par
+2N          00:00:00:0000:00:13:000               NC 00:00:00:00\par
+1  P456EDS00074004E10:30:13:0001:50:20:00DEPORTE ADAPTADO ACONT FEDD 2023 24 TRANSM 2023 (4)                   ESTPT                  GSL  \par
+2N          00:00:00:0001:50:20:000  HA 10:30:00   \par
+1  14002182       C12:20:33:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076327       C12:20:38:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  52036058       C12:20:45:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 1                               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  52036052       C12:20:54:0000:00:18:00   Prom: TDP-PROMO FUTBOL SALA LIGA GEN\'c9RICA                         3EST                    GS   \par
+2N          00:00:00:0000:00:18:000               NC 00:00:00:00\par
+1  52035592       C12:21:12:0000:00:20:00   Prom: TDP-PROMO TENIS NO PARA CIRCUITO WTA GEN                    3EST                    GS   \par
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  57076329       C12:21:32:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  A599PGU14521   A12:21:39:0000:02:36:00AJUSTE DD ALZHEIMER Y DEPRESI\'d3N EN 60 SEGUNDOS V L                    EST                    GSL  \par
+2N          00:00:00:0000:02:36:000  HA 00:00:00   \par
+1  57076327       C12:24:15:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076497       C12:24:22:0000:00:22:00   Prom: RTVE_CAMPANADAS_PENINSULA                                   3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00\par
+1  51245122       C12:24:44:0000:00:16:00   Prom: TDP-PROMO VOLEIBOL ALL STAR 2023 / JUEVES 28 - 19:30 Y VI   3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  12002456       C12:25:00:0000:00:09:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 1                               3EST                    GS   \par
+2N          00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P463PDS00268004E12:25:09:0000:50:23:00FUTSAL CTO. EUROPA FEMENINO 2023 (4)                                  ESTPT                  GSL  \par
+2N          00:00:00:0000:50:23:001  HA 12:25:00   \par
+1  71004045       C13:15:32:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - FUTBOL                                2EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P463PDS00268004E13:15:37:0000:48:00:00FUTSAL CTO. EUROPA FEMENINO 2023 (4)                                  ESTPT                  GSL  \par
+2N          00:50:23:0001:38:23:002U HA 12:25:00   \par
+1  14002182       C14:03:37:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076329       C14:03:42:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076280       C14:03:49:0000:00:09:00   Prom: CT. MASTERCHEF JUNIOR T10 (TP)                              3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  51245154       C14:03:58:0000:00:16:00   Prom: TDP-PROMO BALONCESTA ENDESA J14 / BAR\'c7A - CASADEMONT ZGZ    3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  52036146       C14:04:14:0000:00:08:00   Prom: TDP-PROMO F\'daTBOL COPA REINA GEN\'c9RICA                        3EST                    GS   \par
+2N          00:00:00:0000:00:08:000               NC 00:00:00:00\par
+1  57076432       C14:04:22:0000:00:22:00   Prom: ZORRO_PROMO 3 (+12) MUY PRONTO                              3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00\par
+1  51245122       C14:04:44:0000:00:16:00   Prom: TDP-PROMO VOLEIBOL ALL STAR 2023 / JUEVES 28 - 19:30 Y VI   3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  12002457       C14:05:00:0000:00:11:00   CD: TDP-CABECERA LO MEJOR DEL A\'d1O 2                               3EST                    GS   \par
+2N          00:00:00:0000:00:11:000               NC 00:00:00:00\par
+1  P471PDS00055005E14:05:11:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (5)                        ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:05:00   \par
+1  14002182       C14:15:11:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055010E14:15:16:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (10)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:15:00   \par
+1  14002182       C14:25:16:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055012E14:25:21:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (12)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:25:00   \par
+1  14002182       C14:35:21:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055013E14:35:26:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (13)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:35:00   \par
+1  14002182       C14:45:26:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055022E14:45:31:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (22)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:45:00   \par
+1  14002182       C14:55:31:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055025E14:55:36:0000:10:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (25)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:10:00:000  HA 14:55:00   \par
+1  14002182       C15:05:36:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P471PDS00055036E15:05:41:0000:08:00:00NATACION CAMPEONATO DEL MUNDO FUKUOKA 2023 (36)                       ESTPT                  GSL  \par
+2N          00:00:00:0000:08:00:000  HA 15:05:00   \par
+1  14002182       C15:13:41:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076252       C15:13:46:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+4(NAC5/M/1515T)                     \par
+1  O520234053E01  B15:13:53:0000:00:10:15LOVESTV                                                              2EST     026813103510137G \par
+2NR00000    10:00:00:0010:00:10:000               NC 00:00:00:00\par
+1  51245160       C15:14:03:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+4(NAC5/M/1518T) Promo Balonm. Liga G\par
+1  O520234053F01  B15:14:17:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775737809808G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  51245138       C15:14:27:0000:00:24:00   Prom: GALA INOCENTE INOCENTE 2023 (+12) (J28, 22H00)              3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  52036059       C15:14:51:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 2                               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  12002458       C15:15:00:0000:00:13:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 3                               3EST                    GS   \par
+2N          00:00:00:0000:00:13:000               NC 00:00:00:00\par
+1  P469PDS00120012E15:15:13:0001:12:50:00CICLISMO TOUR DE FRANCIA 2023 (12)                                    ESTPT                  GSL  \par
+2N          00:00:00:0001:12:50:000  HA 15:15:00   \par
+1  14002182       C16:28:03:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076327       C16:28:08:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+4(NAC5/M/1630T)                     \par
+1  O520234054001  B16:28:15:0000:00:10:00LIBRO MASTERCHEF JUN                                                 2EST     026813502410133G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:00:00\par
+1  O520234054002  B16:28:25:0000:00:17:21LOVESTV                                                              2EST     026813102510138G \par
+2NR00000    10:00:00:0010:00:17:000               NC 00:00:00:00\par
+1  O520234054003  B16:28:42:2100:00:20:00CAMPA\'d1A NAVIDAD -DGT                                                 2EST     026814501210159G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  51245160       C16:29:02:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+4(NAC5/M/1638T) Promo Balonm. Liga G\par
+1  O520234054101  B16:29:16:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775737909808G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  51245208       C16:29:26:0000:00:25:00   Prom: CABALGATA DE REYES (TP) (V5)                                3EST                    GS   \par
+2N          00:00:00:0000:00:25:000               NC 00:00:00:00\par
+1  57076191       C16:29:51:0000:00:09:00   Prom: CT. THE BATMAN (+12)                                        3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  57076329       C16:30:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  P499PGS00151020E16:30:07:0003:23:43:00CONEXION VINTAGE 2023 (20)                                            ESTPT                  GSL  \par
+2N          00:00:00:0003:23:43:000  HA 16:30:00   \par
+1  14002182       C19:53:50:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076328       C19:53:55:0000:00:10:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_3 CENA                 3EST                    GS   \par
+2N          00:00:00:0000:00:10:000               NC 00:00:00:00\par
+4(NAC5/M/2000T)                     \par
+1  O520234054201  B19:54:05:0000:00:10:15LOVESTV                                                              2EST     026813103610137G \par
+2NR00000    10:00:00:0010:00:10:000               NC 00:00:00:00\par
+1  51245160       C19:54:15:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+4(NAC5/M/2008T) Promo Balonm. Liga G\par
+1  O520234054301  B19:54:29:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775741009808G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  52036045       C19:54:39:0000:00:20:00   Prom: TDP-PROMO BALONCESTO LIGA FEMENINA ENDESA GEN\'c9RIC           3EST                    GS   \par
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00\par
+4(NAC5/M/2018T) Promo Balonc. Liga F\par
+1  O520234054401  B19:54:59:0000:00:10:00PATROC. BALONC. LIGA                                                 2EST     026781209109155G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  57076327       C19:55:09:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  A599PGU14477   A19:55:16:0000:04:01:00AJUSTE DD VIRTUALIZANDO EL PASADO V LARGA                             EST                    GSL  \par
+2N          00:00:00:0000:04:01:000  HA 00:00:00   \par
+1  57076329       C19:59:17:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  51245183       C19:59:24:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26, 22H50) E. NOCHE           3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  57076418       C19:59:51:0000:00:09:00   Prom: RTVE-CT. FELICITACI0N NAVIDAD 4 ESTRELLAS_1                 3EST                    GS   \par
+2NPASARELA  01:00:00:0001:00:09:000               NC 00:00:00:00\par
+1  12002456       C20:00:00:0000:00:09:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 1                               3EST                    GS   \par
+2N          00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P477PDS00125098E20:00:09:0002:32:00:00TENIS MUTUA MADRID OPEN 2023 (98)                                     ESTPT                  GSL  \par
+2N          00:00:00:0002:32:00:000  HA 20:00:00   \par
+1  14002182       C22:32:09:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076252       C22:32:14:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+4(NAC5/M/2235T)                     \par
+1  O520234054501  B22:32:21:0000:01:20:00COMIT\'c9 PARAL\'cdMPICO E                                                 2EST     026744820510162G \par
+2NR00000    00:00:00:0000:01:20:000               NC 00:01:20:00\par
+1  51245160       C22:33:41:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+4(NAC5/M/2238T) Promo Balonm. Liga G\par
+1  O520234054601  B22:33:55:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775737609808G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  52036105       C22:34:05:0000:00:30:00   Prom: LA NAVIDAD ESTA EN TUS MANOS PROMO 2                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:30:000               NC 00:00:00:00\par
+1  51245122       C22:34:35:0000:00:16:00   Prom: TDP-PROMO VOLEIBOL ALL STAR 2023 / JUEVES 28 - 19:30 Y VI   3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  57076193       C22:34:51:0000:00:09:00   Prom: CT. ZORRO (+12)                                             3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  12002457       C22:35:00:0000:00:11:00   CD: TDP-CABECERA LO MEJOR DEL A\'d1O 2                               3EST                    GS   \par
+2N          00:00:00:0000:00:11:000               NC 00:00:00:00\par
+1  P455PDS00018016E22:35:11:0000:50:55:00RALLY DAKAR 2023 (16)                                                 ESTPT                  GSL  \par
+2N          00:00:00:0000:50:55:000  HA 22:35:00   \par
+1  14002182       C23:26:06:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076327       C23:26:11:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+4(NAC5/M/2330T)                     \par
+1  O520234054701  B23:26:18:0000:00:05:00UN JUGUETE, UNA ILUS                                                 2EST     026804605710019G \par
+2NR00000    00:00:00:0000:00:05:000               NC 00:00:05:00\par
+1  O520234054702  B23:26:23:0000:00:20:00LIBRO MASTERCHEF JUN                                                 2EST     026813502310132G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  O520234054703  B23:26:43:0000:00:17:21LOVESTV                                                              2EST     026813102610138G \par
+2NR00000    10:00:00:0010:00:17:000               NC 00:00:00:00\par
+1  O520234054704  B23:27:00:2100:00:20:00CAMPA\'d1A NAVIDAD -DGT                                                 2EST     026814501310159G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  O520234054705  B23:27:20:2100:00:20:00LA NAVIDAD EN SUS MA                                                 2EST     026803407510153G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  51245160       C23:27:40:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+4(NAC5/M/2338T) Promo Balonm. Liga G\par
+1  O520234054801  B23:27:54:0000:00:10:00GUERRERAS DHF BALONM                                                 2EST     026775737709808G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  52036045       C23:28:04:0000:00:20:00   Prom: TDP-PROMO BALONCESTO LIGA FEMENINA ENDESA GEN\'c9RIC           3EST                    GS   \par
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00\par
+4(NAC5/M/2342T) Promo Balonc. Liga F\par
+1  O520234054901  B23:28:24:0000:00:10:00PATROC. BALONC. LIGA                                                 2EST     026781209009155G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  57076327       C23:28:34:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  A599PGU14464   A23:28:41:0000:00:45:00AJUSTE DD MI CIRUJANO UN ROBOT V CORTA                                EST                    GSL  \par
+2N          00:00:00:0000:00:45:000  HA 00:00:00   \par
+1  57076329       C23:29:26:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076459       C23:29:33:0000:00:18:00   Prom: DETECTIVE TOURE_PROMO 1 (+16) MUY PRONTO                    3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  57076190       C23:29:51:0000:00:09:00   Prom: CT. SIN TIEMPO PARA MORIR (+12)                             3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  12002458       C23:30:00:0000:00:13:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 3                               3EST                    GS   \par
+2N          00:00:00:0000:00:13:000               NC 00:00:00:00\par
+1  P489PDS00094006E23:30:13:0000:28:41:00BOXEO CTO MUNDO MASCULINO 2023 (6)                                    ESTPT                  GSL  \par
+2N          00:00:00:0000:28:41:000  HA 23:30:00   \par
+1  14002182       C23:58:54:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076329       C23:58:59:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076250       C23:59:06:0000:00:13:00   Prom: RTVE_CT. FELICITACI\'d3N NAVIDAD LA PROMESA                    3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:13:000               NC 00:00:00:00\par
+1  51245160       C23:59:19:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+1  57076458       C23:59:33:0000:00:19:00   Prom: SUPERNANNY_PROMO CASTING                                    3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:19:000               NC 00:00:00:00\par
+1  52036146       C23:59:52:0000:00:08:00   Prom: TDP-PROMO F\'daTBOL COPA REINA GEN\'c9RICA                        3EST                    GS   \par
+2N          00:00:00:0000:00:08:000               NC 00:00:00:00\par
+1  12002456       C00:00:00:0000:00:09:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 1                               3EST                    GS   \par
+2N          00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P456EDS00064349E00:00:09:0000:53:00:00BALONCESTO SUP.COPA Y LIGA FEMENINA 2017-18 (2017) (349)              ESTPT                  GSL  \par
+2N          00:00:00:0000:53:00:001  HA 00:00:00   \par
+1  71004042       C00:53:09:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - BALONCESTO                            2EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P456EDS00064349E00:53:14:0000:55:05:00BALONCESTO SUP.COPA Y LIGA FEMENINA 2017-18 (2017) (349)              ESTPT                  GSL  \par
+2N          00:53:00:0001:48:05:002U HA 00:00:00   \par
+1  14002182       C01:48:19:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076328       C01:48:24:0000:00:10:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_3 CENA                 3EST                    GS   \par
+2N          00:00:00:0000:00:10:000               NC 00:00:00:00\par
+1  52036058       C01:48:34:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 1                               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  51245160       C01:48:43:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+1  52035592       C01:48:57:0000:00:20:00   Prom: TDP-PROMO TENIS NO PARA CIRCUITO WTA GEN                    3EST                    GS   \par
+2N          00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  57076206       C01:49:17:0000:00:27:00   Prom: RTVE_OBJETIVO_EDADISMO_RAIMUNDO                             3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  51245122       C01:49:44:0000:00:16:00   Prom: TDP-PROMO VOLEIBOL ALL STAR 2023 / JUEVES 28 - 19:30 Y VI   3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  12002457       C01:50:00:0000:00:11:00   CD: TDP-CABECERA LO MEJOR DEL A\'d1O 2                               3EST                    GS   \par
+2N          00:00:00:0000:00:11:000               NC 00:00:00:00\par
+1  P463PDS00268004E01:50:11:0000:43:00:00FUTSAL CTO. EUROPA FEMENINO 2023 (4)                                  ESTPT                  GSL  \par
+2N          00:00:00:0000:43:00:001  HA 01:50:00   \par
+1  71004045       C02:33:11:0000:00:05:00   CT: TDP - CT. CONTINUIDAD - FUTBOL                                2EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P463PDS00268004E02:33:16:0000:45:38:00FUTSAL CTO. EUROPA FEMENINO 2023 (4)                                  ESTPT                  GSL  \par
+2N          00:43:00:0001:28:38:002U HA 01:50:00   \par
+1  14002182       C03:18:54:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076252       C03:18:59:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076512       C03:19:06:0000:00:08:00   Prom: CT. DETECTIVE TOURE(+16) MUY PRONTO                         3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:08:000               NC 00:00:00:00\par
+1  51245154       C03:19:14:0000:00:16:00   Prom: TDP-PROMO BALONCESTA ENDESA J14 / BAR\'c7A - CASADEMONT ZGZ    3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  51245160       C03:19:30:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+1  51245122       C03:19:44:0000:00:16:00   Prom: TDP-PROMO VOLEIBOL ALL STAR 2023 / JUEVES 28 - 19:30 Y VI   3EST                    GS   \par
+2N          00:00:00:0000:00:16:000               NC 00:00:00:00\par
+1  12002458       C03:20:00:0000:00:13:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 3                               3EST                    GS   \par
+2N          00:00:00:0000:00:13:000               NC 00:00:00:00\par
+1  P489PDS00084002E03:20:13:0001:27:40:00TENIS DE MESA FEDEDERACION ESPA\'d1OLA 2023 (TX) (2)                     ESTPT                  GSL  \par
+2N          00:00:00:0001:27:40:000  HA 00:00:00   \par
+1  14002182       C04:47:53:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076327       C04:47:58:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076191       C04:48:05:0000:00:09:00   Prom: CT. THE BATMAN (+12)                                        3EST                    GS   \par
+2NPASARELA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52035620       C04:48:14:0000:01:00:00   Prom: TDP PROMO GENERICA TENIS WTA 50 A\'d1OS                        3EST                    GS   \par
+2N          00:00:00:0000:01:00:000               NC 00:00:00:00\par
+1  51245160       C04:49:14:0000:00:14:00   Prom: TDP-PROMO BALONMANO LIGA GUERRERAS J13 / ELCHE - PORRI\'d1O    3EST                    GS   \par
+2N          00:00:00:0000:00:14:000               NC 00:00:00:00\par
+1  57076452       C04:49:28:0000:00:17:00   Prom: CAZAFANTASMAS MAS ALLA_TEASER (+12) MUY PRONTO              3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:17:000               NC 00:00:00:00\par
+1  52036004       C04:49:45:0000:00:15:00   Prom: TDP-PROMO ESTUDIO ESTADIO 23 GEN\'c9RICA                       3EST                    GS   \par
+2N          00:00:00:0000:00:15:000               NC 00:00:00:00\par
+1  12002456       C04:50:00:0000:00:09:00   CD: TDP CABECERA LO MEJOR DEL A\'d1O 1                               3EST                    GS   \par
+2N          00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P469PDS00120012E04:50:09:0001:09:39:00CICLISMO TOUR DE FRANCIA 2023 (12)                                    ESTPT                  GSL  \par
+2N          00:00:00:0001:09:39:000  HA 04:50:00   \par
+1  14002182       C05:59:48:0000:00:05:00   IN: COPY 2023 - RTVE                                              3                       GS   \par
+2NAMBROSIA  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  57076329       C05:59:53:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    GS   \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+\par
+}
+ 

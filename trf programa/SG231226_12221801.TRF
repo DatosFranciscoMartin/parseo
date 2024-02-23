@@ -1,0 +1,488 @@
+SG20234522CLAN TVE        52202326/12/23\par
+1  P111AGS00768062E06:00:00:0000:10:33:00DIVISION ODD (62)                                                    2DSTPT                  GSL   1\par
+2NDG0002936400:00:00:0000:10:33:000  HA 06:00:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-10-33.01\par
+1  P111AGS00768063E06:10:33:0000:11:22:00DIVISION ODD (63)                                                    3DSTPT                  GSL   1\par
+2NDG0003868400:00:00:0000:11:22:000  HA 06:11:00   \par
+5 CORTAR TODOS LOS ROTULOS  A 00-11-22.10\par
+1  52036193       C06:21:55:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 RENOS                                 3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  P141PGS00091086E06:22:04:0000:11:29:00BATPAT (86)                                                       wx 2DSTPT                  GSL   1\par
+2NDG0007081800:00:00:0000:11:29:000  HA 06:22:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00:11:29.24\par
+1  P141PGS00091087E06:33:33:0000:11:29:00BATPAT (87)                                                       wx 2DSTPT                  GSL   1\par
+2NDG0007081900:00:00:0000:11:29:000  HA 06:34:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00:11:29.24\par
+1  52036229       C06:45:02:0000:00:08:00   Prom: CORTINILLA NAVIDAD 23 REGALOS                               3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:08:000               NC 00:00:00:00\par
+1  P141AGS01957058E06:45:10:0000:07:34:00OGGY OGGY (58)                                                       3DSTPT                  GSL   1\par
+2NDG0013273400:00:07:0000:07:41:130  HA 06:45:00   \par
+5 COMENZAR SIN PRODUCTORA A 00-00-07.00 Y CORTAR TODOS LOS ROTULOS A 00-07-41.13\par
+1  52036192       C06:52:44:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 PLANKTON CARBON                       3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036244       C06:52:53:0000:00:40:00   Prom: CAMPA\'d1A NAVIDAD 23 AGUS Y LUI 2                             3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:40:000               NC 00:00:00:00\par
+1  52036252       C06:53:33:0000:00:30:00   Prom: CAMPA\'d1A NAVIDAD 23 MILO                                     3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:30:000               NC 00:00:00:00\par
+1  P141AGS01791118E06:54:03:0000:04:46:00KID-E-CATS (118)                                                     3DSTPT                  GSL   1\par
+2NDG0009835900:00:05:0000:04:51:070  HA 06:54:00   \par
+5 COMENZAR SIN PRODUCTORA A 00-00-05.00 Y CORTAR TODOS LOS ROTULOS A 00-04-51.07\par
+1  52036191       C06:58:49:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 PITUFOS REGALOS                       3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52035243       C06:58:58:0000:00:24:00   Prom: PRE: DINO RANCH DE LUNES A VIERNES Y EN LA WEB              3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:24:000               NC 00:00:00:00\par
+1  P141AGS01897025E06:59:22:0000:11:32:00DINO RANCH (25)                                                      3DSTPT                  GSL  \par
+2NDG0012258000:00:00:0000:11:32:000  HA 06:59:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-11-32.00\par
+1  52036190       C07:10:54:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 NINA ARBOL                            3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036249       C07:11:03:0000:00:35:00   Prom: CAMPA\'d1A NAVIDAD 23 LA FRANJA FELIZ                          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:35:000               NC 00:00:00:00\par
+1  P141AGS01974054E07:11:38:0000:05:32:00EL REINO INFANTIL (54)                                               3ESTPT                  GSL   1\par
+2NDG0013525200:00:00:0000:05:32:000  HA 07:11:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-05-32.09\par
+1  52036215       C07:17:10:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 NIEVE                                 3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  P141AGS02009026E07:17:19:0000:03:30:00LAS AVENTURAS DE SUNNY  BUNNIES (26)                                 3ESTPT                  GSL   1\par
+2NDG0014353500:00:00:0000:03:30:080  HA 07:17:00   \par
+1  52036200       C07:20:49:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD CATALAN 1               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036251       C07:20:54:0000:00:29:00   Prom: CAMPA\'d1A NAVIDAD 23 EL REINO INFANTIL                        3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:29:000               NC 00:00:00:00\par
+1  P141AGS02064002E07:21:23:0000:05:25:00COLECCION MUSICAL REINO INFANTIL, ESPECIAL NAVIDAD (2)               3ESTPT                  GSL   1\par
+2NDG0014823500:00:00:0000:05:25:000  HA 07:21:00   \par
+5 CORTAR CORTINILLA DE SALIDA A 00:05:25.07\par
+1  52036203       C07:26:48:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD GALLEGO 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52035219       C07:26:53:0000:00:22:00   Prom: PRE: TROTTIES   L A V Y PLATAFORMAS                         3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:22:000               NC 00:00:00:00\par
+1  P141AGS01938007E07:27:15:0000:04:58:00TROTTIES. MAGIC WORLD ADVENTURES (7)                                 3ESTPT                  GSL  \par
+2NDG0012678300:00:00:0000:04:58:000  HA 07:27:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-04-58.04\par
+1  P141AGS01938008E07:32:13:0000:04:45:00TROTTIES. MAGIC WORLD ADVENTURES (8)                                 3ESTPT                  GSL  \par
+2NDG0012680300:00:00:0000:04:45:000  HA 07:33:00   \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-04-45.15\par
+1  52036205       C07:36:58:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD EUSKERA 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036243       C07:37:03:0000:00:40:00   Prom: CAMPA\'d1A NAVIDAD 23 AGUS Y LUI 1                             3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:40:000               NC 00:00:00:00\par
+1  52036256       C07:37:43:0000:00:15:00   Prom: CAMPA\'d1A NAVIDAD 22 RNE LETICIA VERSION 2023                 3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:15:000               NC 00:00:00:00\par
+1  71004112       C07:37:58:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01965012E07:38:06:0000:05:18:00SIMON SUPER CONEJO (12)                                              3DSTPT                  GIL  \par
+2NDG0013195600:00:00:0000:05:18:090  HA 07:38:00   \par
+1  P141AGS01965013E07:43:24:0000:05:18:00SIMON SUPER CONEJO (13)                                              3DSTPT                  GIL  \par
+2NDG0013197800:00:00:0000:05:18:090  HA 07:44:00   \par
+1  52036201       C07:48:42:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD CATALAN 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036211       C07:48:47:0000:00:12:00   Prom: CAMPA\'d1A NAVIDAD 23 REGALOS                                  3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:12:000               NC 00:00:00:00\par
+1  71004112       C07:48:59:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01885036E07:49:07:0000:18:17:00PEPPA PIG (36)                                                       2DSTPT                  GIL   1\par
+2NDG9052178800:00:01:0000:18:18:200  HA 07:49:00   \par
+2S403GK3N   00:00:01:0000:18:18:200\par
+5 CORTAR TODOS LOS ROTULOS A 00-18-18.20\par
+1  52036188       C08:07:24:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 ELFKINS                               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52036248       C08:07:31:0000:00:35:00   Prom: CAMPA\'d1A NAVIDAD 23 COMBO SERIES 1                           3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:35:000               NC 00:00:00:00\par
+1  52036250       C08:08:06:0000:00:20:00   Prom: CAMPA\'d1A NAVIDAD 23 MOMONSTERS                               3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:20:000               NC 00:00:00:00\par
+1  P141PGS00110016E08:08:26:0000:07:09:00PETIT (16)                                                         x 3DSTPT                  GSL   1\par
+2NDG0013489000:00:00:0000:07:09:000  HA 08:08:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-07-09.23\par
+1  52036187       C08:15:35:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 CASTING ARBOL                         3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036251       C08:15:44:0000:00:29:00   Prom: CAMPA\'d1A NAVIDAD 23 EL REINO INFANTIL                        3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:29:000               NC 00:00:00:00\par
+1  52036254       C08:16:13:0000:00:19:00   Prom: CAMPA\'d1A NAVIDAD 22 RNE CLARA VERSION 2023                   3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:19:000               NC 00:00:00:00\par
+1  P141EGS00098024E08:16:32:0000:06:48:00MOMONSTERS (24)                                                    x 3DSTPT                  GSL   1\par
+2NDG0005954300:00:00:0000:06:48:000  HA 08:16:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00:06:48.04\par
+1  P141EGS00098025E08:23:20:0000:06:31:00MOMONSTERS (25)                                                    x 3DSTPT                  GSL   1\par
+2NDG0005954500:00:00:0000:06:31:000  HA 08:23:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00:06:31.18\par
+1  52036186       C08:29:51:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 CASA DE LOCOS SANTA                   3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52036247       C08:29:58:0000:00:40:00   Prom: CAMPA\'d1A NAVIDAD 23 AGUS Y LUI 5                             3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:40:000               NC 00:00:00:00\par
+1  52036249       C08:30:38:0000:00:35:00   Prom: CAMPA\'d1A NAVIDAD 23 LA FRANJA FELIZ                          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:35:000               NC 00:00:00:00\par
+1  P141AGS02045016E08:31:13:0000:11:41:00PJ MASKS (16)                                                        3DSTPT                  GSL   1\par
+2NDG0014735100:00:00:0000:11:41:000  HA 08:31:00   \par
+3Q M318 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-11-41.02\par
+1  52036228       C08:42:54:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 CALCETINES                            3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52036259       C08:43:01:0000:00:13:00   Prom: CAMPA\'d1A NAVIDAD 22 RNE ESTHER VERSION 2023                  3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:13:000               NC 00:00:00:00\par
+1  P141AGS01971004E08:43:14:0000:01:34:00PAT EL PERRO- HOODIE (4)                                             3ESTPT                  GSL   1\par
+2NDG0013539000:00:00:0000:01:34:000  HA 08:43:00   \par
+3Q M318 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-01-34.24\par
+1  52036185       C08:44:48:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 BOLAZO FELIZ NAVIDAD                  3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52036246       C08:44:55:0000:00:40:00   Prom: CAMPA\'d1A NAVIDAD 23 AGUS Y LUI 4                             3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:40:000               NC 00:00:00:00\par
+1  71004112       C08:45:35:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS02040011E08:45:43:0000:21:31:00LA CASA DE MU\'d1ECAS DE GABBY (11)                                     3DSTPT                  GIL   1\par
+2NDG0014540800:00:04:2100:21:35:230  HA 08:45:00   \par
+3Q M318 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-04.21 Y CORTAR TODOS LOS ROTULOS A 00-21-35.23\par
+1  52036184       C09:07:14:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 BOB SANTA LOCO                        3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036255       C09:07:23:0000:00:18:00   Prom: CAMPA\'d1A NAVIDAD 22 RNE NOEMI MART\'cdNEZ VERSION 2023          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+1  71004112       C09:07:41:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01852020E09:07:49:0000:21:44:00LA PATRULLA CANINA (20)                                              3DSTPT                  GIL   1\par
+2NDG0010745600:00:00:0200:21:44:000  HA 09:07:00   \par
+3Q M318 T  \par
+5 COMENZAR A 00-00-00.01 Y CORTAR TODOS LOS ROTULOS A 00-21-44.10\par
+1  52036181       C09:29:33:0000:00:08:00   Prom: CORTINILLA NAVIDAD 23 BEBE NIEVE                            3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:08:000               NC 00:00:00:00\par
+1  52034561       C09:29:41:0000:00:24:00   Prom: PLOEY, NUNCA VOLARAS SOLO   MA\'d1ANA                          3EST                    G    \par
+2NAMBROSIA  09:59:50:0010:00:14:000               NC 00:00:00:00\par
+1  P131AGU36296   P09:30:05:0001:27:39:00PEREZ, EL RATONCITO DE TUS SUE\'d1OS                                  x 3DSTPT                  GSL  \par
+2NDG0009653900:00:35:1501:28:14:000  HA 09:30:00   \par
+5 COMENZAR SIN PRODUCTORA A 00-00-35.15 Y CORTAR R\'d3TULOS A 01-28-15.11\par
+1  52036178       C10:57:44:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 ABRAZO SANTA                          3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034432       C10:57:53:0000:00:22:00   Prom: HOTEL PARA PERROS   ESTA TARDE                              3EST                    G    \par
+2NAMBROSIA  09:59:50:0010:00:12:000               NC 00:00:00:00\par
+1  52036252       C10:58:15:0000:00:30:00   Prom: CAMPA\'d1A NAVIDAD 23 MILO                                     3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:30:000               NC 00:00:00:00\par
+1  P141AGS01868049E10:58:45:0000:10:34:00MILO (49)                                                            3DSTPT                  GSL   1\par
+2NDG0012225800:00:00:0000:10:34:000  HA 10:58:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-10-34.24\par
+1  52036199       C11:09:19:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 VERA DECORACION                       3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034553       C11:09:28:0000:00:26:00   Prom: OPERACION PANDA   ESTA TARDE                                3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:26:000               NC 00:00:00:00\par
+4(NACG/M/1100T)                     \par
+1  OG20234023101  B11:09:54:0000:00:50:00RTVE PLAY                                                            2EST     026815000710157G \par
+2NR00000    10:00:00:0010:00:50:000               NC 00:00:00:00\par
+1  52036251       C11:10:44:0000:00:29:00   Prom: CAMPA\'d1A NAVIDAD 23 EL REINO INFANTIL                        3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:29:000               NC 00:00:00:00\par
+1  P141AGS01974055E11:11:13:0000:05:43:00EL REINO INFANTIL (55)                                               3ESTPT                  GSL   1\par
+2NDG0013458900:00:00:0000:05:43:000  HA 11:10:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-05-43.21\par
+1  52036198       C11:16:56:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 TROTTIES REGALOS                      3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52034691       C11:17:03:0000:00:18:00   Prom: RICHARD LA CIGUE\'d1A TP   ESTA TARDE                          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+1  P141AGS01859010E11:17:21:0000:21:31:00VERA Y EL REINO DEL ARCOIRIS (10)                                    3DSTPT                  GSL   1\par
+2NDG0010327100:00:00:0000:21:31:000  HA 11:16:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-21-31.11\par
+1  52036217       C11:38:52:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 SKY                                   3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  P141AGS02040010E11:38:59:0000:21:31:00LA CASA DE MU\'d1ECAS DE GABBY (10)                                     3DSTPT                  GIL   1\par
+2NDG0014539300:00:04:2300:21:35:240  HA 11:38:00   \par
+3Q M299 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-04.23 Y CORTAR TODOS LOS R\'d3TULOS A 00-21-35.24\par
+1  71004112       C12:00:30:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01835014E12:00:38:0000:07:21:00PAT EL PERRO (14)                                                    3DSTPT                  GSL   1\par
+2NDG0010242600:00:00:0000:07:21:000  HA 12:00:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-07-21.12\par
+1  52036196       C12:07:59:0000:00:08:00   Prom: CORTINILLA NAVIDAD 23 SIMON REGALOS                         3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:08:000               NC 00:00:00:00\par
+1  52036245       C12:08:07:0000:00:40:00   Prom: CAMPA\'d1A NAVIDAD 23 AGUS Y LUI 3                             3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:40:000               NC 00:00:00:00\par
+1  P899PDS00001030E12:08:47:0000:04:53:00AGUS Y LUI, CHURROS Y CRAFTS (30)                                    3ESTPT                  GSL  \par
+2NDG0014776300:00:00:0000:04:53:000  HA 12:08:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-04-53.04\par
+1  P899PDS00001031E12:13:40:0000:04:53:00AGUS Y LUI, CHURROS Y CRAFTS (31)                                    3ESTPT                  GSL  \par
+2NDG0014776400:00:00:0000:04:53:000  HA 12:13:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-04-53.04\par
+1  52036216       C12:18:33:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 RODILLO                               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034432       C12:18:42:0000:00:22:00   Prom: HOTEL PARA PERROS   ESTA TARDE                              3EST                    G    \par
+2NAMBROSIA  09:59:50:0010:00:12:000               NC 00:00:00:00\par
+1  52036281       C12:19:04:0000:00:14:00   Prom: CAMPA\'d1A NAVIDAD 23 RNE   CLARA - CENTELLA                   3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:14:000               NC 00:00:00:00\par
+1  P111AGS00741004E12:19:18:0000:21:08:00LOS COMPA\'d1EROS DE JUEGO DE RYAN (4)                                  3DSTPT                  GSL  \par
+2NDG0009669000:00:00:0000:21:08:000  HA 12:19:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-08.14\par
+1  52036193       C12:40:26:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 RENOS                                 3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036260       C12:40:35:0000:00:30:00   Prom: CAMPA\'d1A NAVIDAD 23 COMBO SERIES 3                           3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:30:000               NC 00:00:00:00\par
+1  52036256       C12:41:05:0000:00:15:00   Prom: CAMPA\'d1A NAVIDAD 22 RNE LETICIA VERSION 2023                 3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:15:000               NC 00:00:00:00\par
+1  P141AGS02015009E12:41:20:0000:04:47:00SWAP RIDERS:TUNNING THE BEAST (9)                                    3ESTPT                  GSL   1\par
+2NDG0014500700:00:00:0000:04:47:000  HA 12:41:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-04-47.15\par
+1  52036229       C12:46:07:0000:00:08:00   Prom: CORTINILLA NAVIDAD 23 REGALOS                               3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:08:000               NC 00:00:00:00\par
+1  52036253       C12:46:15:0000:00:33:00   Prom: CAMPA\'d1A NAVIDAD 23 COMBO SERIES 2                           3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:33:000               NC 00:00:00:00\par
+1  P141AGS01836011E12:46:48:0000:21:32:00LOS SUPERMINIHEROES (11)                                             2DSTNR7                 GSL  \par
+2NDG9052428300:00:01:0100:21:33:110  HA 12:47:00   \par
+2S054BZ3N   00:00:01:0100:21:33:110\par
+3Q M299 T  \par
+5 COMENZAR A 00-00-01.01 Y CORTAR TODOS LOS R\'d3TULOS A 00-21-33.11\par
+1  52036192       C13:08:20:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 PLANKTON CARBON                       3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52035588       C13:08:29:0000:00:22:00   Prom: STUART LITTLE MA\'d1ANA EN CLAN                                3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:22:000               NC 00:00:00:00\par
+1  71004112       C13:08:51:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01894037E13:08:59:0000:11:27:00LOS PITUFOS (37)                                                     3DSTPT                  GIL   1\par
+2NDG0013228400:00:00:0000:11:27:000  HA 13:09:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-11-27.00\par
+1  P141AGS01894038E13:20:26:0000:11:27:00LOS PITUFOS (38)                                                     3DSTPT                  GIL   1\par
+2NDG0013228500:00:00:0000:11:27:000  HA 13:21:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-11-27.00\par
+1  P141AGS01894039E13:31:53:0000:11:27:00LOS PITUFOS (39)                                                  w  3DSTPT                  GIL  \par
+2NDG0013361500:00:00:0000:11:27:000  HA 13:33:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-11-27.00\par
+1  52036191       C13:43:20:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 PITUFOS REGALOS                       3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034432       C13:43:29:0000:00:22:00   Prom: HOTEL PARA PERROS   ESTA TARDE                              3EST                    G    \par
+2NAMBROSIA  09:59:50:0010:00:12:000               NC 00:00:00:00\par
+1  P141AGS01989044E13:43:51:0000:10:56:00HEROES A MEDIAS (44)                                                 3DSTNR7                 GSL  \par
+2NDG0014098500:00:00:0000:10:56:000  HA 13:44:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-10-56.24\par
+1  52036190       C13:54:47:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 NINA ARBOL                            3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034553       C13:54:56:0000:00:26:00   Prom: OPERACION PANDA   ESTA TARDE                                3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:26:000               NC 00:00:00:00\par
+4(NACG/M/1300T)                     \par
+1  OG20234023201  B13:55:22:0000:00:50:00RTVE PLAY                                                            2EST     026815000810157G \par
+2NR00000    10:00:00:0010:00:50:000               NC 00:00:00:00\par
+1  P141PGS00103019E13:56:12:0000:10:43:00MIS VECINOS REALES (19)                                              3DSTPT                  GSL   1\par
+2NDG0012559800:00:05:0000:10:48:120  HA 13:56:00   \par
+3Q M299 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-05.00 Y CORTAR TODOS LOS ROTULOS A 00-10-48.12\par
+1  P141PGS00103020E14:06:55:0000:10:13:00MIS VECINOS REALES (20)                                              3DSTPT                  GSL   1\par
+2NDG0012559900:00:32:1600:10:45:000  HA 14:07:00   \par
+3Q M299 T  \par
+5 COMENZAR PARA UNIR AL CAPITULO ANTERIOR A 00-00-32.16 Y CORTAR TODOS LOS ROTULOS A 00-10-46.06\par
+1  52036215       C14:17:08:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 NIEVE                                 3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52034691       C14:17:17:0000:00:18:00   Prom: RICHARD LA CIGUE\'d1A TP   ESTA TARDE                          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+4(NACG/M/1508T) Promo Cabalgata Reye\par
+1  OG20234023301  B14:17:35:0000:00:10:00IDEALISTA-CABALGATA                                                  2EST     026815301810163G \par
+2N          00:00:00:0000:00:10:000               NC 00:00:10:00\par
+1  P141AGS01849003E14:17:45:0000:21:05:00LOS CASAGRANDE (3)                                                w  3DSTPT                  GSL   1\par
+2NDG0010719000:00:00:0000:21:05:000  HA 14:18:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-21-05.19\par
+1  52036189       C14:38:50:0000:00:06:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD SANTA                   3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:06:000               NC 00:00:00:00\par
+1  52035602       C14:38:56:0000:00:27:00   Prom: SHREK FELICES PARA SIEMPRE MA\'d1ANA EN CLAN                   3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:27:000               NC 00:00:00:00\par
+4(NACG/M/1600T)                     \par
+1  OG20234023401  B14:39:23:0000:00:20:00CONCURSO WEB POCOY\'d3                                                  2EST     026811300910105G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  52034432       C14:39:43:0000:00:22:00   Prom: HOTEL PARA PERROS   ESTA TARDE                              3EST                    G    \par
+2NAMBROSIA  09:59:50:0010:00:12:000               NC 00:00:00:00\par
+1  P141AGS02022025E14:40:05:0000:21:59:00UNA CASA DE LOCOS (25)                                            w  3DSTPT                  GSL  \par
+2NDG0007900800:00:00:0000:21:59:000  HA 14:40:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-21-59.23\par
+1  P141AGS02022026E15:02:04:0000:22:00:00UNA CASA DE LOCOS (26)                                            w  3DSTPT                  GSL  \par
+2NDG0007900900:00:00:0000:22:00:000  HA 15:03:00   \par
+3Q M299 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-22-00.00\par
+1  52036202       C15:24:04:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD GALLEGO 1               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52034553       C15:24:09:0000:00:26:00   Prom: OPERACION PANDA   ESTA TARDE                                3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:26:000               NC 00:00:00:00\par
+1  P131AGU37353   P15:24:35:0001:29:35:00HOTEL PARA PERROS                                                  x 3DSTPT                  GSL  \par
+2NDG0009586700:00:32:1001:30:07:000  HA 15:25:00   \par
+3Q M278 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-32.10 Y CORTAR ROTULOS A 01-30-08.00\par
+1  52036204       C16:54:10:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD EUSKERA 1               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52034691       C16:54:15:0000:00:18:00   Prom: RICHARD LA CIGUE\'d1A TP   ESTA TARDE                          3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+1  P131AGU35882   P16:54:33:0001:16:18:00OPERACION PANDA                                                    x 3DSTPT                  GSL   1\par
+2NDG0009211100:00:27:0001:16:45:130  HA 16:55:00   \par
+3Q M320 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-27.00 Y CORTAR ROTULOS A 01-16-45.13\par
+1  52036200       C18:10:51:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD CATALAN 1               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036269       C18:10:56:0000:00:19:00   Prom: GRAND PRIX CAP 02 ESTA TARDE EN CLAN                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:19:000               NC 00:00:00:00\par
+1  P131AGU37109   P18:11:15:0001:14:53:00RICHARD, LA CIGUE\'d1A                                                  3DSTPT                  GSL   1\par
+2NDG0004944300:00:26:0001:15:19:050  HA 18:12:00   \par
+3Q M313 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-26.00 Y CORTAR ROTULOS A 01-15-19.05    \par
+1  52036188       C19:26:08:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 ELFKINS                               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+1  52036269       C19:26:15:0000:00:19:00   Prom: GRAND PRIX CAP 02 ESTA TARDE EN CLAN                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:19:000               NC 00:00:00:00\par
+4(NACG/M/1700T)                     \par
+1  OG20234023501  B19:26:34:0000:00:20:00CONCURSO WEB POCOY\'d3                                                  2EST     026811301010105G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  OG20234023502  B19:26:54:0000:00:20:00CONCURSO WEB GIGANTO                                                 2EST     026812502310127G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  OG20234023503  B19:27:14:0000:00:20:00LA NAVIDAD EN SUS MA                                                 2EST     026803528610153G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  P141AGS01835028E19:27:34:0000:07:21:00PAT EL PERRO (28)                                                    3DSTPT                  GSL   1\par
+2NDG0010244000:00:00:0000:07:21:000  HA 19:27:00   \par
+3Q M313 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-07-21.12\par
+1  52036187       C19:34:55:0000:00:09:00   Prom: CORTINILLA NAVIDAD 23 CASTING ARBOL                         3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:09:000               NC 00:00:00:00\par
+1  52036269       C19:35:04:0000:00:19:00   Prom: GRAND PRIX CAP 02 ESTA TARDE EN CLAN                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:19:000               NC 00:00:00:00\par
+4(NACG/M/1800T)                     \par
+1  OG20234023601  B19:35:23:0000:00:20:00CONCURSO WEB GIGANTO                                                 2EST     026812502410127G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  OG20234023602  B19:35:43:0000:00:20:00LA NAVIDAD EN SUS MA                                                 2EST     026803528710153G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  P141PGS00103003E19:36:03:0000:10:43:00MIS VECINOS REALES (3)                                               3DSTPT                  GSL   1\par
+2NDG0012579300:00:05:0000:10:48:010  HA 19:35:00   \par
+3Q M313 T  \par
+5 COMENZAR SIN PRODUCTORA A 00-00-05.00 Y CORTAR TODOS LOS ROTULOS A 00-10-48.01\par
+1  52036186       C19:46:46:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 CASA DE LOCOS SANTA                   3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+4(NACG/M/1900T)                     \par
+1  OG20234023701  B19:46:53:0000:00:10:00LIBRO MASTERCHEF JUN                                                 2EST     026813602410133G \par
+2NR00000    00:00:00:0000:00:10:000               NC 00:00:00:00\par
+1  OG20234023702  B19:47:03:0000:00:20:00LA NAVIDAD EN SUS MA                                                 2EST     026803528810153G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  P221PGS00230002E19:47:23:0002:20:58:00GRAND PRIX (2)                                                     x 3ESTPT                  GSL  \par
+2NDG0014315400:00:00:0002:20:58:140  HA 19:46:00   \par
+3Q M321 T  \par
+1  52036228       C22:08:21:0000:00:07:00   Prom: CORTINILLA NAVIDAD 23 CALCETINES                            3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:07:000               NC 00:00:00:00\par
+4(NACG/M/2000T)                     \par
+1  OG20234023801  B22:08:28:0000:00:50:00RTVE PLAY                                                            2EST     026815000910157G \par
+2NR00000    10:00:00:0010:00:50:000               NC 00:00:00:00\par
+1  52035588       C22:09:18:0000:00:22:00   Prom: STUART LITTLE MA\'d1ANA EN CLAN                                3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:22:000               NC 00:00:00:00\par
+1  P141AGS01837007E22:09:40:0000:10:24:00GORMITI (7)                                                          3DSTPT                  GSL  \par
+2NDG0009906500:00:00:0000:10:24:000  HA 22:08:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS R\'d3TULOS A 00-10-24.20\par
+1  P141AGS01837008E22:20:04:0000:10:55:00GORMITI (8)                                                          3DSTPT                  GSL  \par
+2NDG0009906600:00:00:0000:10:55:000  HA 22:19:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-10-55.06\par
+1  52036203       C22:30:59:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD GALLEGO 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+4(NACG/M/2100T)                     \par
+1  OG20234023901  B22:31:04:0000:00:05:00UN JUGUETE, UNA ILUS                                                 2EST     026804505610019G \par
+2NR00000    00:00:00:0000:00:05:000               NC 00:00:05:00\par
+1  OG20234023902  B22:31:09:0000:00:20:00LIBRO MASTERCHEF JUN                                                 2EST     026813602310132G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  OG20234023903  B22:31:29:0000:00:20:00LA NAVIDAD EN SUS MA                                                 2EST     026803528910153G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  52035602       C22:31:49:0000:00:27:00   Prom: SHREK FELICES PARA SIEMPRE MA\'d1ANA EN CLAN                   3EST                    G    \par
+2NAMBROSIA  01:00:00:0001:00:27:000               NC 00:00:00:00\par
+1  71004112       C22:32:16:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS02035004E22:32:24:0000:21:15:00BAKUGAN (4)                                                          3DSTNR7                 GIL  \par
+2NDG0014695000:00:01:0000:21:16:150  HA 22:31:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-16.15\par
+1  52036205       C22:53:39:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD EUSKERA 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036275       C22:53:44:0000:00:24:00   Prom: ASESINATO EN LA CASA BLANCA MA\'d1ANA EN CLAN   NR12           3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:24:000               NC 00:00:00:00\par
+1  71004112       C22:54:08:0000:00:08:00   CT: CLAN EN INGLES VERSI\'d3N 1                                      2EST                    G    \par
+2N013GL3N   10:05:45:0010:05:53:000               NC 00:00:00:00\par
+5 SOLO UTILIZAR DELANTE SERIES EN INGLES\par
+1  P141AGS01986016E22:54:16:0000:21:05:00TRANSFORMERS LA CHISPA DE LA TIERRA (16)                             3DSTNR7                 GIL   1\par
+2NDG0014483700:00:01:0000:21:06:200  HA 22:53:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-06.20\par
+1  P141AGS01986017E23:15:21:0000:21:05:00TRANSFORMERS LA CHISPA DE LA TIERRA (17)                             3DSTNR7                 GIL   1\par
+2NDG0014484100:00:01:0000:21:06:170  HA 23:15:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-06.17\par
+1  P141AGS01986018E23:36:26:0000:21:05:00TRANSFORMERS LA CHISPA DE LA TIERRA (18)                             3DSTNR7                 GIL   1\par
+2NDG0014490500:00:01:0000:21:06:230  HA 23:36:00   \par
+3Q M321 T  \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-06.23\par
+1  52036201       C23:57:31:0000:00:05:00   Prom: CORTINILLA NAVIDAD 23 FELIZ NAVIDAD CATALAN 2               3EST                    G    \par
+2NAMBROSIA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  52036275       C23:57:36:0000:00:24:00   Prom: ASESINATO EN LA CASA BLANCA MA\'d1ANA EN CLAN   NR12           3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:24:000               NC 00:00:00:00\par
+1  P131AGU37515   P23:58:00:0001:31:01:00VACACIONES                                                           3DSTNR12                GSL  \par
+2NDG0013694900:00:33:0101:31:34:180  HA 23:58:00   \par
+5 COMENZAR SIN PRODUCTORA A 00-00-33.01 Y CORTAR ROTULOS A 01-31-34.18\par
+1  52036058       C01:29:01:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 1                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  52036275       C01:29:10:0000:00:24:00   Prom: ASESINATO EN LA CASA BLANCA MA\'d1ANA EN CLAN   NR12           3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:24:000               NC 00:00:00:00\par
+1  P110EGS00005440E01:29:34:0000:51:43:00SERVIR Y PROTEGER (440)                                           wx 3ESTNR7                 GSL  \par
+2NDG0005244800:00:00:0000:51:43:000  HA 01:30:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-51-43.16\par
+1  P110EGS00005441E02:21:17:0000:51:30:00SERVIR Y PROTEGER (441)                                           wx 3ESTNR7                 GSL  \par
+2NDG0005255100:04:58:0400:56:28:120  HA 02:22:00   \par
+5 COMENZAR PARA UNIR AL CAPITULO ANTERIOR A 00:04:58.04 Y CORTAR COPY 2019 A 00:56:28.12      \par
+1  52036059       C03:12:47:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 2                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  57074225       C03:12:56:0000:00:20:00   Prom: RTVE_NUEVOS CANALES RTVE PLAY_SOMOS CINE CORTA              3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  P110EGS00003423E03:13:16:0000:33:05:00CENTRO MEDICO (423)                                               w  3ESTNR7                 GSL  \par
+2NDG9059236300:00:01:0000:33:06:000  HA 03:14:00   \par
+2S473G3BG   00:00:01:0000:33:06:000\par
+5 CORTAR PARA UNIR AL CAPITULO SIGUIENTE A 00:33:06.00\par
+1  P110EGS00003424E03:46:21:0000:33:55:00CENTRO MEDICO (424)                                               w  3ESTNR7                 GSL  \par
+2NDG9059246400:00:16:0000:34:11:060  HA 03:47:00   \par
+2S475G3BG   00:00:16:0000:34:11:060\par
+5 COMENZAR PARA UNIR AL CAPITULO ANTERIOR A 00:00:16.00 Y CORTAR COPY 2017 A 00:34:11.06\par
+1  52036060       C04:20:16:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 3                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  57076203       C04:20:25:0000:00:20:00   Prom: RTVE PLAY_CUENTAME (+12)                                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  A599PGU14221   A04:20:45:0000:00:41:00AJUSTE CAMARA ABIERTA  DULCE Q                                       3EST                    GSL  \par
+2Nserv      00:14:03:0500:14:44:210  HA 04:21:00   \par
+1  52036058       C04:21:26:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 1                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P371PDS00004001E04:21:35:0000:10:49:00CAMPA\'d1A AMISTAD UER 23 (1)                                           3ESTPT                  GSL  \par
+2NDG0014887000:00:00:0000:10:49:000  HA 04:22:00   \par
+1  52036059       C04:32:24:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 2                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P131EGS00557001E04:32:33:0000:57:48:00LAS VACACIONES DE YOKO (1)                                           3DSTPT                  GSL   1\par
+2NDG0013386800:00:14:2200:58:02:000  HA 04:33:00   \par
+5 COMENZAR SIN PRODUCTORA A 00-00-14.22 Y CORTAR ROTULOS A 00-58-03.10 - CREDITOS- 57-53-11\par
+1  52036060       C05:30:21:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 3                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  57074227       C05:30:30:0000:00:20:00   Prom: RTVE_NUEVOS CANALES RTVE PLAY_CRIMEN CORTA                  3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  P111AGS00742030E05:30:50:0000:21:59:00EL MISTERIO DE LOS HUNTER (30)                                       3DSTPT                  GSL  \par
+2NDG0009500400:00:00:0000:21:59:000  HA 05:31:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00-21-59.24\par
+1  52036058       C05:52:49:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 1                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  P141PGS00100034E05:52:58:0000:06:29:00TIN&TAN (34)                                                      wx 2ESTPT                  GSL   1\par
+2NDG9064946900:00:01:0000:06:30:240  HA 05:53:00   \par
+5 CORTAR TODOS LOS ROTULOS A 00:06:30.24\par
+1  52036059       C05:59:27:0000:00:09:00   Prom: CT: LA NAVIDAD EN SUS MANOS 2                               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:09:000               NC 00:00:00:00\par
+1  14002167       C05:59:36:0000:00:24:00   IN: SIN FIN CLAN - DICBRE 2015                                    2       F               G    \par
+2NAMBROSIA  00:00:00:0000:00:24:000               NC 00:00:00:00\par
+\par
+}
+ 

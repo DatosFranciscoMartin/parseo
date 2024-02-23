@@ -1,0 +1,257 @@
+S420234522TVE AMERICA     52202326/12/23\par
+1  A599PGU14386   A07:22:00:0000:04:48:00AJUSTE DD  BOOKFACE LIBROS CON VIDA V LARGA                          3EST    F               G L  \par
+2NPASARELA  00:00:00:0000:04:48:060  HA 00:00:00   \par
+1  57076252       C07:26:48:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53042695       C07:26:55:0000:00:24:00   Prom: GEN. AHORA O NUNCA (TP) (LUNES A VIERNES)                   3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  53043744       C07:27:19:0000:00:20:00   Prom: EL COMODIN DE LA 1_GEN INVIERNO (TP) (L-V)                  3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  53043689       C07:27:39:0000:00:18:00   Prom: GEN- EL CAZADOR (TP) (LUNES A VIERNES)                      3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53043981       C07:27:57:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043969       C07:28:24:0000:00:24:00   Prom: GALA INOCENTE INOCENTE 2023 (TP) (J28) SEM 51               3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  53043998       C07:28:48:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  57076204       C07:29:11:0000:00:20:00   Prom: RTVE PLAY_DOCS (+18)                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  57076474       C07:29:31:0000:00:24:00   Prom: RTVE-CAMPANADAS 2024                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  71003958       C07:29:55:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P511PDS00153360E07:30:00:0001:20:00:00NOTICIAS 24 H (360)                                                  2ESTSC  F               DSL  \par
+2N          00:00:00:0001:20:00:000  HA 07:30:00   \par
+3S T100 T  \par
+5 TICKER T100 AUTOMATIZADO\par
+1  P611PDS00213435E08:50:00:0001:50:00:00LA HORA DE LA 1 (435)                                                2ESTNR16F               DSL  \par
+2N          00:00:00:0001:50:00:000  HA 08:50:00   \par
+5 SIMULT LA 1\par
+1  57076327       C10:40:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076206       C10:40:07:0000:00:27:00   Prom: RTVE_OBJETIVO_EDADISMO_RAIMUNDO                             3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043981       C10:40:34:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043998       C10:41:01:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  57076474       C10:41:24:0000:00:24:00   Prom: RTVE-CAMPANADAS 2024                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  71003958       C10:41:48:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  A599PGU14262   A10:41:53:0000:04:43:00AJUSTE DD REMEDIOS DIGITALES V LARGA                                 3EST                    G L  \par
+2NPASARELA  00:00:00:0000:04:43:240  HA 00:00:00   \par
+1  P699PGS01044034E10:46:36:0000:30:29:00ZOOM TENDENCIAS (34)                                                 2ESTPT                  GSL  \par
+2NDG0014663700:00:00:0000:30:29:000  HA 10:45:00   \par
+5 FIN COPY 2023 00-30-29.00\par
+1  P899PGS00064896E11:17:05:0000:58:02:00LA AVENTURA DEL SABER (896)                                          3ESTPT                  GSL  \par
+2NDG0014766500:00:00:0000:58:02:000  HA 11:15:00   \par
+2S587C8DG   00:00:00:0000:58:02:000\par
+1  P110PGS00014055E12:15:07:0000:56:28:00SAL\'d3N DE T\'c9 LA MODERNA (55)                                          3ESTNR12                GSL  \par
+2NDG0014910400:00:02:0000:56:30:130  HA 12:10:00   \par
+3Q M375 T  \par
+5 INICIAR AL 00-00-02.00\par
+1  P110PGS00012233E13:11:35:0000:59:25:00LA PROMESA (233)                                                     3ESTNR12                GSL  \par
+2NDG0014768700:00:00:0000:59:25:190  HA 13:10:00   \par
+3Q M375 T  \par
+1  57076329       C14:11:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043689       C14:11:07:0000:00:18:00   Prom: GEN- EL CAZADOR (TP) (LUNES A VIERNES)                      3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53043981       C14:11:25:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043990       C14:11:52:0000:00:18:00   Prom: FELIZ 2024_PROMO 360 (TP) (D31) SEM 52                      3EST                    G    \par
+2NPASARELA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+1  71003958       C14:12:10:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P521PDS00012251E14:12:15:0000:47:35:00AHORA O NUNCA (251)                                                  2ESTPT                  DSL  \par
+2N          00:00:00:0000:47:35:000  HA 14:10:00   \par
+3Q M375 T  \par
+3R H523 T  \par
+5 SIMULT LA 1\par
+1  53043335       C14:59:50:0000:00:05:00   Prom: CT. SALON DE TE LA MODERNA_1 (+12) SEM. 32                  3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  71003958       C14:59:55:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P511PDS00155360E15:00:00:0000:50:00:00TELEDIARIO 1 (360)                                                   2ESTSC  F               DSL  \par
+2N          00:00:00:0000:50:00:000  HA 15:00:00   \par
+1  57076252       C15:50:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  57076309       C15:50:07:0000:00:18:00   Prom: RTVE_FELICITACION NAVIDAD LA MODERNA                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53043689       C15:50:25:0000:00:18:00   Prom: GEN- EL CAZADOR (TP) (LUNES A VIERNES)                      3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53043981       C15:50:43:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043998       C15:51:10:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  53043969       C15:51:33:0000:00:24:00   Prom: GALA INOCENTE INOCENTE 2023 (TP) (J28) SEM 51               3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  57076203       C15:51:57:0000:00:20:00   Prom: RTVE PLAY_CUENTAME (+12)                                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  57076363       C15:52:17:0000:00:14:00   Prom: RTVE-FELICITACION NAVIDAD 4 ESTRELLAS_PROMO 1               3EST                    G    \par
+2NPASARELA  01:00:00:0001:00:14:000               NC 00:00:00:00\par
+1  57076474       C15:52:31:0000:00:24:00   Prom: RTVE-CAMPANADAS 2024                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  71003958       C15:52:55:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P611PDS00223081E15:53:00:0001:00:00:00MA\'d1ANEROS (81)                                                       2ESTNR16                GSL  \par
+2N          00:00:00:0001:00:00:001  HA 15:50:00   \par
+3Q M375 T  \par
+3S R912 T  \par
+1  57076327       C16:53:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043981       C16:53:07:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  57076204       C16:53:34:0000:00:20:00   Prom: RTVE PLAY_DOCS (+18)                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+1  57072958       C16:53:54:0000:00:19:00   Prom: RTVE.CLASICA MONUMENTAL(ORQUESTA Y CORO RTVE) PROMO 2       3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:19:000               NC 00:00:00:00\par
+1  53043747       C16:54:13:0000:00:16:00   Prom: CORAZON_GEN INVIERNO (TP) (S-D)                             3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:16:000               NC 00:00:00:00\par
+1  71003958       C16:54:29:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P611PDS00223081E16:54:34:0001:00:00:00MA\'d1ANEROS (81)                                                       2ESTNR16                GSL  \par
+2N          01:00:00:0002:00:00:002  HA 15:50:00   \par
+3Q M375 T  \par
+3S R912 T  \par
+1  57076329       C17:54:34:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043689       C17:54:41:0000:00:18:00   Prom: GEN- EL CAZADOR (TP) (LUNES A VIERNES)                      3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53043998       C17:54:59:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  57076365       C17:55:22:0000:00:18:00   Prom: RTVE-FELICITACION NAVIDAD LA PORMESA_SE\'d1ORES 1              3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  57076474       C17:55:40:0000:00:24:00   Prom: RTVE-CAMPANADAS 2024                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  71003958       C17:56:04:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P611PDS00223081E17:56:09:0001:12:49:00MA\'d1ANEROS (81)                                                       2ESTNR16                GSL  \par
+2N          02:00:00:0003:12:49:003U HA 15:50:00   \par
+3Q M375 T  \par
+3S R912 T  \par
+1  A599PGU14478   A19:08:58:0000:04:41:00AJUSTE DD PASTORA DIGITAL V LARGA                                    3EST                    G L  \par
+2NPASARELA  00:00:00:0000:04:41:000  HA 00:00:00   \par
+1  P221PGS00225185E19:13:39:0001:00:13:00EL COMODIN DE LA 1 (185)                                             3ESTPT                  GSL  \par
+2NDG0014155900:00:00:0001:00:13:150  HA 19:10:00   \par
+3Q M375 T  \par
+1  57076329       C20:13:52:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043689       C20:13:59:0000:00:18:00   Prom: GEN- EL CAZADOR (TP) (LUNES A VIERNES)                      3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  53042695       C20:14:17:0000:00:24:00   Prom: GEN. AHORA O NUNCA (TP) (LUNES A VIERNES)                   3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+4(NAC4/M/1940T)                     \par
+1  O42023401DD01  B20:14:41:0000:00:25:00CU\'c9NTAME-SERIE COMPL                                                 2EST     026814600910156G \par
+2NR00000    00:00:00:0000:00:25:000               NC 00:00:00:00\par
+1  53043969       C20:15:06:0000:00:24:00   Prom: GALA INOCENTE INOCENTE 2023 (TP) (J28) SEM 51               3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+1  57076309       C20:15:30:0000:00:18:00   Prom: RTVE_FELICITACION NAVIDAD LA MODERNA                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:18:000               NC 00:00:00:00\par
+1  57076497       C20:15:48:0000:00:22:00   Prom: RTVE_CAMPANADAS_PENINSULA                                   3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00\par
+1  71003958       C20:16:10:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P221PGS00217748E20:16:15:0000:43:45:00SABER Y GANAR (748)                                                  3ESTPT                  GSL  \par
+2NDG0014964400:00:00:0000:43:45:010  HA 20:15:00   \par
+3Q M375 T  \par
+1  P511PDS00156360E21:00:00:0000:55:00:00TELEDIARIO 2 (360)                                                   2ESTSC  F               DSL  \par
+2N          00:00:00:0000:55:00:000  HA 21:00:00   \par
+1  57076252       C21:55:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI                        3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043981       C21:55:07:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043998       C21:55:34:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  57076204       C21:55:57:0000:00:20:00   Prom: RTVE PLAY_DOCS (+18)                                        3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:20:000               NC 00:00:00:00\par
+4(NAC4/M/2150T)                     \par
+1  O42023401DE01  B21:56:17:0000:00:25:00CU\'c9NTAME-SERIE COMPL                                                 2EST     026814601010156G \par
+2NR00000    00:00:00:0000:00:25:000               NC 00:00:00:00\par
+1  57076363       C21:56:42:0000:00:14:00   Prom: RTVE-FELICITACION NAVIDAD 4 ESTRELLAS_PROMO 1               3EST                    G    \par
+2NPASARELA  01:00:00:0001:00:14:000               NC 00:00:00:00\par
+1  53043990       C21:56:56:0000:00:18:00   Prom: FELIZ 2024_PROMO 360 (TP) (D31) SEM 52                      3EST                    G    \par
+2NPASARELA  01:00:00:0001:00:18:000               NC 00:00:00:00\par
+1  71003958       C21:57:14:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  15008908       C21:57:19:0000:00:05:00   SP: RTVE PRESENTA                                                 3                       G    \par
+2NSERVIDOR  00:00:00:0000:00:05:000               NC 00:00:00:00\par
+1  P110PGS00012247E21:57:24:0000:54:23:00LA PROMESA (247)                                                     3ESTNR12                GSL  \par
+2NDG0014913700:03:36:1600:57:59:200  HA 21:55:00   \par
+3Q M375 T  \par
+5 INICIAR SIN RESUMEN A 00:03:36.16\par
+1  P211PDS00037768E22:51:47:0000:01:30:00RESULTADOS DE LOTERIAS (768)                                         3ESTSC                  G L  \par
+2N          00:00:00:0000:01:30:000  HA 22:49:35   \par
+3Q M375 T  \par
+1  P110PGS00014062E22:53:17:0001:00:06:00SAL\'d3N DE T\'c9 LA MODERNA (62)                                          3ESTNR12                GSL  \par
+2NDG0014961000:00:02:0001:00:08:040  HA 22:50:00   \par
+3Q M375 T  \par
+1  P221PGS00234050E23:53:23:0001:01:23:00EL CAZADOR (50)                                                      3ESTPT                  GSL  \par
+2NDG0014970600:00:00:0001:01:23:240  HA 23:50:00   \par
+3Q M375 T  \par
+1  P711EGS00175003E00:54:46:0000:36:15:00TURISMO RURAL EN EL MUNDO (3)                                        3ESTPT                  GSL  \par
+2NDG0002422900:00:00:0000:36:15:000  HA 00:50:00   \par
+3Q M375 T  \par
+5 CORTAR COPY 2018 AL 00-36-15.01\par
+1  57076327       C01:31:01:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_2 ANILLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043981       C01:31:08:0000:00:27:00   Prom: MASTERCHEF JUNIOR_PGM4 (TP) (M26) SEM 52                    3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  53043969       C01:31:35:0000:00:24:00   Prom: GALA INOCENTE INOCENTE 2023 (TP) (J28) SEM 51               3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:24:000               NC 00:00:00:00\par
+4(NAC4/M/2530T)                     \par
+1  O42023401DF01  B01:31:59:0000:00:20:00IN\'c9S DEL ALMA M\'cdA                                                    2EST     026809004910081G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  O42023401DF02  B01:32:19:0000:00:20:00ESTO NO ES SUECIA                                                    2EST     026812602310129G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  57076206       C01:32:39:0000:00:27:00   Prom: RTVE_OBJETIVO_EDADISMO_RAIMUNDO                             3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:27:000               NC 00:00:00:00\par
+1  57072957       C01:33:06:0000:00:19:00   Prom: RTVE.CLASICA MONUMENTAL(ORQUESTA Y CORO RTVE) PROMO 1       3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:19:000               NC 00:00:00:00\par
+4(NAC4/M/2845T)                     \par
+1  O42023401E101  B01:33:25:0000:00:20:00ROMPIENDO EL HIELO                                                   2EST     026804706810026G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:20:00\par
+1  O42023401E102  B01:33:45:0000:00:20:00DRAMA                                                                2EST     026810704610101G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  O42023401E103  B01:34:05:0000:00:20:00DESAPARECIDA                                                         2EST     026812202810121G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  53043998       C01:34:25:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  57076497       C01:34:48:0000:00:22:00   Prom: RTVE_CAMPANADAS_PENINSULA                                   3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:22:000               NC 00:00:00:00\par
+1  71003958       C01:35:10:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P531PDS00008983E01:35:15:0000:24:45:00AQUI LA TIERRA (983)                                                 2ESTPT                  GSL  \par
+2N          00:00:00:0000:24:45:000  HA 01:30:00   \par
+3Q M375 T  \par
+3S R912 T  \par
+5  QUITAD MOSCA ESPECIAL 5 MIN. ANTES DEL FINAL -\par
+1  P511PDS00150725E02:00:00:0000:30:00:00TD INTERNACIONAL 24 HORAS (725)                                      3ESTSC  F               DSL  \par
+2N          00:00:00:0000:30:00:000  HA 02:00:00   \par
+3S T100 T  \par
+5 TICKER T100 AUTOMATIZADO \par
+1  57076329       C02:30:00:0000:00:07:00   Prom: RTVE-CT. FELICITACION NAVIDAD PIRULI_4 PUEBLO               3EST                    G    \par
+2NAMBROSIA  00:00:00:0000:00:07:000               NC 00:00:00:00\par
+1  53043770       C02:30:07:0000:00:25:00   Prom: AHORA O  NUNCA _GEN INVIERNO (TP) (L-V)                     3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:25:000               NC 00:00:00:00\par
+4(NAC4/M/2630T)                     \par
+1  O42023401E001  B02:30:32:0000:00:20:01SER O NO SER                                                         2EST     026806705410055G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  O42023401E002  B02:30:52:0100:00:20:00DESAPARECIDA                                                         2EST     026812202710121G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  O42023401E003  B02:31:12:0100:00:20:00ESTO NO ES SUECIA                                                    2EST     026812602410129G \par
+2NR00000    00:00:00:0000:00:20:000               NC 00:00:00:00\par
+1  53043998       C02:31:32:0000:00:23:00   Prom: MAESTROS DE LA COSTURA_ MUY PRONTO                          3EST                    G    \par
+2NPASARELA  10:00:00:0010:00:23:000               NC 00:00:00:00\par
+1  71003958       C02:31:55:0000:00:05:00   CT: CT. CIERRE DE BLOQUE INTER TVE (5")                           3EST                    G    \par
+2N765C5021  10:00:00:0010:00:05:000               NC 00:00:00:00\par
+1  P111PGS00178133E02:32:00:0000:47:49:004 ESTRELLAS (133)                                                    3ESTNR12                GSL  \par
+2NDG0014968500:00:02:0000:47:51:120  HA 02:30:00   \par
+3Q M375 T  \par
+1  P221PGS00224009E03:19:49:0002:44:35:00MASTERCHEF JUNIOR T. 10 (9)                                          3ESTPT  F               GSL  \par
+2NDG0014970300:00:00:0002:44:35:090  HA 03:15:00   \par
+\par
+}
+ 
