@@ -310,8 +310,8 @@ for archivo in lista_archivos:
     # Cerramos el fichero
     fichero.close()
 
-    for event, diccionario_interno in eventos.items():
-        print(diccionario_interno)
+    #for event, diccionario_interno in eventos.items():
+    #    print(diccionario_interno)
 
     # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:
     marinaPlaylist = ET.Element("marinaPlaylist")
@@ -638,14 +638,11 @@ for archivo in lista_archivos:
             cg = ET.SubElement(mediaStream_child, "cg")
             cg.set("layer", "0")
             cg.set("type", "Page")
-            
+
             # Añadir el elemento 'media' dentro de 'properties'
             media_child = ET.SubElement(properties_child, "media")
             media_child.set("mediaType", "CG")
             media_child.set("mediaName", grafico_secundario) 
-
-
-
 
             # Recorremos los diccionarios de tipo 3:
             # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
