@@ -7,6 +7,8 @@ import tkinter as tk
 from tkinter import filedialog
 import logging
 
+
+# Tabla en la que tenemos todos los identificadores especiales que pueden aparecer
 media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P699EGS00121","P611PGS00595","P699PGS00568","P699PGS00872","P611PGS00547","P899PGS00064","P211PDS00033","P211PDS00034","P699PGS00961","P211PDS00036","P211EGS00006","P531PGS00057","P531PGS00056","P211EGS00007","P211PDS00037","P211EGS00008","P463PGS00057","P211EGS00009","P211PDS00038","P469PDS00102"]
 
 def seleccionar_directorio_salida():
@@ -115,6 +117,7 @@ for archivo in lista_archivos:
     # Nos saltamos la primera linea del fichero y sacamos sus datos.
     primera_linea = fichero.readline()
 
+    # Generamos las variables de la primera linea del fichero
     LICOMINUTA = primera_linea[0:10]
     LICADENA = primera_linea[10:26].rstrip()
     LISEMANA = primera_linea[26:28]
@@ -326,11 +329,9 @@ for archivo in lista_archivos:
 
     # En la siguiente iteración vamos a recorrer los eventos que hemos guardado en el diccionario de eventos, y vamos a crear dos variables, event para saber el numero de evento y
     # diccionario_interno para saber el diccionario que vamos a usar para crear el evento
-
     for event, diccionario_interno in eventos.items():
 
         # Si es tipo 4, vamos a seguir la siguiente logica para generar una rama XML de tipo 4
-
         if diccionario_interno['TIPOREG'] == "4":
             event4 = ET.SubElement(eventlist, "event")
             event4.set("type", "Comment")
@@ -342,7 +343,6 @@ for archivo in lista_archivos:
             event4_1 = ET.SubElement(properties4, "event")
             comment4 = ET.SubElement(event4_1, "comment")
             comment4.text = "BLOQUE:"+" "+diccionario_interno["IDBLOQUE"].rstrip()
-
         # Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
 
         if diccionario_interno['TIPOREG'] == "5":
@@ -354,10 +354,8 @@ for archivo in lista_archivos:
             event5_1 = ET.SubElement(properties5, "event")
             comment5 = ET.SubElement(event5_1, "comment")
             comment5.text = diccionario_interno["OBSERVACIONES"].rstrip()
-
         # Si tipo1
         # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
-
         if diccionario_interno['TIPOREG'] == "1":
             if diccionario_interno['DIRGRAB'] == "D":
                 event1 = ET.SubElement(eventlist, "event")
@@ -416,7 +414,6 @@ for archivo in lista_archivos:
                 schedule1.set("startType", "Sequential")
 
             # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
-
             if diccionario_interno['TIPO_DE_AUDIO'] != "   ":
 
                 features_audio = ET.SubElement(properties1, "features")
@@ -465,8 +462,6 @@ for archivo in lista_archivos:
                 elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
                     trackpreset = ET.SubElement(audioshaffle, "trackPreset")
                     trackpreset.set("name", "Dolby DUAL DRUPO2")
-
-
 
             # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
             if diccionario_interno['SUBTITULADO'] == "S":
@@ -536,10 +531,8 @@ for archivo in lista_archivos:
 
                 # Distintas decisiones dependiendo de la calificacion moral que tenga, nombramos la variable columna para poder recorrer la tabla
                 # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
-            
-            
-                # Agregamos una logica adicional para aquellos que tengan un media ID especial.
-                    
+                
+                # Agregamos una logica adicional para aquellos que tengan un media ID especial.    
                 for prefix in media_id_espciales:
                     if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
                         columna = 0
@@ -587,6 +580,8 @@ for archivo in lista_archivos:
                 media_child.set("mediaType", "CG")
                 media_child.set("mediaName", logo_branding)
 
+
+            # Agregamos la logica oara poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
             if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
                 if diccionario_interno["SUBTITULADO"] == " ":
                     if diccionario_interno["AUDIODESCRIPCION"] == " ":
