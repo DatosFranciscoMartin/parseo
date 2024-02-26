@@ -420,33 +420,26 @@ for archivo in lista_archivos:
                 feature_audio2 = ET.SubElement(features_audio, "feature")
                 feature_audio2.set("type", "Subtitle")
                     
-                if diccionario_interno['TIPO_DE_AUDIO'] == "EST":
+                # Crear un diccionario para mapear los valores de TIPO_DE_AUDIO a los nombres correspondientes
+                tipo_audio_names = {
+                    "EST": "ESTEREO",
+                    "DST": "Dual-Estereo",
+                    "MON": "MONO",
+                    "DUA": "DUAL",
+                    "DP1": "Dolby PAR 1",
+                    "DP2": "Dolby PAR 2",
+                    "DP3": "Dolby PAR 3",
+                    "DG1": "Dolby DUAL DRUPO1",
+                    "DG2": "Dolby DUAL DRUPO2"
+                }
+
+                # Obtener el nombre correspondiente a TIPO_DE_AUDIO
+                nombre_audio = tipo_audio_names.get(diccionario_interno['TIPO_DE_AUDIO'])
+
+                # Crear el elemento trackPreset y establecer el atributo "name"
+                if nombre_audio:
                     trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "ESTEREO")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DST":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dual-Estereo")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "MON":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "MONO")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DUA":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "DUAL")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP1":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dolby PAR 1")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP2":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dolby PAR 2")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DP3":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dolby PAR 3")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG1":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dolby DUAL DRUPO1")
-                elif diccionario_interno['TIPO_DE_AUDIO'] == "DG2":
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
-                    trackpreset.set("name", "Dolby DUAL DRUPO2")
+                    trackpreset.set("name", nombre_audio)
 
             # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
             if diccionario_interno['SUBTITULADO'] == "S":
@@ -551,7 +544,7 @@ for archivo in lista_archivos:
                     "NR16": 4,
                     "NR18": 5
                 }
-                
+
                 # Determinar la columna basada en CALIFMORAL
                 columna = califmoral_to_column.get(califmoral_stripped, 0)
 
