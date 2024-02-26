@@ -213,10 +213,7 @@ for archivo in lista_archivos:
                 TXTAUD = "A"
 
             # print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
-            RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[
-                                                                                                         :11] + TICODELEMENMIN[
-                                                                                                                11:13] + "_" + TIHOINMIN[
-                                                                                                                               :8]
+            RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[:11] + TICODELEMENMIN[11:13] + "_" + TIHOINMIN[:8]
             # print(RECONCILEKEY.replace(" ", "*"))
 
             # Generamos el diccionario con la informacion que hemos extraid del fichero principal
