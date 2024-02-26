@@ -99,21 +99,6 @@ for archivo in lista_archivos:
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
 
-    # Sacamos el nombre del fichero en el cual tenemos información acerca de la fecha y hora de creación
-    #nombre_archivo = os.path.basename(archivo)
-
-    # La fecha de inicio la sacamos de la siguiente forma sobre el nombre del fichero
-    #fecha_inicio = "20" + nombre_archivo[2:4] + "-" + nombre_archivo[4:6] + "-" + nombre_archivo[6:8]
-
-    # Transformamos la fecha de inicio a un objeto de tipo datetime
-    #fecha_transformada = datetime.strptime(fecha_inicio, "%Y-%m-%d")
-
-    # Sumamos un dia a la fecha ya transformada
-    #fecha_fin = fecha_transformada + timedelta(days=1)
-
-    # Transformamos la fecha de fin a una cadena de texto para usarla mas adelante
-    #fecha_fin_transformada = fecha_fin.strftime("%Y-%m-%d")
-
     # Nos saltamos la primera linea del fichero y sacamos sus datos.
     primera_linea = fichero.readline()
 
@@ -533,25 +518,51 @@ for archivo in lista_archivos:
                 # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
                 
                 # Agregamos una logica adicional para aquellos que tengan un media ID especial.    
-                for prefix in media_id_espciales:
-                    if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
-                        columna = 0
-                        logo_branding = tabla[LICADENA][columna]  
-                    elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
-                        columna = 1
-                        logo_branding = tabla[LICADENA][columna]
-                    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
-                        columna = 2
-                        logo_branding = tabla[LICADENA][columna]
-                    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
-                        columna = 3
-                        logo_branding = tabla[LICADENA][columna]
-                    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
-                        columna = 4
-                        logo_branding = tabla[LICADENA][columna]
-                    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
-                        columna = 5
-                        logo_branding = tabla[LICADENA][columna]
+                #for prefix in media_id_espciales:
+                #    if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
+                #        columna = 0
+                #        logo_branding = tabla[LICADENA][columna]  
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
+                #        columna = 1
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
+                #        columna = 2
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
+                #        columna = 3
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
+                #        columna = 4
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
+                #        columna = 5
+                #        logo_branding = tabla[LICADENA][columna]
+                    
+                # Guardar el resultado de rstrip() en una variable
+                califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
+
+                # Mapeo de CALIFMORAL a columnas
+                califmoral_to_column = {
+                    "PT": 1,
+                    "": 1,
+                    "SC": 1,
+                    "NR7": 2,
+                    "NR12": 3,
+                    "NR16": 4,
+                    "NR18": 5
+                }
+                
+                # Determinar la columna basada en CALIFMORAL
+                columna = califmoral_to_column.get(califmoral_stripped, 0)
+
+                # Determinar el logo_branding
+                if columna == 0:
+                    for prefix in media_id_espciales:
+                        if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
+                            logo_branding = tabla[LICADENA][0]
+                            break
+                else:
+                    logo_branding = tabla[LICADENA][columna]
 
                 # Generamos el arbol xml que va a colgar de childevents
                 event_child_1 = ET.SubElement(child_event, "event")
@@ -667,3 +678,4 @@ for archivo in lista_archivos:
         # Escribir el XML formateado en el archivo
         xml_file.write(xml_formatted)
         print("XML generado exitosamente.")
+
