@@ -10,6 +10,8 @@ from datetime import timedelta, datetime
 import time
 import logging
 
+media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P699EGS00121","P611PGS00595","P699PGS00568","P699PGS00872","P611PGS00547","P899PGS00064","P211PDS00033","P211PDS00034","P699PGS00961","P211PDS00036","P211EGS00006","P531PGS00057","P531PGS00056","P211EGS00007","P211PDS00037","P211EGS00008","P463PGS00057","P211EGS00009","P211PDS00038","P469PDS00102"]
+
 
 # En esta parte del programa vamos a crear el watch folder para procesar los ficheros TRF
 
@@ -93,7 +95,7 @@ def procesar_archivo(archivo):
         primera_linea = fichero.readline()
 
         LICOMINUTA = primera_linea[0:10]
-        LICADENA = primera_linea[10:26]
+        LICADENA = primera_linea[10:26].rstrip()
         LISEMANA = primera_linea[26:28]
         LIANIO = primera_linea[28:32]
         LIFECMINUT= primera_linea[32:40]
@@ -326,94 +328,322 @@ def procesar_archivo(archivo):
 
     # Si tipo1
     # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
-
-        if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "D":
-            event1 = ET.SubElement(eventlist, "event")
-            event1.set("type", "Live")
-            properties1 = ET.SubElement(event1, "properties")
-            schedule1 = ET.SubElement(properties1, "schedule")
-            schedule1.set("endType", "Hold")
-            schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
-            media1 = ET.SubElement(properties1, "media")
-            media1.set("mediaType", "Live")
-            media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
-            #media1.set("mediaName", "TESTOK"),
+            
+        if diccionario_interno['TIPOREG'] == "1":
+            if diccionario_interno['DIRGRAB'] == "D":
+                event1 = ET.SubElement(eventlist, "event")
+                event1.set("type", "Live")
+                properties1 = ET.SubElement(event1, "properties")
+                schedule1 = ET.SubElement(properties1, "schedule")
+                schedule1.set("endType", "Hold")
+                schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
+                media1 = ET.SubElement(properties1, "media")
+                media1.set("mediaType", "Live")
+                media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
+                # media1.set("mediaName", "TESTOK"),
+                if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
+                    mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                    schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
+            elif diccionario_interno['DIRGRAB'] == "G":
+                event1 = ET.SubElement(eventlist, "event")
+                event1.set("type", "PrimaryVideo")
+                properties1 = ET.SubElement(event1, "properties")
+                schedule1 = ET.SubElement(properties1, "schedule")
+                schedule1.set("endType", "Duration")
+                schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
+                media1 = ET.SubElement(properties1, "media")
+                media1.set("mediaType", "Video")
+                media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
+                # media1.set("mediaName", "TESTOK"),
+                mediaStream1 = ET.SubElement(properties1, "mediaStream")
+                mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                video1 = ET.SubElement(mediaStream1, "video")
+                video1.set("jobType", "Play")
+                segment1 = ET.SubElement(mediaStream1, "segment")
+                segment1.set("type", "Media")
+                if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
+                    segment1.set("type", "Markup")
+                    markup1 =ET.SubElement(segment1,"markup")
+                    markup1.set("orderNo",diccionario_interno['Tipo2']['NUMSEGMENTO'])
+                    mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                    schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
 
             # Se agrega etiquetas comunes de ambos casos
             event1_2 = ET.SubElement(properties1, "event")
-            event1_2.set("title", diccionario_interno["TITITELEME"].rstrip())
+            event1_2.set("title", diccionario_interno["TITITELEME"].strip())
             event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
             classifications1 = ET.SubElement(event1_2, "classifications")
             classification1 = ET.SubElement(classifications1, "classification")
             classification1.set("classification", "EventType")
             classification1.set("category", diccionario_interno["TITIPELEME"])
             mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno["TIHOINMIN"])
-
-            # Se comprueba si es tipo fijo o tipo secuencial
-            if diccionario_interno['INDELEMFIJO'] == "F":
-                    schedule1.set("startType", "Fixed")
-                    schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
-            else:
-                schedule1.set("startType", "Sequential")
-
-            # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-            #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
-            #    if clave.startswith('Tipo3_'):
-            #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
-            #    elif clave.startswith('Tipo2_'):
-            #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
-
-
-
-
-
-    # Si en este caso es tipo grabado, o lo que es lo mismo, el valor del campo DIRGRAB es G
-        if diccionario_interno['TIPOREG'] == "1" and diccionario_interno['DIRGRAB'] == "G":
-            event1 = ET.SubElement(eventlist, "event")
-            event1.set("type", "PrimaryVideo")
-            properties1 = ET.SubElement(event1, "properties")
-            schedule1 = ET.SubElement(properties1, "schedule")
-            schedule1.set("endType", "Duration")
-            schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
-            media1 = ET.SubElement(properties1, "media")
-            media1.set("mediaType", "Video")
-            media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
-            #media1.set("mediaName", "TESTOK"),
-            mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno['TIHOINMIN'].rstrip())
-            video1 = ET.SubElement(mediaStream1,"video")
-            video1.set("jobType", "Play")
-            segment1 = ET.SubElement(mediaStream1,"segment")
-            segment1.set("type", "Media")
-
-            # Se agrega etiquetas comunes de ambos casos
-            event1_2 = ET.SubElement(properties1, "event")
-            event1_2.set("title", diccionario_interno["TITITELEME"].rstrip())
-            event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
-            classifications1 = ET.SubElement(event1_2, "classifications")
-            classification1 = ET.SubElement(classifications1, "classification")
-            classification1.set("classification", "EventType")
-            classification1.set("category", diccionario_interno["TITIPELEME"])
-            mediaStream1 = ET.SubElement(properties1, "mediaStream")
-            mediaStream1.set("som", diccionario_interno["TIHOINMIN"].rstrip())
+            mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
 
             # Se comprueba si es tipo fijo o tipo secuencial
             if diccionario_interno['INDELEMFIJO'] == "F":
                 schedule1.set("startType", "Fixed")
-                schedule1.set("startOffset", fecha_inicio+"T"+diccionario_interno['TIHOINMIN'])
+                schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
             else:
                 schedule1.set("startType", "Sequential")
 
-            # Recorremos los diccionarios de tipo 3 y tipo 2 si los hubiera.
-            #for clave, diccionario_sobre_diccionario in diccionario_interno.items():
-            #    if clave.startswith('Tipo3_'):
-            #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
-            #    elif clave.startswith('Tipo2_'):
-            #        print(diccionario_sobre_diccionario["HORA_ANUNCIADA"])
+            # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
+            if diccionario_interno['TIPO_DE_AUDIO'] != "   ":
+
+                features_audio = ET.SubElement(properties1, "features")
+                feature_audio1 = ET.SubElement(features_audio, "feature")
+                feature_audio1.set("type", "AudioShuffle")
+                properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+                schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+                schedule_feature_audio.set("startType", "+ParentStart")
+                schedule_feature_audio.set("startOffset", "00:00:00:00")
+                effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+                effect_feature_audio.set("status", "On")
+                effect_feature_audio.set("type", "Audio Shuffle")
+                port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+                port_effect_feature_audio.set("type", "Auto")
+                auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+                auto_port_effect_feature_audio.set("type", "PGM")
+                audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                audioshaffle.set("type", "TrackPreset")
+                feature_audio2 = ET.SubElement(features_audio, "feature")
+                feature_audio2.set("type", "Subtitle")
+                    
+                # Crear un diccionario para mapear los valores de TIPO_DE_AUDIO a los nombres correspondientes
+                tipo_audio_names = {
+                    "EST": "ESTEREO",
+                    "DST": "Dual-Estereo",
+                    "MON": "MONO",
+                    "DUA": "DUAL",
+                    "DP1": "Dolby PAR 1",
+                    "DP2": "Dolby PAR 2",
+                    "DP3": "Dolby PAR 3",
+                    "DG1": "Dolby DUAL DRUPO1",
+                    "DG2": "Dolby DUAL DRUPO2"
+                }
+
+                # Obtener el nombre correspondiente a TIPO_DE_AUDIO
+                nombre_audio = tipo_audio_names.get(diccionario_interno['TIPO_DE_AUDIO'])
+
+                # Crear el elemento trackPreset y establecer el atributo "name"
+                if nombre_audio:
+                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset.set("name", nombre_audio)
+
+            # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
+            if diccionario_interno['SUBTITULADO'] == "S":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang = ET.SubElement(language, "lang")
+                lang.text = "ESP"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
+            elif diccionario_interno['SUBTITULADO'] == "I":
+                features1 = ET.SubElement(properties1, "features")
+                feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(features1, "feature")
+                feature2.set("type", "Subtitle")
+                properties_feature = ET.SubElement(feature2, "properties")
+                mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                mediaStream1_feature.set("som", "$INHERITS$")
+                subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                subtitle.set("CaptionMode", "None")
+                language = ET.SubElement(subtitle, "languages")
+                lang1 = ET.SubElement(language, "lang")
+                lang1.text = "ESP"
+                lang2 = ET.SubElement(language, "lang")
+                lang2.text = "ENG"
+                allocation = ET.SubElement(subtitle, "allocation")
+                allocation.set("type", "ListStream")
+                liststream = ET.SubElement(allocation, "listStream")
+                liststream.set("listStreamNo", "0")
+                liststream.set("type", "Fixed")
+                media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                media_subtitle.set("mediaType", "Subtitle")
+                media_subtitle.set("mediaName", "$INHERITS$")
+
+            # Creamos una rama de XML para todos los tipo 1, si cumple la siguiente condición, esta ira rellena, si no, ira vacia
+            child_event = ET.SubElement(event1, "childEvents")
+
+            #A partir de aqui, creamos la condicion de que, si el campo TITIPELEME es A, D, E o P, se genera el branding
+            if diccionario_interno["TITIPELEME"] in ["A","D","E","P"]:
+                # Las columnas de la tabla siguiente corresponde al Custom ID* | PT, SC or empty | NR7 | NR12 | NR16 |NR18 
+                tabla = {
+                    'LA 1': ['L101', 'L106', 'L107', 'L112', 'L116', 'L118'],
+                    'LA 2': ['L201', 'L206', 'L207', 'L212', 'L216', 'L218'],
+                    'CANAL 24H': ['L401', 'L406', 'L407', 'L412', 'L416', 'L418'],
+                    'TELEDEPORTE': ['L702', 'L706', 'L707', 'L712', 'L716', 'L718'],
+                    'CLAN TVE': ['L501', 'L506', 'L507', 'L512', 'L516', 'L518'],
+                    'Star TVE HD': ['L601', 'L606', 'L607', 'L612', 'L616', 'L618'],
+                    'INTERNACIONALES': ['L301', 'L306', 'L307', 'L312', 'L316', 'L318']
+                }
+
+                # Logica que vamos a usar para determinar los canales que vienen a internacionales, que llevan nombre distintos
+                if LICADENA in ["TVE EUROPA-AFRICA", "TVE ASIA", "TVE AMERICA"]:
+                    LICADENA ="INTERNACIONALES"
+
+                # Distintas decisiones dependiendo de la calificacion moral que tenga, nombramos la variable columna para poder recorrer la tabla
+                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
+                
+                # Agregamos una logica adicional para aquellos que tengan un media ID especial.    
+                #for prefix in media_id_espciales:
+                #    if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
+                #        columna = 0
+                #        logo_branding = tabla[LICADENA][columna]  
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
+                #        columna = 1
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
+                #        columna = 2
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
+                #        columna = 3
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
+                #        columna = 4
+                #        logo_branding = tabla[LICADENA][columna]
+                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
+                #        columna = 5
+                #        logo_branding = tabla[LICADENA][columna]
+                    
+                # Guardar el resultado de rstrip() en una variable
+                califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
+
+                # Mapeo de CALIFMORAL a columnas
+                califmoral_to_column = {
+                    "PT": 1,
+                    "": 1,
+                    "SC": 1,
+                    "NR7": 2,
+                    "NR12": 3,
+                    "NR16": 4,
+                    "NR18": 5
+                }
+
+                # Determinar la columna basada en CALIFMORAL
+                columna = califmoral_to_column.get(califmoral_stripped, 0)
+
+                # Determinar el logo_branding
+                if columna == 0:
+                    for prefix in media_id_espciales:
+                        if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
+                            logo_branding = tabla[LICADENA][0]
+                            break
+                else:
+                    logo_branding = tabla[LICADENA][columna]
+
+                # Generamos el arbol xml que va a colgar de childevents
+                event_child_1 = ET.SubElement(child_event, "event")
+                event_child_1.set("type", "CG")
+
+                # Añadir el elemento 'properties' dentro de 'event'
+                properties_child = ET.SubElement(event_child_1, "properties")
+
+                # Añadir el elemento 'schedule' dentro de 'properties'
+                schedule_child = ET.SubElement(properties_child, "schedule")
+                schedule_child.set("endType", "-ParentEnd")
+                schedule_child.set("startType", "+ParentStart")
+                schedule_child.set("endOffset", "00:00:00:00")
+                schedule_child.set("startOffset", "00:00:00:00")
+
+                # Añadir el elemento 'mediaStream' dentro de 'properties'
+                mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+
+                # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                cg = ET.SubElement(mediaStream_child, "cg")
+                cg.set("layer", "0")
+                cg.set("type", "Page")
+
+                # Añadir el elemento 'media' dentro de 'properties'
+                media_child = ET.SubElement(properties_child, "media")
+                media_child.set("mediaType", "CG")
+                media_child.set("mediaName", logo_branding)
 
 
+            # Agregamos la logica oara poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
+            
+            grafico_secundario = ""
+            if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V011"
+                    else:
+                        grafico_secundario = "V016"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V013"
+                    else:
+                        grafico_secundario = "V017"
+            elif diccionario_interno["TIPO_DE_AUDIO"] in ["DP2","DP1","DP3"]:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V030"
+                    else:
+                        grafico_secundario = "V034"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V032"
+                    else:  
+                        grafico_secundario = "V035"
+            elif diccionario_interno["TIPO_DE_AUDIO"] in ["DG1","DG2"]:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V031"
+                    else:
+                        grafico_secundario = "V036"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] == " ":
+                        grafico_secundario = "V033"
+                    else:
+                        grafico_secundario = "V037"
+            else:
+                if diccionario_interno["SUBTITULADO"] == " ":
+                    if diccionario_interno["AUDIODESCRIPCION"] != " ":
+                        grafico_secundario = "V014"
+                else:
+                    if diccionario_interno["AUDIODESCRIPCION"] != " ":
+                        grafico_secundario = "V012"
+                    else:
+                        grafico_secundario = "V015"
 
+            # Generamos el arbol xml que va a colgar de childevents
+            event_child_2 = ET.SubElement(child_event, "event")
+            event_child_2.set("type", "CG1")
+
+            # Añadir el elemento 'properties' dentro de 'event'
+            properties_child = ET.SubElement(event_child_2, "properties")
+
+            # Añadir el elemento 'schedule' dentro de 'properties'
+            schedule_child = ET.SubElement(properties_child, "schedule")
+            schedule_child.set("endType", "-ParentEnd")
+            schedule_child.set("startType", "+ParentStart")
+            schedule_child.set("endOffset", "00:00:00:00")
+            schedule_child.set("startOffset", "00:00:00:00")
+            # Añadir el elemento 'mediaStream' dentro de 'properties'
+            mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+
+            # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+            cg = ET.SubElement(mediaStream_child, "cg")
+            cg.set("layer", "0")
+            cg.set("type", "Page")
+
+            # Añadir el elemento 'media' dentro de 'properties'
+            media_child = ET.SubElement(properties_child, "media")
+            media_child.set("mediaType", "CG")
+            media_child.set("mediaName", grafico_secundario)
 
     # Crear el objeto ElementTree para representar la estructura del XML
     tree = ET.ElementTree(marinaPlaylist)
