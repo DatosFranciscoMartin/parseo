@@ -505,29 +505,7 @@ for archivo in lista_archivos:
                     LICADENA ="INTERNACIONALES"
 
                 # Distintas decisiones dependiendo de la calificacion moral que tenga, nombramos la variable columna para poder recorrer la tabla
-                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
-                
-                # Agregamos una logica adicional para aquellos que tengan un media ID especial.    
-                #for prefix in media_id_espciales:
-                #    if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
-                #        columna = 0
-                #        logo_branding = tabla[LICADENA][columna]  
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
-                #        columna = 1
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
-                #        columna = 2
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
-                #        columna = 3
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
-                #        columna = 4
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
-                #        columna = 5
-                #        logo_branding = tabla[LICADENA][columna]
-                    
+                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral                   
                 # Guardar el resultado de rstrip() en una variable
                 califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
 
