@@ -561,6 +561,8 @@ for archivo in lista_archivos:
 
 
             # Agregamos la logica oara poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
+            
+            grafico_secundario = ""
             if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
                 if diccionario_interno["SUBTITULADO"] == " ":
                     if diccionario_interno["AUDIODESCRIPCION"] == " ":
