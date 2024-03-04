@@ -10,6 +10,7 @@ from datetime import timedelta, datetime
 import time
 import logging
 
+# Se genera una lista de IDs especiales que se usara a la hora de procesar el logo branding
 media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P699EGS00121","P611PGS00595","P699PGS00568","P699PGS00872","P611PGS00547","P899PGS00064","P211PDS00033","P211PDS00034","P699PGS00961","P211PDS00036","P211EGS00006","P531PGS00057","P531PGS00056","P211EGS00007","P211PDS00037","P211EGS00008","P463PGS00057","P211EGS00009","P211PDS00038","P469PDS00102"]
 
 
@@ -496,29 +497,7 @@ def procesar_archivo(archivo):
                     LICADENA ="INTERNACIONALES"
 
                 # Distintas decisiones dependiendo de la calificacion moral que tenga, nombramos la variable columna para poder recorrer la tabla
-                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral
-                
-                # Agregamos una logica adicional para aquellos que tengan un media ID especial.    
-                #for prefix in media_id_espciales:
-                #    if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
-                #        columna = 0
-                #        logo_branding = tabla[LICADENA][columna]  
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() in ["PT","","SC"]:
-                #        columna = 1
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR7":
-                #        columna = 2
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR12":
-                #        columna = 3
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR16":
-                #        columna = 4
-                #        logo_branding = tabla[LICADENA][columna]
-                #    elif diccionario_interno["CALIFMORAL"].rstrip() == "NR18":
-                #        columna = 5
-                #        logo_branding = tabla[LICADENA][columna]
-                    
+                # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral                    
                 # Guardar el resultado de rstrip() en una variable
                 califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
 
