@@ -94,8 +94,8 @@ log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
 
 for archivo in lista_archivos:
-    #fichero = open(archivo, "r", encoding="utf-8")
-    fichero = open(archivo, "r") #le he quitado encoding="utf-8"
+    fichero = open(archivo, "r", encoding="utf-8")
+    #fichero = open(archivo, "r") #le he quitado encoding="utf-8"
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
 
