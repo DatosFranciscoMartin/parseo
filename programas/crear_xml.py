@@ -74,8 +74,7 @@ etiqueta_archivos = tk.Label(ventana, text="Ningún archivo seleccionado")
 etiqueta_archivos.pack()
 
 # Botón para seleccionar directorio de salida
-boton_seleccionar_directorio = tk.Button(ventana, text="Seleccionar directorio de salida",
-                                         command=seleccionar_directorio_salida)
+boton_seleccionar_directorio = tk.Button(ventana, text="Seleccionar directorio de salida", command=seleccionar_directorio_salida)
 boton_seleccionar_directorio.pack(pady=10)
 
 # Etiqueta para mostrar el directorio de salida seleccionado
