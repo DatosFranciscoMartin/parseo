@@ -2,3 +2,4 @@
 pruebas.py
 *.xml
 pruebas*/
+.idea
