@@ -357,12 +357,13 @@ for archivo in lista_archivos:
                 media1 = ET.SubElement(properties1, "media")
                 media1.set("mediaType", "Live")
                 media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
-                # media1.set("mediaName", "TESTOK"),
+                # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                 switch1 = ET.SubElement(properties1, "switch")
                 source1 = ET.SubElement(switch1, "source")
                 source1.set("type", "Logical")
                 logical1 = ET.SubElement(source1, "logical")
                 logical1.set("name", diccionario_interno["TICODELEMENMIN"].rstrip())
+                # El destino lo estamos suponiendo como auto-PGM
                 destination1 = ET.SubElement(switch1, "destination")
                 destination1.set("type", "Auto")
                 auto1 = ET.SubElement(destination1, "auto")
