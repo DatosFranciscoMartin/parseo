@@ -358,6 +358,12 @@ for archivo in lista_archivos:
                 media1.set("mediaType", "Live")
                 media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
                 # media1.set("mediaName", "TESTOK"),
+                switch1 = ET.SubElement(properties1, "switch")
+                source1 = ET.SubElement(switch1, "source")
+                source1.set("type", "Logical")
+                logical1 = ET.SubElement(source1, "logical")
+                logical1.set("name", diccionario_interno["TICODELEMENMIN"].rstrip())
+
                 if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
                     mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
                     schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
