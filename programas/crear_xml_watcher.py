@@ -18,6 +18,9 @@ media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P6
 
 ## En esta función, pedimos permisos de administrador al usuario, y reiniciamos la aplicación.
 #def run_as_admin():
+#    """
+#    Hace un chequeo de permisos para determinar si es necesario pedir permisos de administrador al usuario
+#    """
 #    if ctypes.windll.shell32.IsUserAnAdmin():
 #        return True
 #    else:
