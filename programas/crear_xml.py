@@ -408,11 +408,12 @@ for archivo in lista_archivos:
             else:
                 schedule1.set("startType", "Sequential")
 
+            feature_1 = ET.SubElement(properties1, "features")
             # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
             if diccionario_interno['TIPO_DE_AUDIO'] != "   ":
 
-                features_audio = ET.SubElement(properties1, "features")
-                feature_audio1 = ET.SubElement(features_audio, "feature")
+                
+                feature_audio1 = ET.SubElement(feature_1, "feature")
                 feature_audio1.set("type", "AudioShuffle")
                 properties_feature_audio = ET.SubElement(feature_audio1, "properties")
                 schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
@@ -464,9 +465,9 @@ for archivo in lista_archivos:
 
             # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
             if diccionario_interno['SUBTITULADO'] == "S":
-                features1 = ET.SubElement(properties1, "features")
-                feature1 = ET.SubElement(features1, "feature")
-                feature2 = ET.SubElement(features1, "feature")
+                #features1 = ET.SubElement(properties1, "features")
+                #feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(feature_1, "feature")
                 feature2.set("type", "Subtitle")
                 properties_feature = ET.SubElement(feature2, "properties")
                 mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
@@ -485,9 +486,9 @@ for archivo in lista_archivos:
                 media_subtitle.set("mediaType", "Subtitle")
                 media_subtitle.set("mediaName", "$INHERITS$")
             elif diccionario_interno['SUBTITULADO'] == "I":
-                features1 = ET.SubElement(properties1, "features")
-                feature1 = ET.SubElement(features1, "feature")
-                feature2 = ET.SubElement(features1, "feature")
+                #features1 = ET.SubElement(properties1, "features")
+                #feature1 = ET.SubElement(features1, "feature")
+                feature2 = ET.SubElement(feature_1, "feature")
                 feature2.set("type", "Subtitle")
                 properties_feature = ET.SubElement(feature2, "properties")
                 mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
@@ -659,9 +660,9 @@ for archivo in lista_archivos:
                 media_child.set("mediaName", grafico_secundario)
 
             # Recorremos los diccionarios de tipo 3:
-            for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+            for clave, diccionario_tipo_3 in diccionario_interno.items():
                 if clave.startswith('Tipo3_'):
-                    grafico_tipo3 = diccionario_sobre_diccionario["NUMERO_DE_LA_INCRUSTACION"]
+                    grafico_tipo3 = diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"]
                     # Generamos el arbol xml que va a colgar de childevents
                     event_child_5 = ET.SubElement(child_event, "event")
                     event_child_5.set("type", "VizRT")
@@ -673,7 +674,7 @@ for archivo in lista_archivos:
                     schedule_child_5 = ET.SubElement(properties_child_5, "schedule")
 
                     # Si la hora de comienzo es T (duración total)
-                    if diccionario_sobre_diccionario["HORA_DE_COMIENZO"].strip() == "T":
+                    if diccionario_tipo_3["HORA_DE_COMIENZO"].strip() == "T":
                         schedule_child_5.set("endType", "-ParentEnd")
                         schedule_child_5.set("startType", "+ParentStart")
                         schedule_child_5.set("endOffset", "00:00:00:00")
@@ -682,17 +683,17 @@ for archivo in lista_archivos:
                     else:
 
                         schedule_child_5.set("startType", "+ParentStart")
-                        schedule_child_5.set("startOffset", diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+                        schedule_child_5.set("startOffset", diccionario_tipo_3["HORA_DE_COMIENZO"])
 
                         # Si no tiene duración suponemos que es hasta final de evento principal
-                        if diccionario_sobre_diccionario["DURACION"].strip() == "":
+                        if diccionario_tipo_3["DURACION"].strip() == "":
                             schedule_child_5.set("endType", "-ParentEnd")
                             schedule_child_5.set("endOffset", "00:00:00:00")
 
                         # Si no, ponemos la duración
                         else:
                             schedule_child_5.set("endType", "Duration")
-                            schedule_child_5.set("endOffset", diccionario_sobre_diccionario["DURACION"])
+                            schedule_child_5.set("endOffset", diccionario_tipo_3["DURACION"])
 
                     # Añadir el elemento 'mediaStream' dentro de 'properties'
                     mediaStream_child_5 = ET.SubElement(properties_child_5, "mediaStream")
@@ -705,7 +706,7 @@ for archivo in lista_archivos:
                     # Añadir el elemento 'media' dentro de 'properties'
                     media_child_5 = ET.SubElement(properties_child_5, "media")
                     media_child_5.set("mediaType", "CG")
-                    media_child_5.set("mediaName", diccionario_sobre_diccionario["NUMERO_DE_LA_INCRUSTACION"])
+                    media_child_5.set("mediaName", diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"])
 
 
 
