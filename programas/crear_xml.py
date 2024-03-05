@@ -432,8 +432,8 @@ for archivo in lista_archivos:
                 port_effect_feature_audio.set("type", "Auto")
                 auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
                 auto_port_effect_feature_audio.set("type", "PGM")
-                audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
-                audioshaffle.set("type", "TrackPreset")
+                audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                audioshuffle.set("type", "TrackPreset")
                 #feature_audio2 = ET.SubElement(features_audio, "feature")
                 #feature_audio2.set("type", "Subtitle")
                     
@@ -466,7 +466,7 @@ for archivo in lista_archivos:
 
                 # Crear el elemento trackPreset y establecer el atributo "name"
                 if nombre_audio:
-                    trackpreset = ET.SubElement(audioshaffle, "trackPreset")
+                    trackpreset = ET.SubElement(audioshuffle, "trackPreset")
                     trackpreset.set("name", nombre_audio)
 
             # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
