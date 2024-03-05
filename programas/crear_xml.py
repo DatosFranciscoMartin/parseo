@@ -363,6 +363,10 @@ for archivo in lista_archivos:
                 source1.set("type", "Logical")
                 logical1 = ET.SubElement(source1, "logical")
                 logical1.set("name", diccionario_interno["TICODELEMENMIN"].rstrip())
+                destination1 = ET.SubElement(switch1, "destination")
+                destination1.set("type", "Auto")
+                auto1 = ET.SubElement(destination1, "auto")
+                auto1.set("type", "PGM")
 
                 if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
                     mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
