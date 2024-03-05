@@ -96,7 +96,7 @@ def procesar_archivo(archivo):
 
         # Nos saltamos la primera linea del fichero y sacamos sus datos.
         primera_linea = fichero.readline()
-        
+
         # Generamos las variables de la primera linea del fichero
         LICOMINUTA = primera_linea[0:10]
         LICADENA = primera_linea[10:26].rstrip()
@@ -347,11 +347,13 @@ def procesar_archivo(archivo):
                     media1.set("mediaType", "Live")
                     media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
                     # media1.set("mediaName", "TESTOK"),
+                    # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                     switch1 = ET.SubElement(properties1, "switch")
                     source1 = ET.SubElement(switch1, "source")
                     source1.set("type", "Logical")
                     logical1 = ET.SubElement(source1, "logical")
                     logical1.set("name", diccionario_interno["TICODELEMENMIN"].rstrip())
+                    # El destino lo estamos suponiendo como auto-PGM
                     destination1 = ET.SubElement(switch1, "destination")
                     destination1.set("type", "Auto")
                     auto1 = ET.SubElement(destination1, "auto")
