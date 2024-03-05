@@ -281,7 +281,7 @@ for archivo in lista_archivos:
                 "TIPO_DE_INSERCION": linea[1:2],
                 "NUMERO_DE_LA_INCRUSTACION": linea[3:7],
                 "HORA_DE_COMIENZO": linea[8:19].replace(".", ":"),
-                "DURACION": linea[20:31].replace(".", ":")
+                "DURACION": linea[20:31].replace(".", ":").strip()
             }
 
         # Aqui comprobamos si es de tipo 4 o 5, si es de tipo 4 o 5 seguimos la siguiente logica para extraer la informacion.
