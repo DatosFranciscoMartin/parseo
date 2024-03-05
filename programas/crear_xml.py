@@ -281,7 +281,7 @@ for archivo in lista_archivos:
                 "TIPO_DE_INSERCION": linea[1:2],
                 "NUMERO_DE_LA_INCRUSTACION": linea[3:7],
                 "HORA_DE_COMIENZO": linea[8:19].replace(".", ":"),
-                "DURACION": linea[20:31].replace(".", ":").strip()
+                "DURACION": linea[20:31].replace(".", ":")
             }
 
         # Aqui comprobamos si es de tipo 4 o 5, si es de tipo 4 o 5 seguimos la siguiente logica para extraer la informacion.
@@ -685,7 +685,7 @@ for archivo in lista_archivos:
                         schedule_child_5.set("startOffset", diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
 
                         # Si no tiene duración suponemos que es hasta final de evento principal
-                        if diccionario_sobre_diccionario["DURACION"].strip() == " ":
+                        if diccionario_sobre_diccionario["DURACION"].strip() == "":
                             schedule_child_5.set("endType", "-ParentEnd")
                             schedule_child_5.set("endOffset", "00:00:00:00")
 
