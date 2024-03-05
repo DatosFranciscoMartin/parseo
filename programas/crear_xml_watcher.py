@@ -9,11 +9,25 @@ import datetime
 from datetime import timedelta, datetime
 import time
 import logging
+import sys
+import ctypes
+
 
 # Se genera una lista de IDs especiales que se usara a la hora de procesar el logo branding
 media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P699EGS00121","P611PGS00595","P699PGS00568","P699PGS00872","P611PGS00547","P899PGS00064","P211PDS00033","P211PDS00034","P699PGS00961","P211PDS00036","P211EGS00006","P531PGS00057","P531PGS00056","P211EGS00007","P211PDS00037","P211EGS00008","P463PGS00057","P211EGS00009","P211PDS00038","P469PDS00102"]
 
-
+## En esta función, pedimos permisos de administrador al usuario, y reiniciamos la aplicación.
+#def run_as_admin():
+#    """
+#    Hace un chequeo de permisos para determinar si es necesario pedir permisos de administrador al usuario
+#    """
+#    if ctypes.windll.shell32.IsUserAnAdmin():
+#        return True
+#    else:
+#        # Si el usuario no es un administrador, solicitar permisos de administrador y reiniciar la aplicación.
+#        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+#        return False
+    
 # En esta parte del programa vamos a crear el watch folder para procesar los ficheros TRF
 
 def seleccionar_directorio_a_monitorizar():
@@ -756,5 +770,12 @@ def iniciar_monitoreo():
 
 
 # Este fragmento de código comprueba si el script actual se está ejecutando como programa principal, y si es así, llama a la función iniciar_monitoreo().
+
 if __name__ == "__main__":
+    #if not run_as_admin():
+    #    # Salir si no se ejecuta como administrador
+    #    sys.exit(0)
+    #elif run_as_admin():
+    #    # Si somos administradores se ejecuta la aplicación sin problemas
+    #    iniciar_monitoreo()
     iniciar_monitoreo()
