@@ -94,6 +94,13 @@ log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
 
 for archivo in lista_archivos:
+    #Recodificamos a UTF-8
+    with open(archivo, "r") as archivo_entrada:
+        contenido_ascii = archivo_entrada.read()
+
+    with open(archivo, "w", encoding="utf-8") as archivo_salida:
+        archivo_salida.write(contenido_ascii)
+
     fichero = open(archivo, "r", encoding="utf-8")
     #fichero = open(archivo, "r") #le he quitado encoding="utf-8"
     nombre_archivo = os.path.basename(archivo)
@@ -274,8 +281,8 @@ for archivo in lista_archivos:
                 "TIPOREG": linea[0:1],
                 "TIPO_DE_INSERCION": linea[1:2],
                 "NUMERO_DE_LA_INCRUSTACION": linea[3:7],
-                "HORA_DE_COMIENZO": linea[8:19],
-                "DURACION": linea[20:31]
+                "HORA_DE_COMIENZO": linea[8:19].replace(".", ":"),
+                "DURACION": linea[20:31].replace(".", ":")
             }
 
         # Aqui comprobamos si es de tipo 4 o 5, si es de tipo 4 o 5 seguimos la siguiente logica para extraer la informacion.
@@ -325,8 +332,10 @@ for archivo in lista_archivos:
             event4_1 = ET.SubElement(properties4, "event")
             comment4 = ET.SubElement(event4_1, "comment")
             comment4.text = "BLOQUE:"+" "+diccionario_interno["IDBLOQUE"].rstrip()
-        # Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
+            # Creamos una variable con el ID del bloque que irá en cada SPOT del bloque
+            bloque_publi = diccionario_interno["IDBLOQUE"].rstrip()
 
+        # Si es tipo 5, vamos a seguir la siguiente logica para generar una rama XML de tipo 5
         if diccionario_interno['TIPOREG'] == "5":
             event5 = ET.SubElement(eventlist, "event")
             event5.set("type", "Comment")
@@ -388,6 +397,11 @@ for archivo in lista_archivos:
             mediaStream1 = ET.SubElement(properties1, "mediaStream")
             mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
 
+            # Si es una publicidad le añadimos comentario con el nombre de bloque
+            if diccionario_interno["TITIPELEME"] == "B":
+                comment1 = ET.SubElement(event1_2, "comment")
+                comment1.text = bloque_publi
+
             # Se comprueba si es tipo fijo o tipo secuencial
             if diccionario_interno['INDELEMFIJO'] == "F":
                 schedule1.set("startType", "Fixed")
@@ -414,20 +428,31 @@ for archivo in lista_archivos:
                 auto_port_effect_feature_audio.set("type", "PGM")
                 audioshaffle = ET.SubElement(effect_feature_audio, "audioShuffle")
                 audioshaffle.set("type", "TrackPreset")
-                feature_audio2 = ET.SubElement(features_audio, "feature")
-                feature_audio2.set("type", "Subtitle")
+                #feature_audio2 = ET.SubElement(features_audio, "feature")
+                #feature_audio2.set("type", "Subtitle")
                     
                 # Crear un diccionario para mapear los valores de TIPO_DE_AUDIO a los nombres correspondientes
                 tipo_audio_names = {
-                    "EST": "ESTEREO",
-                    "DST": "Dual-Estereo",
-                    "MON": "MONO",
-                    "DUA": "DUAL",
-                    "DP1": "Dolby PAR 1",
-                    "DP2": "Dolby PAR 2",
+                   # "EST": "ESTEREO",
+                   # "DST": "Dual-Estereo",
+                   # "MON": "MONO",
+                   # "DUA": "DUAL",
+                   # "DP1": "Dolby PAR 1",
+                   # "DP2": "Dolby PAR 2",
+                   # "DP3": "Dolby PAR 3",
+                   # "DG1": "Dolby DUAL DRUPO1",
+                   # "DG2": "Dolby DUAL DRUPO2"
+
+                    "EST": "3-ST",
+                    "DST": "2-DL-ST",
+                    "MON": "1-MONO",
+                    "DUA": "2-DL-ST-DOLBY",
+                    "DP1": "7-DOLBY1",
+                    "DP2": "8-DOLBY2",
                     "DP3": "Dolby PAR 3",
-                    "DG1": "Dolby DUAL DRUPO1",
-                    "DG2": "Dolby DUAL DRUPO2"
+                    "DG1": "5-DUAL5-6",
+                    "DG2": "6-DUAL3-4"
+
                 }
 
                 # Obtener el nombre correspondiente a TIPO_DE_AUDIO
@@ -534,7 +559,7 @@ for archivo in lista_archivos:
 
                 # Generamos el arbol xml que va a colgar de childevents
                 event_child_1 = ET.SubElement(child_event, "event")
-                event_child_1.set("type", "CG")
+                event_child_1.set("type", "VizRT")
 
                 # Añadir el elemento 'properties' dentro de 'event'
                 properties_child = ET.SubElement(event_child_1, "properties")
@@ -606,36 +631,83 @@ for archivo in lista_archivos:
                     else:
                         grafico_secundario = "V015"
 
-            # Generamos el arbol xml que va a colgar de childevents
-            event_child_2 = ET.SubElement(child_event, "event")
-            event_child_2.set("type", "CG1")
+            if grafico_secundario != "":
 
-            # Añadir el elemento 'properties' dentro de 'event'
-            properties_child = ET.SubElement(event_child_2, "properties")
+                # Generamos el arbol xml que va a colgar de childevents
+                event_child_2 = ET.SubElement(child_event, "event")
+                event_child_2.set("type", "VizRT")
 
-            # Añadir el elemento 'schedule' dentro de 'properties'
-            schedule_child = ET.SubElement(properties_child, "schedule")
-            schedule_child.set("endType", "-ParentEnd")
-            schedule_child.set("startType", "+ParentStart")
-            schedule_child.set("endOffset", "00:00:00:00")
-            schedule_child.set("startOffset", "00:00:00:00")
-            # Añadir el elemento 'mediaStream' dentro de 'properties'
-            mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+                # Añadir el elemento 'properties' dentro de 'event'
+                properties_child = ET.SubElement(event_child_2, "properties")
 
-            # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
-            cg = ET.SubElement(mediaStream_child, "cg")
-            cg.set("layer", "0")
-            cg.set("type", "Page")
+                # Añadir el elemento 'schedule' dentro de 'properties'
+                schedule_child = ET.SubElement(properties_child, "schedule")
+                schedule_child.set("endType", "-ParentEnd")
+                schedule_child.set("startType", "+ParentStart")
+                schedule_child.set("endOffset", "00:00:00:00")
+                schedule_child.set("startOffset", "00:00:00:00")
+                # Añadir el elemento 'mediaStream' dentro de 'properties'
+                mediaStream_child = ET.SubElement(properties_child, "mediaStream")
 
-            # Añadir el elemento 'media' dentro de 'properties'
-            media_child = ET.SubElement(properties_child, "media")
-            media_child.set("mediaType", "CG")
-            media_child.set("mediaName", grafico_secundario) 
+                # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                cg = ET.SubElement(mediaStream_child, "cg")
+                cg.set("layer", "0")
+                cg.set("type", "Page")
+
+                # Añadir el elemento 'media' dentro de 'properties'
+                media_child = ET.SubElement(properties_child, "media")
+                media_child.set("mediaType", "CG")
+                media_child.set("mediaName", grafico_secundario)
 
             # Recorremos los diccionarios de tipo 3:
-            # for clave, diccionario_sobre_diccionario in diccionario_interno.items():
-            #    if clave.startswith('Tipo3_'):
-            #        print(diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+            for clave, diccionario_sobre_diccionario in diccionario_interno.items():
+                if clave.startswith('Tipo3_'):
+                    grafico_tipo3 = diccionario_sobre_diccionario["NUMERO_DE_LA_INCRUSTACION"]
+                    # Generamos el arbol xml que va a colgar de childevents
+                    event_child_5 = ET.SubElement(child_event, "event")
+                    event_child_5.set("type", "VizRT")
+
+                    # Añadir el elemento 'properties' dentro de 'event'
+                    properties_child_5 = ET.SubElement(event_child_5, "properties")
+
+                    # Añadir el elemento 'schedule' dentro de 'properties'
+                    schedule_child_5 = ET.SubElement(properties_child_5, "schedule")
+
+                    # Si la hora de comienzo es T (duración total)
+                    if diccionario_sobre_diccionario["HORA_DE_COMIENZO"].strip() == "T":
+                        schedule_child_5.set("endType", "-ParentEnd")
+                        schedule_child_5.set("startType", "+ParentStart")
+                        schedule_child_5.set("endOffset", "00:00:00:00")
+                        schedule_child_5.set("startOffset", "00:00:00:00")
+
+                    else:
+
+                        schedule_child_5.set("startType", "+ParentStart")
+                        schedule_child_5.set("startOffset", diccionario_sobre_diccionario["HORA_DE_COMIENZO"])
+
+                        # Si no tiene duración suponemos que es hasta final de evento principal
+                        if diccionario_sobre_diccionario["DURACION"].strip() == " ":
+                            schedule_child_5.set("endType", "-ParentEnd")
+                            schedule_child_5.set("endOffset", "00:00:00:00")
+
+                        # Si no, ponemos la duración
+                        else:
+                            schedule_child_5.set("endType", "Duration")
+                            schedule_child_5.set("endOffset", diccionario_sobre_diccionario["DURACION"])
+
+                    # Añadir el elemento 'mediaStream' dentro de 'properties'
+                    mediaStream_child_5 = ET.SubElement(properties_child_5, "mediaStream")
+
+                    # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                    cg_5 = ET.SubElement(mediaStream_child_5, "cg")
+                    cg_5.set("layer", "0")
+                    cg_5.set("type", "Page")
+
+                    # Añadir el elemento 'media' dentro de 'properties'
+                    media_child_5 = ET.SubElement(properties_child_5, "media")
+                    media_child_5.set("mediaType", "CG")
+                    media_child_5.set("mediaName", diccionario_sobre_diccionario["NUMERO_DE_LA_INCRUSTACION"])
+
 
 
     nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
