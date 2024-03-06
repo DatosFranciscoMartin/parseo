@@ -749,7 +749,7 @@ class FileHandler(FileSystemEventHandler):
             if event.is_directory:
                 return
             if event.src_path.endswith('.TRF') or event.src_path.endswith('.trf'):
-                #time.sleep(1)
+                time.sleep(1)
                 procesar_archivo(event.src_path)
         except PermissionError:
             # Si se produce un error de permisos, registrar el problema
