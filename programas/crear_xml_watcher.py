@@ -93,7 +93,6 @@ directorio_a_monitorear = directorio_monitorizar
 log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
 
-
 def procesar_archivo(archivo):
     """
     Este fragmento de código Python define una función procesar_archivo que procesa un archivo, en este caso seran ficheros .trf. Extrae información del archivo de entrada, manipula los datos y escribe la salida formateada en un nuevo archivo. 
@@ -743,11 +742,27 @@ class FileHandler(FileSystemEventHandler):
         """
         Este código define un método on_created que se llama cuando se crea un fichero. Si el elemento creado es un directorio, no devuelve nada y no se llama a ninguna funcion adicional. 
         Si el elemento creado es un archivo .trf o .TRF (Es sensible a las mayusculas), llama a una función procesar_archivo con la ruta del archivo creado como argumento.
+        A la hora de hacer copy paste, ocurre una excepción de permisos. Por lo tanto, se introduce un sleep de 1 segundo para intentar solucionarlo.
         """
-        if event.is_directory:
-            return
-        if event.src_path.endswith('.TRF') or event.src_path.endswith('.trf'):
-            procesar_archivo(event.src_path)
+
+        try:
+            if event.is_directory:
+                return
+            if event.src_path.endswith('.TRF') or event.src_path.endswith('.trf'):
+                #time.sleep(1)
+                procesar_archivo(event.src_path)
+        except PermissionError:
+            # Si se produce un error de permisos, registrar el problema
+            time.sleep(1)
+            logging.info(f"Error de permisos al copiar el archivo: {event.src_path}")
+            print(f"Error de permisos al copiar el archivo: {event.src_path}")
+        #    try:
+        #        if event.src_path.endswith('.TRF') or event.src_path.endswith('.trf'):
+        #            procesar_archivo(event.src_path)
+        #    except PermissionError:
+        #        # Si se produce un error de permisos, registrar el problema
+        #        print(f"Error de permisos al copiar el archivo: {event.src_path}")
+
 
 def iniciar_monitoreo():
     """
@@ -767,7 +782,6 @@ def iniciar_monitoreo():
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
-
 
 # Este fragmento de código comprueba si el script actual se está ejecutando como programa principal, y si es así, llama a la función iniciar_monitoreo().
 
