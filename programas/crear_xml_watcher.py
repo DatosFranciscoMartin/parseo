@@ -91,7 +91,7 @@ directorio_a_monitorear = directorio_monitorizar
 
 # Agregado lineas de para generar un log en tiempo real
 log_file = os.path.join(directorio_salida, "log.log")
-logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
+logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%m %H:%M')
 
 def procesar_archivo(archivo):
     """
@@ -101,7 +101,7 @@ def procesar_archivo(archivo):
     """
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
     nombre_archivo = os.path.basename(archivo)
-    logging.info(f"Archivo procesado: {nombre_archivo}")
+    logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}")
 
     print("Procesando archivo:", archivo)
 
