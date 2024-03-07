@@ -136,98 +136,84 @@ for archivo in lista_archivos:
     contador = 0
 
         # Otras operaciones para leer el archivo y escribir en el archivo de salida
-        for event in root.findall('.//eventList/event'):
+    for event in root.findall('.//eventList/event'):
 
-            A = event.find('.//asRun').get('endTime').split('T')[1]
-            B = event.find('.//properties/event').get('houseId')
-            C = DEFAULT[:2]
-            D = event.find('.//properties/event').get('title')
-            E = event.find('.//asRun').get('duration')
-            F = event.find('.//properties/event').get('reconcileKey')[3:4]
-            G = event.find('.//properties/event').get('reconcileKey')[1:2]
-            if G == " " or G == "0":
-                G = "2"
-            H = event.find('.//properties/event').get('reconcileKey')[4:11]
-            I = event.find('.//properties/event').get('reconcileKey')[11:14]
-            if event.find('.//properties/media').get('mediaName').startswith('B'):
-                J = event.find('.//properties/media').get('mediaName')[1:6]
-            else:
-                J = DEFAULT[:5]
-            K = event.find('.//properties/event').get('reconcileKey')[14:25]
-            L = event.find('.//properties/event').get('reconcileKey')[25:27]
-            if event.find('.//properties/event/comment') is not None:
-                M = event.find('.//properties/event/comment').text[0:13]
-            else:
-                M = DEFAULT[:14]
-            N = DEFAULT[:2]
-            O = DEFAULT[:2]
-            P = event.find('.//properties/event').get('reconcileKey')[0:1]
-            if P == " " or P == "0":
-                P = "7"
-            Q = DEFAULT[:1]
-
-            if event.find('.//properties/event').get('reconcileKey')[
-               2:3] == "0":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "0"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "1":  # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "1"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "2":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "2"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "3":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                R = "7"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "4":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "3"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "5":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                R = "D"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "6":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                R = "B"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "7":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "6"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "8":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                R = "9"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "9":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                R = "A"
-            elif event.find('.//properties/event').get('reconcileKey')[
-                 2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                R = "C"
-
-            "EST": "3-ST",
-            "DST": "2-DL-ST",
-            "MON": "1-MONO",
-            "DUA": "2-DL-ST-DOLBY",
-            "DP1": "7-DOLBY1",
-            "DP2": "8-DOLBY2",
-            "DP3": "Dolby PAR 3",
-            "DG1": "5-DUAL5-6",
-            "DG2": "6-DUAL3-4"
-
-            S = DEFAULT[:3]
-            #if S == "   ":
-            #    S = "EST"
-            T = DEFAULT[:1]
-            U = DEFAULT[:4]
-            V = DEFAULT[:1]
-            W = DEFAULT[:1]
-            ESPECIAL = DEFAULT[:2]
-            X = event.find('.//properties/event').get('reconcileKey')[28:]
-            Y = DEFAULT[:1]
-
-            # Escribimos en el archivo de salida la línea formateada correctamente.
-
-            Archivo_salida.write(
-                A + "  " + B + "  " + C + "  " + D + "  " + E + "  " + F + " " + G + H + "  " + I + "  " + J + "  " + K + "  " + L + "  " + M + "  " + N + " " + O + P + Q + R + S + T + U + V + W + ESPECIAL + " " + X + " " + Y + "\n")
-
-            # print(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y, end='')
+        A = event.find('.//asRun').get('endTime').split('T')[1]
+        B = event.find('.//properties/event').get('houseId')
+        C = DEFAULT[:2]
+        D = event.find('.//properties/event').get('title')
+        E = event.find('.//asRun').get('duration')
+        F = event.find('.//properties/event').get('reconcileKey')[3:4]
+        G = event.find('.//properties/event').get('reconcileKey')[1:2]
+        if G == " " or G == "0":
+            G = "2"
+        H = event.find('.//properties/event').get('reconcileKey')[4:11]
+        I = event.find('.//properties/event').get('reconcileKey')[11:14]
+        if event.find('.//properties/media').get('mediaName').startswith('B'):
+            J = event.find('.//properties/media').get('mediaName')[1:6]
         else:
+            J = DEFAULT[:5]
+        K = event.find('.//properties/event').get('reconcileKey')[14:25]
+        L = event.find('.//properties/event').get('reconcileKey')[25:27]
+        if event.find('.//properties/event/comment') is not None:
+            M = event.find('.//properties/event/comment').text[0:13]
+        else:
+            M = DEFAULT[:14]
+        N = DEFAULT[:2]
+        O = DEFAULT[:2]
+        P = event.find('.//properties/event').get('reconcileKey')[0:1]
+        if P == " " or P == "0":
+            P = "7"
+        Q = DEFAULT[:1]
+        if event.find('.//properties/event').get('reconcileKey')[
+           2:3] == "0":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "0"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "1":  # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "1"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "2":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "2"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "3":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
+            R = "7"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "4":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "3"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "5":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            R = "D"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "6":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            R = "B"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "7":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "6"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "8":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
+            R = "9"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "9":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
+            R = "A"
+        elif event.find('.//properties/event').get('reconcileKey')[
+             2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
+            R = "C"
+            
+        S = DEFAULT[:3]
+        #if S == "   ":
+        #    S = "EST"
+        T = DEFAULT[:1]
+        U = DEFAULT[:4]
+        V = DEFAULT[:1]
+        W = DEFAULT[:1]
+        ESPECIAL = DEFAULT[:2]
+        X = event.find('.//properties/event').get('reconcileKey')[28:]
+        Y = DEFAULT[:1]
+        # Escribimos en el archivo de salida la línea formateada correctamente.
+        Archivo_salida.write(
+            A + "  " + B + "  " + C + "  " + D + "  " + E + "  " + F + " " + G + H + "  " + I + "  " + J + "  " + K + "  " + L + "  " + M + "  " + N + " " + O + P + Q + R + S + T + U + V + W + ESPECIAL + " " + X + " " + Y + "\n")
+        # print(A +"  "+B +"  "+C+"  "+D+"  "+E+"  "+F+" "+G+H+"  "+I+"  "+J+"  "+K+"  "+L+"  "+M+"  "+N+" "+O+P+Q+R+S+T+U+V+W+ESPECIAL+" "+X+" "+Y, end='')
+    else:
             continue
     # Cerramos el archivo de entrada y el archivo de salida
 
