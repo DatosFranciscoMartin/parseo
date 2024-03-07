@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 import os
 import datetime
+import xml.etree.ElementTree as ET
 
 
 def seleccionar_directorio_salida():
