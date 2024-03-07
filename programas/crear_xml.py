@@ -171,6 +171,8 @@ for archivo in lista_archivos:
             INDLOGO = linea[136:137]
             NUMERO_DE_LOGO = linea[137:139]
             DISTINTIVO_DE_CALIFMORAL = linea[140:141]
+            BLOQUE = linea[3:14]
+            POSICION = linea[14:16]
 
             # Linea donde vamos a gener la reconcilekey
 
@@ -219,7 +221,7 @@ for archivo in lista_archivos:
                 TXTAUD = "A"
 
             # print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
-            RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[:11] + TICODELEMENMIN[11:13] + "_" + TIHOINMIN[:8]
+            RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[:11] + POSICION + "_" + TIHOINMIN[:8]
             # print(RECONCILEKEY.replace(" ", "*"))
 
             # Generamos el diccionario con la informacion que hemos extraid del fichero principal
@@ -247,7 +249,9 @@ for archivo in lista_archivos:
                 "NUMERO_DE_LOGO": linea[137:139],
                 "DISTINTIVO_DE_CALIFMORAL": linea[140:141],
                 "SCH_StartType": SCH_StartType,
-                "RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
+                "RECONCILEKEY": RECONCILEKEY.replace(" ", "*"),
+                "BLOQUE": linea[3:14],
+                "POSICION": linea[14:16]
             }
 
         # Aqui comprobamos si es de tipo 2, si es de tipo seguimos la siguiente logica para extraer la informacion.
@@ -411,6 +415,7 @@ for archivo in lista_archivos:
             if diccionario_interno["TITIPELEME"] == "B":
                 comment1 = ET.SubElement(event1_2, "comment")
                 comment1.text = bloque_publi
+                media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip())
 
             # Se comprueba si es tipo fijo o tipo secuencial
             if diccionario_interno['INDELEMFIJO'] == "F":
