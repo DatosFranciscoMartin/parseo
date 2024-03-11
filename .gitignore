@@ -4,3 +4,7 @@ pruebas.py
 pruebas*/
 .idea
 trf programa
+log.log
+directorio_monitor/
+directorio_descargas/
+*log
