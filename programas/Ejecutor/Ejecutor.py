@@ -1,3 +1,4 @@
+from pathlib import Path
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 import os
@@ -670,15 +671,29 @@ def descargar_archivos_ftp():
             logging.error("El parametro pass_ftp del fichero de configuración esta vacio")
             return
 
-        directorio_local = datos_ftp.get('ruta_ficheros')
-        if not directorio_local:
-            logging.error("El parametro ruta_ficheros del fichero de configuración esta vacio")
+        directorio_descarga_ficheros = datos_ftp.get('ruta_ficheros')
+        if directorio_descarga_ficheros is None:
+            logging.error("El valor de la clave 'ruta_ficheros' en el archivo de configuración es None")
             return
 
-        diretorio_destino = datos_ftp.get('ruta_destino')
-        if not diretorio_destino:
-            logging.error("El parametro ruta_destino del fichero de configuración esta vacio")
+        try:
+            Path(directorio_descarga_ficheros).resolve(strict=True)
+        except FileNotFoundError:
+            logging.error("Directorio de descarga de ficheros no existe, revise la configuración")
             return
+
+        directorio_salida_ficheros = datos_ftp.get('ruta_destino')
+        if directorio_salida_ficheros is None:
+            logging.error("El valor de la clave 'ruta_destino' en el archivo de configuración es None")
+            return
+
+        try:
+            Path(directorio_salida_ficheros).resolve(strict=True)
+        except FileNotFoundError:
+            logging.error("Directorio de salida de ficheros no existe, revise la configuración")
+            return
+
+
     except KeyError:
         logging.error("No se ha encontrado la sección 'datos_ftp' en el archivo de configuración, Revisar Ruta del archivo de configuración.")
         return
@@ -737,13 +752,13 @@ def descargar_archivos_ftp():
             if fecha_modificacion == hoy:
                 # Descargar el archivo
                 try:
-                    with open(directorio_local + "/" + archivo, 'wb') as f:
+                    with open(directorio_descarga_ficheros + "/" + archivo, 'wb') as f:
                         ftp.retrbinary('RETR ' + archivo, f.write)
                 except (OSError, IOError):
                     logging.error("Error al descargar el archivo", archivo)
                     continue
-                ruta_fichero = directorio_local + '/' + archivo
-                procesar_archivo(ruta_fichero, diretorio_destino)
+                ruta_fichero = directorio_descarga_ficheros + '/' + archivo
+                procesar_archivo(ruta_fichero, directorio_salida_ficheros)
     
                 archivos_descargados.append(archivo)
 
