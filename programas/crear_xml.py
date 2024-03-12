@@ -724,6 +724,11 @@ for archivo in lista_archivos:
                     media_child_5.set("mediaType", "CG")
                     media_child_5.set("mediaName", diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"])
 
+                    # Añadir el comentario con el tipo de inserción
+                    media_child_6 =ET.SubElement(media_child_5, "event")
+                    comment5 = ET.SubElement(media_child_6, "comment")
+                    comment5.text = diccionario_tipo_3["TIPO_DE_INSERCION"]
+
 
 
     nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]

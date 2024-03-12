@@ -198,26 +198,38 @@ for archivo in lista_archivos:
              2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
             R = "C"
 
-        #"EST": "3-ST",
-        #"DST": "2-DL-ST",
+        ##"EST": "3-ST",
+        ##"DST": "2-DL-ST",
         #"MON": "1-MONO",
         #"DUA": "2-DL-ST-DOLBY",
         #"DP1": "7-DOLBY1",
         #"DP2": "8-DOLBY2",
-        #"DP3": "Dolby PAR 3",
+        ##"DP3": "Dolby PAR 3",
         #"DG1": "5-DUAL5-6",
-        #"DG2": "6-DUAL3-4"
+        ##"DG2": "6-DUAL3-4"
 
-        S = DEFAULT[:3]
-        #if S == "   ":
-        #    S = "EST"
+        if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["3-ST", "2-DL-ST", "Dolby PAR 3", "6-DUAL3-4"]:
+            S = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name')
+        else:
+            S = DEFAULT[:3]
+
         T = DEFAULT[:1]
-        U = DEFAULT[:4]
+        if event.find('.//childEvent/event/properties/event/comment').text == "I":
+            U = event.find('.//childEvent/event/properties/media').get('mediaName')
+        else:
+            U = DEFAULT[:4]
+
         V = DEFAULT[:1]
         W = DEFAULT[:1]
         ESPECIAL = DEFAULT[:2]
         X = event.find('.//properties/event').get('reconcileKey')[28:]
-        Y = DEFAULT[:1]
+
+        if event.find('.//properties/event').get('reconcileKey')[0:1] in ["1", "2"]:
+            Y = event.find('.//properties/event').get('reconcileKey')[0:1]
+        elif event.find('.//properties/event').get('reconcileKey')[0:1] in [" ", "0"]:
+            Y = "0"
+        else:
+            Y = DEFAULT[:1]
 
         # Escribimos en el archivo de salida la línea formateada correctamente.
 
