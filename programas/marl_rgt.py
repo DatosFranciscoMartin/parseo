@@ -138,7 +138,10 @@ for archivo in lista_archivos:
 
         A = event.find('.//asRun').get('endTime').split('T')[1]
         B = event.find('.//properties/event').get('houseId')
-        C = DEFAULT[:2]
+        if event.find('.//properties/mediaStream/segment/markup') is not None:
+            C = event.find('.//properties/mediaStream/segment/markup').get('orderNo')
+        else:
+            C = DEFAULT[:2]
         D = event.find('.//properties/event').get('title')
         E = event.find('.//asRun').get('duration')
         F = event.find('.//properties/event').get('reconcileKey')[3:4]
@@ -220,7 +223,11 @@ for archivo in lista_archivos:
             U = DEFAULT[:4]
 
         V = DEFAULT[:1]
-        W = DEFAULT[:1]
+        
+        if event.get('type') == "D":
+            W = "D"
+        else: 
+            W = DEFAULT[:1]
         ESPECIAL = DEFAULT[:2]
         X = event.find('.//properties/event').get('reconcileKey')[28:]
 
