@@ -37,15 +37,9 @@ def procesar_archivo(archivo, directorio_salida):
     nombre_archivo = os.path.basename(archivo)
 
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
-    #log_file = os.path.join(salida_log, "log.log")
-    #logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%m %H:%M')    
     logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}")
 
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
-    
-    # Se genera una lista de IDs especiales que se usara a la hora de procesar el logo branding
-    #media_id_espciales = ["P0","P3","A5","P4","P5","P611PDS00049","P699EDS00006","P699EGS00121","P611PGS00595","P699PGS00568","P699PGS00872","P611PGS00547","P899PGS00064","P211PDS00033","P211PDS00034","P699PGS00961","P211PDS00036","P211EGS00006","P531PGS00057","P531PGS00056","P211EGS00007","P211PDS00037","P211EGS00008","P463PGS00057","P211EGS00009","P211PDS00038","P469PDS00102"]
-
     print("Procesando archivo:", archivo)
 
     #with open(archivo, "r", encoding="utf-8") as fichero:
@@ -247,9 +241,6 @@ def procesar_archivo(archivo, directorio_salida):
         # Cerramos el fichero
         fichero.close()
 
-        #for event, diccionario_interno in eventos.items():
-        #    print(diccionario_interno)
-
         # Crear el elemento raíz del XML, este debe de se de la siguiente forma, siempre va a ser asi:
         marinaPlaylist = ET.Element("marinaPlaylist")
         marinaPlaylist.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
@@ -386,23 +377,6 @@ def procesar_archivo(archivo, directorio_salida):
                     auto_port_effect_feature_audio.set("type", "PGM")
                     audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
                     audioshuffle.set("type", "TrackPreset")
-                    #feature_audio2 = ET.SubElement(features_audio, "feature")
-                    #feature_audio2.set("type", "Subtitle")
-
-                    # Crear un diccionario para mapear los valores de TIPO_DE_AUDIO a los nombres correspondientes
-                    #tipo_audio_names = {
-#
-                    #    "EST": "3-ST",
-                    #    "DST": "2-DL-ST",
-                    #    "MON": "1-MONO",
-                    #    "DUA": "2-DL-ST-DOLBY",
-                    #    "DP1": "7-DOLBY1",
-                    #    "DP2": "8-DOLBY2",
-                    #    "DP3": "Dolby PAR 3",
-                    #    "DG1": "5-DUAL5-6",
-                    #    "DG2": "6-DUAL3-4"
-#
-                    #}
 
                     # Obtener el nombre correspondiente a TIPO_DE_AUDIO
                     nombre_audio = tipo_audio_names.get(diccionario_interno['TIPO_DE_AUDIO'])
@@ -414,8 +388,6 @@ def procesar_archivo(archivo, directorio_salida):
 
                 # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
                 if diccionario_interno['SUBTITULADO'] == "S":
-                    #features1 = ET.SubElement(properties1, "features")
-                    #feature1 = ET.SubElement(features1, "feature")
                     feature2 = ET.SubElement(feature_1, "feature")
                     feature2.set("type", "Subtitle")
                     properties_feature = ET.SubElement(feature2, "properties")
@@ -435,8 +407,6 @@ def procesar_archivo(archivo, directorio_salida):
                     media_subtitle.set("mediaType", "Subtitle")
                     media_subtitle.set("mediaName", "$INHERITS$")
                 elif diccionario_interno['SUBTITULADO'] == "I":
-                    #features1 = ET.SubElement(properties1, "features")
-                    #feature1 = ET.SubElement(features1, "feature")
                     feature2 = ET.SubElement(feature_1, "feature")
                     feature2.set("type", "Subtitle")
                     properties_feature = ET.SubElement(feature2, "properties")
@@ -463,16 +433,6 @@ def procesar_archivo(archivo, directorio_salida):
 
                 #A partir de aqui, creamos la condicion de que, si el campo TITIPELEME es A, D, E o P, se genera el branding
                 if diccionario_interno["TITIPELEME"] in tipos_de_eventos:
-                    # Las columnas de la tabla siguiente corresponde al Custom ID* | PT, SC or empty | NR7 | NR12 | NR16 |NR18 
-                    #tabla = {
-                    #    'LA 1': ['L101', 'L106', 'L107', 'L112', 'L116', 'L118'],
-                    #    'LA 2': ['L201', 'L206', 'L207', 'L212', 'L216', 'L218'],
-                    #    'CANAL 24H': ['L401', 'L406', 'L407', 'L412', 'L416', 'L418'],
-                    #    'TELEDEPORTE': ['L702', 'L706', 'L707', 'L712', 'L716', 'L718'],
-                    #    'CLAN TVE': ['L501', 'L506', 'L507', 'L512', 'L516', 'L518'],
-                    #    'Star TVE HD': ['L601', 'L606', 'L607', 'L612', 'L616', 'L618'],
-                    #    'INTERNACIONALES': ['L301', 'L306', 'L307', 'L312', 'L316', 'L318']
-                    #}
 
                     # Logica que vamos a usar para determinar los canales que vienen a internacionales, que llevan nombre distintos
                     if LICADENA in ["TVE EUROPA-AFRICA", "TVE ASIA", "TVE AMERICA"]:
@@ -482,17 +442,6 @@ def procesar_archivo(archivo, directorio_salida):
                     # Una vez dicidida la columna, vamos a buscar el nombre del grafico en la tabla correspondiente, usando la variable licadena que nos indica el nombre del canal, y con la columna que nos indica la calificacion moral                   
                     # Guardar el resultado de rstrip() en una variable
                     califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
-
-                    # Mapeo de CALIFMORAL a columnas
-                    #califmoral_to_column = {
-                    #    "PT": 1,
-                    #    "": 1,
-                    #    "SC": 1,
-                    #    "NR7": 2,
-                    #    "NR12": 3,
-                    #    "NR16": 4,
-                    #    "NR18": 5
-                    #}
 
                     # Determinar la columna basada en CALIFMORAL
                     columna = califmoral_to_column.get(califmoral_stripped, 0)
@@ -657,6 +606,12 @@ def procesar_archivo(archivo, directorio_salida):
                         media_child_5.set("mediaType", "CG")
                         media_child_5.set("mediaName", diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"])
 
+                        # Añadir el comentario con el tipo de inserción
+                        media_child_6 =ET.SubElement(media_child_5, "event")
+                        comment5 = ET.SubElement(media_child_6, "comment")
+                        comment5.text = diccionario_tipo_3["TIPO_DE_INSERCION"]
+
+
         # Crear el objeto ElementTree para representar la estructura del XML
         tree = ET.ElementTree(marinaPlaylist)
         #print(marinaPlaylist)
@@ -734,11 +689,6 @@ def descargar_archivos_ftp():
     # Leer datos de descarga de archivos de la sección 'descarga_archivos' si existe, si no existe, se sustituye por la ruta predeterminada
     if not directorio_descargar_ftp or directorio_descargar_ftp == '':
         directorio_descargar_ftp = '/'
-
-    # Verificar que se hayan proporcionado todos los datos
-    #if not (host and usuario and contraseña and directorio_local and diretorio_destino):
-    #    logging.error("Faltan datos en el archivo de configuración")
-    #    return
 
     # Crear una lista para almacenar los nombres de los archivos descargados
     archivos_descargados = []
