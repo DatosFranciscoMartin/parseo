@@ -86,7 +86,7 @@ def procesar_archivo(archivo):
     print("Procesando archivo:", archivo)
 
     # Abre cada archivo en modo lectura
-    with open(archivo, "r", encoding="utf-8") as fichero:
+    with open(archivo, "r", encoding="iso-8859-1") as fichero:
         # Lee las primeras líneas que quieres omitir
         for _ in range(2):
             next(fichero)
@@ -102,7 +102,7 @@ def procesar_archivo(archivo):
 
         # Abre el archivo de salida en el directorio seleccionado
         # Se crea el fichero en modo escritura bajo el encode utf-8
-        with open(os.path.join(directorio_salida, f"{circuito}{year}{mes}{dia}.rgt"), "w", encoding="utf-8") as Archivo_salida:
+        with open(os.path.join(directorio_salida, f"{circuito}{year}{mes}{dia}.rgt"), "w", encoding="iso-8859-1") as Archivo_salida:
             Archivo_salida.write(circuito+year+mes+dia+"\n")
 
 

@@ -106,12 +106,12 @@ ventana.mainloop()
 
 # se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
 fecha_actual = datetime.date.today()
-Archivo_log = open(directorio_salida + "\\" + "archivo_log" + ".log", "a", encoding="utf-8")
+Archivo_log = open(directorio_salida + "\\" + "archivo_log" + ".log", "a", encoding="iso-8859-1")
 Archivo_log.write(fecha_actual.strftime("%d/%m/%Y-%H:%M") + "\n")
 
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
-    fichero = open(archivo, "r", encoding="utf-8")
+    fichero = open(archivo, "r", encoding="iso-8859-1")
 
     # Parsear el XML desde el archivo
     tree = ET.parse(fichero)
@@ -128,7 +128,7 @@ for archivo in lista_archivos:
 
     # Abre el archivo de salida en el directorio seleccionado
     # Se crea el fichero en modo escritura bajo el encode utf-8
-    Archivo_salida = open(directorio_salida + "\\" + circuito + year + mes + dia + ".rgt", "w", encoding="utf-8")
+    Archivo_salida = open(directorio_salida + "\\" + circuito + year + mes + dia + ".rgt", "w", encoding="iso-8859-1")
     Archivo_salida.write(circuito + year + mes + dia + "\n")
 
     contador = 0

@@ -696,13 +696,13 @@ def descargar_archivos_ftp():
     # Conexión al servidor FTP y descarga los archivos
     try:
         ftp = ftplib.FTP(host)
-    except (OSError, socket.error) as e:
-        logging.error("Error al conectarse al servidor FTP: %s", e)
+    except (OSError, socket.error):
+        logging.error("Error al conectarse al servidor FTP: %s", host)
         return
     try:
         ftp.login(usuario, contraseña)
-    except ftplib.error_perm as e:
-        logging.error("Error al iniciar sesión en el servidor FTP:", e)
+    except ftplib.error_perm:
+        logging.error("Error al iniciar sesión en el servidor FTP, credenciales incorrectas")
         ftp.quit()
         return
 
@@ -716,8 +716,8 @@ def descargar_archivos_ftp():
     # Obtener lista de archivos en el directorio actual del servidor
     try:
         archivos = ftp.nlst()
-    except ftplib.error_temp as e:
-        logging.error("Error al obtener la lista de archivos del servidor FTP:", e)
+    except ftplib.error_temp:
+        logging.error("Error al obtener la lista de archivos del servidor FTP")
         ftp.quit()
         return
     # Obtener la fecha de hoy
@@ -729,8 +729,8 @@ def descargar_archivos_ftp():
         # Obtener la fecha de modificación del archivo
             try:
                 fecha_modificacion = datetime.strptime(ftp.sendcmd('MDTM ' + archivo)[4:], "%Y%m%d%H%M%S").date()
-            except ValueError as e:
-                logging.error("Error al obtener la fecha de modificación del archivo", archivo, ":", e)
+            except ValueError:
+                logging.error("Error al obtener la fecha de modificación del archivo", archivo)
                 continue
             
             # Comparar la fecha de modificación con la fecha de hoy
@@ -739,8 +739,8 @@ def descargar_archivos_ftp():
                 try:
                     with open(directorio_local + "/" + archivo, 'wb') as f:
                         ftp.retrbinary('RETR ' + archivo, f.write)
-                except (OSError, IOError) as e:
-                    logging.error("Error al descargar el archivo", archivo, ":", e)
+                except (OSError, IOError):
+                    logging.error("Error al descargar el archivo", archivo)
                     continue
                 ruta_fichero = directorio_local + '/' + archivo
                 procesar_archivo(ruta_fichero, diretorio_destino)

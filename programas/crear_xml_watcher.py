@@ -105,7 +105,7 @@ def procesar_archivo(archivo):
 
     print("Procesando archivo:", archivo)
 
-    with open(archivo, "r", encoding="utf-8") as fichero:
+    with open(archivo, "r", encoding="iso-8859-1") as fichero:
 
         # Nos saltamos la primera linea del fichero y sacamos sus datos.
         primera_linea = fichero.readline()
@@ -728,9 +728,9 @@ def procesar_archivo(archivo):
 
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
-        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="utf-8") as xml_file:
+        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="iso-8859-1") as xml_file:
             # Obtener una representación en cadena de texto del XML y formatear el XML
-            xml_str = ET.tostring(marinaPlaylist, encoding="utf-8")
+            xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
             xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
 
             # Escribir el XML formateado en el archivo
