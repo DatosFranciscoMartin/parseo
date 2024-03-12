@@ -20,8 +20,8 @@ def procesar_archivo(archivo, directorio_salida):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\config.conf')
-    #config.read(r'cf\config.conf')
+    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\config.conf')
+    config.read(r'cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -638,8 +638,8 @@ def descargar_archivos_ftp():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\config.conf')
-        #config.read(r'cf\config.conf')
+        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\config.conf')
+        config.read(r'cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
