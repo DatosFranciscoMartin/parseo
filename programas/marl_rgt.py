@@ -208,7 +208,7 @@ for archivo in lista_archivos:
         #"DG1": "5-DUAL5-6",
         ##"DG2": "6-DUAL3-4"
 
-        if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["3-ST", "2-DL-ST", "Dolby PAR 3", "6-DUAL3-4"]:
+        if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["EST", "DST", "DP3", "DG2"]:
             S = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name')
         else:
             S = DEFAULT[:3]
