@@ -106,12 +106,12 @@ ventana.mainloop()
 
 # se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
 fecha_actual = datetime.date.today()
-Archivo_log = open(directorio_salida + "\\" + "archivo_log" + ".log", "a", encoding="utf-8")
+Archivo_log = open(directorio_salida + "\\" + "archivo_log" + ".log", "a", encoding="iso-8859-1")
 Archivo_log.write(fecha_actual.strftime("%d/%m/%Y-%H:%M") + "\n")
 
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
-    fichero = open(archivo, "r", encoding="utf-8")
+    fichero = open(archivo, "r", encoding="iso-8859-1")
 
     # Parsear el XML desde el archivo
     tree = ET.parse(fichero)
@@ -128,7 +128,7 @@ for archivo in lista_archivos:
 
     # Abre el archivo de salida en el directorio seleccionado
     # Se crea el fichero en modo escritura bajo el encode utf-8
-    Archivo_salida = open(directorio_salida + "\\" + circuito + year + mes + dia + ".rgt", "w", encoding="utf-8")
+    Archivo_salida = open(directorio_salida + "\\" + circuito + year + mes + dia + ".rgt", "w", encoding="iso-8859-1")
     Archivo_salida.write(circuito + year + mes + dia + "\n")
 
     contador = 0
@@ -138,7 +138,10 @@ for archivo in lista_archivos:
 
         A = event.find('.//asRun').get('endTime').split('T')[1]
         B = event.find('.//properties/event').get('houseId')
-        C = DEFAULT[:2]
+        if event.find('.//properties/mediaStream/segment/markup') is not None:
+            C = event.find('.//properties/mediaStream/segment/markup').get('orderNo')
+        else:
+            C = DEFAULT[:2]
         D = event.find('.//properties/event').get('title')
         E = event.find('.//asRun').get('duration')
         F = event.find('.//properties/event').get('reconcileKey')[3:4]
@@ -220,7 +223,11 @@ for archivo in lista_archivos:
             U = DEFAULT[:4]
 
         V = DEFAULT[:1]
-        W = DEFAULT[:1]
+        
+        if event.get('type') == "D":
+            W = "D"
+        else: 
+            W = DEFAULT[:1]
         ESPECIAL = DEFAULT[:2]
         X = event.find('.//properties/event').get('reconcileKey')[28:]
 

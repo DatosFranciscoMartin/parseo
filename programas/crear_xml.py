@@ -97,10 +97,10 @@ for archivo in lista_archivos:
     with open(archivo, "r") as archivo_entrada:
         contenido_ascii = archivo_entrada.read()
 
-    with open(archivo, "w", encoding="utf-8") as archivo_salida:
+    with open(archivo, "w", encoding="iso-8859-1") as archivo_salida:
         archivo_salida.write(contenido_ascii)
 
-    fichero = open(archivo, "r", encoding="utf-8")
+    fichero = open(archivo, "r", encoding="iso-8859-1")
     #fichero = open(archivo, "r") #le he quitado encoding="utf-8"
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
@@ -733,9 +733,9 @@ for archivo in lista_archivos:
 
     nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
-    with open(directorio_salida + "/" + nombre_fichero_sin_extension + ".mpl", "w", encoding="utf-8") as xml_file:
+    with open(directorio_salida + "/" + nombre_fichero_sin_extension + ".mpl", "w", encoding="iso-8859-1") as xml_file:
         # Obtener una representación en cadena de texto del XML y formatear el XML
-        xml_str = ET.tostring(marinaPlaylist, encoding="utf-8")
+        xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
         xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
 
         # Escribir el XML formateado en el archivo
