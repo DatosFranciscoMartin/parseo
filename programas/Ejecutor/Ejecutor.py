@@ -295,7 +295,6 @@ def procesar_archivo(archivo, directorio_salida):
                     media1 = ET.SubElement(properties1, "media")
                     media1.set("mediaType", "Live")
                     media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
-                    # media1.set("mediaName", "TESTOK"),
                     # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                     switch1 = ET.SubElement(properties1, "switch")
                     source1 = ET.SubElement(switch1, "source")
@@ -350,6 +349,7 @@ def procesar_archivo(archivo, directorio_salida):
                 if diccionario_interno["TITIPELEME"] == "B":
                     comment1 = ET.SubElement(event1_2, "comment")
                     comment1.text = bloque_publi
+                    media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip())
 
                 # Se comprueba si es tipo fijo o tipo secuencial
                 if diccionario_interno['INDELEMFIJO'] == "F":

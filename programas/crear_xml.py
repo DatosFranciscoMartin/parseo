@@ -481,8 +481,6 @@ for archivo in lista_archivos:
 
             # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
             if diccionario_interno['SUBTITULADO'] == "S":
-                #features1 = ET.SubElement(properties1, "features")
-                #feature1 = ET.SubElement(features1, "feature")
                 feature2 = ET.SubElement(feature_1, "feature")
                 feature2.set("type", "Subtitle")
                 properties_feature = ET.SubElement(feature2, "properties")
@@ -502,8 +500,6 @@ for archivo in lista_archivos:
                 media_subtitle.set("mediaType", "Subtitle")
                 media_subtitle.set("mediaName", "$INHERITS$")
             elif diccionario_interno['SUBTITULADO'] == "I":
-                #features1 = ET.SubElement(properties1, "features")
-                #feature1 = ET.SubElement(features1, "feature")
                 feature2 = ET.SubElement(feature_1, "feature")
                 feature2.set("type", "Subtitle")
                 properties_feature = ET.SubElement(feature2, "properties")
