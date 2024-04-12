@@ -550,7 +550,7 @@ def procesar_archivo(archivo, directorio_salida):
 
                     # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
                     cg = ET.SubElement(mediaStream_child, "cg")
-                    cg.set("layer", "0")
+                    cg.set("layer", "1")
                     cg.set("type", "Page")
 
                     # Añadir el elemento 'media' dentro de 'properties'
@@ -560,6 +560,8 @@ def procesar_archivo(archivo, directorio_salida):
 
                 # Recorremos los diccionarios de tipo 3:
                 for clave, diccionario_tipo_3 in diccionario_interno.items():
+                    # Contador para el tipo de grafico
+                    contador_viz = 2
                     if clave.startswith('Tipo3_'):
                         grafico_tipo3 = diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"]
                         # Generamos el arbol xml que va a colgar de childevents
@@ -599,7 +601,7 @@ def procesar_archivo(archivo, directorio_salida):
 
                         # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
                         cg_5 = ET.SubElement(mediaStream_child_5, "cg")
-                        cg_5.set("layer", "0")
+                        cg_5.set("layer", contador_viz)
                         cg_5.set("type", "Page")
 
                         # Añadir el elemento 'media' dentro de 'properties'
@@ -611,6 +613,9 @@ def procesar_archivo(archivo, directorio_salida):
                         media_child_6 =ET.SubElement(media_child_5, "event")
                         comment5 = ET.SubElement(media_child_6, "comment")
                         comment5.text = diccionario_tipo_3["TIPO_DE_INSERCION"]
+
+                        # Incrementamos el contador de la capa
+                        contador_viz += 1
 
 
         # Crear el objeto ElementTree para representar la estructura del XML
