@@ -349,7 +349,7 @@ def procesar_archivo(archivo, directorio_salida):
                 if diccionario_interno["TITIPELEME"] == "B":
                     comment1 = ET.SubElement(event1_2, "comment")
                     comment1.text = bloque_publi
-                    media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip())
+                    media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip()+ diccionario_interno["NO_PA"].rstrip())
 
                 # Se comprueba si es tipo fijo o tipo secuencial
                 if diccionario_interno['INDELEMFIJO'] == "F":
@@ -433,7 +433,7 @@ def procesar_archivo(archivo, directorio_salida):
                 child_event = ET.SubElement(event1, "childEvents")
 
                 #A partir de aqui, creamos la condicion de que, si el campo TITIPELEME es A, D, E o P, se genera el branding
-                if diccionario_interno["TITIPELEME"] in tipos_de_eventos:
+                if diccionario_interno["TITIPELEME"] in ["A", "D", "E", "P"]:
 
                     # Logica que vamos a usar para determinar los canales que vienen a internacionales, que llevan nombre distintos
                     if LICADENA in ["TVE EUROPA-AFRICA", "TVE ASIA", "TVE AMERICA"]:
@@ -484,7 +484,7 @@ def procesar_archivo(archivo, directorio_salida):
                     media_child.set("mediaName", logo_branding)
 
 
-                # Agregamos la logica oara poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
+                # Agregamos la logica para poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
 
                 grafico_secundario = ""
                 if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
@@ -744,8 +744,10 @@ def descargar_archivos_ftp():
     hoy = datetime.now().date()
 
     # Iterar sobre los archivos y descargar los del día de hoy y que empiecen por un prefijo
+    datos_fichero = eval(datos_ftp['tipo_fichero'])
+
     for archivo in archivos:
-        if archivo.endswith('.trf') or archivo.endswith('.TRF') and archivo.startswith(('D1', 'D2', 'DI', 'S5')):
+        if archivo.endswith('.trf') or archivo.endswith('.TRF') and archivo[:2] in datos_fichero:
         # Obtener la fecha de modificación del archivo
             try:
                 fecha_modificacion = datetime.strptime(ftp.sendcmd('MDTM ' + archivo)[4:], "%Y%m%d%H%M%S").date()
