@@ -11,7 +11,7 @@ import ctypes
 import configparser
 import ftplib
 import socket
-def procesar_archivo(archivo, directorio_salida):
+def procesar_archivo(archivo, directorio_salida, origen_fichero):
     """
     Este fragmento de código Python define una función procesar_archivo que procesa un archivo, en este caso seran ficheros .trf. Extrae información del archivo de entrada, manipula los datos y escribe la salida formateada en un nuevo archivo. 
     El código incluye operaciones como la lectura de líneas específicas, la extracción de subcadenas y la escritura de datos formateados en un archivo de salida. 
@@ -38,7 +38,11 @@ def procesar_archivo(archivo, directorio_salida):
     nombre_archivo = os.path.basename(archivo)
 
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
-    logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}")
+
+    if origen_fichero:
+        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\MANUAL")
+    else:
+        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\FTP")
 
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
     print("Procesando archivo:", archivo)
@@ -429,6 +433,14 @@ def procesar_archivo(archivo, directorio_salida):
                     media_subtitle.set("mediaType", "Subtitle")
                     media_subtitle.set("mediaName", "$INHERITS$")
 
+                if diccionario_interno["TITIPELEME"] in ["D"]:
+                    feature3 = ET.SubElement(properties1, "features")
+                    feature_gpi = ET.SubElement(feature3, "feature")
+                    feature_gpi.set("type", "MACRO")
+                    properties_gpi = ET.SubElement(feature_gpi, "properties")
+                    macro_gpi = ET.SubElement(properties_gpi, "macro")
+                    macro_gpi.set("name", "GPI")
+
                 # Creamos una rama de XML para todos los tipo 1, si cumple la siguiente condición, esta ira rellena, si no, ira vacia
                 child_event = ET.SubElement(event1, "childEvents")
 
@@ -455,6 +467,7 @@ def procesar_archivo(archivo, directorio_salida):
                                 break
                     else:
                         logo_branding = tabla[LICADENA][columna]
+                    
 
                     # Generamos el arbol xml que va a colgar de childevents
                     event_child_1 = ET.SubElement(child_event, "event")
@@ -735,7 +748,7 @@ def descargar_archivos_ftp():
 
     # Obtener lista de archivos en el directorio actual del servidor
     try:
-        archivos = ftp.nlst()
+        archivos_ftp = ftp.nlst()
     except ftplib.error_temp:
         logging.error("Error al obtener la lista de archivos del servidor FTP")
         ftp.quit()
@@ -746,38 +759,87 @@ def descargar_archivos_ftp():
     # Iterar sobre los archivos y descargar los del día de hoy y que empiecen por un prefijo
     datos_fichero = eval(datos_ftp['tipo_fichero'])
 
-    for archivo in archivos:
-        if archivo.endswith('.trf') or archivo.endswith('.TRF') and archivo[:2] in datos_fichero:
+    for archivo_ftp in archivos_ftp:
+        if archivo_ftp.endswith('.trf') or archivo_ftp.endswith('.TRF') and archivo_ftp[:2] in datos_fichero:
         # Obtener la fecha de modificación del archivo
             try:
-                fecha_modificacion = datetime.strptime(ftp.sendcmd('MDTM ' + archivo)[4:], "%Y%m%d%H%M%S").date()
+                fecha_modificacion = datetime.strptime(ftp.sendcmd('MDTM ' + archivo_ftp)[4:], "%Y%m%d%H%M%S").date()
             except ValueError:
-                logging.error("Error al obtener la fecha de modificación del archivo", archivo)
+                logging.error("Error al obtener la fecha de modificación del archivo", archivo_ftp)
                 continue
             
             # Comparar la fecha de modificación con la fecha de hoy
             if fecha_modificacion == hoy:
-                # Descargar el archivo
                 try:
-                    with open(directorio_descarga_ficheros + "/" + archivo, 'wb') as f:
-                        ftp.retrbinary('RETR ' + archivo, f.write)
+                    # Crear una carpeta llamada "FTP" si no existe
+                    directorio_ftp = directorio_descarga_ficheros + '/FTP'
+                    if not os.path.exists(directorio_ftp):
+                        os.makedirs(directorio_ftp)
+                    # Descargamos el archivo  
+                    with open(directorio_ftp + "/" + archivo_ftp, 'wb') as f:
+                        ftp.retrbinary('RETR ' + archivo_ftp, f.write)
                 except (OSError, IOError):
-                    logging.error("Error al descargar el archivo", archivo)
+                    logging.error("Error al descargar el archivo", archivo_ftp)
                     continue
-                ruta_fichero = directorio_descarga_ficheros + '/' + archivo
-                procesar_archivo(ruta_fichero, directorio_salida_ficheros)
+                ruta_fichero = directorio_ftp + '/' + archivo_ftp
+                procesar_archivo(ruta_fichero, directorio_salida_ficheros, False)
     
-                archivos_descargados.append(archivo)
+                archivos_descargados.append(archivo_ftp)
 
     # Cerrar la conexión FTP
     ftp.quit()
 
+    # comprobamos si hay ficheros en el directorio manual si existe, si no, lo creamos
+    try:
+        directorio_manual = directorio_descarga_ficheros + '/MANUAL'
+        if not os.path.exists(directorio_manual):
+            os.makedirs(directorio_manual)
+    except (OSError, IOError):
+        logging.error("Error al crear el directorio MANUAL")
+    
+    # Listamos los ficheros que hay dentro del directorio MANUAL, si hay ficheros se procesan, si no, no se hace nada.
+    archivos_manuales_procesados = []
+    try:
+        if os.path.exists(directorio_manual):
+            # Sacamos la lista de los ficheros
+            archivos_manual = os.listdir(directorio_manual)
+            for archivo_manual in archivos_manual:
+                if archivo_manual.endswith('.trf') or archivo_manual.endswith('.TRF') and archivo_manual[:2] in datos_fichero:
+                    # Obtener la fecha de modificación del archivo
+                    try:
+                        fecha_modificacion = os.path.getmtime(directorio_manual + '/' + archivo_manual)
+                        fecha_modificacion_legible = datetime.fromtimestamp(fecha_modificacion).date()
+                    except (ValueError, FileNotFoundError):
+                        logging.error("Error al obtener la fecha de modificación del archivo", archivo_manual)
+                        continue
+                    hoy = datetime.now().date()
+                    if fecha_modificacion_legible == hoy:
+                        archivos_manuales_procesados.append(archivo_manual)
+                        ruta_fichero = directorio_manual + '/' + archivo_manual
+                        procesar_archivo(ruta_fichero, directorio_salida_ficheros, True)
+
+    except (OSError, IOError):
+        logging.error("Error al descargar el archivo MANUAL")
+    
+
+
     # Agregada la verificación de que se descargaron los archivos
-    if not archivos_descargados:
-        logging.info("No se han descargado archivos.")
-    else:
-        # Agregar un mensaje de éxito al registro
+    if not archivos_descargados and not archivos_manuales_procesados:
+        logging.info("No se han descargado archivos del FTP y no se han procesado ficheros de MANUAL")
+        #ficheros_manual = os.listdir(directorio_descarga_ficheros)
+        #if not ficheros_manual:
+        #    logging.info("No hay ficheros en el directorio de descargas")
+        #else:
+    elif not archivos_descargados and archivos_manuales_procesados:
+        logging.info("Archivos manuales procesados correctamente: %s", archivos_manuales_procesados)
+
+    elif archivos_descargados and not archivos_manuales_procesados:
         logging.info("Archivos descargados correctamente: %s", archivos_descargados)
+
+    else:
+        logging.info("Archivos descargados correctamente: %s y archivos manuales procesados correctamente: %s", archivos_descargados, archivos_manuales_procesados)
+        # Agregar un mensaje de éxito al registro
+        #logging.info("Archivos descargados correctamente: %s", archivos_descargados)
 
 descargar_archivos_ftp()
 
