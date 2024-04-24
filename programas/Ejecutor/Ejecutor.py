@@ -434,9 +434,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     media_subtitle.set("mediaName", "$INHERITS$")
 
                 if diccionario_interno["TITIPELEME"] in ["D"]:
-                    feature3 = ET.SubElement(properties1, "features")
-                    feature_gpi = ET.SubElement(feature3, "feature")
-                    feature_gpi.set("type", "MACRO")
+                    feature_gpi = ET.SubElement(feature_1, "feature")
+                    feature_gpi.set("type", "Macro")
                     properties_gpi = ET.SubElement(feature_gpi, "properties")
                     macro_gpi = ET.SubElement(properties_gpi, "macro")
                     macro_gpi.set("name", "GPI")
@@ -820,16 +819,11 @@ def descargar_archivos_ftp():
 
     except (OSError, IOError):
         logging.error("Error al descargar el archivo MANUAL")
-    
-
 
     # Agregada la verificación de que se descargaron los archivos
     if not archivos_descargados and not archivos_manuales_procesados:
         logging.info("No se han descargado archivos del FTP y no se han procesado ficheros de MANUAL")
-        #ficheros_manual = os.listdir(directorio_descarga_ficheros)
-        #if not ficheros_manual:
-        #    logging.info("No hay ficheros en el directorio de descargas")
-        #else:
+
     elif not archivos_descargados and archivos_manuales_procesados:
         logging.info("Archivos manuales procesados correctamente: %s", archivos_manuales_procesados)
 
