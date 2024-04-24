@@ -433,6 +433,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     media_subtitle.set("mediaType", "Subtitle")
                     media_subtitle.set("mediaName", "$INHERITS$")
 
+
+                # Agregadas lineas para generar las gpi de desconexiones, solo necesitamos que sea 
                 if diccionario_interno["TITIPELEME"] in ["D"]:
                     feature_gpi = ET.SubElement(feature_1, "feature")
                     feature_gpi.set("type", "Macro")
@@ -645,7 +647,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
             xml_file.write(xml_formatted)
             print("XML generado exitosamente.")
 
-def descargar_archivos_ftp():
+def descargar_archivos():
     """
     Descarga archivos desde un servidor FTP, utilizando la información de un archivo de configuración.
     """    
@@ -799,18 +801,34 @@ def descargar_archivos_ftp():
     # Listamos los ficheros que hay dentro del directorio MANUAL, si hay ficheros se procesan, si no, no se hace nada.
     archivos_manuales_procesados = []
     try:
+        """
+        Si existe el directorio MANUAL, leemos todos los ficheros que haya dentro y
+        los procesamos si cumplen con las condiciones de extensión y de que el código
+        de fichero sea uno de los que se permiten
+        """
         if os.path.exists(directorio_manual):
-            # Sacamos la lista de los ficheros
             archivos_manual = os.listdir(directorio_manual)
             for archivo_manual in archivos_manual:
+                """
+                El fichero es válido si cumple con las condiciones de extensión y de
+                que el código de fichero sea uno de los que se permiten
+                """
                 if archivo_manual.endswith('.trf') or archivo_manual.endswith('.TRF') and archivo_manual[:2] in datos_fichero:
-                    # Obtener la fecha de modificación del archivo
+                    """
+                    Obtenemos la fecha de modificación del archivo en crudo y la
+                    convertimos a legible
+                    """
                     try:
                         fecha_modificacion = os.path.getmtime(directorio_manual + '/' + archivo_manual)
                         fecha_modificacion_legible = datetime.fromtimestamp(fecha_modificacion).date()
-                    except (ValueError, FileNotFoundError):
-                        logging.error("Error al obtener la fecha de modificación del archivo", archivo_manual)
+                    except (ValueError, FileNotFoundError) as e:
+                        logging.error("Error al obtener la fecha de modificación del archivo %s: %s", archivo_manual, e)
                         continue
+                    """
+                    Obtenemos la fecha de hoy para compararlo con el fichero que
+                    estamos tratando, si el fichero tiene fecha de hoy se trata,
+                    si no no
+                    """
                     hoy = datetime.now().date()
                     if fecha_modificacion_legible == hoy:
                         archivos_manuales_procesados.append(archivo_manual)
@@ -818,7 +836,7 @@ def descargar_archivos_ftp():
                         procesar_archivo(ruta_fichero, directorio_salida_ficheros, True)
 
     except (OSError, IOError):
-        logging.error("Error al descargar el archivo MANUAL")
+        logging.error("Error al descargar el archivo de forma manual %s", archivo_manual)
 
     # Agregada la verificación de que se descargaron los archivos
     if not archivos_descargados and not archivos_manuales_procesados:
@@ -832,10 +850,8 @@ def descargar_archivos_ftp():
 
     else:
         logging.info("Archivos descargados correctamente: %s y archivos manuales procesados correctamente: %s", archivos_descargados, archivos_manuales_procesados)
-        # Agregar un mensaje de éxito al registro
-        #logging.info("Archivos descargados correctamente: %s", archivos_descargados)
 
-descargar_archivos_ftp()
+descargar_archivos()
 
 
 
