@@ -20,8 +20,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
-    config.read(r'cf\config.conf')
+    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+    #config.read(r'cf\config.conf')
     #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
@@ -298,7 +298,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     schedule1.set("endType", "Hold")
                     schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
                     media1 = ET.SubElement(properties1, "media")
-                    media1.set("mediaType", "Live")
+                    #media1.set("mediaType", "Live")
                     media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
                     # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                     switch1 = ET.SubElement(properties1, "switch")
@@ -347,8 +347,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 classification1 = ET.SubElement(classifications1, "classification")
                 classification1.set("classification", "EventType")
                 classification1.set("category", tipos_de_eventos.get(diccionario_interno["TITIPELEME"]))
-                mediaStream1 = ET.SubElement(properties1, "mediaStream")
-                mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                #mediaStream1 = ET.SubElement(properties1, "mediaStream")
+                #mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
 
                 # Si es una publicidad le añadimos comentario con el nombre de bloque
                 if diccionario_interno["TITIPELEME"] == "B":
@@ -411,7 +411,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     liststream.set("type", "Fixed")
                     media_subtitle = ET.SubElement(mediaStream1_feature, "media")
                     media_subtitle.set("mediaType", "Subtitle")
-                    media_subtitle.set("mediaName", "$INHERITS$")
+                    media_subtitle.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
                 elif diccionario_interno['SUBTITULADO'] == "I":
                     feature2 = ET.SubElement(feature_1, "feature")
                     feature2.set("type", "Subtitle")
@@ -658,8 +658,8 @@ def descargar_archivos():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
-        config.read(r'cf\config.conf')
+        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        #config.read(r'cf\config.conf')
         #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
