@@ -20,9 +20,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+    #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
     #config.read(r'cf\config.conf')
-    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+    config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -291,6 +291,17 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
             # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
             if diccionario_interno['TIPOREG'] == "1":
                 if diccionario_interno['DIRGRAB'] == "D":
+                    # Se insertan comentarios de desconexion
+                    event1_comentario = ET.SubElement(eventlist, "event")
+                    event1_comentario.set("type", "Comment")
+                    properties1 = ET.SubElement(event1_comentario, "properties")
+                    schedule1_comentario = ET.SubElement(properties1, "schedule")
+                    schedule1_comentario.set("startType", "Sequential")
+                    event1_comentario_1 = ET.SubElement(properties1, "event")
+                    comment1 = ET.SubElement(event1_comentario_1, "comment")
+                    comment1.text = "Desconexion con "+LICADENA
+                    
+                    # Se genera el evento Live
                     event1 = ET.SubElement(eventlist, "event")
                     event1.set("type", "Live")
                     properties1 = ET.SubElement(event1, "properties")
@@ -660,9 +671,9 @@ def descargar_archivos():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         #config.read(r'cf\config.conf')
-        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
