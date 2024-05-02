@@ -617,6 +617,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                         # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
                         cg_5 = ET.SubElement(mediaStream_child_5, "cg")
+                        # Se cambia el tipo de elemento a tipo str oara evitar errores
                         cg_5.set("layer", str(contador_viz))
                         cg_5.set("type", "Page")
 
