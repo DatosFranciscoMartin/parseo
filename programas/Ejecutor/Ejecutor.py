@@ -297,9 +297,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     schedule1 = ET.SubElement(properties1, "schedule")
                     schedule1.set("endType", "Hold")
                     schedule1.set("endOffset", diccionario_interno['TIDUMINUT'])
-                    media1 = ET.SubElement(properties1, "media")
+                    #media1 = ET.SubElement(properties1, "media")
                     #media1.set("mediaType", "Live")
-                    media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
+                    #media1.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip()),
                     # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                     switch1 = ET.SubElement(properties1, "switch")
                     source1 = ET.SubElement(switch1, "source")
@@ -312,9 +312,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     auto1 = ET.SubElement(destination1, "auto")
                     auto1.set("type", "PGM")
 
-                    if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
-                        mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
-                        schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
+                    #if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
+                    #    mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
+                    #    schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
                 elif diccionario_interno['DIRGRAB'] == "G":
                     event1 = ET.SubElement(eventlist, "event")
                     event1.set("type", "PrimaryVideo")
@@ -347,6 +347,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 classification1 = ET.SubElement(classifications1, "classification")
                 classification1.set("classification", "EventType")
                 classification1.set("category", tipos_de_eventos.get(diccionario_interno["TITIPELEME"]))
+                schedule1.set("startType", "Sequential")
                 #mediaStream1 = ET.SubElement(properties1, "mediaStream")
                 #mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
 
@@ -357,11 +358,11 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip()+ diccionario_interno["NO_PA"].rstrip())
 
                 # Se comprueba si es tipo fijo o tipo secuencial
-                if diccionario_interno['INDELEMFIJO'] == "F":
-                    schedule1.set("startType", "Fixed")
-                    schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
-                else:
-                    schedule1.set("startType", "Sequential")
+                #if diccionario_interno['INDELEMFIJO'] == "F":
+                #    schedule1.set("startType", "Fixed")
+                #    schedule1.set("startOffset", fecha_inicio + "T" + diccionario_interno['TIHOINMIN'])
+                #else:
+                #    schedule1.set("startType", "Sequential")
 
                 feature_1 = ET.SubElement(properties1, "features")
                 # Se comprueba el modo de audio, que puede ser EST Estereo; DST Dual-Estereo; MON Mono; DUA Dual; DP1 Dolby PAR 1; DP2 Dolby PAR 2; DP3 Dolby PAR 3; DG1 Dolby DUAL DRUPO1; DG2 Dolby DUAL DRUPO2
@@ -393,7 +394,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                         trackpreset.set("name", nombre_audio)
 
                 # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
-                if diccionario_interno['SUBTITULADO'] == "S":
+                if diccionario_interno['SUBTITULADO'] == "S" or diccionario_interno['SUBTITULADO'] == "I":
                     feature2 = ET.SubElement(feature_1, "feature")
                     feature2.set("type", "Subtitle")
                     properties_feature = ET.SubElement(feature2, "properties")
@@ -412,27 +413,27 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     media_subtitle = ET.SubElement(mediaStream1_feature, "media")
                     media_subtitle.set("mediaType", "Subtitle")
                     media_subtitle.set("mediaName", diccionario_interno["TICODELEMENMIN"].rstrip())
-                elif diccionario_interno['SUBTITULADO'] == "I":
-                    feature2 = ET.SubElement(feature_1, "feature")
-                    feature2.set("type", "Subtitle")
-                    properties_feature = ET.SubElement(feature2, "properties")
-                    mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
-                    mediaStream1_feature.set("som", "$INHERITS$")
-                    subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
-                    subtitle.set("CaptionMode", "None")
-                    language = ET.SubElement(subtitle, "languages")
-                    lang1 = ET.SubElement(language, "lang")
-                    lang1.text = "ESP"
-                    lang2 = ET.SubElement(language, "lang")
-                    lang2.text = "ENG"
-                    allocation = ET.SubElement(subtitle, "allocation")
-                    allocation.set("type", "ListStream")
-                    liststream = ET.SubElement(allocation, "listStream")
-                    liststream.set("listStreamNo", "0")
-                    liststream.set("type", "Fixed")
-                    media_subtitle = ET.SubElement(mediaStream1_feature, "media")
-                    media_subtitle.set("mediaType", "Subtitle")
-                    media_subtitle.set("mediaName", "$INHERITS$")
+                #elif diccionario_interno['SUBTITULADO'] == "I":
+                #    feature2 = ET.SubElement(feature_1, "feature")
+                #    feature2.set("type", "Subtitle")
+                #    properties_feature = ET.SubElement(feature2, "properties")
+                #    mediaStream1_feature = ET.SubElement(properties_feature, "mediaStream")
+                #    mediaStream1_feature.set("som", "$INHERITS$")
+                #    subtitle = ET.SubElement(mediaStream1_feature, "subtitle")
+                #    subtitle.set("CaptionMode", "None")
+                #    language = ET.SubElement(subtitle, "languages")
+                #    lang1 = ET.SubElement(language, "lang")
+                #    lang1.text = "ESP"
+                #    lang2 = ET.SubElement(language, "lang")
+                #    lang2.text = "ENG"
+                #    allocation = ET.SubElement(subtitle, "allocation")
+                #    allocation.set("type", "ListStream")
+                #    liststream = ET.SubElement(allocation, "listStream")
+                #    liststream.set("listStreamNo", "0")
+                #    liststream.set("type", "Fixed")
+                #    media_subtitle = ET.SubElement(mediaStream1_feature, "media")
+                #    media_subtitle.set("mediaType", "Subtitle")
+                #    media_subtitle.set("mediaName", "$INHERITS$")
 
 
                 # Agregadas lineas para generar las gpi de desconexiones, solo necesitamos que sea 
@@ -447,7 +448,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 child_event = ET.SubElement(event1, "childEvents")
 
                 #A partir de aqui, creamos la condicion de que, si el campo TITIPELEME es A, D, E o P, se genera el branding
-                if diccionario_interno["TITIPELEME"] in ["A", "D", "E", "P"]:
+                if diccionario_interno["TITIPELEME"] in ["A", "E", "P"]:
 
                     # Logica que vamos a usar para determinar los canales que vienen a internacionales, que llevan nombre distintos
                     if LICADENA in ["TVE EUROPA-AFRICA", "TVE ASIA", "TVE AMERICA"]:
@@ -574,9 +575,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     media_child.set("mediaName", grafico_secundario)
 
                 # Recorremos los diccionarios de tipo 3:
+                # Contador para el tipo de grafico
+                contador_viz = 2
                 for clave, diccionario_tipo_3 in diccionario_interno.items():
-                    # Contador para el tipo de grafico
-                    contador_viz = 2
                     if clave.startswith('Tipo3_'):
                         grafico_tipo3 = diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"]
                         # Generamos el arbol xml que va a colgar de childevents
@@ -599,7 +600,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                         else:
 
                             schedule_child_5.set("startType", "+ParentStart")
-                            schedule_child_5.set("startOffset", diccionario_tipo_3["HORA_DE_COMIENZO"])
+                            schedule_child_5.set("startOffset", diccionario_tipo_3["HORA_DE_COMIENZO"].strip())
 
                             # Si no tiene duración suponemos que es hasta final de evento principal
                             if diccionario_tipo_3["DURACION"].strip() == "":
@@ -616,7 +617,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                         # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
                         cg_5 = ET.SubElement(mediaStream_child_5, "cg")
-                        cg_5.set("layer", contador_viz)
+                        cg_5.set("layer", str(contador_viz))
                         cg_5.set("type", "Page")
 
                         # Añadir el elemento 'media' dentro de 'properties'
@@ -639,7 +640,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
-        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="utf-8") as xml_file:
+        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="iso-8859-1") as xml_file:
             # Obtener una representación en cadena de texto del XML y formatear el XML
             xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
             xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
