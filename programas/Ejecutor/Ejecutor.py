@@ -20,9 +20,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+    #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
     #config.read(r'cf\config.conf')
-    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+    config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -652,7 +652,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
 
-        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="iso-8859-1") as xml_file:
+        with open(directorio_salida+"/"+nombre_fichero_sin_extension+".mpl", "w", encoding="utf-8") as xml_file:
             # Obtener una representación en cadena de texto del XML y formatear el XML
             xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
             xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
@@ -671,9 +671,9 @@ def descargar_archivos():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         #config.read(r'cf\config.conf')
-        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
