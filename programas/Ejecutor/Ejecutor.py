@@ -291,16 +291,17 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
             # Si en este caso es tipo directo, o lo que es lo mismo, el valor del campo DIRGRAB es D seguimos la siguiente logica
             if diccionario_interno['TIPOREG'] == "1":
                 if diccionario_interno['DIRGRAB'] == "D":
-                    # Se insertan comentarios de desconexion
-                    event1_comentario = ET.SubElement(eventlist, "event")
-                    event1_comentario.set("type", "Comment")
-                    properties1 = ET.SubElement(event1_comentario, "properties")
-                    schedule1_comentario = ET.SubElement(properties1, "schedule")
-                    schedule1_comentario.set("startType", "Sequential")
-                    event1_comentario_1 = ET.SubElement(properties1, "event")
-                    comment1 = ET.SubElement(event1_comentario_1, "comment")
-                    comment1.text = "Desconexion con "+LICADENA
-                    
+                    # Determinamos si es tipo Desconexión, si lo es, agregamos el comentario
+                    if diccionario_interno['TITIPELEME'] == "D":
+                        # Se insertan comentarios de desconexion
+                        event1_comentario = ET.SubElement(eventlist, "event")
+                        event1_comentario.set("type", "Comment")
+                        properties1 = ET.SubElement(event1_comentario, "properties")
+                        schedule1_comentario = ET.SubElement(properties1, "schedule")
+                        schedule1_comentario.set("startType", "Sequential")
+                        event1_comentario_1 = ET.SubElement(properties1, "event")
+                        comment1 = ET.SubElement(event1_comentario_1, "comment")
+                        comment1.text = "Desconexion con "+LICADENA
                     # Se genera el evento Live
                     event1 = ET.SubElement(eventlist, "event")
                     event1.set("type", "Live")
