@@ -20,9 +20,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+    #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
     #config.read(r'cf\config.conf')
-    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+    config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -569,10 +569,10 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                     # Añadir el elemento 'schedule' dentro de 'properties'
                     schedule_child = ET.SubElement(properties_child, "schedule")
-                    schedule_child.set("endType", "-ParentEnd")
+                    schedule_child.set("endType", "Duration")
                     schedule_child.set("startType", "+ParentStart")
-                    schedule_child.set("endOffset", "00:00:00:00")
-                    schedule_child.set("startOffset", "00:00:00:00")
+                    schedule_child.set("endOffset", "00:00:12:00")
+                    schedule_child.set("startOffset", "00:00:10:00")
                     # Añadir el elemento 'mediaStream' dentro de 'properties'
                     mediaStream_child = ET.SubElement(properties_child, "mediaStream")
 
@@ -603,11 +603,23 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                         schedule_child_5 = ET.SubElement(properties_child_5, "schedule")
 
                         # Si la hora de comienzo es T (duración total)
-                        if diccionario_tipo_3["HORA_DE_COMIENZO"].strip() == "T":
+                        if diccionario_tipo_3["HORA_DE_COMIENZO"].strip() == "T" and diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"] == "H" or diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"] == "M":
+                            schedule_child_5.set("endType", "-ParentEnd")
+                            schedule_child_5.set("startType", "+ParentStart")
+                            schedule_child_5.set("endOffset", "00:00:00:00")
+                            schedule_child_5.set("startOffset", "00:00:12:00")
+
+                        elif diccionario_tipo_3["HORA_DE_COMIENZO"].strip() == "T" and diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"] != "H" or diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"] != "M":
                             schedule_child_5.set("endType", "-ParentEnd")
                             schedule_child_5.set("startType", "+ParentStart")
                             schedule_child_5.set("endOffset", "00:00:00:00")
                             schedule_child_5.set("startOffset", "00:00:00:00")
+                        
+                        elif diccionario_tipo_3["HORA_DE_COMIENZO"].strip() != "T" and diccionario_tipo_3["NUMERO_DE_LA_INCRUSTACION"] == "P":
+                            schedule_child_5.set("endType", "-ParentEnd")
+                            schedule_child_5.set("startType", "+ParentStart")
+                            schedule_child_5.set("endOffset", "00:00:12:00")
+                            schedule_child_5.set("startOffset", diccionario_tipo_3["HORA_DE_COMIENZO"].strip())
 
                         else:
 
@@ -672,9 +684,9 @@ def descargar_archivos():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         #config.read(r'cf\config.conf')
-        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
