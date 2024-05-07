@@ -605,24 +605,20 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                         # Si la hora de comienzo es T (duración total)
                         if diccionario_tipo_3["HORA_DE_COMIENZO"].rstrip()[0] == "T":
                             if diccionario_tipo_3["TIPO_DE_INSERCION"] == "R" or diccionario_tipo_3["TIPO_DE_INSERCION"] == "Q":
-                                print("Condicion1")
                                 schedule_child_5.set("endType", "-ParentEnd")
                                 schedule_child_5.set("startType", "+ParentStart")
                                 schedule_child_5.set("endOffset", "00:00:00:00")
                                 schedule_child_5.set("startOffset", "00:00:12:00")
                             elif diccionario_tipo_3["TIPO_DE_INSERCION"] != "R" or diccionario_tipo_3["TIPO_DE_INSERCION"] != "Q":
-                                print("Condicion2")
                                 schedule_child_5.set("endType", "-ParentEnd")
                                 schedule_child_5.set("startType", "+ParentStart")
                                 schedule_child_5.set("endOffset", "00:00:00:00")
                                 schedule_child_5.set("startOffset", "00:00:00:00")
-
-                        elif diccionario_tipo_3["TIPO_DE_INSERCION"] == "S":
-                            print("Condicion3")
-                            schedule_child_5.set("endType", "Duration")
-                            schedule_child_5.set("startType", "+ParentStart")
-                            schedule_child_5.set("endOffset", "00:00:08:00")
-                            schedule_child_5.set("startOffset", "00:00:10:00")
+                            elif diccionario_tipo_3["TIPO_DE_INSERCION"] == "S":
+                                schedule_child_5.set("endType", "Duration")
+                                schedule_child_5.set("startType", "+ParentStart")
+                                schedule_child_5.set("endOffset", "00:00:08:00")
+                                schedule_child_5.set("startOffset", "00:00:10:00")
                         
                         elif diccionario_tipo_3["HORA_DE_COMIENZO"].rstrip()[0] != "T" and diccionario_tipo_3["TIPO_DE_INSERCION"] == "P":
                             print("Condicion4")
@@ -890,10 +886,3 @@ def descargar_archivos():
         logging.info("Archivos descargados correctamente: %s y archivos manuales procesados correctamente: %s", archivos_descargados, archivos_manuales_procesados)
 
 descargar_archivos()
-
-
-
-
-
-
-
