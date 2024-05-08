@@ -20,9 +20,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+    #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
     #config.read(r'cf\config.conf')
-    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+    config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -347,6 +347,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
                         segment1.set("type", "Markup")
                         markup1 =ET.SubElement(segment1,"markup")
+                        markup1.set("name", "TxSegments")
                         markup1.set("orderNo",diccionario_interno['Tipo2']['NUMSEGMENTO'])
                         mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
                         schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
@@ -621,7 +622,6 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                                 schedule_child_5.set("startOffset", "00:00:10:00")
                         
                         elif diccionario_tipo_3["HORA_DE_COMIENZO"].rstrip()[0] != "T" and diccionario_tipo_3["TIPO_DE_INSERCION"] == "P":
-                            print("Condicion4")
                             schedule_child_5.set("endType", "-ParentEnd")
                             schedule_child_5.set("startType", "+ParentStart")
                             schedule_child_5.set("endOffset", "00:00:12:00")
@@ -690,9 +690,9 @@ def descargar_archivos():
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        #config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         #config.read(r'cf\config.conf')
-        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
