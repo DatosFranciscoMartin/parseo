@@ -3,6 +3,7 @@ from tkinter import filedialog
 import os
 import datetime
 import xml.etree.ElementTree as ET
+import logging
 
 
 def seleccionar_directorio_salida():
@@ -96,7 +97,7 @@ ventana.mainloop()
 ##############################################################################################################################
 #                                                                                                                            #
 #                                                                                                                            #
-#                                       A partir de este punto se generan los archivos.                                        #
+#                                       A partir de este punto se generan los archivos.                                      #
 #                                                                                                                            #
 #                                                                                                                            #
 ##############################################################################################################################
@@ -106,8 +107,7 @@ ventana.mainloop()
 
 # se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
 fecha_actual = datetime.date.today()
-Archivo_log = open(directorio_salida + "\\" + "archivo_log" + ".log", "a", encoding="iso-8859-1")
-Archivo_log.write(fecha_actual.strftime("%d/%m/%Y-%H:%M") + "\n")
+logging.basicConfig(filename=directorio_salida +'\\'+'registro.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
@@ -125,11 +125,14 @@ for archivo in lista_archivos:
     year = root.get('startTime')[2:4]
     mes = root.get('startTime')[5:7]
     dia = root.get('startTime')[8:10]
+    nombre_fichero = circuito + year + mes + dia + ".rgt"
 
     # Abre el archivo de salida en el directorio seleccionado
     # Se crea el fichero en modo escritura bajo el encode utf-8
-    Archivo_salida = open(directorio_salida + "\\" + circuito + year + mes + dia + ".rgt", "w", encoding="utf-8")
+    Archivo_salida = open(directorio_salida + "\\" + nombre_fichero, "w", encoding="utf-8")
     Archivo_salida.write(circuito + year + mes + dia + "\n")
+
+    logging.info(f"Archivo procesado: {archivo} --> Destino del fichero: {directorio_salida}\{nombre_fichero}")
 
     contador = 0
 
@@ -303,16 +306,6 @@ for archivo in lista_archivos:
                          2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                         R = "C"
 
-            ##"EST": "3-ST",
-            ##"DST": "2-DL-ST",
-            #"MON": "1-MONO",
-            #"DUA": "2-DL-ST-DOLBY",
-            #"DP1": "7-DOLBY1",
-            #"DP2": "8-DOLBY2",
-            ##"DP3": "Dolby PAR 3",
-            #"DG1": "5-DUAL5-6",
-            ##"DG2": "6-DUAL3-4"
-
                 else:
                     R = DEFAULT[:1]
             except AttributeError:
@@ -359,23 +352,10 @@ for archivo in lista_archivos:
                 Y = DEFAULT[:1]
 
             # Escribimos en el archivo de salida la línea formateada correctamente.
-
-            #Archivo_salida.write(
-            #    str(A).ljust(11) + "  " + str(B).ljust(18) + "  " + str(C).ljust(2) + "  " + str(D).ljust(32) + "  " + str(E).ljust(11) + "  " + str(F).ljust(1) + " " + str(G).ljust(1) + str(H).ljust(7) + "  " + str(I).ljust(3) + "  " + str(J).ljust(5) + "  " + str(K).ljust(11) + "  " + str(L).ljust(2) + "  " + str(M).ljust(14) + "  " + str(N).ljust(2) + " " + str(O).ljust(2) + str(P).ljust(1) + str(Q).ljust(1) + str(R).ljust(1) + str(S).ljust(3) + str(T).ljust(1) + str(U).ljust(4) + str(V).ljust(1) + str(W).ljust(1) + str(ESPECIAL).ljust(2) + " " + str(X).ljust(8) + " " + str(Y).ljust(1) + "\n")
-
             output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
                 str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
             )
-
             Archivo_salida.write(output_line)
     
     else:
         continue
-    # Cerramos el archivo de entrada y el archivo de salida
-
-    # Agregamos al fichero de log los ficheros que se ha procesado.
-
-    nombre_archivo = os.path.basename(archivo)
-    Archivo_log.write("     " + nombre_archivo + "\n")
-
-    fichero.close()
