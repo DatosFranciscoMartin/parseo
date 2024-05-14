@@ -64,7 +64,7 @@ def salir():
 
 # Crear la ventana principal
 ventana = tk.Tk()
-ventana.geometry("600x400")
+ventana.geometry("1000x700")
 # ventana.iconbitmap(r"programas\icono_datos.ico")
 ventana.title("Seleccionar archivos y directorio de salida")
 
@@ -117,7 +117,7 @@ for archivo in lista_archivos:
     tree = ET.parse(fichero)
     root = tree.getroot()
 
-    DEFAULT = "||||||||||||||||||||||||||||||||||||||||||||||||||"
+    DEFAULT = "                                                                 "
 
     # Lee la siguiente línea que contiene información necesaria
 
