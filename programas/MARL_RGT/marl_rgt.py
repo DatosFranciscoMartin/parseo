@@ -256,8 +256,19 @@ for archivo in lista_archivos:
             else:
                 M = DEFAULT[:14]
 
-            N = DEFAULT[:2]
-            O = DEFAULT[:2]
+
+            graficos_xml = event.findall('.//childEvents/event/properties/media')[:2]
+
+            N = DEFAULT[:5]
+            O = DEFAULT[:5]
+
+            for index, grafico_xml in enumerate(graficos_xml):
+                if index == 0:
+                    if grafico_xml.get('mediaName'):
+                        N = grafico_xml.get('mediaName')
+                if index == 1:
+                    if grafico_xml.get('mediaName'):
+                        O = grafico_xml.get('mediaName')
 
             try:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
@@ -352,7 +363,7 @@ for archivo in lista_archivos:
                 Y = DEFAULT[:1]
 
             # Escribimos en el archivo de salida la línea formateada correctamente.
-            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
+            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<4} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
                 str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
             )
             Archivo_salida.write(output_line)
