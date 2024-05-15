@@ -151,10 +151,8 @@ for archivo in lista_archivos:
                 Q = " "
 
             try:
-                if event.find('.//asRun/startTime/mediaStream/segment/markup') is not None:
-                    A = event.find('.//asRun').get('startTime').split('T')[1]
-                else:
-                    A = DEFAULT[:11]
+                A = event.find('.//asRun').get('startTime').split('T')[1]
+            
             except AttributeError:
                 A = DEFAULT[:11]
 
@@ -185,7 +183,7 @@ for archivo in lista_archivos:
             except AttributeError:
                 D = DEFAULT[:32]
             
-            if event.find('.//asRun').get('duration') is not None:
+            if event.find('.//asRun').get('duration') is not None and len(event.find('.//asRun').get('duration')) == 11:
                 E = event.find('.//asRun').get('duration')
             else:
                 E = DEFAULT[:11]
