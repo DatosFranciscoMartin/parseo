@@ -117,7 +117,7 @@ for archivo in lista_archivos:
     tree = ET.parse(fichero)
     root = tree.getroot()
 
-    DEFAULT = "                                                                 "
+    DEFAULT = "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
     # Lee la siguiente línea que contiene información necesaria
 
@@ -165,12 +165,11 @@ for archivo in lista_archivos:
                         B = event.find('.//properties/event').get('reconcileKey')[14:22]
                     else:
                         B = event.find('.//properties/media').get('mediaName')
-                        print(B)
                         #B = event.find('.//properties/event').get('reconcileKey')[14:22]
                 else:
-                    B = DEFAULT[:8]
+                    B = DEFAULT[:18]
             except AttributeError:
-                B = DEFAULT[:8]
+                B = DEFAULT[:18]
 
             if event.find('.//properties/mediaStream/segment/markup') is not None:
                 C = event.find('.//properties/mediaStream/segment/markup').get('orderNo')
@@ -232,9 +231,13 @@ for archivo in lista_archivos:
             except AttributeError:
                 I = DEFAULT[:3]
 
-            if event.find('.//properties/media/mediaName') is not None and event.find('.//properties/media').get('mediaName').startswith('B'):
-                J = event.find('.//properties/media').get('mediaName')[1:6]
-            else:
+            #print(event.find('.//properties/media').get('mediaName'))
+            try:
+                if event.find('.//properties/media').get('mediaName') is not None and event.find('.//properties/media').get('mediaName').startswith("B"):
+                    J = event.find('.//properties/media').get('mediaName')[1:6]
+                else:
+                    J = DEFAULT[:5]
+            except AttributeError:
                 J = DEFAULT[:5]
             
             try:
