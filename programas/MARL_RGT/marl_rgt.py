@@ -190,6 +190,8 @@ for archivo in lista_archivos:
             else:
                 E = DEFAULT[:11]
 
+            tipos_de_eventos = {"Ajustes": "A", "Publicidad": "B", "Complementos": "C", "Desconexiones": "D", "Episodios": "E", "Programa": "P"}
+
             try:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
 
@@ -198,7 +200,8 @@ for archivo in lista_archivos:
                         F == " "
                 else:
                     # Agregar diccionario con category
-                    F = DEFAULT[:1]
+                    tipo_categoria = event.find('.//properties/event/classifications/classification').get('category')
+                    F = tipos_de_eventos[tipo_categoria]
             except AttributeError:
                 F = DEFAULT[:1]
             # En caso de no tenerlo en el reconcileKey, tenemos que preguntar por el diccionario de categorías para mapearlo.
