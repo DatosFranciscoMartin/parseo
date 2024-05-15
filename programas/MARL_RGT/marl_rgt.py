@@ -117,7 +117,7 @@ for archivo in lista_archivos:
     tree = ET.parse(fichero)
     root = tree.getroot()
 
-    DEFAULT = "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+    DEFAULT = "                                                                    "
 
     # Lee la siguiente línea que contiene información necesaria
 
