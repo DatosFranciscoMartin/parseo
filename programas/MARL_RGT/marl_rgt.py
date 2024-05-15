@@ -164,8 +164,9 @@ for archivo in lista_archivos:
                     if  event.get('type') == "Live" and Q == " ":
                         B = event.find('.//properties/event').get('reconcileKey')[14:22]
                     else:
-                        #B = event.find('.//properties/event').get('houseId')
-                        B = event.find('.//properties/event').get('reconcileKey')[14:22]
+                        B = event.find('.//properties/media').get('mediaName')
+                        print(B)
+                        #B = event.find('.//properties/event').get('reconcileKey')[14:22]
                 else:
                     B = DEFAULT[:8]
             except AttributeError:
@@ -197,6 +198,7 @@ for archivo in lista_archivos:
                     if F == "*":
                         F == " "
                 else:
+                    # Agregar diccionario con category
                     F = DEFAULT[:1]
             except AttributeError:
                 F = DEFAULT[:1]
@@ -252,23 +254,23 @@ for archivo in lista_archivos:
                 L = DEFAULT[:2]
 
             if event.find('.//properties/event/comment') is not None:
-                M = event.find('.//properties/event/comment').text[0:13]
+                M = event.find('.//properties/event/comment').text[0:14]
             else:
                 M = DEFAULT[:14]
 
 
             graficos_xml = event.findall('.//childEvents/event/properties/media')[:2]
 
-            N = DEFAULT[:5]
-            O = DEFAULT[:5]
+            N = DEFAULT[:2]
+            O = DEFAULT[:2]
 
             for index, grafico_xml in enumerate(graficos_xml):
                 if index == 0:
-                    if grafico_xml.get('mediaName'):
-                        N = grafico_xml.get('mediaName')
+                    if grafico_xml.get('mediaName')[-2:]:
+                        N = grafico_xml.get('mediaName')[-2:]
                 if index == 1:
-                    if grafico_xml.get('mediaName'):
-                        O = grafico_xml.get('mediaName')
+                    if grafico_xml.get('mediaName')[-2:]:
+                        O = grafico_xml.get('mediaName')[-2:]
 
             try:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
@@ -322,10 +324,27 @@ for archivo in lista_archivos:
             except AttributeError:
                 R = DEFAULT[:1]
 
-            if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset/name') is not None and event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["EST", "DST", "DP3", "DG2"]:
-                S = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name')
-            else:
+            mapeo_audio = {    
+            "3-ST": "EST",
+            "2-DL-ST": "DST",
+            "1-MONO": "MON",
+            "2-DL-ST-DOLBY": "DUA",
+            "7-DOLBY1": "DP1",
+            "8-DOLBY2": "DP2",
+            "Dolby PAR 3": "DP3",
+            "5-DUAL5-6": "DG1",
+            "6-DUAL3-4": "DG2"
+            }
+
+            try:    
+                if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') is not None and event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["3-ST", "2-DL-ST", "Dolby PAR 3", "6-DUAL3-4"]:
+                    audio = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name')
+                    S = mapeo_audio[audio]
+                else:
+                    S = DEFAULT[:3]
+            except AttributeError:
                 S = DEFAULT[:3]
+
 
             T = DEFAULT[:1]
             if event.find('.//childEvent/event/properties/event/comment') is not None and event.find('.//childEvent/event/properties/event/comment').text == "I":
@@ -353,17 +372,15 @@ for archivo in lista_archivos:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
                     if event.find('.//properties/event').get('reconcileKey')[0:1] in ["1", "2"]:
                         Y = event.find('.//properties/event').get('reconcileKey')[0:1]
-                    elif event.find('.//properties/event').get('reconcileKey')[0:1] in [" ", "0"]:
-                        Y = "0"
                     else:
-                        Y = DEFAULT[:1]
+                        Y = "0"
                 else:
-                    Y = DEFAULT[:1]
+                    Y = "0"
             except AttributeError:
-                Y = DEFAULT[:1]
+                Y = "0"
 
             # Escribimos en el archivo de salida la línea formateada correctamente.
-            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<4} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
+            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
                 str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
             )
             Archivo_salida.write(output_line)
