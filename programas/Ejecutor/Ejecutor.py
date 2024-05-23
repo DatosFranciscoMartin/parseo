@@ -23,6 +23,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
     #config.read(r'cf\config.conf')
     #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+    #config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\Ejecutor\cf\config.conf')
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -41,9 +42,9 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
 
     if origen_fichero:
-        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\MANUAL")
+        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\\MANUAL")
     else:
-        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\FTP")
+        logging.info(f"Archivo procesado: {nombre_archivo} --> Destino del fichero: {directorio_salida}\\FTP")
 
     # Generamos el nombre del fichero para el log, eliminamos la ruta absoluta y nos quedamos solo con el nombre del fichero
     print("Procesando archivo:", archivo)
@@ -80,7 +81,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
         # Generamos 3 contados que nos van a ayudar a generar el numero de eventos que vamos a tener, con los contadores de tipo nos ayuda a poder generar diccionarios dentro de los eventos de tipo 1
         contador = 0
         contador_tipo_3 = 0
-
+        TITULO_L4 = " " * 14
         # Creamos la primera iteración sobre el fichero que hemos cargado anteriormente,
         for linea in fichero:
 
@@ -140,6 +141,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     CLASIFICACION = "8"
                 elif CALIFMORAL == "X   ":
                     CLASIFICACION = "9"
+                else:
+                    CLASIFICACION = "0"
 
                 if SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     TXTAUD = "0"
@@ -165,7 +168,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     TXTAUD = "A"
 
                 # print(CLASIFICACION+RELACION_DE_ASPECTO+TXTAUD+TITIPELEME+CONTRATO+PASE+TICODELEMENMIN+TICODELEMENMIN[11:]+"_"+TIHOINMIN[:8])
-                RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[:11] + TICODELEMENMIN[11:13] + "_" + TIHOINMIN[:8]
+                # antiguo RECONCILEKEY = CLASIFICACION + RELACION_DE_ASPECTO + TXTAUD + TITIPELEME + CONTRATO + PASE + TICODELEMENMIN[:11] + TICODELEMENMIN[11:13] + "_" + TIHOINMIN[:8]
                 # print(RECONCILEKEY.replace(" ", "*"))
 
                 # Generamos el diccionario con la informacion que hemos extraid del fichero principal
@@ -193,9 +196,10 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     "NUMERO_DE_LOGO": linea[137:139],
                     "DISTINTIVO_DE_CALIFMORAL": linea[140:141],
                     "SCH_StartType": SCH_StartType,
-                    "RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
+                    "TTL4": TITULO_L4
+                    #"RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
                 }
-
+                TITULO_L4 = " " * 14
             # Aqui comprobamos si es de tipo 2, si es de tipo seguimos la siguiente logica para extraer la informacion.
             elif linea[0:1] == '2':
 
@@ -232,8 +236,10 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
             # Aqui comprobamos si es de tipo 4 o 5, si es de tipo 4 o 5 seguimos la siguiente logica para extraer la informacion.
             elif linea[0:1] in ['4', '5']:
+                if linea[0:1] == '4':
+                   TITULO_L4 = linea[1:15]
 
-                # En este caso, si usamos el contado de eventos para evitar que los tipo 4 y 5 esten en el mismo evento que los tipo 1
+                        # En este caso, si usamos el contador de eventos para evitar que los tipo 4 y 5 esten en el mismo evento que los tipo 1
                 contador += 1
 
                 # Aqui guardamos todos los campos que nos interesan dentro de un diccionario que vamos a guardar en el evento de tipo 1 con el numero de evento
@@ -261,7 +267,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
         # En la siguiente iteración vamos a recorrer los eventos que hemos guardado en el diccionario de eventos, y vamos a crear dos variables, event para saber el numero de evento y
         # diccionario_interno para saber el diccionario que vamos a usar para crear el evento
         for event, diccionario_interno in eventos.items():
-
+            #print (diccionario_interno)
             # Si es tipo 4, vamos a seguir la siguiente logica para generar una rama XML de tipo 4
             if diccionario_interno['TIPOREG'] == "4":
                 event4 = ET.SubElement(eventlist, "event")
@@ -355,7 +361,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 # Se agrega etiquetas comunes de ambos casos
                 event1_2 = ET.SubElement(properties1, "event")
                 event1_2.set("title", diccionario_interno["TITITELEME"].strip())
-                event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
+                #event1_2.set("reconcileKey", diccionario_interno["RECONCILEKEY"])
                 classifications1 = ET.SubElement(event1_2, "classifications")
                 classification1 = ET.SubElement(classifications1, "classification")
                 classification1.set("classification", "EventType")
@@ -366,9 +372,18 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                 # Si es una publicidad le añadimos comentario con el nombre de bloque
                 if diccionario_interno["TITIPELEME"] == "B":
+                    RECONCILEKEY = diccionario_interno["TITIPELEME"] + "  " + diccionario_interno["CONTRATO"] + "  " + diccionario_interno["PASE"] + "  " + diccionario_interno["CODLOCALI"] + diccionario_interno["NO_PA"] + "  " + diccionario_interno["TICODELEMENMIN"][:11] + "  " + diccionario_interno["TICODELEMENMIN"][11:13] + "  " + diccionario_interno["TTL4"]
+                    #print(RECONCILEKEY.replace(" ", "*"))
+                    event1_2 = ET.SubElement(properties1, "event")
+                    event1_2.set("reconcileKey", RECONCILEKEY.replace(" ", "*"))
                     comment1 = ET.SubElement(event1_2, "comment")
                     comment1.text = bloque_publi
                     media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip()+ diccionario_interno["NO_PA"].rstrip())
+                else:
+                    RECONCILEKEY = diccionario_interno["TITIPELEME"] + CLASIFICACION + diccionario_interno["RELACION_DE_ASPECTO"] + diccionario_interno['Tipo2']["NUMSEGMENTO"] + diccionario_interno['Tipo2']["ULTIMO"] + diccionario_interno["SUBTITULADO"] + diccionario_interno["AUDIODESCRIPCION"] + diccionario_interno["LENGUAJE_DE_SIGNOS"] + diccionario_interno['Tipo2']["CODCINTA"] + diccionario_interno["INDMULTI"] + diccionario_interno["TICODELEMENMIN"] + diccionario_interno['Tipo2']["HORA_ANUNCIADA"]
+                    #print(RECONCILEKEY.replace(" ", "*"))
+                    event1_2 = ET.SubElement(properties1, "event")
+                    event1_2.set("reconcileKey", RECONCILEKEY.replace(" ", "*"))
 
                 # Se comprueba si es tipo fijo o tipo secuencial
                 #if diccionario_interno['INDELEMFIJO'] == "F":
@@ -693,6 +708,7 @@ def descargar_archivos():
         config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         #config.read(r'cf\config.conf')
         #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        #config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\Ejecutor\cf\config.conf')
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
