@@ -374,7 +374,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 if diccionario_interno["TITIPELEME"] == "B":
                     RECONCILEKEY = diccionario_interno["TITIPELEME"] + "  " + diccionario_interno["CONTRATO"] + "  " + diccionario_interno["PASE"] + "  " + diccionario_interno["CODLOCALI"] + diccionario_interno["NO_PA"] + "  " + diccionario_interno["TICODELEMENMIN"][:11] + "  " + diccionario_interno["TICODELEMENMIN"][11:13] + "  " + diccionario_interno["TTL4"]
                     #print(RECONCILEKEY.replace(" ", "*"))
-                    event1_2 = ET.SubElement(properties1, "event")
+                    #event1_2 = ET.SubElement(properties1, "event")
                     event1_2.set("reconcileKey", RECONCILEKEY.replace(" ", "*"))
                     comment1 = ET.SubElement(event1_2, "comment")
                     comment1.text = bloque_publi
@@ -382,7 +382,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 else:
                     RECONCILEKEY = diccionario_interno["TITIPELEME"] + CLASIFICACION + diccionario_interno["RELACION_DE_ASPECTO"] + diccionario_interno['Tipo2']["NUMSEGMENTO"] + diccionario_interno['Tipo2']["ULTIMO"] + diccionario_interno["SUBTITULADO"] + diccionario_interno["AUDIODESCRIPCION"] + diccionario_interno["LENGUAJE_DE_SIGNOS"] + diccionario_interno['Tipo2']["CODCINTA"] + " " + diccionario_interno["INDMULTI"] + diccionario_interno["TICODELEMENMIN"] + " _" + diccionario_interno['Tipo2']["HORA_ANUNCIADA"]
                     #print(RECONCILEKEY.replace(" ", "*"))
-                    event1_2 = ET.SubElement(properties1, "event")
+                    #event1_2 = ET.SubElement(properties1, "event")
                     event1_2.set("reconcileKey", RECONCILEKEY.replace(" ", "*"))
 
                 # Se comprueba si es tipo fijo o tipo secuencial
