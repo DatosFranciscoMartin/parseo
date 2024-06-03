@@ -9,3 +9,4 @@ directorio_monitor/
 directorio_descargas/
 *log
 *.marl
+metadata_parseo/
