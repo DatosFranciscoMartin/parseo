@@ -12,19 +12,22 @@ import xml.dom.minidom
 config = configparser.ConfigParser()
 
 # Leer el archivo de configuración
-config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf')
 
+#config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf')
+config.read(r'C:\Scripts\RTVE\EJEMPLOS\Metadata\config\config.conf')
 rutas = config['rutas']
 
 ruta_watch = rutas.get('ruta_watcher')
 ruta_salida = rutas.get('ruta_salida')
 
+
 def procesar_archivo(archivo):
-    with open(archivo, "r", encoding="iso-8859-1") as fichero:
+    with open(archivo, "r", encoding="utf-8-sig") as fichero:
         _, extension = os.path.splitext(archivo)
         mediaType = "Video"
         hora_actual = datetime.now()
         creationTime = hora_actual.strftime("%H:%M:%S:%f")[:11]
+
 
         if extension == ".dub":
             # Leer todas las líneas del archivo
@@ -51,20 +54,88 @@ def procesar_archivo(archivo):
             media.set("origSOM", Som)
             media.set("creationTime", creationTime)
 
-            nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
-            with open(ruta_salida+"/"+nombre_fichero_sin_extension+".xml", "w", encoding="utf-8") as xml_file:
-                # Generar el XML como una cadena
-                xml_string = ET.tostring(mediaRecords, encoding="iso-8859-1")
+        else:
 
-                # Obtener una representación en cadena de texto del XML y formatear el XML
-                xml_formatted = xml.dom.minidom.parseString(xml_string).toprettyxml()
+            # Inicializar variables
+            Som = None
+            title = None
+            mediaID = None
 
-                # Escribir el XML formateado en el archivo
-                xml_file.write(xml_formatted)
-                print("XML generado exitosamente.")
+            # Parsear el archivo XML
+            tree = ET.parse(fichero)
+            root = tree.getroot()
 
-        #elif extension == ".xml":
+            # Detectar la estructura del XML
+            if root.tag == 'PBSDubList':
 
+                # Extraer y mostrar los parámetros de cada DubItem
+                for dub_item in root.findall('.//DubItem'):
+                    Som = dub_item.find('SOM').text
+                    title = dub_item.find('Title').text
+                    mediaID = dub_item.find('MediaId').text
+
+                    # Crear el elemento raíz
+                    mediaRecords = ET.Element("mediaRecords")
+
+                    # Crear el elemento media y establecer los atributos
+                    media = ET.SubElement(mediaRecords, "media")
+                    media.set("mediaName", mediaID)
+                    media.set("mediaType", mediaType)
+                    media.set("title", title)
+                    media.set("origSOM", Som)
+                    media.set("creationTime", creationTime)
+
+            else:
+
+                # Namespace utilizado en el XML
+                namespace = {'soa': 'urn:telestream.net:soa:core'}
+
+                # Buscar y obtener los valores de IDConti, Title y SOM
+                for param in root.findall('.//soa:Parameter', namespace):
+                    param_name = param.get('name')
+                    param_value = param.text
+
+                    if param_name == "IDConti":
+                        mediaID = param_value
+                    elif param_name == "Title":
+                        title = param_value
+                    elif param_name == "SOM":
+                        Som  = param_value
+
+                # Extraer y mostrar los parámetros de cada Parameter
+                # Namespace utilizado en el XML
+                #namespace = {'soa': 'urn:telestream.net:soa:core'}
+                #parameters = {}
+                #for parameters in root.findall('.//soa:Parameter'):
+                #    if parameters.get('name') == 'IDConti':
+                #        mediaID = parameters.text
+                #    elif parameters.get('name') == 'Title':
+                #        title = parameters.text
+                #    elif parameters.get('name') == 'SOM':
+                #        Som = parameters.text
+
+                    # Crear el elemento raíz
+                    mediaRecords = ET.Element("mediaRecords")
+
+                    # Crear el elemento media y establecer los atributos
+                    media = ET.SubElement(mediaRecords, "media")
+                    media.set("mediaName", mediaID)
+                    media.set("mediaType", mediaType)
+                    media.set("title", title)
+                    media.set("origSOM", Som)
+                    media.set("creationTime", creationTime)
+
+        nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
+        with open(ruta_salida + "/" + nombre_fichero_sin_extension + ".xml", "w", encoding="utf-8") as xml_file:
+            # Generar el XML como una cadena
+            xml_string = ET.tostring(mediaRecords, encoding="iso-8859-1")
+
+            # Obtener una representación en cadena de texto del XML y formatear el XML
+            xml_formatted = xml.dom.minidom.parseString(xml_string).toprettyxml()
+
+            # Escribir el XML formateado en el archivo
+            xml_file.write(xml_formatted)
+            print("XML generado exitosamente.")
 
 class Watcher:
     """
