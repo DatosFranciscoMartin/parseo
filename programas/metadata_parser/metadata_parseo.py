@@ -27,8 +27,8 @@ def procesar_archivo(archivo):
         mediaType = "Video"
         hora_actual = datetime.now()
         creationTime = hora_actual.strftime("%H:%M:%S:%f")[:11]
-
         mediaRecords = ET.Element("mediaRecords")
+
         if extension == ".dub":
             # Leer todas las líneas del archivo
             lineas = fichero.readlines()
@@ -58,17 +58,17 @@ def procesar_archivo(archivo):
 
         else:
 
-            # Inicializar variables
-            Som = None
-            title = None
-            mediaID = None
-
             # Parsear el archivo XML
             tree = ET.parse(fichero)
             root = tree.getroot()
 
             # Detectar la estructura del XML
             if root.tag == 'PBSDubList':
+
+                # Inicializar variables
+                Som = None
+                title = None
+                mediaID = None
 
                 # Extraer y mostrar los parámetros de cada DubItem
                 for dub_item in root.findall('.//DubItem'):
@@ -89,6 +89,11 @@ def procesar_archivo(archivo):
 
                 # Namespace utilizado en el XML
                 namespace = {'soa': 'urn:telestream.net:soa:core'}
+
+                # Inicializar variables
+                Som = ''
+                title = ''
+                mediaID = ''
 
                 # Buscar y obtener los valores de IDConti, Title y SOM
                 for param in root.findall('.//soa:Parameter', namespace):
@@ -115,13 +120,13 @@ def procesar_archivo(archivo):
                 #        Som = parameters.text
 
 
-                    # Crear el elemento media y establecer los atributos
-                    media = ET.SubElement(mediaRecords, "media")
-                    media.set("mediaName", mediaID)
-                    media.set("mediaType", mediaType)
-                    media.set("title", title)
-                    media.set("origSOM", Som)
-                    media.set("creationTime", creationTime)
+                # Crear el elemento media y establecer los atributos
+                media = ET.SubElement(mediaRecords, "media")
+                media.set("mediaName", mediaID)
+                media.set("mediaType", mediaType)
+                media.set("title", title)
+                media.set("origSOM", Som)
+                media.set("creationTime", creationTime)
 
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
         with open(ruta_salida + "/" + nombre_fichero_sin_extension + ".xml", "w", encoding="utf-8") as xml_file:
