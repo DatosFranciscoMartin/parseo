@@ -8,26 +8,14 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 
-# Obtener la ruta del directorio del script actual
-#directorio_ejecutable = os.path.dirname(os.path.abspath(__file__))
-
-current_directory = os.path.dirname(os.path.abspath(__file__))
-
 # Cargar el archivo de configuración
 config = configparser.ConfigParser()
+config.read(os.path.join(os.path.dirname(__file__), 'cf', 'config.conf'))
 
-# Leer el archivo de configuración (puedes ajustar la ruta en base al directorio del script)
-#config_file_path = os.path.join(directorio_ejecutable, 'config', 'config.conf')
-#config.read(config_file_path)
-
-# Leer el archivo de configuración
-config.read(current_directory+"\cf\config.conf")
-#config.read(r'C:\Scripts\RTVE\EJEMPLOS\Metadata\config\config.conf')
-
-# Leer las rutas desde la configuración
+# Obtener las rutas desde la configuración
 rutas = config['rutas']
-ruta_watch = rutas.get('ruta_watcher')
-ruta_salida = rutas.get('ruta_salida')
+ruta_watch = rutas['ruta_watcher']
+ruta_salida = rutas['ruta_salida']
 
 
 def procesar_archivo(archivo):
