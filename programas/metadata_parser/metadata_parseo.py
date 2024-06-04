@@ -28,31 +28,33 @@ def procesar_archivo(archivo):
         hora_actual = datetime.now()
         creationTime = hora_actual.strftime("%H:%M:%S:%f")[:11]
 
-
+        mediaRecords = ET.Element("mediaRecords")
         if extension == ".dub":
             # Leer todas las líneas del archivo
             lineas = fichero.readlines()
 
-            # Saltar las dos primeras líneas
-            linea_3 = lineas[2].strip()  # Obtener la tercera línea y eliminar espacios en blanco
+            for linea in lineas[2:]:
 
-            # Dividir la tercera línea en variables
-            variables = linea_3.split()
+                # Eliminar espacios en blanco al inicio y final de la línea
+                linea = linea.strip()
 
-            Som = variables[3]
-            title = variables[1]
-            mediaID = variables[0]
+                # Dividir la línea en variables
+                variables = linea.split()
 
-            # Crear el elemento raíz
-            mediaRecords = ET.Element("mediaRecords")
+                Som = variables[3]
+                title = variables[1]
+                mediaID = variables[0]
 
-            # Crear el elemento media y establecer los atributos
-            media = ET.SubElement(mediaRecords, "media")
-            media.set("mediaName", mediaID)
-            media.set("mediaType", mediaType)
-            media.set("title", title)
-            media.set("origSOM", Som)
-            media.set("creationTime", creationTime)
+                # Crear el elemento raíz
+
+
+                # Crear el elemento media y establecer los atributos
+                media = ET.SubElement(mediaRecords, "media")
+                media.set("mediaName", mediaID)
+                media.set("mediaType", mediaType)
+                media.set("title", title)
+                media.set("origSOM", Som)
+                media.set("creationTime", creationTime)
 
         else:
 
@@ -74,8 +76,6 @@ def procesar_archivo(archivo):
                     title = dub_item.find('Title').text
                     mediaID = dub_item.find('MediaId').text
 
-                    # Crear el elemento raíz
-                    mediaRecords = ET.Element("mediaRecords")
 
                     # Crear el elemento media y establecer los atributos
                     media = ET.SubElement(mediaRecords, "media")
@@ -114,8 +114,6 @@ def procesar_archivo(archivo):
                 #    elif parameters.get('name') == 'SOM':
                 #        Som = parameters.text
 
-                    # Crear el elemento raíz
-                    mediaRecords = ET.Element("mediaRecords")
 
                     # Crear el elemento media y establecer los atributos
                     media = ET.SubElement(mediaRecords, "media")
