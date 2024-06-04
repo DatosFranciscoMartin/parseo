@@ -8,16 +8,26 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 
+# Obtener la ruta del directorio del script actual
+directorio_ejecutable = os.path.dirname(os.path.abspath(__file__))
+
+# Cargar el archivo de configuración
 config = configparser.ConfigParser()
 
+# Leer el archivo de configuración (puedes ajustar la ruta en base al directorio del script)
+config_file_path = os.path.join(directorio_ejecutable, 'config', 'config.conf')
+config.read(config_file_path)
+
 # Leer el archivo de configuración
-
 #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf')
-config.read(r'C:\Scripts\RTVE\EJEMPLOS\Metadata\config\config.conf')
-rutas = config['rutas']
+#config.read(r'C:\Scripts\RTVE\EJEMPLOS\Metadata\config\config.conf')
 
+# Leer las rutas desde la configuración
+rutas = config['rutas']
 ruta_watch = rutas.get('ruta_watcher')
 ruta_salida = rutas.get('ruta_salida')
+
+
 
 
 def procesar_archivo(archivo):
