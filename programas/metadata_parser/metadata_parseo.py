@@ -8,7 +8,6 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 
-
 config = configparser.ConfigParser()
 
 # Leer el archivo de configuración
