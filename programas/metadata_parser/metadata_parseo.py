@@ -1,4 +1,5 @@
 import time
+import gc
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import configparser
@@ -8,30 +9,18 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 
-# Obtener la ruta del directorio del script actual
-directorio_ejecutable = os.path.dirname(os.path.abspath(__file__))
-
 # Cargar el archivo de configuración
 config = configparser.ConfigParser()
 
-# Leer el archivo de configuración (puedes ajustar la ruta en base al directorio del script)
-config_file_path = os.path.join(directorio_ejecutable, 'config', 'config.conf')
-config.read(config_file_path)
+config.read(r"D:/traductor/metadata/cf/config.conf")
 
-# Leer el archivo de configuración
-#config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf')
-#config.read(r'C:\Scripts\RTVE\EJEMPLOS\Metadata\config\config.conf')
-
-# Leer las rutas desde la configuración
+# Obtener las rutas desde la configuración
 rutas = config['rutas']
-ruta_watch = rutas.get('ruta_watcher')
-ruta_salida = rutas.get('ruta_salida')
-
-
-
+ruta_watch = rutas['ruta_watcher']
+ruta_salida = rutas['ruta_salida']
 
 def procesar_archivo(archivo):
-    with open(archivo, "r", encoding="utf-8-sig") as fichero:
+    with open(archivo, "r", encoding="utf-8") as fichero:
         _, extension = os.path.splitext(archivo)
         mediaType = "Video"
         hora_actual = datetime.now()
@@ -43,7 +32,6 @@ def procesar_archivo(archivo):
             lineas = fichero.readlines()
 
             for linea in lineas[2:]:
-
                 # Eliminar espacios en blanco al inicio y final de la línea
                 linea = linea.strip()
 
@@ -54,9 +42,6 @@ def procesar_archivo(archivo):
                 title = variables[1]
                 mediaID = variables[0]
 
-                # Crear el elemento raíz
-
-
                 # Crear el elemento media y establecer los atributos
                 media = ET.SubElement(mediaRecords, "media")
                 media.set("mediaName", mediaID)
@@ -64,7 +49,6 @@ def procesar_archivo(archivo):
                 media.set("title", title)
                 media.set("origSOM", Som)
                 media.set("creationTime", creationTime)
-
         else:
 
             # Parsear el archivo XML
@@ -140,14 +124,19 @@ def procesar_archivo(archivo):
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
         with open(ruta_salida + "/" + nombre_fichero_sin_extension + ".xml", "w", encoding="utf-8") as xml_file:
             # Generar el XML como una cadena
-            xml_string = ET.tostring(mediaRecords, encoding="iso-8859-1")
+            xml_string = ET.tostring(mediaRecords, encoding="utf-8", xml_declaration=False)
 
             # Obtener una representación en cadena de texto del XML y formatear el XML
             xml_formatted = xml.dom.minidom.parseString(xml_string).toprettyxml()
 
+            xml_sin_version ='\n'.join(xml_formatted.split('\n')[1:])
+
             # Escribir el XML formateado en el archivo
-            xml_file.write(xml_formatted)
-            print("XML generado exitosamente.")
+            xml_file.write(xml_sin_version)
+            
+        # Forzar recolección de basura
+        gc.collect()
+        print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
 
 class Watcher:
     """
@@ -192,7 +181,7 @@ class Handler(FileSystemEventHandler):
             # Aquí se maneja el evento de creación de archivos.
             if event.src_path.endswith('.xml') or event.src_path.endswith('.dub'):
                 time.sleep(1)
-                print(f"Se ha creado el archivo: {event.src_path}")
+                #print(f"Se ha creado el archivo: {event.src_path}")
                 archivo = event.src_path
                 procesar_archivo(archivo)
 
