@@ -1,4 +1,5 @@
 import time
+import gc
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import configparser
@@ -19,7 +20,6 @@ rutas = config['rutas']
 ruta_watch = rutas['ruta_watcher']
 ruta_salida = rutas['ruta_salida']
 
-
 def procesar_archivo(archivo):
     with open(archivo, "r", encoding="utf-8-sig") as fichero:
         _, extension = os.path.splitext(archivo)
@@ -33,7 +33,6 @@ def procesar_archivo(archivo):
             lineas = fichero.readlines()
 
             for linea in lineas[2:]:
-
                 # Eliminar espacios en blanco al inicio y final de la línea
                 linea = linea.strip()
 
@@ -44,9 +43,6 @@ def procesar_archivo(archivo):
                 title = variables[1]
                 mediaID = variables[0]
 
-                # Crear el elemento raíz
-
-
                 # Crear el elemento media y establecer los atributos
                 media = ET.SubElement(mediaRecords, "media")
                 media.set("mediaName", mediaID)
@@ -54,7 +50,6 @@ def procesar_archivo(archivo):
                 media.set("title", title)
                 media.set("origSOM", Som)
                 media.set("creationTime", creationTime)
-
         else:
 
             # Parsear el archivo XML
@@ -137,7 +132,10 @@ def procesar_archivo(archivo):
 
             # Escribir el XML formateado en el archivo
             xml_file.write(xml_formatted)
-            print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
+            
+        # Forzar recolección de basura
+        gc.collect()
+        print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
 
 class Watcher:
     """
