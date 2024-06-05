@@ -159,13 +159,13 @@ for archivo in lista_archivos:
             try:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
 
-                    if  event.get('type') == "Live" and Q == " ":
+                    if  event.get('type') == "Live":
                         B = event.find('.//properties/event').get('reconcileKey')[18:36].replace("*", " ")
                     else:
                         B = event.find('.//properties/media').get('mediaName')
                         #B = event.find('.//properties/event').get('reconcileKey')[14:22]
                 else:
-                    B = DEFAULT[:18]
+                    B = event.find('.//properties/media').get('mediaName')
             except AttributeError:
                 B = DEFAULT[:18]
 
