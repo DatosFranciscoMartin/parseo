@@ -124,13 +124,15 @@ def procesar_archivo(archivo):
         nombre_fichero_sin_extension = os.path.splitext(os.path.basename(archivo))[0]
         with open(ruta_salida + "/" + nombre_fichero_sin_extension + ".xml", "w", encoding="utf-8") as xml_file:
             # Generar el XML como una cadena
-            xml_string = ET.tostring(mediaRecords, encoding="iso-8859-1")
+            xml_string = ET.tostring(mediaRecords, encoding="iso-8859-1", xml_declaration=False)
 
             # Obtener una representación en cadena de texto del XML y formatear el XML
             xml_formatted = xml.dom.minidom.parseString(xml_string).toprettyxml()
 
+            xml_sin_version ='\n'.join(xml_formatted.split('\n')[1:])
+
             # Escribir el XML formateado en el archivo
-            xml_file.write(xml_formatted)
+            xml_file.write(xml_sin_version)
             
         # Forzar recolección de basura
         gc.collect()
