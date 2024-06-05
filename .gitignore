@@ -10,3 +10,4 @@ directorio_descargas/
 *log
 *.marl
 metadata_parseo/
+metadata_parseo_local.py

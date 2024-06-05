@@ -11,7 +11,6 @@ import xml.dom.minidom
 
 # Cargar el archivo de configuración
 config = configparser.ConfigParser()
-#config.read(os.path.join(os.path.dirname(__file__), 'cf', 'config.conf'))
 
 config.read(r"D:/traductor/metadata/cf/config.conf")
 
