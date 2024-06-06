@@ -20,8 +20,18 @@ ruta_watch = rutas['ruta_watcher']
 ruta_salida = rutas['ruta_salida']
 
 
+ruta_procesado = "D:/traductor/metadata/Procesado"
+ruta_erroneo = "D:/traductor/metadata/Erroneo"
+
+if not os.path.exists(ruta_procesado):
+    os.makedirs(ruta_procesado)
+
+if not os.path.exists(ruta_erroneo):
+    os.makedirs(ruta_erroneo)
+
 
 def procesar_archivo(archivo):
+
     try:
         with open(archivo, "r", encoding="utf-8") as fichero:
             _, extension = os.path.splitext(archivo)
@@ -136,13 +146,15 @@ def procesar_archivo(archivo):
 
                 # Escribir el XML formateado en el archivo
                 xml_file.write(xml_sin_version)
-
-            # Forzar recolección de basura
-            gc.collect()
-            print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
+                
+        # Forzar recolección de basura
+        print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
+        os.rename(archivo, ruta_procesado + "\\" + os.path.basename(archivo))
 
     except Exception as e:
         print("Error al generar el XML: error en el fichero "+nombre_fichero_sin_extension)
+        print(e)
+        os.rename(archivo, ruta_erroneo + "\\" + os.path.basename(archivo))
 
 class Watcher:
     """
