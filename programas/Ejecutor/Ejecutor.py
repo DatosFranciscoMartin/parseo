@@ -121,6 +121,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                 # Linea donde vamos a gener la reconcilekey
 
+                #print(CALIFMORAL)
                 if CALIFMORAL == "ERI":
                     CLASIFICACION = "1"
                 elif CALIFMORAL == "NR12":
@@ -141,6 +142,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     CLASIFICACION = "9"
                 else:
                     CLASIFICACION = "0"
+
+                #print(CLASIFICACION)
 
                 if SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     TXTAUD = "0"
@@ -195,7 +198,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     "DISTINTIVO_DE_CALIFMORAL": linea[140:141],
                     "SCH_StartType": SCH_StartType,
                     "TTL4": TITULO_L4,
-                    "CLASIFICACION" : CLASIFICACION
+                    "CLASIFICACION": CLASIFICACION,
                     #"RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
                 }
                 TITULO_L4 = " " * 14
@@ -379,10 +382,11 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     comment1.text = bloque_publi
                     media1.set("mediaName", "B" + diccionario_interno["CODLOCALI"].rstrip()+ diccionario_interno["NO_PA"].rstrip())
                 else:
-                    RECONCILEKEY = diccionario_interno["TITIPELEME"] + CLASIFICACION + diccionario_interno["RELACION_DE_ASPECTO"] + diccionario_interno['Tipo2']["NUMSEGMENTO"] + diccionario_interno['Tipo2']["ULTIMO"] + diccionario_interno["SUBTITULADO"] + diccionario_interno["AUDIODESCRIPCION"] + diccionario_interno["LENGUAJE_DE_SIGNOS"] + diccionario_interno['Tipo2']["CODCINTA"] + " " + diccionario_interno["INDMULTI"] + diccionario_interno["TICODELEMENMIN"] + " _" + diccionario_interno['Tipo2']["HORA_ANUNCIADA"]
+                    RECONCILEKEY = diccionario_interno["TITIPELEME"] + diccionario_interno["CLASIFICACION"] + diccionario_interno["RELACION_DE_ASPECTO"] + diccionario_interno['Tipo2']["NUMSEGMENTO"] + diccionario_interno['Tipo2']["ULTIMO"] + diccionario_interno["SUBTITULADO"] + diccionario_interno["AUDIODESCRIPCION"] + diccionario_interno["LENGUAJE_DE_SIGNOS"] + diccionario_interno['Tipo2']["CODCINTA"] + " " + diccionario_interno["INDMULTI"] + diccionario_interno["TICODELEMENMIN"] + " _" + diccionario_interno['Tipo2']["HORA_ANUNCIADA"]
                     #print(RECONCILEKEY.replace(" ", "*"))
                     #event1_2 = ET.SubElement(properties1, "event")
                     event1_2.set("reconcileKey", RECONCILEKEY.replace(" ", "*"))
+                #print(RECONCILEKEY.replace(" ", "*"))
 
                 # Se comprueba si es tipo fijo o tipo secuencial
                 #if diccionario_interno['INDELEMFIJO'] == "F":
