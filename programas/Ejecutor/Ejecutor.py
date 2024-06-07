@@ -101,7 +101,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 AUDIODESCRIPCION = linea[108:109]
                 RELACION_DE_ASPECTO = linea[110:111]
                 TIPO_DE_AUDIO = linea[111:114]
-                CALIFMORAL = linea[114:118]
+                CALIFMORAL = linea[114:118].rstrip()
                 INDELEMFIJO = linea[118:119]
 
                 if INDELEMFIJO == "F":
@@ -121,9 +121,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                 # Linea donde vamos a gener la reconcilekey
 
-                if CALIFMORAL == "    ":
-                    CLASIFICACION = "0"
-                elif CALIFMORAL == "ERI ":
+                if CALIFMORAL == "ERI":
                     CLASIFICACION = "1"
                 elif CALIFMORAL == "NR12":
                     CLASIFICACION = "2"
@@ -133,13 +131,13 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     CLASIFICACION = "4"
                 elif CALIFMORAL == "NR18":
                     CLASIFICACION = "5"
-                elif CALIFMORAL == "NR7 ":
+                elif CALIFMORAL == "NR7":
                     CLASIFICACION = "6"
-                elif CALIFMORAL == "PT  ":
+                elif CALIFMORAL == "PT":
                     CLASIFICACION = "7"
-                elif CALIFMORAL == "SC  ":
+                elif CALIFMORAL == "SC":
                     CLASIFICACION = "8"
-                elif CALIFMORAL == "X   ":
+                elif CALIFMORAL == "X":
                     CLASIFICACION = "9"
                 else:
                     CLASIFICACION = "0"
