@@ -161,6 +161,7 @@ for archivo in lista_archivos:
 
                     if  event.get('type') == "Live":
                         B = event.find('.//properties/event').get('reconcileKey')[18:36].replace("*", " ")
+                        B = B[3:] + " "*3
                     else:
                         B = event.find('.//properties/media').get('mediaName')
                         #B = event.find('.//properties/event').get('reconcileKey')[14:22]
