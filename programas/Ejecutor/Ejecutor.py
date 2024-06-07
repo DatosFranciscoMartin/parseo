@@ -194,7 +194,8 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     "NUMERO_DE_LOGO": linea[137:139],
                     "DISTINTIVO_DE_CALIFMORAL": linea[140:141],
                     "SCH_StartType": SCH_StartType,
-                    "TTL4": TITULO_L4
+                    "TTL4": TITULO_L4,
+                    "CLASIFICACION" : CLASIFICACION
                     #"RECONCILEKEY": RECONCILEKEY.replace(" ", "*")
                 }
                 TITULO_L4 = " " * 14
