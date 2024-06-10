@@ -84,15 +84,14 @@ frames = [
     """,
 ]
 
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def animate():
  # Adjust the range to repeat the animation more times if desired
-    for frame in frames:
-        clear_console()
-        print(frame)
-        time.sleep(1)
+
+        for frame in frames:
+            os.system('cls')
+            print(frame)
+            time.sleep(0.5)
+
 
 if __name__ == "__main__":
     animate()
