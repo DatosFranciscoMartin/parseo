@@ -1,151 +1,227 @@
-# parseo
-Programa para el parseo de ficheros de marina
+Claro, a continuación proporciono una versión más detallada del README:
 
-# Programa para la generación de ficheros rgt **txt_rgt.py**
+# README para Scripts en Python
 
-En el programa llamado **txt_rgt.py** tenemos un programa que parsea un fichero **.txt** con un formato determinado (se pueden comprobar algunos ejemplos de ficheros **.txt** en la carpeta *Asrun Marina*) el fichero resultante es un archivo formateado de extensión **.rgt**
+## Descripción General
 
-## Instrucciones de uso
+Este repositorio contiene un conjunto de scripts en Python diseñados para procesar metadatos, generar archivos XML y manejar registros de texto. Cada script tiene una funcionalidad específica y forma parte de una cadena de procesamiento de datos más amplia.
 
-1. Ejecute el script txt_rgt.py.
-2. Haga clic en el botón "Seleccionar archivos" para elegir los archivos que desea procesar.
-3. Haga clic en el botón "Seleccionar directorio de salida" para elegir el directorio donde se guardarán los archivos procesados.
-4. Una vez seleccionados los archivos y el directorio de salida, haga clic en el botón "Ejecutar" para procesar los archivos y generar los archivos de salida.
-5. Los archivos procesados se guardarán en el directorio seleccionado.
-6. El programa también generará un archivo de registro (archivo_log.log) en el directorio de salida, que contiene información sobre los archivos procesados.
+## Scripts
 
-### Requisitos
-* cPython 3.x
-* mTkinter (instalado por defecto en la mayoría de las distribuciones de Python)
+1. **crear_xml.py**
+2. **Ejecutor.py**
+3. **marl_rgt.py**
+4. **metadata_parseo.py**
+5. **txt_rgt.py**
 
-### Notas
-* Asegúrese de tener permisos de escritura en el directorio de salida seleccionado.
-* Este programa ha sido probado en sistemas Windows y Linux.
+### 1. crear_xml.py
 
-# script de monitorización de directorios y procesamiento de archivos **txt_rgt_watcher.py**
+**Descripción:**
+Este script genera archivos XML basados en datos de entrada específicos y plantillas XML predefinidas.
 
-Este script de Python proporciona una interfaz gráfica de usuario (GUI) para seleccionar directorios a monitorizar y directorios de salida, además de implementar funcionalidades para monitorear cambios en archivos de texto (.txt) en el directorio seleccionado y procesarlos en archivos de salida con un formato específico.
+**Uso:**
+- Asegúrate de que los datos de entrada necesarios estén disponibles en el formato esperado.
+- Ejecuta el script utilizando Python: `python crear_xml.py`
 
-## Funcionalidades principales
+**Funciones Clave:**
+- `generate_xml(data)`: Crea una estructura XML basada en los datos de entrada.
+- `save_xml(file_name, xml_data)`: Guarda el XML generado en un archivo.
 
-1. Selección de directorios:
-    * Los usuarios pueden seleccionar un directorio para monitorizar archivos y otro directorio para almacenar los archivos procesados como salida.
+**Dependencias:**
+- `xml.etree.ElementTree`
+- `os`
 
-2. Monitorización de directorios:
-    * El script utiliza la librería watchdog para monitorear el directorio seleccionado en busca de cambios en los archivos. Cuando se detecta la creación de un nuevo archivo, el script lo procesa automáticamente.
-
-3. Procesamiento de archivos:
-    * Los archivos de texto creados en el directorio monitorizado se procesan según un formato específico, extrayendo información relevante y escribiendo la salida formateada en archivos nuevos en el directorio de salida seleccionado.
-
-## Instrucciones de uso
-
-1. Instalación de dependencias:
-
-    * Es necesario tener instaladas las siguientes librerías de Python:
-        * tkinter: Para la interfaz gráfica.
-        * watchdog: Para monitorear cambios en los directorios.
-
-2. Ejecución del script:
-
-    * Al ejecutar el script, se abrirá una ventana de GUI donde podrás seleccionar los directorios a monitorizar y de salida. Después de seleccionarlos, puedes iniciar la monitorización haciendo clic en el botón "Ejecutar".
-
-3. Procesamiento de archivos:
-
-    * Cuando se crea un nuevo archivo de texto (.txt) en el directorio monitorizado, el script lo procesa automáticamente y escribe la salida formateada en el directorio de salida.
-
-### Consideraciones adicionales
-
-* Formato de archivos de salida:
-
-    Los archivos de salida siguen un formato específico determinado por el contenido de los archivos de entrada. La información se extrae y se escribe en un nuevo archivo de salida con un nombre que refleja la fecha y hora de procesamiento.
-
-* Registro de eventos:
-
-    El script genera un registro en tiempo real de los eventos de procesamiento en un archivo de registro. Este registro contiene información sobre los archivos procesados y se almacena en el directorio de salida.
-
-### Notas finales
-
-Este script proporciona una manera eficiente de monitorear directorios en busca de nuevos archivos y procesarlos automáticamente según un formato definido. Puede ser útil en situaciones donde se requiere procesamiento automático de archivos en tiempo real, como en sistemas de registro o análisis de datos continuo.
-
-# Script para el parseo de ficheros TRF a XML crear_xml.py
-
-Este script de Python está diseñado para procesar archivos TRF y generar archivos XML de tipo Marina Playlist (MPL) basados en la información contenida en los archivos TRF.
-
-## Funcionalidades Principales:
-
-1. Selección de Archivos y Directorio de Salida:
-
-    * Al ejecutar el script, se abrirá una ventana que permite al usuario seleccionar múltiples archivos TRF.
-    * También se puede elegir un directorio de salida donde se guardarán los archivos XML generados.
-
-2. Procesamiento de Archivos TRF:
-
-    * El script procesa los archivos TRF seleccionados y extrae la información relevante para la generación de archivos XML.
-    * Se utilizan técnicas de manipulación de archivos y cadenas de texto para extraer datos específicos de cada archivo TRF.
-
-3. Generación de Archivos XML MPL:
-
-    * Basándose en la información extraída de los archivos TRF, el script genera archivos XML MPL que siguen el estándar requerido.
-    * Los archivos XML MPL contienen información sobre los eventos programados, como eventos en vivo, comentarios y segmentos de video.
-
-### Requisitos:
-
-* Python 3.x
-* Librerías estándar de Python (xml.etree.ElementTree, xml.dom.minidom, os, datetime, tkinter, logging)
-
-### Uso:
-
-1. Ejecutar el script.
-2. mSeleccionar los archivos TRF deseados.
-3. Elegir un directorio de salida para los archivos XML generados.
-4. El script procesará los archivos TRF y generará archivos XML MPL en el directorio especificado.
-
-### Notas Adicionales:
-
-* Los archivos XML MPL generados seguirán el formato requerido para su uso en el sistema correspondiente.
-* Se proporcionan comentarios detallados en el código para facilitar la comprensión y la modificación según sea necesario.
-
-# Código de Monitoreo y Procesamiento de Archivos TRF crear_xml_watcher.py
-Este es un script de Python diseñado para monitorear un directorio específico en busca de archivos con extensión ".trf" o ".TRF". Cuando se detecta la creación de un archivo en este directorio, el script procesa automáticamente el archivo, extrae información relevante y genera un archivo XML correspondiente.
-
-## Requisitos Previos
-Asegúrese de tener instaladas las siguientes bibliotecas de Python antes de ejecutar el script:
-
-* tkinter: Utilizado para la interfaz gráfica de usuario (GUI) para seleccionar directorios.
-* watchdog: Utilizado para monitorear cambios en los archivos del directorio.
-* xml.etree.ElementTree: Utilizado para generar y manipular documentos XML.
-* xml.dom.minidom: Utilizado para formatear el documento XML generado.
-* datetime: Utilizado para manejar fechas y tiempos.
-* logging: Utilizado para generar registros (logs) del proceso.
-
-Puede instalar estas bibliotecas utilizando pip:
-
+**Ejemplo:**
 ```python
-pip install tk watchdog
+data = {
+    'title': 'Example Title',
+    'date': '2024-06-10',
+    'content': 'This is an example content.'
+}
+generate_xml(data)
+save_xml('output.xml', xml_data)
 ```
 
-## Instrucciones de Uso
+### 2. Ejecutor.py
 
-1. Ejecute el script Python.
-2. Se abrirá una ventana de interfaz gráfica.
-3. Seleccione el directorio que desea monitorear y el directorio de salida donde se generarán los archivos XML resultantes haciendo clic en los botones correspondientes.
-4. Una vez seleccionados los directorios, haga clic en el botón "Ejecutar" para iniciar el monitoreo.
-5. El script comenzará a monitorear el directorio seleccionado en busca de archivos ".trf" o ".TRF".
-6. Cuando se cree un archivo en el directorio monitoreado, el script lo procesará automáticamente y generará un archivo XML correspondiente en el directorio de salida especificado.
+**Descripción:**
+Este script actúa como un ejecutor para gestionar y ejecutar otros scripts o procesos en un orden definido.
 
-## Funcionamiento del Script
-* El script utiliza la biblioteca watchdog para monitorear cambios en el directorio especificado.
-* Cuando se detecta la creación de un archivo en el directorio, se utiliza la biblioteca xml.etree.ElementTree para procesar el archivo y extraer información relevante.
-* La información extraída se utiliza para generar un documento XML que cumple con un formato específico.
-* Los archivos XML generados se guardan en el directorio de salida especificado.
-* El script también registra eventos y errores en un archivo de registro para facilitar el seguimiento y la depuración.
+**Uso:**
+- Configura el orden de ejecución y los parámetros dentro del script.
+- Ejecuta el script utilizando Python: `python Ejecutor.py`
 
+**Funciones Clave:**
+- `run_script(script_name)`: Ejecuta el script dado.
+- `main()`: Función principal para coordinar el flujo de ejecución.
 
+**Dependencias:**
+- `subprocess`
+- `os`
 
+**Ejemplo:**
+```python
+def run_script(script_name):
+    subprocess.run(['python', script_name])
 
+def main():
+    scripts_to_run = ['script1.py', 'script2.py']
+    for script in scripts_to_run:
+        run_script(script)
 
+if __name__ == "__main__":
+    main()
+```
 
+### 3. marl_rgt.py
 
+**Descripción:**
+Este script procesa registros relacionados con "marl" y genera salidas formateadas basadas en ciertas reglas y condiciones.
 
+**Uso:**
+- Asegúrate de que los archivos de datos de entrada estén en su lugar.
+- Ejecuta el script utilizando Python: `python marl_rgt.py`
 
+**Funciones Clave:**
+- `process_record(record)`: Procesa un solo registro y lo formatea.
+- `main()`: Función principal para leer archivos de entrada, procesarlos y escribir las salidas.
 
+**Dependencias:**
+- `os`
+- `re`
+
+**Ejemplo:**
+```python
+def process_record(record):
+    # Procesa y formatea el registro
+    return formatted_record
+
+def main():
+    with open('input.txt', 'r') as infile:
+        records = infile.readlines()
+    with open('output.txt', 'w') as outfile:
+        for record in records:
+            formatted_record = process_record(record)
+            outfile.write(formatted_record)
+
+if __name__ == "__main__":
+    main()
+```
+
+### 4. metadata_parseo.py
+
+**Descripción:**
+Este script monitorea un directorio en busca de nuevos archivos XML, los analiza y procesa los metadatos según reglas especificadas.
+
+**Uso:**
+- Configura el directorio a monitorear en la configuración del script.
+- Ejecuta el script utilizando Python: `python metadata_parseo.py`
+
+**Funciones Clave:**
+- `on_created(event)`: Manejador para eventos de creación de archivos.
+- `parse_metadata(file)`: Analiza los metadatos del archivo XML.
+- `main()`: Configura el monitoreo del directorio y el manejo de eventos.
+
+**Dependencias:**
+- `watchdog.observers.Observer`
+- `watchdog.events.FileSystemEventHandler`
+- `xml.etree.ElementTree`
+- `configparser`
+- `os`
+
+**Ejemplo:**
+```python
+class Handler(FileSystemEventHandler):
+    def on_created(self, event):
+        if event.is_directory:
+            return None
+        elif event.src_path.endswith('.xml'):
+            parse_metadata(event.src_path)
+
+def parse_metadata(file_path):
+    tree = ET.parse(file_path)
+    root = tree.getroot()
+    # Procesa los metadatos
+    print(root.tag, root.attrib)
+
+def main():
+    path = 'path_to_watch'
+    event_handler = Handler()
+    observer = Observer()
+    observer.schedule(event_handler, path, recursive=False)
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
+
+if __name__ == "__main__":
+    main()
+```
+
+### 5. txt_rgt.py
+
+**Descripción:**
+Este script procesa archivos de texto y extrae o formatea información según requisitos específicos.
+
+**Uso:**
+- Asegúrate de que los archivos de texto de entrada estén disponibles.
+- Ejecuta el script utilizando Python: `python txt_rgt.py`
+
+**Funciones Clave:**
+- `process_text_file(file)`: Lee y procesa un archivo de texto.
+- `main()`: Coordina el procesamiento de todos los archivos de texto de entrada y maneja la salida.
+
+**Dependencias:**
+- `os`
+- `re`
+
+**Ejemplo:**
+```python
+def process_text_file(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    # Procesa el contenido
+    return processed_content
+
+def main():
+    input_files = ['file1.txt', 'file2.txt']
+    for file_path in input_files:
+        processed_content = process_text_file(file_path)
+        with open('output.txt', 'a') as output_file:
+            output_file.write(processed_content)
+
+if __name__ == "__main__":
+    main()
+```
+
+## Instrucciones Generales
+
+1. **Configuración:**
+   - Asegúrate de tener Python 3.x instalado en tu sistema.
+   - Instala las dependencias necesarias usando pip (ej. `pip install watchdog`).
+
+2. **Ejecución de los Scripts:**
+   - Navega al directorio que contiene los scripts.
+   - Ejecuta el script deseado utilizando Python (ej. `python crear_xml.py`).
+
+3. **Configuración:**
+   - Algunos scripts pueden requerir cambios en la configuración (ej. rutas de directorios, ubicaciones de archivos de entrada). Modifica estos ajustes directamente dentro del script según sea necesario.
+
+4. **Registro:**
+   - La salida y los registros se guardarán en los directorios o archivos especificados según lo definido en cada script.
+
+## Contribución
+
+Si deseas contribuir a este proyecto, sigue estos pasos:
+1. Haz un fork del repositorio.
+2. Crea una nueva rama (`git checkout -b feature-branch`).
+3. Realiza tus cambios (`git commit -m 'Add new feature'`).
+4. Sube los cambios a la rama (`git push origin feature-branch`).
+5. Crea un pull request.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.

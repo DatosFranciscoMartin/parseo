@@ -122,15 +122,16 @@ for archivo in lista_archivos:
     # Lee la siguiente línea que contiene información necesaria
 
     circuito = root.find('.//source').get('channelName')
+    diccionario_nemonicos = {"LA1": "D1", "LA2": "D2", "24H": "DI", "TDP": "S5"}
     year = root.get('startTime')[2:4]
     mes = root.get('startTime')[5:7]
     dia = root.get('startTime')[8:10]
-    nombre_fichero = circuito + year + mes + dia + ".rgt"
+    nombre_fichero = diccionario_nemonicos[circuito] + year + mes + dia + ".rgt"
 
     # Abre el archivo de salida en el directorio seleccionado
     # Se crea el fichero en modo escritura bajo el encode utf-8
     Archivo_salida = open(directorio_salida + "\\" + nombre_fichero, "w", encoding="utf-8")
-    Archivo_salida.write(circuito + year + mes + dia + "\n")
+    Archivo_salida.write(diccionario_nemonicos[circuito] + year + mes + dia + ".rgt" + "\n")
 
     logging.info(f"Archivo procesado: {archivo} --> Destino del fichero: {directorio_salida}\{nombre_fichero}")
 
