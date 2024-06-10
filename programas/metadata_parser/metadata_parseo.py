@@ -20,9 +20,11 @@ ruta_watch = rutas['ruta_watcher']
 ruta_salida = rutas['ruta_salida']
 
 
+# Se indica las rutas donde se van a mover los ficheros que se vayan procesando
 ruta_procesado = "D:/traductor/metadata/Procesado"
 ruta_erroneo = "D:/traductor/metadata/Erroneo"
 
+# Se crean los directorios donde se van a mover los ficheros en el caso de que no existan
 if not os.path.exists(ruta_procesado):
     os.makedirs(ruta_procesado)
 
@@ -31,6 +33,27 @@ if not os.path.exists(ruta_erroneo):
 
 
 def procesar_archivo(archivo):
+
+    """
+    Procesa un fichero y genera un fichero XML basado en el contenido del fichero.
+
+    Args:
+        archivo (str): La ruta del archivo a procesar.
+
+    Devuelve:
+        Ninguno
+
+    Lanza:
+        Excepción: Si se produce un error al generar el fichero XML.
+
+    Descripción:
+        Esta función toma una ruta de fichero como entrada y procesa el fichero para generar un fichero XML. 
+        El fichero XML se genera a partir del contenido del fichero de entrada. 
+        La función lee el fichero, determina su extensión y lo procesa en consecuencia. 
+        Si la extensión del fichero es ".dub", la función lee el fichero línea por línea y extrae la información necesaria para crear elementos XML. 
+        Si la extensión del archivo no es ".dub", la función analiza el archivo XML y extrae la información necesaria para crear elementos XML. 
+        El archivo XML generado se guarda en el directorio de salida especificado. Si se produce un error durante el proceso de generación del XML, se lanza una excepción.
+    """
 
     try:
         with open(archivo, "r", encoding="utf-8") as fichero:
@@ -113,18 +136,6 @@ def procesar_archivo(archivo):
                         elif param_name == "SOM":
                             Som  = param_value
 
-                    # Extraer y mostrar los parámetros de cada Parameter
-                    # Namespace utilizado en el XML
-                    #namespace = {'soa': 'urn:telestream.net:soa:core'}
-                    #parameters = {}
-                    #for parameters in root.findall('.//soa:Parameter'):
-                    #    if parameters.get('name') == 'IDConti':
-                    #        mediaID = parameters.text
-                    #    elif parameters.get('name') == 'Title':
-                    #        title = parameters.text
-                    #    elif parameters.get('name') == 'SOM':
-                    #        Som = parameters.text
-
 
                     # Crear el elemento media y establecer los atributos
                     media = ET.SubElement(mediaRecords, "media")
@@ -150,10 +161,11 @@ def procesar_archivo(archivo):
         # Forzar recolección de basura
         print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
         os.rename(archivo, ruta_procesado + "\\" + os.path.basename(archivo))
+        gc.collect()
 
-    except Exception as e:
-        print("Error al generar el XML: error en el fichero "+nombre_fichero_sin_extension)
-        print(e)
+    except Exception:
+        print("Error al generar el XML: error en el fichero "+ nombre_fichero_sin_extension)
+        #print(e)
         os.rename(archivo, ruta_erroneo + "\\" + os.path.basename(archivo))
 
 class Watcher:
