@@ -31,16 +31,6 @@ Este script genera archivos XML basados en datos de entrada específicos y plant
 - `xml.etree.ElementTree`
 - `os`
 
-**Ejemplo:**
-```python
-data = {
-    'title': 'Example Title',
-    'date': '2024-06-10',
-    'content': 'This is an example content.'
-}
-generate_xml(data)
-save_xml('output.xml', xml_data)
-```
 
 ### 2. Ejecutor.py
 
@@ -59,19 +49,6 @@ Este script actúa como un ejecutor para gestionar y ejecutar otros scripts o pr
 - `subprocess`
 - `os`
 
-**Ejemplo:**
-```python
-def run_script(script_name):
-    subprocess.run(['python', script_name])
-
-def main():
-    scripts_to_run = ['script1.py', 'script2.py']
-    for script in scripts_to_run:
-        run_script(script)
-
-if __name__ == "__main__":
-    main()
-```
 
 ### 3. marl_rgt.py
 
@@ -90,23 +67,6 @@ Este script procesa registros relacionados con "marl" y genera salidas formatead
 - `os`
 - `re`
 
-**Ejemplo:**
-```python
-def process_record(record):
-    # Procesa y formatea el registro
-    return formatted_record
-
-def main():
-    with open('input.txt', 'r') as infile:
-        records = infile.readlines()
-    with open('output.txt', 'w') as outfile:
-        for record in records:
-            formatted_record = process_record(record)
-            outfile.write(formatted_record)
-
-if __name__ == "__main__":
-    main()
-```
 
 ### 4. metadata_parseo.py
 
@@ -129,38 +89,6 @@ Este script monitorea un directorio en busca de nuevos archivos XML, los analiza
 - `configparser`
 - `os`
 
-**Ejemplo:**
-```python
-class Handler(FileSystemEventHandler):
-    def on_created(self, event):
-        if event.is_directory:
-            return None
-        elif event.src_path.endswith('.xml'):
-            parse_metadata(event.src_path)
-
-def parse_metadata(file_path):
-    tree = ET.parse(file_path)
-    root = tree.getroot()
-    # Procesa los metadatos
-    print(root.tag, root.attrib)
-
-def main():
-    path = 'path_to_watch'
-    event_handler = Handler()
-    observer = Observer()
-    observer.schedule(event_handler, path, recursive=False)
-    observer.start()
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
-
-if __name__ == "__main__":
-    main()
-```
-
 ### 5. txt_rgt.py
 
 **Descripción:**
@@ -177,25 +105,6 @@ Este script procesa archivos de texto y extrae o formatea información según re
 **Dependencias:**
 - `os`
 - `re`
-
-**Ejemplo:**
-```python
-def process_text_file(file_path):
-    with open(file_path, 'r') as file:
-        content = file.read()
-    # Procesa el contenido
-    return processed_content
-
-def main():
-    input_files = ['file1.txt', 'file2.txt']
-    for file_path in input_files:
-        processed_content = process_text_file(file_path)
-        with open('output.txt', 'a') as output_file:
-            output_file.write(processed_content)
-
-if __name__ == "__main__":
-    main()
-```
 
 ## Instrucciones Generales
 
