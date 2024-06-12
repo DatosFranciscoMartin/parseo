@@ -160,15 +160,22 @@ for archivo in lista_archivos:
             try:
                 if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
 
-                    if  event.get('type') == "Live":
+                    #if  event.get('type') == "Live":
+                    #    B = event.find('.//properties/event').get('reconcileKey')[18:36]
+                    #    B = B[3:] + " "*3
+                    #else:
+                    if len(event.find('.//properties/event').get('reconcileKey')) == 45:
+                        #B = event.find('.//properties/media').get('mediaName')
                         B = event.find('.//properties/event').get('reconcileKey')[18:36]
                         B = B[3:] + " "*3
                     else:
-                        B = event.find('.//properties/media').get('mediaName')
-                        #B = event.find('.//properties/event').get('reconcileKey')[14:22]
-                    #B = event.find('.//properties/event').get('reconcileKey')[18:36].replace("*", " ")
+                        B = event.find('.//properties/event').get('reconcileKey')[17:22]
+                        B = B + " "*13
                 else:
-                    B = event.find('.//properties/media').get('mediaName')
+                    if event.get('type') == "Live":
+                        B = DEFAULT[:18]
+                    else:
+                        B = event.find('.//properties/media').get('mediaName')
             except AttributeError:
                 B = DEFAULT[:18]
 
