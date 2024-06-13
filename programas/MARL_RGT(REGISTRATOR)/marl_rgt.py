@@ -140,11 +140,18 @@ for archivo in lista_archivos:
     # Otras operaciones para leer el archivo y escribir en el archivo de salida
     for event in root.findall('.//eventList/event'):
         if event.get('type') != "Comment":
+
+            try:
+                reconcileKey = event.find('.//properties/event').get('reconcileKey')
+                medianame = event.find('.//properties/media').get('mediaName')
+            except AttributeError:
+                reconcileKey = None
+                medianame = None
             
             try:
                 if event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed", "User Abort", "List Abort", "List Preempt"]:
                     Q = "6"
-                elif event.find('.//properties/event').get('reconcileKey') is not None and not (len(event.find('.//properties/event').get('reconcileKey')) == 45 or len(event.find('.//properties/event').get('reconcileKey')) == 55):
+                elif reconcileKey is not None and not (len(reconcileKey) == 45 or len(reconcileKey) == 55):
                     Q = "5"
                 else:
                     Q = " "
@@ -158,24 +165,24 @@ for archivo in lista_archivos:
                 A = DEFAULT[:11]
 
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
+                if reconcileKey is not None and Q != "5":
 
                     #if  event.get('type') == "Live":
-                    #    B = event.find('.//properties/event').get('reconcileKey')[18:36]
+                    #    B = reconcileKey[18:36]
                     #    B = B[3:] + " "*3
                     #else:
-                    if len(event.find('.//properties/event').get('reconcileKey')) == 45:
-                        #B = event.find('.//properties/media').get('mediaName')
-                        B = event.find('.//properties/event').get('reconcileKey')[18:36]
+                    if len(reconcileKey) == 45:
+                        #B = medianame
+                        B = reconcileKey[18:36]
                         B = B[3:] + " "*3
                     else:
-                        B = event.find('.//properties/event').get('reconcileKey')[17:22]
+                        B = reconcileKey[17:22]
                         B = B + " "*13
                 else:
                     if event.get('type') == "Live":
                         B = DEFAULT[:18]
-                    else:
-                        B = event.find('.//properties/media').get('mediaName')
+                    elif medianame is not None:
+                        B = medianame
             except AttributeError:
                 B = DEFAULT[:18]
 
@@ -201,9 +208,9 @@ for archivo in lista_archivos:
             tipos_de_eventos = {"Ajustes": "A", "Publicidad": "B", "Complementos": "C", "Desconexiones": "D", "Episodios": "E", "Programa": "P"}
 
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5":
+                if reconcileKey is not None and Q != "5":
 
-                    F = event.find('.//properties/event').get('reconcileKey')[0:1]
+                    F = reconcileKey[0:1]
                     if F == "*":
                         F == " "
                 else:
@@ -215,8 +222,8 @@ for archivo in lista_archivos:
             # En caso de no tenerlo en el reconcileKey, tenemos que preguntar por el diccionario de categorías para mapearlo.
 
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 45:
-                    G = event.find('.//properties/event').get('reconcileKey')[2:3]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
+                    G = reconcileKey[2:3]
                     if G == "*" or G == "0":
                         G = "2"
                 else:
@@ -225,16 +232,16 @@ for archivo in lista_archivos:
                 G = DEFAULT[:1]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and len(event.find('.//properties/event').get('reconcileKey')) == 55:
-                    H = event.find('.//properties/event').get('reconcileKey')[3:10]
+                if reconcileKey is not None and len(reconcileKey) == 55:
+                    H = reconcileKey[3:10]
                 else:
                     H = DEFAULT[:7]
             except AttributeError:
                 H = DEFAULT[:7]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 55:
-                    I = event.find('.//properties/event').get('reconcileKey')[12:15]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
+                    I = reconcileKey[12:15]
                     if I == "    ":
                         I = DEFAULT[:3]                  
                 else:
@@ -242,26 +249,26 @@ for archivo in lista_archivos:
             except AttributeError:
                 I = DEFAULT[:3]
 
-            #print(event.find('.//properties/media').get('mediaName'))
+            #print(medianame)
             try:
-                if event.find('.//properties/media').get('mediaName') is not None and event.find('.//properties/media').get('mediaName').startswith("B"):
-                    J = event.find('.//properties/media').get('mediaName')[1:6]
+                if medianame is not None and medianame.startswith("B"):
+                    J = medianame[1:6]
                 else:
                     J = DEFAULT[:5]
             except AttributeError:
                 J = DEFAULT[:5]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 55:
-                    K = event.find('.//properties/event').get('reconcileKey')[24:35]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
+                    K = reconcileKey[24:35]
                 else:
                     K = DEFAULT[:11]
             except AttributeError:
                 K = DEFAULT[:11]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 55:
-                    L = event.find('.//properties/event').get('reconcileKey')[37:39]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
+                    L = reconcileKey[37:39]
                 else:
                     L = DEFAULT[:2]
             except AttributeError:
@@ -287,8 +294,8 @@ for archivo in lista_archivos:
                         O = grafico_xml.get('mediaName')[-2:]
 
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 45:
-                    P = event.find('.//properties/event').get('reconcileKey')[1:2]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
+                    P = reconcileKey[1:2]
                     if P == " " or P == "0":
                         P = "7"
                 else:
@@ -297,84 +304,84 @@ for archivo in lista_archivos:
                 P = DEFAULT[:1]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 45:
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
 
-                    #if event.find('.//properties/event').get('reconcileKey')[
+                    #if reconcileKey[
                     #   2:3] == "0":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "0"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "1":  # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "1"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "2":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "2"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "3":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "7"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "4":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "3"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "5":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "D"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "6":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "B"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "7":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "6"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "8":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "9"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "9":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "A"
-                    #elif event.find('.//properties/event').get('reconcileKey')[
+                    #elif reconcileKey[
                     #     2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "C"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " "
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "*" and event.find('.//properties/event').get('reconcileKey')[6:7] == "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
                         R = "0"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "S" and event.find('.//properties/event').get('reconcileKey')[6:7] == "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
                         R = "1"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "*" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
                         R = "2"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "*" and event.find('.//properties/event').get('reconcileKey')[6:7] == "*" and event.find('.//properties/event').get('reconcileKey')[7:8] != "*":
+                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] == "*" and reconcileKey[7:8] != "*":
                         R = "7"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "S" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
                         R = "3"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS !=
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "*" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] != "*":
+                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
                         R = "D"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "S" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] != "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
                        R = "B"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "I" and event.find('.//properties/event').get('reconcileKey')[6:7] == "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
                         R = "6"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "I" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] == "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
                         R = "9"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "I" and event.find('.//properties/event').get('reconcileKey')[6:7] == "*" and event.find('.//properties/event').get('reconcileKey')[7:8] != "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == "*" and reconcileKey[7:8] != "*":
                         R = "A"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                    if event.find('.//properties/event').get('reconcileKey')[5:6] == "I" and event.find('.//properties/event').get('reconcileKey')[6:7] != "*" and event.find('.//properties/event').get('reconcileKey')[7:8] != "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
                         R = "C"
 
                 else:
@@ -419,17 +426,17 @@ for archivo in lista_archivos:
             ESPECIAL = DEFAULT[:2]
 
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 45:
-                    X = event.find('.//properties/event').get('reconcileKey')[37:]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
+                    X = reconcileKey[37:]
                 else:
                     X = DEFAULT[:8]
             except AttributeError:
                 X = DEFAULT[:8]
             
             try:
-                if event.find('.//properties/event').get('reconcileKey') is not None and Q != "5" and len(event.find('.//properties/event').get('reconcileKey')) == 45:
-                    if event.find('.//properties/event').get('reconcileKey')[1:2] in ["1", "2"]:
-                        Y = event.find('.//properties/event').get('reconcileKey')[1:2]
+                if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
+                    if reconcileKey[1:2] in ["1", "2"]:
+                        Y = reconcileKey[1:2]
                     else:
                         Y = "0"
                 else:
