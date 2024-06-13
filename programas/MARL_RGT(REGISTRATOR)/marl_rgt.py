@@ -127,11 +127,14 @@ for archivo in lista_archivos:
     mes = root.get('startTime')[5:7]
     dia = root.get('startTime')[8:10]
     nombre_fichero = diccionario_nemonicos[circuito] + year + mes + dia + ".rgt"
+    nombre_fichero_csv = diccionario_nemonicos[circuito] + year + mes + dia + ".csv"
 
     # Abre el archivo de salida en el directorio seleccionado
     # Se crea el fichero en modo escritura bajo el encode utf-8
     Archivo_salida = open(directorio_salida + "\\" + nombre_fichero, "w", encoding="utf-8")
     Archivo_salida.write(diccionario_nemonicos[circuito] + year + mes + dia + ".rgt" + "\n")
+
+    Archivo_salida_csv =open(directorio_salida + "\\" + nombre_fichero_csv, "w", encoding="utf-8")
 
     logging.info(f"Archivo procesado: {archivo} --> Destino del fichero: {directorio_salida}\{nombre_fichero}")
 
@@ -449,6 +452,10 @@ for archivo in lista_archivos:
                 str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
             )
             Archivo_salida.write(output_line)
+
+            # Generamos un CSV separados por ?
+
+            #Archivo_salida_csv.write(f"{A}?{B}?{C}?{D}?{E}?{F}?{G}?{H}?{I}?{J}?{K}?{L}?{M}?{N}?{O}?{P}?{Q}?{R}?{S}?{T}?{U}?{V}?{W}?{ESPECIAL}?{X}?{Y}\n")
 
             #header = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
             #"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "ESPECIAL", "X", "Y"
