@@ -134,7 +134,7 @@ for archivo in lista_archivos:
     Archivo_salida = open(directorio_salida + "\\" + nombre_fichero, "w", encoding="utf-8")
     Archivo_salida.write(diccionario_nemonicos[circuito] + year + mes + dia + ".rgt" + "\n")
 
-    Archivo_salida_csv =open(directorio_salida + "\\" + nombre_fichero_csv, "w", encoding="utf-8")
+    #Archivo_salida_csv =open(directorio_salida + "\\" + nombre_fichero_csv, "w", encoding="utf-8")
 
     logging.info(f"Archivo procesado: {archivo} --> Destino del fichero: {directorio_salida}\{nombre_fichero}")
 
@@ -180,7 +180,7 @@ for archivo in lista_archivos:
                         B = B[3:] + " "*3
                     else:
                         B = reconcileKey[17:22]
-                        B = B + " "*13
+                        B = "B"+ B + " "*12
                 else:
                     if event.get('type') == "Live":
                         B = DEFAULT[:18]
@@ -448,7 +448,7 @@ for archivo in lista_archivos:
                 Y = "0"
 
             # Escribimos en el archivo de salida la línea formateada correctamente.
-            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
+            output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2} {:<8} {:<1}\n".format(
                 str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
             )
             Archivo_salida.write(output_line)
