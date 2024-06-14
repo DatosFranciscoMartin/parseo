@@ -7,6 +7,7 @@ import os
 from datetime import datetime
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
+import shutil
 
 
 # Cargar el archivo de configuración
@@ -160,13 +161,13 @@ def procesar_archivo(archivo):
                 
         # Forzar recolección de basura
         print("XML generado exitosamente. Se ha creado en " + ruta_salida + "\\" + nombre_fichero_sin_extension + ".xml")
-        os.rename(archivo, ruta_procesado + "\\" + os.path.basename(archivo))
+        shutil.move(archivo, ruta_procesado + "\\" + os.path.basename(archivo))
         gc.collect()
 
     except Exception:
         print("Error al generar el XML: error en el fichero "+ nombre_fichero_sin_extension)
         #print(e)
-        os.rename(archivo, ruta_erroneo + "\\" + os.path.basename(archivo))
+        shutil.move(archivo, ruta_erroneo + "\\" + os.path.basename(archivo))
 
 class Watcher:
     """
