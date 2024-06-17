@@ -184,8 +184,9 @@ for archivo in lista_archivos:
                 else:
                     if event.get('type') == "Live":
                         B = DEFAULT[:18]
-                    elif medianame is not None:
+                    elif medianame is not None and medianame != "$INHERIT$":
                         B = medianame
+                        medianame = None
             except AttributeError:
                 B = DEFAULT[:18]
 
