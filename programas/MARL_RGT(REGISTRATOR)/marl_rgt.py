@@ -148,10 +148,10 @@ for archivo in lista_archivos:
 
             try:
                 reconcileKey = event.find('.//properties/event').get('reconcileKey')
-                medianame = event.find('.//properties/media').get('mediaName')
+                #medianame = event.find('.//properties/media').get('mediaName')
             except AttributeError:
                 reconcileKey = None
-                medianame = None
+                #medianame = None
 
             try:
                 if event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed",
@@ -187,11 +187,22 @@ for archivo in lista_archivos:
                         B = reconcileKey[17:22]
                         B = "B" + B + " " * 12
                 else:
-                    if event.get('type') == "Live":
+                    #if event.get('type') == "Live":
+                    #    B = DEFAULT[:18]
+                    #elif medianame is not None and medianame != "$INHERIT$":
+                    #B = event.find('.//properties/media').get('mediaName')
+                    #    medianame = None
+
+                    # Busca el mediaName específicamente en la ruta event/properties/media
+                    properties = event.find('properties')
+                    if properties is not None:
+                        media = properties.find('media')
+                        if media is not None:
+                            B = media.get('mediaName')
+                        else:
+                            B = DEFAULT[:18]
+                    else:
                         B = DEFAULT[:18]
-                    elif medianame is not None and medianame != "$INHERIT$":
-                        B = medianame
-                        medianame = None
             except AttributeError:
                 B = DEFAULT[:18]
 
@@ -261,6 +272,7 @@ for archivo in lista_archivos:
 
             # print(medianame)
             try:
+                medianame = event.find('.//properties/media').get('mediaName')
                 if medianame is not None and medianame.startswith("B"):
                     J = medianame[1:6]
                 else:
