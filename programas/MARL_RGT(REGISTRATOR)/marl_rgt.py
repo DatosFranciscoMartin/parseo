@@ -23,7 +23,8 @@ def seleccionar_archivos():
     Prompts the user to select multiple files and extends the list of files with the selected ones.
     """
     # Prompt the user to select multiple files
-    archivos = filedialog.askopenfilenames(filetypes=(("Archivos de AsRun_xml", "*.marl"), ("Todos los archivos", "*.*")))
+    archivos = filedialog.askopenfilenames(
+        filetypes=(("Archivos de AsRun_xml", "*.marl"), ("Todos los archivos", "*.*")))
 
     # If files were selected, extend the list of files with the selected ones
     if archivos:
@@ -107,7 +108,8 @@ ventana.mainloop()
 
 # se coge la fecha actual y se formatea para el nombre del archivo log en el directorio de salida seleccionado y se crea el archivo log
 fecha_actual = datetime.date.today()
-logging.basicConfig(filename=directorio_salida +'\\'+'registro.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=directorio_salida + '\\' + 'registro.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
@@ -134,7 +136,7 @@ for archivo in lista_archivos:
     Archivo_salida = open(directorio_salida + "\\" + nombre_fichero, "w", encoding="utf-8")
     Archivo_salida.write(diccionario_nemonicos[circuito] + year + mes + dia + ".rgt" + "\n")
 
-    #Archivo_salida_csv =open(directorio_salida + "\\" + nombre_fichero_csv, "w", encoding="utf-8")
+    # Archivo_salida_csv =open(directorio_salida + "\\" + nombre_fichero_csv, "w", encoding="utf-8")
 
     logging.info(f"Archivo procesado: {archivo} --> Destino del fichero: {directorio_salida}\{nombre_fichero}")
 
@@ -150,9 +152,12 @@ for archivo in lista_archivos:
             except AttributeError:
                 reconcileKey = None
                 medianame = None
-            
+
             try:
-                if event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed", "User Abort", "List Abort", "List Preempt"]:
+                if event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed",
+                                                                                               "User Abort",
+                                                                                               "List Abort",
+                                                                                               "List Preempt"]:
                     Q = "6"
                 elif reconcileKey is not None and not (len(reconcileKey) == 45 or len(reconcileKey) == 55):
                     Q = "5"
@@ -163,24 +168,24 @@ for archivo in lista_archivos:
 
             try:
                 A = event.find('.//asRun').get('startTime').split('T')[1]
-            
+
             except AttributeError:
                 A = DEFAULT[:11]
 
             try:
                 if reconcileKey is not None and Q != "5":
 
-                    #if  event.get('type') == "Live":
+                    # if  event.get('type') == "Live":
                     #    B = reconcileKey[18:36]
                     #    B = B[3:] + " "*3
-                    #else:
+                    # else:
                     if len(reconcileKey) == 45:
-                        #B = medianame
+                        # B = medianame
                         B = reconcileKey[18:36]
-                        B = B[3:] + " "*3
+                        B = B[3:] + " " * 3
                     else:
                         B = reconcileKey[17:22]
-                        B = "B"+ B + " "*12
+                        B = "B" + B + " " * 12
                 else:
                     if event.get('type') == "Live":
                         B = DEFAULT[:18]
@@ -203,13 +208,14 @@ for archivo in lista_archivos:
                     D = DEFAULT[:32]
             except AttributeError:
                 D = DEFAULT[:32]
-            
+
             if event.find('.//asRun').get('duration') is not None and len(event.find('.//asRun').get('duration')) == 11:
                 E = event.find('.//asRun').get('duration')
             else:
                 E = DEFAULT[:11]
 
-            tipos_de_eventos = {"Ajustes": "A", "Publicidad": "B", "Complementos": "C", "Desconexiones": "D", "Episodios": "E", "Programa": "P"}
+            tipos_de_eventos = {"Ajustes": "A", "Publicidad": "B", "Complementos": "C", "Desconexiones": "D",
+                                "Episodios": "E", "Programa": "P"}
 
             try:
                 if reconcileKey is not None and Q != "5":
@@ -234,7 +240,7 @@ for archivo in lista_archivos:
                     G = DEFAULT[:1]
             except AttributeError:
                 G = DEFAULT[:1]
-            
+
             try:
                 if reconcileKey is not None and len(reconcileKey) == 55:
                     H = reconcileKey[3:10]
@@ -242,18 +248,18 @@ for archivo in lista_archivos:
                     H = DEFAULT[:7]
             except AttributeError:
                 H = DEFAULT[:7]
-            
+
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
                     I = reconcileKey[12:15]
                     if I == "    ":
-                        I = DEFAULT[:3]                  
+                        I = DEFAULT[:3]
                 else:
                     I = DEFAULT[:3]
             except AttributeError:
                 I = DEFAULT[:3]
 
-            #print(medianame)
+            # print(medianame)
             try:
                 if medianame is not None and medianame.startswith("B"):
                     J = medianame[1:6]
@@ -261,7 +267,7 @@ for archivo in lista_archivos:
                     J = DEFAULT[:5]
             except AttributeError:
                 J = DEFAULT[:5]
-            
+
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
                     K = reconcileKey[24:35]
@@ -269,7 +275,7 @@ for archivo in lista_archivos:
                     K = DEFAULT[:11]
             except AttributeError:
                 K = DEFAULT[:11]
-            
+
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 55:
                     L = reconcileKey[37:39]
@@ -282,7 +288,6 @@ for archivo in lista_archivos:
                 M = event.find('.//properties/event/comment').text[0:14]
             else:
                 M = DEFAULT[:14]
-
 
             graficos_xml = event.findall('.//childEvents/event/properties/media')[:2]
 
@@ -306,41 +311,41 @@ for archivo in lista_archivos:
                     P = DEFAULT[:1]
             except AttributeError:
                 P = DEFAULT[:1]
-            
+
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
 
-                    #if reconcileKey[
+                    # if reconcileKey[
                     #   2:3] == "0":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "0"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "1":  # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "1"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "2":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "2"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "3":  # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "7"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "4":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "3"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "5":  # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "D"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "6":  # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "B"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "7":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "6"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "8":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
                     #    R = "9"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "9":  # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "A"
-                    #elif reconcileKey[
+                    # elif reconcileKey[
                     #     2:3] == "A":  # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     #    R = "C"
 
@@ -370,7 +375,7 @@ for archivo in lista_archivos:
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
                     if reconcileKey[5:6] == "S" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
-                       R = "B"
+                        R = "B"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
                     if reconcileKey[5:6] == "I" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
@@ -393,30 +398,34 @@ for archivo in lista_archivos:
             except AttributeError:
                 R = DEFAULT[:1]
 
-            mapeo_audio = {    
-            "3-ST": "EST",
-            "2-DL-ST": "DST",
-            "1-MONO": "MON",
-            "2-DL-ST-DOLBY": "DUA",
-            "7-DOLBY1": "DP1",
-            "8-DOLBY2": "DP2",
-            "Dolby PAR 3": "DP3",
-            "5-DUAL5-6": "DG1",
-            "6-DUAL3-4": "DG2"
+            mapeo_audio = {
+                "3-ST": "EST",
+                "2-DL-ST": "DST",
+                "1-MONO": "MON",
+                "2-DL-ST-DOLBY": "DUA",
+                "7-DOLBY1": "DP1",
+                "8-DOLBY2": "DP2",
+                "Dolby PAR 3": "DP3",
+                "5-DUAL5-6": "DG1",
+                "6-DUAL3-4": "DG2"
             }
 
-            try:    
-                if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') is not None and event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in ["3-ST", "2-DL-ST", "Dolby PAR 3", "6-DUAL3-4"]:
-                    audio = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name')
+            try:
+                if event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get(
+                        'name') is not None and event.find(
+                        './/properties/features/feature/properties/effect/audioShuffle/trackPreset').get('name') in [
+                    "3-ST", "2-DL-ST", "Dolby PAR 3", "6-DUAL3-4"]:
+                    audio = event.find('.//properties/features/feature/properties/effect/audioShuffle/trackPreset').get(
+                        'name')
                     S = mapeo_audio[audio]
                 else:
                     S = DEFAULT[:3]
             except AttributeError:
                 S = DEFAULT[:3]
 
-
             T = DEFAULT[:1]
-            if event.find('.//childEvent/event/properties/event/comment') is not None and event.find('.//childEvent/event/properties/event/comment').text == "I":
+            if event.find('.//childEvent/event/properties/event/comment') is not None and event.find(
+                    './/childEvent/event/properties/event/comment').text == "I":
                 U = event.find('.//childEvent/event/properties/media').get('mediaName')
             else:
                 U = DEFAULT[:4]
@@ -436,7 +445,7 @@ for archivo in lista_archivos:
                     X = DEFAULT[:8]
             except AttributeError:
                 X = DEFAULT[:8]
-            
+
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
                     if reconcileKey[1:2] in ["1", "2"]:
@@ -450,23 +459,25 @@ for archivo in lista_archivos:
 
             # Escribimos en el archivo de salida la línea formateada correctamente.
             output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2} {:<8} {:<1}\n".format(
-                str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
+                str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M),
+                str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X),
+                str(Y)
             )
             Archivo_salida.write(output_line)
 
             # Generamos un CSV separados por ?
 
-            #Archivo_salida_csv.write(f"{A}?{B}?{C}?{D}?{E}?{F}?{G}?{H}?{I}?{J}?{K}?{L}?{M}?{N}?{O}?{P}?{Q}?{R}?{S}?{T}?{U}?{V}?{W}?{ESPECIAL}?{X}?{Y}\n")
+            # Archivo_salida_csv.write(f"{A}?{B}?{C}?{D}?{E}?{F}?{G}?{H}?{I}?{J}?{K}?{L}?{M}?{N}?{O}?{P}?{Q}?{R}?{S}?{T}?{U}?{V}?{W}?{ESPECIAL}?{X}?{Y}\n")
 
-            #header = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
-            #"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "ESPECIAL", "X", "Y"
-            #)
-            #Archivo_salida.write(header)
+            # header = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
+            # "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "ESPECIAL", "X", "Y"
+            # )
+            # Archivo_salida.write(header)
     #
-            #output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
-            #str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
-            #)
-            #Archivo_salida.write(output_line)
-    
+    # output_line = "{:<11}  {:<18}  {:<2}  {:<32}  {:<11}  {:<1} {:<1}{:<7}  {:<3}  {:<5}  {:<11}  {:<2}  {:<14}  {:<2} {:<2}{:<1}{:<1}{:<1}{:<3}{:<1}{:<4}{:<1}{:<1}{:<2}  {:<8}  {:<1}\n".format(
+    # str(A), str(B), str(C), str(D), str(E), str(F), str(G), str(H), str(I), str(J), str(K), str(L), str(M), str(N), str(O), str(P), str(Q), str(R), str(S), str(T), str(U), str(V), str(W), str(ESPECIAL), str(X), str(Y)
+    # )
+    # Archivo_salida.write(output_line)
+
     else:
         continue
