@@ -6,7 +6,7 @@ import os
 
 def convert_path(local_path):
     base_network_path = r"Y:\Tedial"
-    relative_path = local_path.replace("/storage/MANAGED", "").replace("/", "\")
+    relative_path = local_path.replace("/storage/MANAGED", "").replace("/", "\\")
     network_path = base_network_path + relative_path
     return network_path
 
