@@ -5,7 +5,7 @@ import os
 
 
 def convert_path(local_path):
-    base_network_path = r"\\10.172.205.50\Tedial"
+    base_network_path = r"Y:\Tedial"
     relative_path = local_path.replace("/storage/MANAGED", "").replace("/", "\\")
     network_path = base_network_path + relative_path
     return network_path
@@ -46,7 +46,7 @@ root = tk.Tk()
 root.title("Copiar y Renombrar Archivo")
 
 # Ruta de destino por defecto
-default_destination = r"Z:\entrada"
+default_destination = r"W:\entrada"
 
 # Crear y colocar los widgets
 tk.Label(root, text="Ruta de Origen:").grid(row=0, column=0, padx=10, pady=10)
