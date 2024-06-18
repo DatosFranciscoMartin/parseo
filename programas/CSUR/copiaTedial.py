@@ -8,6 +8,7 @@ def convert_path(local_path):
     base_network_path = r"Y:\Tedial"
     relative_path = local_path.replace("/storage/MANAGED", "").replace("/", "\\")
     network_path = base_network_path + relative_path
+    print(network_path)
     return network_path
 
 
@@ -15,6 +16,7 @@ def get_new_filename(local_path):
     # Extraer el nombre del archivo sin la ruta ni extensión.
     filename = os.path.basename(local_path)
     new_filename = filename.split('_')[0] + ".mxf"
+    print(new_filename)
     return new_filename
 
 
