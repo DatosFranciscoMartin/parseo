@@ -422,7 +422,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     # Crear el elemento trackPreset y establecer el atributo "name"
                     if nombre_audio:
                         trackpreset = ET.SubElement(audioshuffle, "trackPreset")
-                        trackpreset.set("name", nombre_audio)
+                        trackpreset.set("name", "nombre_audio")
 
                 # Se comrpueba si viene subtitulado o no, para ello usamos el campo llamado "SUBTITULADO", si es S vendra en castellano, si es I vendra en ingles y castellano y si viene en blanco no tiene subtitulos
                 if diccionario_interno['SUBTITULADO'] == "S" or diccionario_interno['SUBTITULADO'] == "I":
@@ -474,6 +474,27 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     properties_gpi = ET.SubElement(feature_gpi, "properties")
                     macro_gpi = ET.SubElement(properties_gpi, "macro")
                     macro_gpi.set("name", "GPI")
+
+                    #Metemos el audioshuffle sí o sí en las desconexiónes
+
+                    feature_audio1 = ET.SubElement(feature_1, "feature")
+                    feature_audio1.set("type", "AudioShuffle")
+                    properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+                    schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+                    schedule_feature_audio.set("startType", "+ParentStart")
+                    schedule_feature_audio.set("startOffset", "00:00:00:00")
+                    effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+                    effect_feature_audio.set("status", "On")
+                    effect_feature_audio.set("type", "Audio Shuffle")
+                    port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+                    port_effect_feature_audio.set("type", "Auto")
+                    auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+                    auto_port_effect_feature_audio.set("type", "PGM")
+                    audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                    audioshuffle.set("type", "TrackPreset")
+                    trackpreset = ET.SubElement(audioshuffle, "trackPreset")
+                    trackpreset.set("name", "2-DL-ST")
+
 
                 # Creamos una rama de XML para todos los tipo 1, si cumple la siguiente condición, esta ira rellena, si no, ira vacia
                 child_event = ET.SubElement(event1, "childEvents")
