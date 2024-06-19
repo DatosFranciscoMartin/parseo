@@ -512,16 +512,21 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     califmoral_stripped = diccionario_interno["CALIFMORAL"].rstrip()
 
                     # Determinar la columna basada en CALIFMORAL
-                    columna = califmoral_to_column.get(califmoral_stripped, 0)
-
+                    columna = califmoral_to_column.get(califmoral_stripped, 1)
+                    
                     # Determinar el logo_branding
-                    if columna == 0:
+                    if columna == 1:
                         for prefix in media_id_especiales:
                             if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
                                 logo_branding = tabla[LICADENA][0]
+                                #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip()) 
                                 break
+                            else:
+                                logo_branding = tabla[LICADENA][columna]
+                                #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip())
                     else:
                         logo_branding = tabla[LICADENA][columna]
+                        #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip())
                     
 
                     # Generamos el arbol xml que va a colgar de childevents
@@ -596,7 +601,10 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                         if diccionario_interno["AUDIODESCRIPCION"] != " ":
                             grafico_secundario = "V012"
                         else:
-                            grafico_secundario = "V015"
+                            if LICADENA == "TELEDEPORTE":
+                                grafico_secundario = "V022"
+                            else:
+                                grafico_secundario = "V015"
 
                 if grafico_secundario != "":
 
