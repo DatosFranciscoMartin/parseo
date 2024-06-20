@@ -154,13 +154,13 @@ for archivo in lista_archivos:
                 #medianame = None
 
             try:
-                if event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed",
+                if reconcileKey is not None and not (len(reconcileKey) == 45 or len(reconcileKey) == 55):
+                    Q = "5"
+                elif event.get('enabled') == 'false' or event.find('.//asRun').get('result') in ["Descheduled", "Missed",
                                                                                                "User Abort",
                                                                                                "List Abort",
                                                                                                "List Preempt"]:
                     Q = "6"
-                elif reconcileKey is not None and not (len(reconcileKey) == 45 or len(reconcileKey) == 55):
-                    Q = "5"
                 else:
                     Q = " "
             except AttributeError:
@@ -183,9 +183,11 @@ for archivo in lista_archivos:
                         # B = medianame
                         B = reconcileKey[18:36]
                         B = B[3:] + " " * 3
-                    else:
+                    elif len(reconcileKey) == 55:
                         B = reconcileKey[17:22]
                         B = "B" + B + " " * 12
+                    else:
+                        B = DEFAULT[:18]
                 else:
                     #if event.get('type') == "Live":
                     #    B = DEFAULT[:18]
