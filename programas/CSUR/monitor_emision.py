@@ -22,7 +22,7 @@ def calculate_growth_rate(initial_sizes, final_sizes, interval):
             initial_size = initial_sizes[file_path]
             final_size = final_sizes[file_path]
             growth = final_size - initial_size
-            rate = growth / interval  # bytes per second
+            rate = growth / interval / (1024 * 1024)  # MB per second
             if growth > 0:  # Consider only growing files
                 growth_rates[file_path] = rate
     return growth_rates
@@ -61,9 +61,9 @@ def start_monitoring():
 
     result_text.insert(tk.END, "\nMonitoring complete. Results:\n")
     if growth_rates:
-        result_text.insert(tk.END, "Files that grew and their growth rates (bytes/second):\n")
+        result_text.insert(tk.END, "Files that grew and their growth rates (MB/second):\n")
         for file_path, rate in growth_rates.items():
-            result_text.insert(tk.END, f"{file_path}: {rate:.2f} bytes/second\n")
+            result_text.insert(tk.END, f"{file_path}: {rate:.2f} MB/second\n")
     else:
         result_text.insert(tk.END, "No files grew during the monitoring period.\n")
 
