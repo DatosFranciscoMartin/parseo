@@ -232,7 +232,7 @@ for archivo in lista_archivos:
                 if reconcileKey is not None and Q != "5":
 
                     F = reconcileKey[0:1]
-                    if F == "*":
+                    if F == " ":
                         F == " "
                 else:
                     # Agregar diccionario con category
@@ -245,7 +245,7 @@ for archivo in lista_archivos:
             try:
                 if reconcileKey is not None and Q != "5" and len(reconcileKey) == 45:
                     G = reconcileKey[2:3]
-                    if G == "*" or G == "0":
+                    if G == " " or G == "0":
                         G = "2"
                 else:
                     G = DEFAULT[:1]
@@ -362,47 +362,47 @@ for archivo in lista_archivos:
                     #    R = "C"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " "
-                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == " " and reconcileKey[6:7] == " " and reconcileKey[7:8] == " ":
                         R = "0"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] == " " and reconcileKey[7:8] == " ":
                         R = "1"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == " " and reconcileKey[6:7] != " " and reconcileKey[7:8] == " ":
                         R = "2"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] == "*" and reconcileKey[7:8] != "*":
+                    if reconcileKey[5:6] == " " and reconcileKey[6:7] == " " and reconcileKey[7:8] != " ":
                         R = "7"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != " " and reconcileKey[7:8] == " ":
                         R = "3"
 
                     # SUBTITULADO == " " and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS !=
-                    if reconcileKey[5:6] == "*" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
+                    if reconcileKey[5:6] == " " and reconcileKey[6:7] != " " and reconcileKey[7:8] != " ":
                         R = "D"
 
                     # SUBTITULADO == "S" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
+                    if reconcileKey[5:6] == "S" and reconcileKey[6:7] != " " and reconcileKey[7:8] != " ":
                         R = "B"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS == " ":
-                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == " " and reconcileKey[7:8] == " ":
                         R = "6"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS == " ":
-                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != "*" and reconcileKey[7:8] == "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != " " and reconcileKey[7:8] == " ":
                         R = "9"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION == " " and LENGUAJE_DE_SIGNOS != " ":
-                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == "*" and reconcileKey[7:8] != "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] == " " and reconcileKey[7:8] != " ":
                         R = "A"
 
                     # SUBTITULADO == "I" and AUDIODESCRIPCION != " " and LENGUAJE_DE_SIGNOS != " ":
-                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != "*" and reconcileKey[7:8] != "*":
+                    if reconcileKey[5:6] == "I" and reconcileKey[6:7] != " " and reconcileKey[7:8] != " ":
                         R = "C"
 
                 else:
