@@ -118,7 +118,8 @@ logging.basicConfig(filename=directorio_salida + '\\' + 'registro.log', level=lo
 config = configparser.ConfigParser()
 
 # Leer el archivo de configuración
-config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+#config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
 
 # Cargamos los datos de la configuración
 datos_ftp = config['datos_ftp']
