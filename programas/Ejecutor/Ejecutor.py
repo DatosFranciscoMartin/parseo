@@ -20,10 +20,15 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración
-    config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
-    #config.read(r'cf\config.conf')
-    #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
-    #config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\Ejecutor\cf\config.conf')
+    try:
+        if os.path.exists(r'D:\Traductor\Ejecutor\cf\config.conf'):
+            config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        elif os.path.exists(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf'):
+            config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        else:
+            config.read(r'C:\Scripts\RTVE\Ejecutor\conf\config.conf')
+    except:
+        print("Error al leer el archivo de configuración")
 
     # Obtener los valores de la sección Variables
     variables = config['variables']
@@ -467,7 +472,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 #    media_subtitle.set("mediaName", "$INHERITS$")
 
 
-                # Agregadas lineas para generar las gpi de desconexiones, solo necesitamos que sea 
+                # Agregadas lineas para generar las gpi de desconexiones, solo necesitamos que sea
                 if diccionario_interno["TITIPELEME"] in ["D"]:
                     feature_gpi = ET.SubElement(feature_1, "feature")
                     feature_gpi.set("type", "Macro")
@@ -513,13 +518,13 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 
                     # Determinar la columna basada en CALIFMORAL
                     columna = califmoral_to_column.get(califmoral_stripped, 1)
-                    
+
                     # Determinar el logo_branding
                     if columna == 1:
                         for prefix in media_id_especiales:
                             if diccionario_interno["TICODELEMENMIN"].startswith(prefix):
                                 logo_branding = tabla[LICADENA][0]
-                                #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip()) 
+                                #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip())
                                 break
                             else:
                                 logo_branding = tabla[LICADENA][columna]
@@ -527,7 +532,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     else:
                         logo_branding = tabla[LICADENA][columna]
                         #print(logo_branding, diccionario_interno["TICODELEMENMIN"], columna, LICADENA, diccionario_interno["CALIFMORAL"].rstrip())
-                    
+
 
                     # Generamos el arbol xml que va a colgar de childevents
                     event_child_1 = ET.SubElement(child_event, "event")
@@ -560,7 +565,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                 # Agregamos la logica para poder sacar el valor del grafico secundario, usando el diccionario interno y las variables del tipo de audio, subtitulado y audiodescripcion
 
                 grafico_secundario = ""
-                if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]: 
+                if diccionario_interno["TIPO_DE_AUDIO"] in ["DST","DUA"]:
                     if diccionario_interno["SUBTITULADO"] == " ":
                         if diccionario_interno["AUDIODESCRIPCION"] == " ":
                             grafico_secundario = "V011"
@@ -580,7 +585,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     else:
                         if diccionario_interno["AUDIODESCRIPCION"] == " ":
                             grafico_secundario = "V032"
-                        else:  
+                        else:
                             grafico_secundario = "V035"
                 elif diccionario_interno["TIPO_DE_AUDIO"] in ["DG1","DG2"]:
                     if diccionario_interno["SUBTITULADO"] == " ":
@@ -667,7 +672,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                                 schedule_child_5.set("startType", "+ParentStart")
                                 schedule_child_5.set("endOffset", "00:00:08:00")
                                 schedule_child_5.set("startOffset", "00:00:10:00")
-                        
+
                         elif diccionario_tipo_3["HORA_DE_COMIENZO"].rstrip()[0] != "T" and diccionario_tipo_3["TIPO_DE_INSERCION"] == "P":
                             schedule_child_5.set("endType", "-ParentEnd")
                             schedule_child_5.set("startType", "+ParentStart")
@@ -730,17 +735,20 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
 def descargar_archivos():
     """
     Descarga archivos desde un servidor FTP, utilizando la información de un archivo de configuración.
-    """    
+    """
 
     # Crear un objeto ConfigParser para leer el archivo de configuración
     config = configparser.ConfigParser()
 
     # Leer el archivo de configuración y obtener los datos
     try:
-        config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
-        #config.read(r'cf\config.conf')
-        #config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
-        #config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\Ejecutor\cf\config.conf')
+        if os.path.exists(r'D:\Traductor\Ejecutor\cf\config.conf'):
+            config.read(r'D:\Traductor\Ejecutor\cf\config.conf')
+        elif os.path.exists(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf'):
+            config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\Ejecutor\cf\config.conf')
+        else:
+            config.read(r'C:\Scripts\RTVE\Ejecutor\conf\config.conf')
+
     except (IOError, configparser.Error) as e:
         logging.error("Error al leer el archivo de configuración:", e)
         return
@@ -800,7 +808,7 @@ def descargar_archivos():
         return
 
     directorio_descargar_ftp = datos_ftp.get('directorio_descarga_ftp')
-    
+
 
     # Leer datos de descarga de archivos de la sección 'descarga_archivos' si existe, si no existe, se sustituye por la ruta predeterminada
     if not directorio_descargar_ftp or directorio_descargar_ftp == '':
@@ -850,7 +858,7 @@ def descargar_archivos():
             except ValueError:
                 logging.error("Error al obtener la fecha de modificación del archivo", archivo_ftp)
                 continue
-            
+
             # Comparar la fecha de modificación con la fecha de hoy
             if fecha_modificacion == hoy:
                 try:
@@ -866,7 +874,7 @@ def descargar_archivos():
                     continue
                 ruta_fichero = directorio_ftp + '/' + archivo_ftp
                 procesar_archivo(ruta_fichero, directorio_salida_ficheros, False)
-    
+
                 archivos_descargados.append(archivo_ftp)
 
     # Cerrar la conexión FTP
@@ -879,7 +887,7 @@ def descargar_archivos():
             os.makedirs(directorio_manual)
     except (OSError, IOError):
         logging.error("Error al crear el directorio MANUAL")
-    
+
     # Listamos los ficheros que hay dentro del directorio MANUAL, si hay ficheros se procesan, si no, no se hace nada.
     archivos_manuales_procesados = []
     try:
