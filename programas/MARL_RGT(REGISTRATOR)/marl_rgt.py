@@ -118,15 +118,58 @@ logging.basicConfig(filename=directorio_salida + '\\' + 'registro.log', level=lo
 config = configparser.ConfigParser()
 
 # Leer el archivo de configuración
-config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
 
 # Cargamos los datos de la configuración
 datos_ftp = config['datos_ftp']
+
+# Parámetros de conexión
 
 server = datos_ftp['ip_ftp']
 usuario_ftp = datos_ftp['usuario_ftp']
 pass_ftp = datos_ftp['pass_ftp']
 directorio_subida = datos_ftp['directorio_subida_ftp']
+directorio_local = directorio_salida
+
+def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local):
+    # Conexión al servidor FTP
+    ftp = FTP(server)
+    ftp.login(user=usuario_ftp, passwd=pass_ftp)
+
+    # Establecer modo pasivo
+    ftp.set_pasv(True)
+
+    # Cambiar al directorio destino en el servidor
+    ftp.cwd(directorio_subida)
+
+    # Verificar permisos y listar contenido del directorio destino
+    comandos = ftp.sendcmd('PWD')
+    print(f"Directorio actual en el servidor FTP: {comandos}")
+    print(ftp.retrlines('LIST'))
+
+    # Obtener la lista de archivos en el directorio local
+    archivos_locales = os.listdir(directorio_local)
+
+    # Filtrar solo los archivos (excluir subdirectorios)
+    archivos_locales = [f for f in archivos_locales if os.path.isfile(os.path.join(directorio_local, f))]
+
+    # Enviar los archivos
+    for archivo in archivos_locales:
+        ruta_archivo_local = os.path.join(directorio_local, archivo)
+        print(f"Procesando: {archivo}")
+        try:
+            with open(ruta_archivo_local, 'rb') as fichero_envio:
+                ftp.storbinary('STOR ' + archivo, fichero_envio)
+            print(f"Enviado: {archivo}")
+        except FileNotFoundError:
+            print(f"El archivo {archivo} no existe en la ruta especificada.")
+        except Exception as e:
+            print(f"Error al enviar el archivo {archivo}: {e}")
+
+    # Cerrar la conexión
+    ftp.quit()
+
+
 
 lista_ficheros_procesados = []
 
@@ -533,24 +576,5 @@ for archivo in lista_archivos:
     else:
         continue
 
-# Conexión al servidor FTP
-ftp = FTP(server)
-ftp.login(user=usuario_ftp, passwd=pass_ftp)
-
-# Cambiar al directorio destino
-ftp.cwd(directorio_subida)
-
-# Verificar permisos
-comandos = ftp.sendcmd('PWD')
-print(f"directorio: {comandos}")
-
-print(ftp.retrlines('LIST'))
-
-# Enviar el fichero
-for ficheros_procesado in lista_ficheros_procesados:
-    print(f"Procesando: {ficheros_procesado}")
-    with open(ficheros_procesado, 'rb') as fichero_envio:
-        ftp.storbinary('STOR ' + ficheros_procesado, fichero_envio)
-
-# Cerrar la conexión
-ftp.quit()
+# Llamar a la función para subir los archivos
+subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local)
