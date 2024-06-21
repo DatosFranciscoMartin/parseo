@@ -115,21 +115,21 @@ logging.basicConfig(filename=directorio_salida + '\\' + 'registro.log', level=lo
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Cargamos la configuración del FTP
-#config = configparser.ConfigParser()
-#
-## Leer el archivo de configuración
-#config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
-#
-## Cargamos los datos de la configuración
-#datos_ftp = config['datos_ftp']
-#
-#server = datos_ftp['ip_ftp']
-#usuario_ftp = datos_ftp['usuario_ftp']
-#pass_ftp = datos_ftp['pass_ftp']
-#directorio_subida = datos_ftp['directorio_subida_ftp']
-#
-#lista_ficheros_procesados = []
-#
+config = configparser.ConfigParser()
+
+# Leer el archivo de configuración
+config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+
+# Cargamos los datos de la configuración
+datos_ftp = config['datos_ftp']
+
+server = datos_ftp['ip_ftp']
+usuario_ftp = datos_ftp['usuario_ftp']
+pass_ftp = datos_ftp['pass_ftp']
+directorio_subida = datos_ftp['directorio_subida_ftp']
+
+lista_ficheros_procesados = []
+
 # Recorre la lista de archivos seleccionados
 for archivo in lista_archivos:
     fichero = open(archivo, "r", encoding="utf-8")
@@ -161,7 +161,7 @@ for archivo in lista_archivos:
 
     contador = 0
 
-    #lista_ficheros_procesados.append(Archivo_salida.name)
+    lista_ficheros_procesados.append(Archivo_salida.name)
 
     # Otras operaciones para leer el archivo y escribir en el archivo de salida
     for event in root.findall('.//eventList/event'):
@@ -534,20 +534,23 @@ for archivo in lista_archivos:
         continue
 
 # Conexión al servidor FTP
-#ftp = FTP(server)
-#ftp.login(user=usuario_ftp, passwd=pass_ftp)
-#
-## Cambiar al directorio destino
-#ftp.cwd(directorio_subida)
-#
-## Verificar permisos
-##comandos = ftp.sendcmd('PWD')
-##print(f"directorio: {comandos}")
-#
-## Enviar el fichero
-#for ficheros_procesado in lista_ficheros_procesados:
-#    with open(ficheros_procesado, 'rb') as fichero_envio:
-#        ftp.storbinary('STOR ' + ficheros_procesado, fichero_envio)
-#
-## Cerrar la conexión
-#ftp.quit()
+ftp = FTP(server)
+ftp.login(user=usuario_ftp, passwd=pass_ftp)
+
+# Cambiar al directorio destino
+ftp.cwd(directorio_subida)
+
+# Verificar permisos
+comandos = ftp.sendcmd('PWD')
+print(f"directorio: {comandos}")
+
+print(ftp.retrlines('LIST'))
+
+# Enviar el fichero
+for ficheros_procesado in lista_ficheros_procesados:
+    print(f"Procesando: {ficheros_procesado}")
+    with open(ficheros_procesado, 'rb') as fichero_envio:
+        ftp.storbinary('STOR ' + ficheros_procesado, fichero_envio)
+
+# Cerrar la conexión
+ftp.quit()
