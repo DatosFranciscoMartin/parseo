@@ -118,19 +118,29 @@ logging.basicConfig(filename=directorio_salida + '\\' + 'registro.log', level=lo
 config = configparser.ConfigParser()
 
 # Leer el archivo de configuración
-#config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
-config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+try:
+    if os.path.exists(r'D:\Traductor\Registrator\cf\config.conf'):
+        config.read(r'D:\Traductor\Registrator\cf\config.conf')
+    elif os.path.exists(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf'):
+        config.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
+    else:
+        config.read(r'C:\Users\alberto.martinez\PycharmProjects\parseo\programas\MARL_RGT(REGISTRATOR)\cf\config.conf')
 
-# Cargamos los datos de la configuración
-datos_ftp = config['datos_ftp']
+    # Cargamos los datos de la configuración
+    datos_ftp = config['datos_ftp']
 
-# Parámetros de conexión
+    # Parámetros de conexión
 
-server = datos_ftp['ip_ftp']
-usuario_ftp = datos_ftp['usuario_ftp']
-pass_ftp = datos_ftp['pass_ftp']
-directorio_subida = datos_ftp['directorio_subida_ftp']
-directorio_local = directorio_salida
+    server = datos_ftp['ip_ftp']
+    usuario_ftp = datos_ftp['usuario_ftp']
+    pass_ftp = datos_ftp['pass_ftp']
+    directorio_subida = datos_ftp['directorio_subida_ftp']
+    directorio_local = directorio_salida
+    ftp = '0'
+except:
+    print("Error al leer el archivo de configuración, no se enviarán los archivos por FTP")
+    ftp = '1'
+
 
 def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local):
     # Conexión al servidor FTP
@@ -145,8 +155,8 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
 
     # Verificar permisos y listar contenido del directorio destino
     comandos = ftp.sendcmd('PWD')
-    print(f"Directorio actual en el servidor FTP: {comandos}")
-    print(ftp.retrlines('LIST'))
+    #print(f"Directorio actual en el servidor FTP: {comandos}")
+    #print(ftp.retrlines('LIST'))
 
     # Obtener la lista de archivos en el directorio local
     archivos_locales = os.listdir(directorio_local)
@@ -157,7 +167,7 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
     # Enviar los archivos
     for archivo in archivos_locales:
         ruta_archivo_local = os.path.join(directorio_local, archivo)
-        print(f"Procesando: {archivo}")
+        #print(f"Procesando: {archivo}")
         try:
             with open(ruta_archivo_local, 'rb') as fichero_envio:
                 ftp.storbinary('STOR ' + archivo, fichero_envio)
@@ -212,12 +222,15 @@ for archivo in lista_archivos:
         # Extraemos el startTime
         
         startTime = event.find('.//asRun').get('startTime')
-        hora_comparada = datetime.datetime.strptime('06:00:00', '%H:%M:%S').time()
+        hora_comparada = datetime.datetime.strptime(root.get('startTime')[:11] + '06:00:00',"%Y-%m-%dT%H:%M:%S")
+        #print(hora_comparada)
 
         if startTime is None:
-            hora_formateada = datetime.datetime.strptime('00:00:00', '%H:%M:%S').time()
+            hora_formateada = datetime.datetime.strptime(root.get('startTime')[:11] + '00:00:00', "%Y-%m-%dT%H:%M:%S")
+            #print(hora_formateada)
         else:
-            hora_formateada = datetime.datetime.strptime(startTime[11:19], "%H:%M:%S").time()
+            hora_formateada = datetime.datetime.strptime(startTime[:19], "%Y-%m-%dT%H:%M:%S")
+            #print (hora_formateada)
 
         
 
@@ -578,4 +591,9 @@ for archivo in lista_archivos:
         continue
 
 # Llamar a la función para subir los archivos
-subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local)
+print (ftp)
+if ftp=='0':
+    subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local)
+    print("Subidos los archivos al servidor FTP")
+else:
+    print("No se suben archivos al servidor FTP")
