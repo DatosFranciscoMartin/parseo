@@ -138,7 +138,7 @@ try:
     directorio_local = directorio_salida
     ftp = '0'
 except:
-    print("Error al leer el archivo de configuración, no se enviarán los archivos por FTP")
+    logging.info("Error al leer el archivo de configuración, no se enviarán los archivos por FTP")
     ftp = '1'
 
 
@@ -162,7 +162,7 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
     archivos_locales = os.listdir(directorio_local)
 
     # Filtrar solo los archivos (excluir subdirectorios)
-    archivos_locales = [f for f in archivos_locales if os.path.isfile(os.path.join(directorio_local, f))]
+    archivos_locales = [f for f in archivos_locales if os.path.isfile(os.path.join(directorio_local, f)) and f.endswith('.rgt')]
 
     # Enviar los archivos
     for archivo in archivos_locales:
@@ -174,11 +174,11 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
 
             # Borrar el archivo después de enviarlo
             os.remove(ruta_archivo_local)
-            print(f"Movido: {archivo}")
+            logging.info(f"Movido: {archivo}")
         except FileNotFoundError:
-            print(f"El archivo {archivo} no existe en la ruta especificada.")
+            logging.info(f"El archivo {archivo} no existe en la ruta especificada.")
         except Exception as e:
-            print(f"Error al enviar el archivo {archivo}: {e}")
+            logging.info(f"Error al enviar el archivo {archivo}: {e}")
 
     # Cerrar la conexión
     ftp.quit()
@@ -594,9 +594,9 @@ for archivo in lista_archivos:
         continue
 
 # Llamar a la función para subir los archivos
-print (ftp)
+
 if ftp=='0':
     subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local)
-    print("Subidos los archivos al servidor FTP")
+    logging.info("Subidos los archivos al servidor FTP")
 else:
-    print("No se suben archivos al servidor FTP")
+    logging.info("No se suben archivos al servidor FTP")
