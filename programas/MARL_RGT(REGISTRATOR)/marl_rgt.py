@@ -138,7 +138,7 @@ try:
     directorio_local = directorio_salida
     ftp = '0'
 except:
-    logging.info("Error al leer el archivo de configuración, no se enviarán los archivos por FTP")
+    logging.warning("Error al leer el archivo de configuración, no se enviarán los archivos por FTP")
     ftp = '1'
 
 
@@ -176,9 +176,9 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
             os.remove(ruta_archivo_local)
             logging.info(f"Movido: {archivo}")
         except FileNotFoundError:
-            logging.info(f"El archivo {archivo} no existe en la ruta especificada.")
+            logging.error(f"El archivo {archivo} no existe en la ruta especificada.")
         except Exception as e:
-            logging.info(f"Error al enviar el archivo {archivo}: {e}")
+            logging.error(f"Error al enviar el archivo {archivo}: {e}")
 
     # Cerrar la conexión
     ftp.quit()
@@ -599,4 +599,4 @@ if ftp=='0':
     subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directorio_local)
     logging.info("Subidos los archivos al servidor FTP")
 else:
-    logging.info("No se suben archivos al servidor FTP")
+    logging.warning("No se suben archivos al servidor FTP")
