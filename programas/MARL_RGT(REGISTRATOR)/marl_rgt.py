@@ -171,7 +171,10 @@ def subir_archivos_ftp(server, usuario_ftp, pass_ftp, directorio_subida, directo
         try:
             with open(ruta_archivo_local, 'rb') as fichero_envio:
                 ftp.storbinary('STOR ' + archivo, fichero_envio)
-            print(f"Enviado: {archivo}")
+
+            # Borrar el archivo después de enviarlo
+            os.remove(ruta_archivo_local)
+            print(f"Movido: {archivo}")
         except FileNotFoundError:
             print(f"El archivo {archivo} no existe en la ruta especificada.")
         except Exception as e:
