@@ -393,9 +393,12 @@ for archivo in lista_archivos:
             except AttributeError:
                 L = DEFAULT[:2]
 
-            if event.find('.//properties/event/comment') is not None:
-                M = event.find('.//properties/event/comment').text[0:14]
-            else:
+            try:
+                if event.find('.//properties/event/comment') is not None:
+                    M = event.find('.//properties/event/comment').text[0:14]
+                else:
+                    M = DEFAULT[:14]
+            except:
                 M = DEFAULT[:14]
 
             graficos_xml = event.findall('.//childEvents/event/properties/media')[:2]
