@@ -391,8 +391,10 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
                     #print(RECONCILEKEY.replace(" ", "*"))
                     #event1_2 = ET.SubElement(properties1, "event")
                     event1_2.set("reconcileKey", RECONCILEKEY)
-                    comment1 = ET.SubElement(event1_2, "comment")
-                    comment1.text = diccionario_interno['Tipo2']["CODCINTA"].rstrip()
+                    if diccionario_interno['Tipo2']["CODCINTA"].rstrip() != "":
+                        comment1 = ET.SubElement(event1_2, "comment")
+                        comment1.text = diccionario_interno['Tipo2']["CODCINTA"].rstrip()
+
                 #print(RECONCILEKEY.replace(" ", "*"))
 
                 # Se comprueba si es tipo fijo o tipo secuencial
