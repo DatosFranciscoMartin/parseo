@@ -106,7 +106,7 @@ def procesar_archivo(archivo):
 
                     # Extraer y mostrar los parámetros de cada DubItem
                     for dub_item in root.findall('.//DubItem'):
-                        Som = dub_item.find('SOM').text
+                        Som = dub_item.find('SOM').text.replace('.', ':')
                         title = dub_item.find('Title').text
                         mediaID = dub_item.find('MediaId').text
 
