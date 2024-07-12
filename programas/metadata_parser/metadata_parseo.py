@@ -14,6 +14,7 @@ import shutil
 config = configparser.ConfigParser()
 
 config.read(r"D:/traductor/metadata/cf/config.conf")
+#config.read(r"C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf")
 
 # Obtener las rutas desde la configuración
 rutas = config['rutas']
@@ -24,6 +25,9 @@ ruta_salida = rutas['ruta_salida']
 # Se indica las rutas donde se van a mover los ficheros que se vayan procesando
 ruta_procesado = "D:/traductor/metadata/Procesado"
 ruta_erroneo = "D:/traductor/metadata/Erroneo"
+
+#ruta_procesado = r"C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\procesado"
+#ruta_erroneo = r"C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\Erroneo"
 
 # Se crean los directorios donde se van a mover los ficheros en el caso de que no existan
 if not os.path.exists(ruta_procesado):

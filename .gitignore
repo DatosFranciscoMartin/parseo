@@ -9,5 +9,6 @@ directorio_monitor/
 directorio_descargas/
 *log
 *.marl
+*.dub
 metadata_parseo/
 metadata_parseo_local.py
