@@ -735,6 +735,7 @@ def procesar_archivo(archivo, directorio_salida, origen_fichero):
             # Escribir el XML formateado en el archivo
             xml_file.write(xml_formatted)
             print("XML generado exitosamente.")
+    fichero.close()
 
 def descargar_archivos():
     """
