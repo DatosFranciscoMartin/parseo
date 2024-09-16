@@ -39,9 +39,23 @@ def procesar_etb(lista_archivos: list):
     except Exception as e:
         logging.exception('Error al leer el archivo de configuración: %s', e)
 
+    extension_soportada = [".xml"]
+
     # Cargamos los datos del archivo de configuración
     
     # Leemos el fichero que nos llega desde neptune
+    for archivo in lista_archivos:
+        try:
+            # Comprobar la extension del archivo
+            extension = os.path.splitext(archivo)
+            if extension[1] not in extension_soportada:
+                logging.error("La extension del archivo no es soportada, se omite el archivo: %s", archivo)
+            else:
+                #print("Fichero con extension correcta")
+                logging.info("Fichero con extension correcta, se procesara: %s", archivo)
+        except Exception as e:
+            logging.exception('Error al leer el archivo de configuración: %s', e)
+        
 
 
 
@@ -60,7 +74,7 @@ def seleccionar_archivos():
     Prompts the user to select multiple files and extends the list of files with the selected ones.
     """
     # Prompt the user to select multiple files
-    archivos = filedialog.askopenfilenames(filetypes=(("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")))
+    archivos = filedialog.askopenfilenames(filetypes=(("Archivos XML", "*.xml"), ("Todos los archivos", "*.*")))
     
     # If files were selected, extend the list of files with the selected ones
     if archivos:
@@ -102,7 +116,7 @@ def salir():
 
 # Crear la ventana principal
 ventana = tk.Tk()
-ventana.geometry("600x400")
+ventana.geometry("800x500")
 #ventana.iconbitmap(r"programas\icono_datos.ico")
 ventana.title("Seleccionar archivos y directorio de salida")
 
@@ -123,11 +137,17 @@ boton_seleccionar_directorio.pack(pady=10)
 etiqueta_directorio_salida = tk.Label(ventana, text="Ningún directorio de salida seleccionado")
 etiqueta_directorio_salida.pack()
 
-# Botón para salir
+# Boton para borrar la seleccion de archivos
+boton_borrar = tk.Button(ventana, text="Borrar selección", command=lambda: (etiqueta_archivos.config(text="Ningún archivo seleccionado"), lista_archivos.clear()))
+boton_borrar.pack(pady=10)
 
-boton_salida = tk.Button(ventana, text="Ejecutar", command=procesar_etb(lista_archivos))
-boton_salida.pack(pady=10)
+# Botón para ejecutar la funcion
+Boton_ejecutar = tk.Button(ventana, text="Ejecutar", command=lambda: procesar_etb(lista_archivos))
+Boton_ejecutar.pack(pady=10)
 
+# Botón para cerrar la ventana
+Boton_cerrar = tk.Button(ventana, text="Cerrar", command=salir)
+Boton_cerrar.pack(pady=10)
 
 # Ejecutar el bucle principal
 ventana.mainloop()
