@@ -12,6 +12,8 @@ def procesar_etb(lista_archivos: list):
 
     # Obtener el directorio actual donde se ejecuta el script
     current_directory = os.path.dirname(os.path.abspath(__file__))
+
+    #Generar el fichero de log en el directorio donde se ejecuta el script
     log_file_path = os.path.join(current_directory, 'registro.log')
     #print(f'El archivo de log se generará en: {log_file_path}')
 
@@ -52,9 +54,9 @@ def procesar_etb(lista_archivos: list):
                 logging.error("La extension del archivo no es soportada, se omite el archivo: %s", archivo)
             else:
                 #print("Fichero con extension correcta")
-                logging.info("Fichero con extension correcta, se procesara: %s", archivo)
+                logging.info("Fichero con extension correcta, procesando...: %s", archivo)
         except Exception as e:
-            logging.exception('Error al leer el archivo de configuración: %s', e)
+            logging.exception('Error al leer el fichero: %s', archivo)
         
 
 
