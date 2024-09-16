@@ -61,8 +61,8 @@ def procesar_etb(lista_archivos: list):
 
 def seleccionar_directorio_salida():
     """
-    Prompts the user to select a directory and stores the selected directory in the global variable 'directorio_salida'. 
-    If a directory is selected, updates the text of the label 'etiqueta_directorio_salida' to display the selected directory.
+    Pide al usuario que seleccione un directorio y almacena el directorio seleccionado en la variable global 'directorio_salida'. 
+    Si se selecciona un directorio, actualiza el texto de la etiqueta 'etiqueta_directorio_salida' para mostrar el directorio seleccionado. 
     """
     global directorio_salida  # declare the global variable
     directorio_salida = filedialog.askdirectory()  # open a dialog box to select a directory
@@ -71,7 +71,7 @@ def seleccionar_directorio_salida():
 
 def seleccionar_archivos():
     """
-    Prompts the user to select multiple files and extends the list of files with the selected ones.
+    Pide al usuario que seleccione varios archivos y amplía la lista de archivos con los seleccionados.
     """
     # Prompt the user to select multiple files
     archivos = filedialog.askopenfilenames(filetypes=(("Archivos XML", "*.xml"), ("Todos los archivos", "*.*")))
@@ -83,8 +83,7 @@ def seleccionar_archivos():
 
 def actualizar_etiqueta_archivos():
     """
-    Updates the label 'etiqueta_archivos' with the text "Archivos seleccionados:" 
-    followed by the elements of 'lista_archivos' joined by newlines.
+    Actualiza la etiqueta 'etiqueta_archivos' con el texto "Archivos seleccionados:" seguido de los elementos de 'lista_archivos' unidos por nuevas líneas.
     
     Args:
         None
@@ -97,7 +96,7 @@ def actualizar_etiqueta_archivos():
 
 def salir():
     """
-    This function closes the window.
+    Esta función cierra la ventana.
     """
     ventana.destroy()
 
