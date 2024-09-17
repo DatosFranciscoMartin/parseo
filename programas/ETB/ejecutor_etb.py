@@ -36,6 +36,8 @@ def procesar_etb(lista_archivos: list):
             configuracion.read(r'D:\Traductor\Ejecutor\cf\config.conf')
         elif os.path.exists(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\ETB\cf\config.conf'):
             configuracion.read(r'C:\Users\franciscojavier.mart\Documents\parseo\programas\ETB\cf\config.conf')
+        elif os.path.exists(r'C:\Scripts\ETB\cf'):
+            configuracion.read(r'C:\Scripts\ETB\cf\config.conf')
         else:
             logging.error('Archivo de configuración no encontrado en ninguna de las rutas especificadas.')
             #raise FileNotFoundError('No se encontró el archivo de configuración.')
@@ -57,8 +59,82 @@ def procesar_etb(lista_archivos: list):
                 #print("Fichero con extension correcta")
                 logging.info("Fichero con extension correcta, procesando...: %s", archivo)
                 with open(archivo, "r", encoding="iso-8859-1"):
+                    # Definir los namespaces utilizados en el XML
+                    namespaces = {
+                        'ns': 'http://tempuri.org/playlist.xsd'
+                    }
+
                     tree = ET.parse(archivo)
                     root = tree.getroot()
+
+                    # Buscar el nodo 'eventlist' en el árbol XML
+                    eventlist = root.find('ns:eventlist', namespaces)
+
+                    # Inicializar una lista para almacenar los eventos
+                    eventos = []
+
+                    # Recorrer todos los eventos dentro de 'eventlist'
+                    for event in eventlist.findall('ns:event', namespaces):
+                        evento_data = {}
+
+                        # Extraer el tipo de evento
+                        evento_data['type'] = event.get('type')
+
+                        # Extraer los elementos hijos del evento
+                        for tag in ['starttype', 'onairtime', 'onairdate', 'mediaid', 'houseid', 'title', 'category',
+                                    'duration', 'som', 'effect', 'rate']:
+                            elemento = event.find(f'ns:{tag}', namespaces)
+                            evento_data[tag] = elemento.text if elemento is not None else None
+
+                        # Extraer los datos de 'customdata' si existen
+                        customdata = event.find('ns:customdata', namespaces)
+                        if customdata is not None:
+                            evento_data['customdata'] = {
+                                'shuffle': customdata.find('ns:shuffle', namespaces).text if customdata.find(
+                                    'ns:shuffle', namespaces) is not None else None,
+                                'shmacro': customdata.find('ns:shmacro', namespaces).text if customdata.find(
+                                    'ns:shmacro', namespaces) is not None else None,
+                            }
+
+                        # Extraer los eventos secundarios si existen
+                        secondaryeventlist = event.find('ns:secondaryeventlist', namespaces)
+                        if secondaryeventlist is not None:
+                            secondary_events = []
+                            for secondary_event in secondaryeventlist.findall('ns:secondaryevent', namespaces):
+                                secondary_event_data = {
+                                    'type': secondary_event.get('type'),
+                                    'starttype': secondary_event.find('ns:starttype',
+                                                                      namespaces).attrib if secondary_event.find(
+                                        'ns:starttype', namespaces) is not None else None,
+                                    'endtype': secondary_event.find('ns:endtype',
+                                                                    namespaces).attrib if secondary_event.find(
+                                        'ns:endtype', namespaces) is not None else None,
+                                }
+
+                                # Si el evento secundario tiene 'customdata', extraer sus datos
+                                customdata_secondary = secondary_event.find('ns:customdata', namespaces)
+                                if customdata_secondary is not None:
+                                    secondary_event_data['customdata'] = {
+                                        'page': customdata_secondary.find('ns:page',
+                                                                          namespaces).text if customdata_secondary.find(
+                                            'ns:page', namespaces) is not None else None,
+                                        'lyr': customdata_secondary.find('ns:lyr',
+                                                                         namespaces).text if customdata_secondary.find(
+                                            'ns:lyr', namespaces) is not None else None,
+                                    }
+
+                                secondary_events.append(secondary_event_data)
+
+                            evento_data['secondary_events'] = secondary_events
+
+                        # Añadir el evento procesado a la lista de eventos
+                        eventos.append(evento_data)
+
+                    # Mostrar la lista de eventos extraídos
+                    for i, evento in enumerate(eventos, start=1):
+                        print(f"Evento {i}:")
+                        for key, value in evento.items():
+                            print(f"  {key}: {value}")
                     #Print de prueba
                     print(root.tag)
         except Exception as e:
