@@ -4,6 +4,7 @@ import os
 import tkinter as tk
 from tkinter import filedialog
 import datetime
+import xml.etree.ElementTree as ET
 
 def procesar_etb(lista_archivos: list):
     """
@@ -55,6 +56,11 @@ def procesar_etb(lista_archivos: list):
             else:
                 #print("Fichero con extension correcta")
                 logging.info("Fichero con extension correcta, procesando...: %s", archivo)
+                with open(archivo, "r", encoding="iso-8859-1"):
+                    tree = ET.parse(archivo)
+                    root = tree.getroot()
+                    #Print de prueba
+                    print(root.tag)
         except Exception as e:
             logging.exception('Error al leer el fichero: %s', archivo)
         
