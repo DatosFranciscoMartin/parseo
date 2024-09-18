@@ -125,6 +125,8 @@ def procesar_etb(lista_archivos: list):
                                 schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                                 switch1 = ET.SubElement(properties1, "switch")
+                                switch1.set("transition", event.find(f'ns:effect', namespaces).text)
+                                switch1.set("rate", event.find(f'ns:rate', namespaces).text)
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Logical")
                                 logical1 = ET.SubElement(source1, "logical")
@@ -152,6 +154,19 @@ def procesar_etb(lista_archivos: list):
                                 video1.set("jobType", "Play")
                                 segment1 = ET.SubElement(mediaStream1, "segment")
                                 segment1.set("type", "Media")
+                                # Aqui ponemos el enrutado de las grabaciones que tienen como fuente el servidor por defecto
+                                switch1 = ET.SubElement(properties1, "switch")
+                                switch1.set("transition", event.find(f'ns:effect', namespaces).text)
+                                switch1.set("rate", event.find(f'ns:rate', namespaces).text)
+                                source1 = ET.SubElement(switch1, "source")
+                                source1.set("type", "Auto")
+                                auto1 = ET.SubElement(source1, "auto")
+                                auto1.set("type", "MediaStream")
+                                # El destino lo estamos suponiendo como auto-PGM
+                                destination1 = ET.SubElement(switch1, "destination")
+                                destination1.set("type", "Auto")
+                                auto1 = ET.SubElement(destination1, "auto")
+                                auto1.set("type", "PGM")
                                 #if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
                                 #    segment1.set("type", "Markup")
                                 #    markup1 = ET.SubElement(segment1, "markup")
@@ -168,8 +183,26 @@ def procesar_etb(lista_archivos: list):
                             classification1.set("classification", "EventType")
                             classification1.set("category", event.find(f'ns:category', namespaces).text)
                             schedule1.set("startType", "Sequential")
-
-
+                            # Metemos el combinador de audio
+                            customdata_node = event.find('.//ns:customdata', namespaces)
+                            feature_1 = ET.SubElement(properties1, "features")
+                            feature_audio1 = ET.SubElement(feature_1, "feature")
+                            feature_audio1.set("type", "AudioShuffle")
+                            properties_feature_audio = ET.SubElement(feature_audio1, "properties")
+                            schedule_feature_audio = ET.SubElement(properties_feature_audio, "schedule")
+                            schedule_feature_audio.set("startType", "+ParentStart")
+                            schedule_feature_audio.set("startOffset", "00:00:00:00")
+                            effect_feature_audio = ET.SubElement(properties_feature_audio, "effect")
+                            effect_feature_audio.set("status", "On")
+                            effect_feature_audio.set("type", "Audio Shuffle")
+                            port_effect_feature_audio = ET.SubElement(effect_feature_audio, "port")
+                            port_effect_feature_audio.set("type", "Auto")
+                            auto_port_effect_feature_audio = ET.SubElement(port_effect_feature_audio, "auto")
+                            auto_port_effect_feature_audio.set("type", "PGM")
+                            audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
+                            audioshuffle.set("type", "TrackPreset")
+                            trackpreset = ET.SubElement(audioshuffle, "trackPreset")
+                            trackpreset.set("name", customdata_node.find(f'ns:shmacro', namespaces).text)
 
                        #################################################################################################3
 
