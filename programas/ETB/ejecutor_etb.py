@@ -103,16 +103,6 @@ def procesar_etb(lista_archivos: list):
                     # Recorrer todos los eventos dentro de 'eventlist'
                     for event in eventlistin.findall('ns:event', namespaces):
 
-#                        if event.find(f'ns:eventnote', namespaces) is not None and event.find(f'ns:eventnote', namespaces).text is not None:
-#                            event1 = ET.SubElement(eventlist, "event")
-#                            event1.set("type", "Comment")
-#                            properties = ET.SubElement(event1, "properties")
-#                            schedule = ET.SubElement(properties, "schedule")
-#                            schedule.set("startType", "Sequential")
-#                            event1_2 = ET.SubElement(properties, "event")
-#                            comment = ET.SubElement(event1_2, "comment")
-#                            comment.text = event.find(f'ns:eventnote', namespaces).text
-
                         # Vamos creando el xml con los datos leidos en el evento iterado.
                         if event.get('type') == "MARKER":
                             if event.find(f'ns:category', namespaces).text == "BLOCKSTART":
@@ -146,7 +136,7 @@ def procesar_etb(lista_archivos: list):
 
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                                 switch1 = ET.SubElement(properties1, "switch")
-                                switch1.set("transition", event.find(f'ns:effect', namespaces).text)
+                                switch1.set("transition", event.find(f'ns:effect', namespaces).text if event.find(f'ns:effect', namespaces) is not None else "")
                                 switch1.set("rate", event.find(f'ns:rate', namespaces).text if event.find(f'ns:rate', namespaces) is not None else "")
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Logical")
@@ -165,20 +155,20 @@ def procesar_etb(lista_archivos: list):
                                 properties1 = ET.SubElement(event1, "properties")
                                 schedule1 = ET.SubElement(properties1, "schedule")
                                 schedule1.set("endType", "Duration")
-                                schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
+                                schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text if event.find(f'ns:duration', namespaces) is not None else "")
                                 media1 = ET.SubElement(properties1, "media")
                                 media1.set("mediaType", "Video")
                                 media1.set("mediaName", event.find(f'ns:mediaid', namespaces).text if event.find(f'ns:mediaid', namespaces) is not None else "")
                                 mediaStream1 = ET.SubElement(properties1, "mediaStream")
-                                mediaStream1.set("som", event.find(f'ns:som', namespaces).text)
+                                mediaStream1.set("som", event.find(f'ns:som', namespaces).text if event.find(f'ns:som', namespaces) is not None else "")
                                 video1 = ET.SubElement(mediaStream1, "video")
                                 video1.set("jobType", "Play")
                                 segment1 = ET.SubElement(mediaStream1, "segment")
                                 segment1.set("type", "Media")
                                 # Aqui ponemos el enrutado de las grabaciones que tienen como fuente el servidor por defecto
                                 switch1 = ET.SubElement(properties1, "switch")
-                                switch1.set("transition", event.find(f'ns:effect', namespaces).text)
-                                switch1.set("rate", event.find(f'ns:rate', namespaces).text)
+                                switch1.set("transition", event.find(f'ns:effect', namespaces).text if event.find(f'ns:effect', namespaces) is not None else "")
+                                switch1.set("rate", event.find(f'ns:rate', namespaces).text if event.find(f'ns:rate', namespaces) is not None else "")
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Auto")
                                 auto1 = ET.SubElement(source1, "auto")
@@ -192,8 +182,8 @@ def procesar_etb(lista_archivos: list):
 
                             # Se agrega etiquetas comunes de ambos casos
                             event1_2 = ET.SubElement(properties1, "event")
-                            event1_2.set("title", event.find(f'ns:title', namespaces).text)
-                            event1_2.set("houseId", event.find(f'ns:houseid', namespaces).text)
+                            event1_2.set("title", event.find(f'ns:title', namespaces).text if event.find(f'ns:title', namespaces) is not None else "")
+                            event1_2.set("houseId", event.find(f'ns:houseid', namespaces).text if event.find(f'ns:houseid', namespaces) is not None else "")
                             classifications1 = ET.SubElement(event1_2, "classifications")
                             classification1 = ET.SubElement(classifications1, "classification")
                             classification1.set("classification", "EventType")
@@ -309,7 +299,7 @@ def procesar_etb(lista_archivos: list):
 
 
                     # Obtener una representación en cadena de texto del XML y formatear el XML
-                    xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1").decode("iso-8859-1")
+                    xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
                     xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
                     nombre_fichero = os.path.splitext(os.path.basename(archivo))[0]
                     #print(directorio_salida + "/" + nombre_fichero + "_formatted.xml")
