@@ -103,15 +103,15 @@ def procesar_etb(lista_archivos: list):
                     # Recorrer todos los eventos dentro de 'eventlist'
                     for event in eventlistin.findall('ns:event', namespaces):
 
-
-                        eventcomment = ET.SubElement(eventlist, "event")
-                        eventcomment.set("type", "Comment")
-                        propertiescomment = ET.SubElement(eventcomment, "properties")
-                        schedulecomment = ET.SubElement(propertiescomment, "schedule")
-                        schedulecomment.set("startType", "Sequential")
-                        eventcomment2 = ET.SubElement(propertiescomment, "event")
-                        comment = ET.SubElement(eventcomment2, "comment")
-                        comment.text = event.find(f'ns:eventnote', namespaces).text if event.find(f'ns:eventnote', namespaces) is not None else ""
+                        if event.find(f'ns:eventnote', namespaces) is not None and event.find(f'ns:eventnote', namespaces).text is not None:
+                            eventcomment = ET.SubElement(eventlist, "event")
+                            eventcomment.set("type", "Comment")
+                            propertiescomment = ET.SubElement(eventcomment, "properties")
+                            schedulecomment = ET.SubElement(propertiescomment, "schedule")
+                            schedulecomment.set("startType", "Sequential")
+                            eventcomment2 = ET.SubElement(propertiescomment, "event")
+                            comment = ET.SubElement(eventcomment2, "comment")
+                            comment.text = event.find(f'ns:eventnote', namespaces).text
 
                         # Vamos creando el xml con los datos leidos en el evento iterado.
                         if event.get('type') == "MARKER":
