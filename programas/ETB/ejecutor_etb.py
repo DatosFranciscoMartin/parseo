@@ -102,26 +102,42 @@ def procesar_etb(lista_archivos: list):
                     # Recorrer todos los eventos dentro de 'eventlist'
                     for event in eventlistin.findall('ns:event', namespaces):
 
+                        if event.find(f'ns:eventnote', namespaces).text is not None:
+                            eventcomment = ET.SubElement(eventlist, "event")
+                            eventcomment.set("type", "Comment")
+                            propertiescomment = ET.SubElement(eventcomment, "properties")
+                            schedulecomment = ET.SubElement(propertiescomment, "schedule")
+                            schedulecomment.set("startType", "Sequential")
+                            eventcomment2 = ET.SubElement(propertiescomment, "event")
+                            comment = ET.SubElement(eventcomment2, "comment")
+                            comment.text = event.find(f'ns:eventnote', namespaces).text
+
                         # Vamos creando el xml con los datos leidos en el evento iterado.
                         if event.get('type') == "MARKER":
                             if event.find(f'ns:category', namespaces).text == "BLOCKSTART":
-                                event1 = ET.SubElement(eventlist, "event")
-                                event1.set("type", "BlockStart")
+                                eventblock = ET.SubElement(eventlist, "event")
+                                eventblock.set("type", "BlockStart")
                             elif event.find(f'ns:category', namespaces).text == "BLOCKEND":
-                                event1 = ET.SubElement(eventlist, "event")
-                                event1.set("type", "BlockEnd")
-
-                            properties1 = ET.SubElement(event1, "properties")
-                            BlockName1 = ET.SubElement(properties1, "block")
+                                eventblock = ET.SubElement(eventlist, "event")
+                                eventblock.set("type", "BlockEnd")
+                            propertiesblock = ET.SubElement(eventblock, "properties")
+                            BlockName1 = ET.SubElement(propertiesblock, "block")
                             BlockName1.set("name", event.find(f'ns:title', namespaces).text)
                         else:
+
                             if event.get('type') == "LIVE":
                                 # Se genera el evento Live
+
                                 event1 = ET.SubElement(eventlist, "event")
                                 event1.set("type", "Live")
                                 properties1 = ET.SubElement(event1, "properties")
                                 schedule1 = ET.SubElement(properties1, "schedule")
-                                schedule1.set("endType", "Hold")
+
+                                if event.find(f'ns:endtype', namespaces).text == "NORM":
+                                    schedule1.set("endType", "Duration")
+                                elif event.find(f'ns:endtype', namespaces).text == "UNDEF":
+                                    schedule1.set("endType", "Hold")
+
                                 schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                                 switch1 = ET.SubElement(properties1, "switch")
@@ -167,22 +183,34 @@ def procesar_etb(lista_archivos: list):
                                 destination1.set("type", "Auto")
                                 auto1 = ET.SubElement(destination1, "auto")
                                 auto1.set("type", "PGM")
-                                #if diccionario_interno['Tipo2']['NUMSEGMENTO'] != "0":
-                                #    segment1.set("type", "Markup")
-                                #    markup1 = ET.SubElement(segment1, "markup")
-                                #    markup1.set("name", "TxSegments")
-                                #    markup1.set("orderNo", diccionario_interno['Tipo2']['NUMSEGMENTO'])
-                                #    mediaStream1.set("som", diccionario_interno['Tipo2']["HORINIEMI"].rstrip())
-                                #    schedule1.set("endOffset", diccionario_interno['Tipo2']['HORFINEMI'].rstrip())
+
 
                             # Se agrega etiquetas comunes de ambos casos
                             event1_2 = ET.SubElement(properties1, "event")
                             event1_2.set("title", event.find(f'ns:title', namespaces).text)
+                            event1_2.set("houseId", event.find(f'ns:houseid', namespaces).text)
                             classifications1 = ET.SubElement(event1_2, "classifications")
                             classification1 = ET.SubElement(classifications1, "classification")
                             classification1.set("classification", "EventType")
                             classification1.set("category", event.find(f'ns:category', namespaces).text)
-                            schedule1.set("startType", "Sequential")
+
+                            if event.find(f'ns:starttype', namespaces).text == "SEQ":
+                                schedule1.set("startType", "Sequential")
+                            elif event.find(f'ns:starttype', namespaces).text == "FIX":
+                                # Dividir onairdate y formatear al estilo YYYY-MM-DD
+                                day, month, year = event.find(f'ns:onairdate', namespaces).text.split()
+                                year = "20" + year  # Convertir el año '24' a '2024'
+
+                                # Crear la fecha en formato ISO (YYYY-MM-DD)
+                                formatted_date = f"{year}-{month}-{day}"
+
+                                # Combinar fecha y hora
+                                start_offset = formatted_date+'T'+event.find(f'ns:onairtime', namespaces).text
+                                schedule1.set("startType", "Fixed")
+                                schedule1.set("startOffset", start_offset)
+                            elif event.find(f'ns:starttype', namespaces).text == "MAN":
+                                schedule1.set("startType", "Manual")
+
                             # Metemos el combinador de audio
                             customdata_node = event.find('.//ns:customdata', namespaces)
                             feature_1 = ET.SubElement(properties1, "features")
