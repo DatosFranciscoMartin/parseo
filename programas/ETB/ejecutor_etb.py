@@ -103,15 +103,15 @@ def procesar_etb(lista_archivos: list):
                     # Recorrer todos los eventos dentro de 'eventlist'
                     for event in eventlistin.findall('ns:event', namespaces):
 
-                        if event.find(f'ns:eventnote', namespaces).text is not None:
-                            eventcomment = ET.SubElement(eventlist, "event")
-                            eventcomment.set("type", "Comment")
-                            propertiescomment = ET.SubElement(eventcomment, "properties")
-                            schedulecomment = ET.SubElement(propertiescomment, "schedule")
-                            schedulecomment.set("startType", "Sequential")
-                            eventcomment2 = ET.SubElement(propertiescomment, "event")
-                            comment = ET.SubElement(eventcomment2, "comment")
-                            comment.text = event.find(f'ns:eventnote', namespaces).text
+
+                        eventcomment = ET.SubElement(eventlist, "event")
+                        eventcomment.set("type", "Comment")
+                        propertiescomment = ET.SubElement(eventcomment, "properties")
+                        schedulecomment = ET.SubElement(propertiescomment, "schedule")
+                        schedulecomment.set("startType", "Sequential")
+                        eventcomment2 = ET.SubElement(propertiescomment, "event")
+                        comment = ET.SubElement(eventcomment2, "comment")
+                        comment.text = event.find(f'ns:eventnote', namespaces).text if event.find(f'ns:eventnote', namespaces) is not None else ""
 
                         # Vamos creando el xml con los datos leidos en el evento iterado.
                         if event.get('type') == "MARKER":
@@ -121,9 +121,11 @@ def procesar_etb(lista_archivos: list):
                             elif event.find(f'ns:category', namespaces).text == "BLOCKEND":
                                 eventblock = ET.SubElement(eventlist, "event")
                                 eventblock.set("type", "BlockEnd")
+
                             propertiesblock = ET.SubElement(eventblock, "properties")
+
                             BlockName1 = ET.SubElement(propertiesblock, "block")
-                            BlockName1.set("name", event.find(f'ns:title', namespaces).text)
+                            BlockName1.set("name", event.find(f'ns:title', namespaces).text if event.find(f'ns:title', namespaces) is not None else "")
                         else:
 
                             if event.get('type') == "LIVE":
@@ -134,28 +136,22 @@ def procesar_etb(lista_archivos: list):
                                 properties1 = ET.SubElement(event1, "properties")
                                 schedule1 = ET.SubElement(properties1, "schedule")
 
-                                endtype_node = event.find(f'ns:endtype', namespaces)
-                                
-                                if endtype_node is not None and endtype_node.text is not None:
-                                    if endtype_node.text == "NORM":
+                                if event.find(f'ns:endtype', namespaces) is not None :
+                                    if event.find(f'ns:endtype', namespaces).text == "NORM" :
                                         schedule1.set("endType", "Duration")
-                                    elif endtype_node.text == "UNDEF":
+                                    elif event.find(f'ns:endtype', namespaces).text == "UNDEF":
                                         schedule1.set("endType", "Hold")
-                                else:
-                                    # Aquí puedes manejar el caso donde no se encuentra 'endtype' o su valor es None.
-                                    # Por ejemplo, asignar un valor por defecto o emitir una advertencia.
-                                    print("Advertencia: no se encontró el nodo 'endtype' o no tiene texto.")
 
+                                    schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text if event.find(f'ns:duration', namespaces) is not None else "")
 
-                                schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                                 switch1 = ET.SubElement(properties1, "switch")
                                 switch1.set("transition", event.find(f'ns:effect', namespaces).text)
-                                switch1.set("rate", event.find(f'ns:rate', namespaces).text)
+                                switch1.set("rate", event.find(f'ns:rate', namespaces).text if event.find(f'ns:rate', namespaces) is not None else "")
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Logical")
                                 logical1 = ET.SubElement(source1, "logical")
-                                logical1.set("name", event.find(f'ns:source', namespaces).text)
+                                logical1.set("name", event.find(f'ns:source', namespaces).text if event.find(f'ns:source', namespaces) is not None else "")
                                 # El destino lo estamos suponiendo como auto-PGM
                                 destination1 = ET.SubElement(switch1, "destination")
                                 destination1.set("type", "Auto")
@@ -172,7 +168,7 @@ def procesar_etb(lista_archivos: list):
                                 schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
                                 media1 = ET.SubElement(properties1, "media")
                                 media1.set("mediaType", "Video")
-                                media1.set("mediaName", event.find(f'ns:mediaid', namespaces).text)
+                                media1.set("mediaName", event.find(f'ns:mediaid', namespaces).text if event.find(f'ns:mediaid', namespaces) is not None else "")
                                 mediaStream1 = ET.SubElement(properties1, "mediaStream")
                                 mediaStream1.set("som", event.find(f'ns:som', namespaces).text)
                                 video1 = ET.SubElement(mediaStream1, "video")
@@ -201,7 +197,7 @@ def procesar_etb(lista_archivos: list):
                             classifications1 = ET.SubElement(event1_2, "classifications")
                             classification1 = ET.SubElement(classifications1, "classification")
                             classification1.set("classification", "EventType")
-                            classification1.set("category", event.find(f'ns:category', namespaces).text)
+                            classification1.set("category", event.find(f'ns:category', namespaces).text if event.find(f'ns:category', namespaces) is not None else "")
 
                             if event.find(f'ns:starttype', namespaces).text == "SEQ":
                                 schedule1.set("startType", "Sequential")
@@ -210,7 +206,7 @@ def procesar_etb(lista_archivos: list):
                                 day, month, year = event.find(f'ns:onairdate', namespaces).text.split()
                                 year = "20" + year  # Convertir el año '24' a '2024'
 
-                                # Crear la fecha en formato ISO (YYYY-MM-DD)
+                                # Crear la fecha en formato ISO (YYYY-MM-DD)a
                                 formatted_date = f"{year}-{month}-{day}"
 
                                 # Combinar fecha y hora
@@ -239,15 +235,9 @@ def procesar_etb(lista_archivos: list):
                             audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
                             audioshuffle.set("type", "TrackPreset")
                             trackpreset = ET.SubElement(audioshuffle, "trackPreset")
-                            shmacro_node = customdata_node.find(f'ns:shmacro', namespaces)
+                            shmacro_node = customdata_node.find(f'ns:shmacro', namespaces) if customdata_node is not None else None
+                            trackpreset.set("name", shmacro_node.text if shmacro_node is not None else "")
 
-                            if shmacro_node is not None and shmacro_node.text is not None:
-                                trackpreset.set("name", shmacro_node.text)
-                            else:
-                                # Aquí puedes manejar el caso cuando 'shmacro' no existe o su texto es None.
-                                # Por ejemplo, asignar un valor por defecto o lanzar un mensaje de advertencia.
-                                #trackpreset.set("name", "default_name")  # Valor por defecto
-                                print("Advertencia: no se encontró el nodo 'shmacro' o no tiene texto.")
 
 
                        #################################################################################################3
