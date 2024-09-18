@@ -8,6 +8,7 @@ from datetime import timedelta, datetime
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
+
 def procesar_etb(lista_archivos: list):
     """
     Funcion donde vamos a procesar el fichero XML que viene desde Neptune para hacer el parseo a Automation.
@@ -133,10 +134,18 @@ def procesar_etb(lista_archivos: list):
                                 properties1 = ET.SubElement(event1, "properties")
                                 schedule1 = ET.SubElement(properties1, "schedule")
 
-                                if event.find(f'ns:endtype', namespaces).text == "NORM":
-                                    schedule1.set("endType", "Duration")
-                                elif event.find(f'ns:endtype', namespaces).text == "UNDEF":
-                                    schedule1.set("endType", "Hold")
+                                endtype_node = event.find(f'ns:endtype', namespaces)
+                                
+                                if endtype_node is not None and endtype_node.text is not None:
+                                    if endtype_node.text == "NORM":
+                                        schedule1.set("endType", "Duration")
+                                    elif endtype_node.text == "UNDEF":
+                                        schedule1.set("endType", "Hold")
+                                else:
+                                    # Aquí puedes manejar el caso donde no se encuentra 'endtype' o su valor es None.
+                                    # Por ejemplo, asignar un valor por defecto o emitir una advertencia.
+                                    print("Advertencia: no se encontró el nodo 'endtype' o no tiene texto.")
+
 
                                 schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text)
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
@@ -230,7 +239,16 @@ def procesar_etb(lista_archivos: list):
                             audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
                             audioshuffle.set("type", "TrackPreset")
                             trackpreset = ET.SubElement(audioshuffle, "trackPreset")
-                            trackpreset.set("name", customdata_node.find(f'ns:shmacro', namespaces).text)
+                            shmacro_node = customdata_node.find(f'ns:shmacro', namespaces)
+
+                            if shmacro_node is not None and shmacro_node.text is not None:
+                                trackpreset.set("name", shmacro_node.text)
+                            else:
+                                # Aquí puedes manejar el caso cuando 'shmacro' no existe o su texto es None.
+                                # Por ejemplo, asignar un valor por defecto o lanzar un mensaje de advertencia.
+                                #trackpreset.set("name", "default_name")  # Valor por defecto
+                                print("Advertencia: no se encontró el nodo 'shmacro' o no tiene texto.")
+
 
                        #################################################################################################3
 
@@ -300,9 +318,13 @@ def procesar_etb(lista_archivos: list):
 
 
                     # Obtener una representación en cadena de texto del XML y formatear el XML
-                    xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1")
+                    xml_str = ET.tostring(marinaPlaylist, encoding="iso-8859-1").decode("iso-8859-1")
                     xml_formatted = xml.dom.minidom.parseString(xml_str).toprettyxml()
-                    print(xml_formatted)
+                    nombre_fichero = os.path.splitext(os.path.basename(archivo))[0]
+                    #print(directorio_salida + "/" + nombre_fichero + "_formatted.xml")
+                    with open(directorio_salida + "/" + nombre_fichero + "_formatted.xml", "w", encoding="iso-8859-1") as fichero_salida:
+                        fichero_salida.write(xml_formatted)
+                        
 
         except Exception as e:
             logging.exception('Error al leer el fichero: %s', archivo)
