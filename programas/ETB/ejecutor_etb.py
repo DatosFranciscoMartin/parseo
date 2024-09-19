@@ -150,6 +150,12 @@ def procesar_etb(lista_archivos: list):
 
                                 rate_element = event.find(f'ns:rate', namespaces)
                                 rate = rate_element.text if rate_element is not None and rate_element.text else ''
+                                if rate == "Take":
+                                    rate = "Cut"
+                                elif rate == "TakeFade":
+                                    rate = "Cut Fade"
+                                elif rate =="FadeTake":
+                                    rate = "Fade Cut"
 
                                 switch1.set("transition", effect)
                                 switch1.set("rate", rate)
@@ -195,7 +201,7 @@ def procesar_etb(lista_archivos: list):
                                 video1 = ET.SubElement(mediaStream1, "video")
                                 video1.set("jobType", "Play")
                                 segment1 = ET.SubElement(mediaStream1, "segment")
-                                segment1.set("type", "Media")
+                                segment1.set("type", "User")
                                 # Aqui ponemos el enrutado de las grabaciones que tienen como fuente el servidor por defecto
                                 switch1 = ET.SubElement(properties1, "switch")
 
@@ -204,6 +210,12 @@ def procesar_etb(lista_archivos: list):
 
                                 rate_element = event.find(f'ns:rate', namespaces)
                                 rate = rate_element.text if rate_element is not None and rate_element.text else ''
+                                if rate == "Take":
+                                    rate = "Cut"
+                                elif rate == "TakeFade":
+                                    rate = "Cut Fade"
+                                elif rate =="FadeTake":
+                                    rate = "Fade Cut"
 
                                 switch1.set("transition", effect)
                                 switch1.set("rate", rate)
@@ -293,45 +305,42 @@ def procesar_etb(lista_archivos: list):
                                     type_element = secondary_event.get('type')
                                     type = type_element if type_element is not None else ''
 
+                                    starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
+                                    endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
+
+                                    event_child_1 = ET.SubElement(child_event, "event")
+                                    properties_child = ET.SubElement(event_child_1, "properties")
+                                    schedule_child = ET.SubElement(properties_child, "schedule")
+                                    switch_child = ET.SubElement(properties_child, "switch")
+
+                                    if starttype is not None:
+                                        if starttype.get('origin') == "+Start":
+                                            schedule_child.set("startType", "+ParentStart")
+                                        elif starttype.get('origin') == "-Start":
+                                            schedule_child.set("startType", "-ParentStart")
+                                        elif starttype.get('origin') == "+End":
+                                            schedule_child.set("startType", "+ParentEnd")
+                                        elif starttype.get('origin') == "-End":
+                                            schedule_child.set("startType", "-ParentEnd")
+
+                                        schedule_child.set("startOffset", starttype.get('offset', ''))
+
+
+                                    if endtype is not None:
+                                        if endtype.get('origin') == "+Start":
+                                            schedule_child.set("endType", "+ParentStart")
+                                        elif endtype.get('origin') == "-Start":
+                                            schedule_child.set("endType", "-ParentStart")
+                                        elif endtype.get('origin') == "+End":
+                                            schedule_child.set("endType", "+ParentEnd")
+                                        elif endtype.get('origin') == "-End":
+                                            schedule_child.set("endType", "-ParentEnd")
+                                        else:
+                                            schedule_child.set("endType", "Duration")
+
+                                        schedule_child.set("endOffset", endtype.get('offset', ''))
+
                                     if type =="Intuition":
-
-                                        starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
-                                        endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
-
-                                        event_child_1 = ET.SubElement(child_event, "event")
-                                        properties_child = ET.SubElement(event_child_1, "properties")
-                                        schedule_child = ET.SubElement(properties_child, "schedule")
-
-                                        if starttype is not None:
-                                            if starttype.get('origin') == "+Start":
-                                                schedule_child.set("startType", "+ParentStart")
-                                            elif starttype.get('origin') == "-Start":
-                                                schedule_child.set("startType", "-ParentStart")
-                                            elif starttype.get('origin') == "+End":
-                                                schedule_child.set("startType", "+ParentEnd")
-                                            elif starttype.get('origin') == "-End":
-                                                schedule_child.set("startType", "-ParentEnd")
-
-                                            schedule_child.set("startOffset", starttype.get('offset', ''))
-                                        else:
-                                            schedule_child.set("startType", "")
-
-                                        if endtype is not None:
-                                            if endtype.get('origin') == "+Start":
-                                                schedule_child.set("endType", "+ParentStart")
-                                            elif endtype.get('origin') == "-Start":
-                                                schedule_child.set("endType", "-ParentStart")
-                                            elif endtype.get('origin') == "+End":
-                                                schedule_child.set("endType", "+ParentEnd")
-                                            elif endtype.get('origin') == "-End":
-                                                schedule_child.set("endType", "-ParentEnd")
-                                            elif endtype.get('origin') == "-End":
-                                                schedule_child.set("Duration", "Duration")
-
-                                            schedule_child.set("endOffset", endtype.get('offset', ''))
-                                        else:
-                                            schedule_child.set("Duration", "")
-
 
                                         # Si el evento secundario tiene 'customdata', extraer sus datos
                                         customdata_secondary = secondary_event.find('ns:customdata', namespaces)
@@ -344,7 +353,6 @@ def procesar_etb(lista_archivos: list):
                                             template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
                                                 'ns:temp', namespaces) is not None else None
 
-
                                         event_child_1.set("type", "VizRT")
 
                                         # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
@@ -356,6 +364,38 @@ def procesar_etb(lista_archivos: list):
                                         media_child = ET.SubElement(properties_child, "media")
                                         media_child.set("mediaType", "CG")
                                         media_child.set("mediaName", template)
+
+                                    elif type.startswith("ETB"):
+
+                                        switch_child.set("transition", "Cut")
+                                        switch_child.set("rate", "Fast")
+                                        source1 = ET.SubElement(switch_child, "source")
+                                        source1.set("type", "Fixed")
+                                        fixed1 = ET.SubElement(source1, "fixed")
+                                        destination1 = ET.SubElement(switch_child, "destination")
+                                        destination1.set("type", "Fixed")
+                                        fixed2 = ET.SubElement(destination1, "fixed")
+
+                                        if "SUB" in type:
+
+                                            fixed2.set("port", "GPO-7")
+                                            fixed1.set("device", "CIAB-4 GPO: Subtitle")
+                                            if type.endswith("ON"):
+                                                event_child_1.set("type", "Subtitle GPI On")
+                                                fixed1.set("port", "On")
+                                            elif type.endswith("OFF"):
+                                                event_child_1.set("type", "Subtitle GPI Off")
+                                                fixed1.set("port", "Off")
+                                        else:
+                                            fixed2.set("port", "GPO-10")
+                                            fixed1.set("device", "CIAB-4 GPO: Log")
+                                            if type.endswith("ON"):
+                                                event_child_1.set("type", "Logo GPI On")
+                                                fixed1.set("port", "On")
+                                            elif type.endswith("OFF"):
+                                                event_child_1.set("type", "Logo GPI Off")
+                                                fixed1.set("port", "Off")
+
 
 
                         comment = ET.SubElement(event1_2, "comment")
