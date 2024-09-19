@@ -366,35 +366,37 @@ def procesar_etb(lista_archivos: list):
                                         media_child.set("mediaName", template)
 
                                     elif type.startswith("ETB"):
+                                        if type != "ETB4 SUB":
+                                            switch_child.set("transition", "Cut")
+                                            switch_child.set("rate", "Fast")
+                                            source1 = ET.SubElement(switch_child, "source")
+                                            source1.set("type", "Fixed")
+                                            fixed1 = ET.SubElement(source1, "fixed")
+                                            destination1 = ET.SubElement(switch_child, "destination")
+                                            destination1.set("type", "Fixed")
+                                            fixed2 = ET.SubElement(destination1, "fixed")
 
-                                        switch_child.set("transition", "Cut")
-                                        switch_child.set("rate", "Fast")
-                                        source1 = ET.SubElement(switch_child, "source")
-                                        source1.set("type", "Fixed")
-                                        fixed1 = ET.SubElement(source1, "fixed")
-                                        destination1 = ET.SubElement(switch_child, "destination")
-                                        destination1.set("type", "Fixed")
-                                        fixed2 = ET.SubElement(destination1, "fixed")
+                                            if "SUB" in type:
 
-                                        if "SUB" in type:
-
-                                            fixed2.set("port", "GPO-7")
-                                            fixed1.set("device", "CIAB-4 GPO: Subtitle")
-                                            if type.endswith("ON"):
-                                                event_child_1.set("type", "Subtitle GPI On")
-                                                fixed1.set("port", "On")
-                                            elif type.endswith("OFF"):
-                                                event_child_1.set("type", "Subtitle GPI Off")
-                                                fixed1.set("port", "Off")
-                                        else:
-                                            fixed2.set("port", "GPO-10")
-                                            fixed1.set("device", "CIAB-4 GPO: Log")
-                                            if type.endswith("ON"):
-                                                event_child_1.set("type", "Logo GPI On")
-                                                fixed1.set("port", "On")
-                                            elif type.endswith("OFF"):
-                                                event_child_1.set("type", "Logo GPI Off")
-                                                fixed1.set("port", "Off")
+                                                fixed2.set("port", "GPO-7")
+                                                fixed1.set("device", "CIAB-4 GPO: Subtitle")
+                                                if type.endswith("ON"):
+                                                    event_child_1.set("type", "Subtitle GPI On")
+                                                    fixed1.set("port", "On")
+                                                elif type.endswith("OFF"):
+                                                    event_child_1.set("type", "Subtitle GPI Off")
+                                                    fixed1.set("port", "Off")
+                                            else:
+                                                fixed2.set("port", "GPO-10")
+                                                fixed1.set("device", "CIAB-4 GPO: Log")
+                                                if type.endswith("ON"):
+                                                    event_child_1.set("type", "Logo GPI On")
+                                                    fixed1.set("port", "On")
+                                                elif type.endswith("OFF"):
+                                                    event_child_1.set("type", "Logo GPI Off")
+                                                    fixed1.set("port", "Off")
+                                    #elif type == "ETB4 SUB":
+                                    #    print("ETB4 SUB descartado")
 
 
 
