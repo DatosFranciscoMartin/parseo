@@ -292,58 +292,59 @@ def procesar_etb(lista_archivos: list):
 
                                     type_element = secondary_event.get('type')
                                     type = type_element if type_element is not None else ''
-                                    starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
-                                    endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
-
-                                    event_child_1 = ET.SubElement(child_event, "event")
-                                    properties_child = ET.SubElement(event_child_1, "properties")
-                                    schedule_child = ET.SubElement(properties_child, "schedule")
-
-                                    if starttype is not None:
-                                        if starttype.get('origin') == "+Start":
-                                            schedule_child.set("startType", "+ParentStart")
-                                        elif starttype.get('origin') == "-Start":
-                                            schedule_child.set("startType", "-ParentStart")
-                                        elif starttype.get('origin') == "+End":
-                                            schedule_child.set("startType", "+ParentEnd")
-                                        elif starttype.get('origin') == "-End":
-                                            schedule_child.set("startType", "-ParentEnd")
-
-                                        schedule_child.set("startOffset", starttype.get('offset', ''))
-                                    else:
-                                        schedule_child.set("startType", "")
-
-                                    if endtype is not None:
-                                        if endtype.get('origin') == "+Start":
-                                            schedule_child.set("endType", "+ParentStart")
-                                        elif endtype.get('origin') == "-Start":
-                                            schedule_child.set("endType", "-ParentStart")
-                                        elif endtype.get('origin') == "+End":
-                                            schedule_child.set("endType", "+ParentEnd")
-                                        elif endtype.get('origin') == "-End":
-                                            schedule_child.set("endType", "-ParentEnd")
-                                        elif endtype.get('origin') == "-End":
-                                            schedule_child.set("Duration", "Duration")
-
-                                        schedule_child.set("endOffset", endtype.get('offset', ''))
-                                    else:
-                                        schedule_child.set("Duration", "")
-
-
-
-
-                                    # Si el evento secundario tiene 'customdata', extraer sus datos
-                                    customdata_secondary = secondary_event.find('ns:customdata', namespaces)
-                                    if customdata_secondary is not None:
-                                        mediaStream_child = ET.SubElement(properties_child, "mediaStream")
-                                        page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
-                                            'ns:page', namespaces) is not None else None
-                                        layer = customdata_secondary.find('ns:lyr', namespaces).text if customdata_secondary.find(
-                                            'ns:lyr', namespaces) is not None else None
-                                        template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
-                                            'ns:temp', namespaces) is not None else None
 
                                     if type =="Intuition":
+
+                                        starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
+                                        endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
+
+                                        event_child_1 = ET.SubElement(child_event, "event")
+                                        properties_child = ET.SubElement(event_child_1, "properties")
+                                        schedule_child = ET.SubElement(properties_child, "schedule")
+
+                                        if starttype is not None:
+                                            if starttype.get('origin') == "+Start":
+                                                schedule_child.set("startType", "+ParentStart")
+                                            elif starttype.get('origin') == "-Start":
+                                                schedule_child.set("startType", "-ParentStart")
+                                            elif starttype.get('origin') == "+End":
+                                                schedule_child.set("startType", "+ParentEnd")
+                                            elif starttype.get('origin') == "-End":
+                                                schedule_child.set("startType", "-ParentEnd")
+
+                                            schedule_child.set("startOffset", starttype.get('offset', ''))
+                                        else:
+                                            schedule_child.set("startType", "")
+
+                                        if endtype is not None:
+                                            if endtype.get('origin') == "+Start":
+                                                schedule_child.set("endType", "+ParentStart")
+                                            elif endtype.get('origin') == "-Start":
+                                                schedule_child.set("endType", "-ParentStart")
+                                            elif endtype.get('origin') == "+End":
+                                                schedule_child.set("endType", "+ParentEnd")
+                                            elif endtype.get('origin') == "-End":
+                                                schedule_child.set("endType", "-ParentEnd")
+                                            elif endtype.get('origin') == "-End":
+                                                schedule_child.set("Duration", "Duration")
+
+                                            schedule_child.set("endOffset", endtype.get('offset', ''))
+                                        else:
+                                            schedule_child.set("Duration", "")
+
+
+                                        # Si el evento secundario tiene 'customdata', extraer sus datos
+                                        customdata_secondary = secondary_event.find('ns:customdata', namespaces)
+                                        if customdata_secondary is not None:
+                                            mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+                                            page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
+                                                'ns:page', namespaces) is not None else None
+                                            layer = customdata_secondary.find('ns:lyr', namespaces).text if customdata_secondary.find(
+                                                'ns:lyr', namespaces) is not None else None
+                                            template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
+                                                'ns:temp', namespaces) is not None else None
+
+
                                         event_child_1.set("type", "VizRT")
 
                                         # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
