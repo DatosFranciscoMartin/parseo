@@ -115,7 +115,12 @@ def procesar_etb(lista_archivos: list):
                             properties1 = ET.SubElement(event1, "properties")
                             event1_2 = ET.SubElement(properties1, "event")
                             BlockName1 = ET.SubElement(properties1, "block")
-                            BlockName1.set("name", event.find(f'ns:title', namespaces).text if event.find(f'ns:title', namespaces) is not None else "")
+
+                            title_element = event.find(f'ns:title', namespaces)
+                            title = title_element.text if title_element is not None and title_element.text else ''
+
+                            BlockName1.set("name", title)
+
                         else:
 
                             if event.get('type') == "LIVE":
@@ -132,16 +137,30 @@ def procesar_etb(lista_archivos: list):
                                     elif event.find(f'ns:endtype', namespaces).text == "UNDEF":
                                         schedule1.set("endType", "Hold")
 
-                                    schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text if event.find(f'ns:duration', namespaces) is not None else "")
+                                    duration_element = event.find(f'ns:duration', namespaces)
+                                    duration = duration_element.text if duration_element is not None and duration_element.text else ''
+
+                                    schedule1.set("endOffset", duration)
 
                                 # Aqui ponemos el enrutado de los directos que tienen como fuente el mismo mediaid del evento
                                 switch1 = ET.SubElement(properties1, "switch")
-                                switch1.set("transition", event.find(f'ns:effect', namespaces).text if event.find(f'ns:effect', namespaces) is not None else "")
-                                switch1.set("rate", event.find(f'ns:rate', namespaces).text if event.find(f'ns:rate', namespaces) is not None else "")
+
+                                effect_element = event.find(f'ns:effect', namespaces)
+                                effect = effect_element.text if effect_element is not None and effect_element.text else ''
+
+                                rate_element = event.find(f'ns:rate', namespaces)
+                                rate = rate_element.text if rate_element is not None and rate_element.text else ''
+
+                                switch1.set("transition", effect)
+                                switch1.set("rate", rate)
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Logical")
                                 logical1 = ET.SubElement(source1, "logical")
-                                logical1.set("name", event.find(f'ns:source', namespaces).text if event.find(f'ns:source', namespaces) is not None else "")
+
+                                source_element = event.find(f'ns:source', namespaces)
+                                source = source_element.text if source_element is not None and source_element.text else ''
+
+                                logical1.set("name", source)
                                 # El destino lo estamos suponiendo como auto-PGM
                                 destination1 = ET.SubElement(switch1, "destination")
                                 destination1.set("type", "Auto")
@@ -155,20 +174,39 @@ def procesar_etb(lista_archivos: list):
                                 properties1 = ET.SubElement(event1, "properties")
                                 schedule1 = ET.SubElement(properties1, "schedule")
                                 schedule1.set("endType", "Duration")
-                                schedule1.set("endOffset", event.find(f'ns:duration', namespaces).text if event.find(f'ns:duration', namespaces) is not None else "")
+
+                                duration_element = event.find(f'ns:duration', namespaces)
+                                duration = duration_element.text if duration_element is not None and duration_element.text else ''
+
+                                schedule1.set("endOffset", duration)
                                 media1 = ET.SubElement(properties1, "media")
                                 media1.set("mediaType", "Video")
-                                media1.set("mediaName", event.find(f'ns:mediaid', namespaces).text if event.find(f'ns:mediaid', namespaces) is not None else "")
+
+                                mediaid_element = event.find(f'ns:mediaid', namespaces)
+                                mediaid = mediaid_element.text if mediaid_element is not None and mediaid_element.text else ''
+
+                                media1.set("mediaName", mediaid)
                                 mediaStream1 = ET.SubElement(properties1, "mediaStream")
-                                mediaStream1.set("som", event.find(f'ns:som', namespaces).text if event.find(f'ns:som', namespaces) is not None else "")
+
+                                som_element = event.find(f'ns:som', namespaces)
+                                som = som_element.text if som_element is not None and som_element.text else ''
+
+                                mediaStream1.set("som", som)
                                 video1 = ET.SubElement(mediaStream1, "video")
                                 video1.set("jobType", "Play")
                                 segment1 = ET.SubElement(mediaStream1, "segment")
                                 segment1.set("type", "Media")
                                 # Aqui ponemos el enrutado de las grabaciones que tienen como fuente el servidor por defecto
                                 switch1 = ET.SubElement(properties1, "switch")
-                                switch1.set("transition", event.find(f'ns:effect', namespaces).text if event.find(f'ns:effect', namespaces) is not None else "")
-                                switch1.set("rate", event.find(f'ns:rate', namespaces).text if event.find(f'ns:rate', namespaces) is not None else "")
+
+                                effect_element = event.find(f'ns:effect', namespaces)
+                                effect = effect_element.text if effect_element is not None and effect_element.text else ''
+
+                                rate_element = event.find(f'ns:rate', namespaces)
+                                rate = rate_element.text if rate_element is not None and rate_element.text else ''
+
+                                switch1.set("transition", effect)
+                                switch1.set("rate", rate)
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Auto")
                                 auto1 = ET.SubElement(source1, "auto")
@@ -182,12 +220,23 @@ def procesar_etb(lista_archivos: list):
 
                             # Se agrega etiquetas comunes de ambos casos
                             event1_2 = ET.SubElement(properties1, "event")
-                            event1_2.set("title", event.find(f'ns:title', namespaces).text if event.find(f'ns:title', namespaces) is not None else "")
-                            event1_2.set("houseId", event.find(f'ns:houseid', namespaces).text if event.find(f'ns:houseid', namespaces) is not None else "")
+
+                            title_element = event.find(f'ns:title', namespaces)
+                            title = title_element.text if title_element is not None and title_element.text else ''
+
+                            houseid_element = event.find(f'ns:houseid', namespaces)
+                            houseid = houseid_element.text if houseid_element is not None and houseid_element.text else ''
+
+                            event1_2.set("title", title)
+                            event1_2.set("houseId", houseid)
                             classifications1 = ET.SubElement(event1_2, "classifications")
                             classification1 = ET.SubElement(classifications1, "classification")
                             classification1.set("classification", "EventType")
-                            classification1.set("category", event.find(f'ns:category', namespaces).text if event.find(f'ns:category', namespaces) is not None else "")
+
+                            category_element = event.find(f'ns:category', namespaces)
+                            category = category_element.text if category_element is not None and category_element.text else ''
+
+                            classification1.set("category", category)
 
                             if event.find(f'ns:starttype', namespaces).text == "SEQ":
                                 schedule1.set("startType", "Sequential")
@@ -207,7 +256,7 @@ def procesar_etb(lista_archivos: list):
                                 schedule1.set("startType", "Manual")
 
                             # Metemos el combinador de audio
-                            customdata_node = event.find('.//ns:customdata', namespaces)
+
                             feature_1 = ET.SubElement(properties1, "features")
                             feature_audio1 = ET.SubElement(feature_1, "feature")
                             feature_audio1.set("type", "AudioShuffle")
@@ -225,11 +274,95 @@ def procesar_etb(lista_archivos: list):
                             audioshuffle = ET.SubElement(effect_feature_audio, "audioShuffle")
                             audioshuffle.set("type", "TrackPreset")
                             trackpreset = ET.SubElement(audioshuffle, "trackPreset")
+                            customdata_node = event.find('.//ns:customdata', namespaces)
+
+                            shmacro_element = event.find(f'ns:shmacro', namespaces)
+                            shmacro = shmacro_element.text if shmacro_element is not None and shmacro_element.text else ''
+
                             shmacro_node = customdata_node.find(f'ns:shmacro', namespaces) if customdata_node is not None else None
-                            trackpreset.set("name", shmacro_node.text if shmacro_node is not None else "")
+                            trackpreset.set("name", shmacro_node.text if shmacro_node is not None else '')
+
+                            # Generamos los eventos secundarios si existen
+
+                            secondaryeventlistin = event.find('ns:secondaryeventlist', namespaces)
+                            if secondaryeventlistin is not None:
+                                #secondary_events = []
+                                child_event = ET.SubElement(event1, "childEvents")
+                                for secondary_event in secondaryeventlistin.findall('ns:secondaryevent', namespaces):
+
+                                    type_element = secondary_event.get('type')
+                                    type = type_element if type_element is not None else ''
+                                    starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
+                                    endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
+
+                                    event_child_1 = ET.SubElement(child_event, "event")
+                                    properties_child = ET.SubElement(event_child_1, "properties")
+                                    schedule_child = ET.SubElement(properties_child, "schedule")
+
+                                    if starttype is not None:
+                                        if starttype.get('origin') == "+Start":
+                                            schedule_child.set("startType", "+ParentStart")
+                                        elif starttype.get('origin') == "-Start":
+                                            schedule_child.set("startType", "-ParentStart")
+                                        elif starttype.get('origin') == "+End":
+                                            schedule_child.set("startType", "+ParentEnd")
+                                        elif starttype.get('origin') == "-End":
+                                            schedule_child.set("startType", "-ParentEnd")
+
+                                        schedule_child.set("startOffset", starttype.get('offset', ''))
+                                    else:
+                                        schedule_child.set("startType", "")
+
+                                    if endtype is not None:
+                                        if endtype.get('origin') == "+Start":
+                                            schedule_child.set("endType", "+ParentStart")
+                                        elif endtype.get('origin') == "-Start":
+                                            schedule_child.set("endType", "-ParentStart")
+                                        elif endtype.get('origin') == "+End":
+                                            schedule_child.set("endType", "+ParentEnd")
+                                        elif endtype.get('origin') == "-End":
+                                            schedule_child.set("endType", "-ParentEnd")
+                                        elif endtype.get('origin') == "-End":
+                                            schedule_child.set("Duration", "Duration")
+
+                                        schedule_child.set("endOffset", endtype.get('offset', ''))
+                                    else:
+                                        schedule_child.set("Duration", "")
+
+
+
+
+                                    # Si el evento secundario tiene 'customdata', extraer sus datos
+                                    customdata_secondary = secondary_event.find('ns:customdata', namespaces)
+                                    if customdata_secondary is not None:
+                                        mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+                                        page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
+                                            'ns:page', namespaces) is not None else None
+                                        layer = customdata_secondary.find('ns:lyr', namespaces).text if customdata_secondary.find(
+                                            'ns:lyr', namespaces) is not None else None
+                                        template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
+                                            'ns:temp', namespaces) is not None else None
+
+                                    if type =="Intuition":
+                                        event_child_1.set("type", "VizRT")
+
+                                        # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                                        cg = ET.SubElement(mediaStream_child, "cg")
+                                        cg.set("layer", layer)
+                                        cg.set("type", "Template")
+
+                                        # Añadir el elemento 'media' dentro de 'properties'
+                                        media_child = ET.SubElement(properties_child, "media")
+                                        media_child.set("mediaType", "CG")
+                                        media_child.set("mediaName", template)
+
 
                         comment = ET.SubElement(event1_2, "comment")
-                        comment.text = event.find(f'ns:eventnote', namespaces).text if event.find(f'ns:eventnote', namespaces) is not None else ""
+                        
+                        eventnote_element = event.find(f'ns:eventnote', namespaces)
+                        eventnote = eventnote_element.text if eventnote_element is not None and eventnote_element.text else ''
+
+                        comment.text = eventnote
 
                        #################################################################################################3
 
