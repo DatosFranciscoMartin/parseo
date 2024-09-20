@@ -50,6 +50,7 @@ def procesar_etb(lista_archivos: list):
     extension_soportada = [".xml"]
 
     # Cargamos los datos del archivo de configuración
+    tipos_no_procesados = []
     
     # Leemos el fichero que nos llega desde neptune
     for archivo in lista_archivos:
@@ -305,7 +306,7 @@ def procesar_etb(lista_archivos: list):
                                     type_element = secondary_event.get('type')
                                     type = type_element if type_element is not None else ''
                                     #if type != "ETB4 SUB" or not type.startswith("STR"):
-                                    if type.endswith("SUB OFF") or type.endswith("SUB ON") or type.startswith("I") and not type.endswith("9") and not type.endswith("SUB"):
+                                    if ((type.startswith("ETB") or (type.startswith("STR"))) and (type.endswith("OFF") or type.endswith("ON"))) or type.startswith("I") and not type.endswith("9") and not type.endswith("SUB"):
                                         starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
                                         endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
 
@@ -373,7 +374,7 @@ def procesar_etb(lista_archivos: list):
                                                 media_child.set("mediaName", page)
 
 
-                                        elif type.startswith("ETB"):
+                                        elif type.startswith("ETB") or type.startswith("STR"):
                                         
                                             switch_child.set("transition", "Cut")
                                             switch_child.set("rate", "Fast")
@@ -397,13 +398,20 @@ def procesar_etb(lista_archivos: list):
                                                 fixed2.set("port", "GPO-10")
                                                 fixed1.set("device", "CIAB-4 GPO: Log")
                                                 if type.endswith("ON"):
-                                                    event_child_1.set("type", "Logo GPI On")
+                                                    if type.startswith("ETB"):
+                                                        event_child_1.set("type", "Logo GPI On")
+                                                    else:
+                                                        event_child_1.set("type", "Stream GPI On")
                                                     fixed1.set("port", "On")
                                                 elif type.endswith("OFF"):
-                                                    event_child_1.set("type", "Logo GPI Off")
+                                                    if type.startswith("ETB"):
+                                                        event_child_1.set("type", "Logo GPI Off")
+                                                    else:
+                                                        event_child_1.set("type", "Stream GPI Off")
                                                     fixed1.set("port", "Off")
-                                    #else:
-                                    #    print("No cumple")
+                                    else:
+                                        tipos_no_procesados.append(type)
+                    
 
 
 
@@ -493,6 +501,8 @@ def procesar_etb(lista_archivos: list):
 
         except Exception as e:
             logging.exception('Error al leer el fichero: %s', archivo)
+    datos_sin_repetidos = list(set(tipos_no_procesados))
+    print(datos_sin_repetidos)
         
 
 
