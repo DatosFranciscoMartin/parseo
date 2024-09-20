@@ -304,69 +304,77 @@ def procesar_etb(lista_archivos: list):
 
                                     type_element = secondary_event.get('type')
                                     type = type_element if type_element is not None else ''
+                                    #if type != "ETB4 SUB" or not type.startswith("STR"):
+                                    if type.endswith("SUB OFF") or type.endswith("SUB ON") or type.startswith("I") and not type.endswith("9") and not type.endswith("SUB"):
+                                        starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
+                                        endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
 
-                                    starttype = secondary_event.find('ns:starttype', namespaces).attrib if secondary_event.find('ns:starttype', namespaces) is not None else None
-                                    endtype =secondary_event.find('ns:endtype', namespaces).attrib if secondary_event.find('ns:endtype', namespaces) is not None else None
+                                        event_child_1 = ET.SubElement(child_event, "event")
+                                        properties_child = ET.SubElement(event_child_1, "properties")
+                                        schedule_child = ET.SubElement(properties_child, "schedule")
+                                        switch_child = ET.SubElement(properties_child, "switch")
 
-                                    event_child_1 = ET.SubElement(child_event, "event")
-                                    properties_child = ET.SubElement(event_child_1, "properties")
-                                    schedule_child = ET.SubElement(properties_child, "schedule")
-                                    switch_child = ET.SubElement(properties_child, "switch")
+                                        if starttype is not None:
+                                            if starttype.get('origin') == "+Start":
+                                                schedule_child.set("startType", "+ParentStart")
+                                            elif starttype.get('origin') == "-Start":
+                                                schedule_child.set("startType", "-ParentStart")
+                                            elif starttype.get('origin') == "+End":
+                                                schedule_child.set("startType", "+ParentEnd")
+                                            elif starttype.get('origin') == "-End":
+                                                schedule_child.set("startType", "-ParentEnd")
 
-                                    if starttype is not None:
-                                        if starttype.get('origin') == "+Start":
-                                            schedule_child.set("startType", "+ParentStart")
-                                        elif starttype.get('origin') == "-Start":
-                                            schedule_child.set("startType", "-ParentStart")
-                                        elif starttype.get('origin') == "+End":
-                                            schedule_child.set("startType", "+ParentEnd")
-                                        elif starttype.get('origin') == "-End":
-                                            schedule_child.set("startType", "-ParentEnd")
-
-                                        schedule_child.set("startOffset", starttype.get('offset', ''))
+                                            schedule_child.set("startOffset", starttype.get('offset', ''))
 
 
-                                    if endtype is not None:
-                                        if endtype.get('origin') == "+Start":
-                                            schedule_child.set("endType", "+ParentStart")
-                                        elif endtype.get('origin') == "-Start":
-                                            schedule_child.set("endType", "-ParentStart")
-                                        elif endtype.get('origin') == "+End":
-                                            schedule_child.set("endType", "+ParentEnd")
-                                        elif endtype.get('origin') == "-End":
-                                            schedule_child.set("endType", "-ParentEnd")
-                                        else:
-                                            schedule_child.set("endType", "Duration")
+                                        if endtype is not None:
+                                            if endtype.get('origin') == "+Start":
+                                                schedule_child.set("endType", "+ParentStart")
+                                            elif endtype.get('origin') == "-Start":
+                                                schedule_child.set("endType", "-ParentStart")
+                                            elif endtype.get('origin') == "+End":
+                                                schedule_child.set("endType", "+ParentEnd")
+                                            elif endtype.get('origin') == "-End":
+                                                schedule_child.set("endType", "-ParentEnd")
+                                            else:
+                                                schedule_child.set("endType", "Duration")
 
-                                        schedule_child.set("endOffset", endtype.get('offset', ''))
+                                            schedule_child.set("endOffset", endtype.get('offset', ''))
 
-                                    if type =="Intuition":
+                                        if type.startswith("Intuition") or type == "Imagestore":
 
-                                        # Si el evento secundario tiene 'customdata', extraer sus datos
-                                        customdata_secondary = secondary_event.find('ns:customdata', namespaces)
-                                        if customdata_secondary is not None:
-                                            mediaStream_child = ET.SubElement(properties_child, "mediaStream")
-                                            page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
-                                                'ns:page', namespaces) is not None else None
-                                            layer = customdata_secondary.find('ns:lyr', namespaces).text if customdata_secondary.find(
-                                                'ns:lyr', namespaces) is not None else None
-                                            template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
-                                                'ns:temp', namespaces) is not None else None
+                                            # Si el evento secundario tiene 'customdata', extraer sus datos
+                                            customdata_secondary = secondary_event.find('ns:customdata', namespaces)
+                                            if customdata_secondary is not None:
+                                                mediaStream_child = ET.SubElement(properties_child, "mediaStream")
+                                                page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
+                                                    'ns:page', namespaces) is not None else None
+                                                layer = customdata_secondary.find('ns:lyr', namespaces).text if customdata_secondary.find(
+                                                    'ns:lyr', namespaces) is not None else None
+                                                template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
+                                                    'ns:temp', namespaces) is not None else None
 
-                                        event_child_1.set("type", "VizRT")
+                                            event_child_1.set("type", "VizRT")
 
-                                        # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
-                                        cg = ET.SubElement(mediaStream_child, "cg")
-                                        cg.set("layer", layer)
-                                        cg.set("type", "Template")
+                                            # Añadir el elemento 'media' dentro de 'properties'
+                                            media_child = ET.SubElement(properties_child, "media")
+                                            media_child.set("mediaType", "CG")
 
-                                        # Añadir el elemento 'media' dentro de 'properties'
-                                        media_child = ET.SubElement(properties_child, "media")
-                                        media_child.set("mediaType", "CG")
-                                        media_child.set("mediaName", template)
+                                            if type == "Intuition":
+                                                # Añadir los elementos 'cg' y 'allocation' dentro de 'mediaStream'
+                                                cg = ET.SubElement(mediaStream_child, "cg")
+                                                cg.set("layer", layer)
+                                                cg.set("type", "Template")
+                                                media_child.set("mediaName", template)
+                                            else:
+                                                cg = ET.SubElement(mediaStream_child, "cg")
+                                                cg.set("layer", layer)
+                                                cg.set("type", "Page")
+                                                media_child.set("mediaName", page)
 
-                                    elif type.startswith("ETB"):
-                                        if type != "ETB4 SUB":
+
+                                        elif type.startswith("ETB"):
+                                        
                                             switch_child.set("transition", "Cut")
                                             switch_child.set("rate", "Fast")
                                             source1 = ET.SubElement(switch_child, "source")
@@ -375,9 +383,8 @@ def procesar_etb(lista_archivos: list):
                                             destination1 = ET.SubElement(switch_child, "destination")
                                             destination1.set("type", "Fixed")
                                             fixed2 = ET.SubElement(destination1, "fixed")
-
                                             if "SUB" in type:
-
+                                                #print(type)
                                                 fixed2.set("port", "GPO-7")
                                                 fixed1.set("device", "CIAB-4 GPO: Subtitle")
                                                 if type.endswith("ON"):
@@ -395,8 +402,9 @@ def procesar_etb(lista_archivos: list):
                                                 elif type.endswith("OFF"):
                                                     event_child_1.set("type", "Logo GPI Off")
                                                     fixed1.set("port", "Off")
-                                    #elif type == "ETB4 SUB":
-                                    #    print("ETB4 SUB descartado")
+                                    #else:
+                                    #    print("No cumple")
+
 
 
 
