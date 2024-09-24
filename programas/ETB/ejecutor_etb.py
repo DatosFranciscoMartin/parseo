@@ -396,7 +396,7 @@ def procesar_etb(lista_archivos: list):
                                                     fixed1.set("port", "Off")
                                             else:
                                                 fixed2.set("port", "GPO-10")
-                                                fixed1.set("device", "CIAB-4 GPO: Log")
+                                                fixed1.set("device", "CIAB-4 GPO: Logo")
                                                 if type.endswith("ON"):
                                                     if type.startswith("ETB"):
                                                         event_child_1.set("type", "Logo GPI On")
