@@ -157,6 +157,8 @@ def procesar_etb(lista_archivos: list):
                                     rate = "Cut Fade"
                                 elif rate =="FadeTake":
                                     rate = "Fade Cut"
+                                elif rate == "TakeTake":
+                                    rate = "V-Fade"
 
                                 switch1.set("transition", effect)
                                 switch1.set("rate", rate)
