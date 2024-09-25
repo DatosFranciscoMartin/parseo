@@ -147,20 +147,21 @@ def procesar_etb(lista_archivos: list):
                                 switch1 = ET.SubElement(properties1, "switch")
 
                                 effect_element = event.find(f'ns:effect', namespaces)
-                                effect = effect_element.text if effect_element is not None and effect_element.text else ''
+                                transition = effect_element.text if effect_element is not None and effect_element.text else ''
+
+                                if transition == "TakeFade":
+                                    transition = "Cut Fade"
+                                elif transition =="FadeTake":
+                                    transition = "Fade Cut"
+                                elif transition == "TakeTake":
+                                    transition = "V-Fade"
+                                else:
+                                    transition = "Cut"
 
                                 rate_element = event.find(f'ns:rate', namespaces)
                                 rate = rate_element.text if rate_element is not None and rate_element.text else ''
-                                if rate == "Take":
-                                    rate = "Cut"
-                                elif rate == "TakeFade":
-                                    rate = "Cut Fade"
-                                elif rate =="FadeTake":
-                                    rate = "Fade Cut"
-                                elif rate == "TakeTake":
-                                    rate = "V-Fade"
 
-                                switch1.set("transition", effect)
+                                switch1.set("transition", transition)
                                 switch1.set("rate", rate)
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Logical")
@@ -209,18 +210,21 @@ def procesar_etb(lista_archivos: list):
                                 switch1 = ET.SubElement(properties1, "switch")
 
                                 effect_element = event.find(f'ns:effect', namespaces)
-                                effect = effect_element.text if effect_element is not None and effect_element.text else ''
+                                transition = effect_element.text if effect_element is not None and effect_element.text else ''
+
+                                if transition == "TakeFade":
+                                    transition = "Cut Fade"
+                                elif transition =="FadeTake":
+                                    transition = "Fade Cut"
+                                elif transition == "TakeTake" or transition == "FadeFade":
+                                    transition = "V-Fade"
+                                else:
+                                    transition = "Cut"
 
                                 rate_element = event.find(f'ns:rate', namespaces)
                                 rate = rate_element.text if rate_element is not None and rate_element.text else ''
-                                if rate == "Take":
-                                    rate = "Cut"
-                                elif rate == "TakeFade":
-                                    rate = "Cut Fade"
-                                elif rate =="FadeTake":
-                                    rate = "Fade Cut"
 
-                                switch1.set("transition", effect)
+                                switch1.set("transition", transition)
                                 switch1.set("rate", rate)
                                 source1 = ET.SubElement(switch1, "source")
                                 source1.set("type", "Auto")
