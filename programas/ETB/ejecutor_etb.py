@@ -217,7 +217,7 @@ def procesar_etb(lista_archivos: list):
                                     transition = "Cut Fade"
                                 elif transition =="FadeTake":
                                     transition = "Fade Cut"
-                                elif transition == "TakeTake" or transition == "FadeFade":
+                                elif transition == "FadeFade":
                                     transition = "V-Fade"
                                 else:
                                     transition = "Cut"
@@ -320,10 +320,17 @@ def procesar_etb(lista_archivos: list):
                                         event_child_1 = ET.SubElement(child_event, "event")
                                         properties_child = ET.SubElement(event_child_1, "properties")
                                         schedule_child = ET.SubElement(properties_child, "schedule")
-                                        switch_child = ET.SubElement(properties_child, "switch")
+                                        #switch_child = ET.SubElement(properties_child, "switch")
 
                                         if starttype is not None:
-                                            if starttype.get('origin') == "+Start":
+                                            if type.startswith("ETB") or type.startswith("STR"):
+                                                if type.endswith("OFF"):
+                                                    schedule_child.set("startType", "-ParentStart")
+                                                    schedule_child.set("startOffset", "00:00:01:00")
+                                                elif type.endswith("ON"):
+                                                    schedule_child.set("startType", "+ParentStart")
+                                                    schedule_child.set("startOffset", "00:00:00:00")
+                                            elif starttype.get('origin') == "+Start":
                                                 schedule_child.set("startType", "+ParentStart")
                                             elif starttype.get('origin') == "-Start":
                                                 schedule_child.set("startType", "-ParentStart")
@@ -332,17 +339,13 @@ def procesar_etb(lista_archivos: list):
                                             elif starttype.get('origin') == "-End":
                                                 schedule_child.set("startType", "-ParentEnd")
 
-                                            schedule_child.set("startOffset", starttype.get('offset', ''))
+                                            #schedule_child.set("startOffset", starttype.get('offset', ''))
 
 
                                         if endtype is not None:
                                             if type.startswith("ETB") or type.startswith("STR"):
-                                                if type.endswith("ON"):
-                                                    schedule_child.set("endType", "+ParentStart")
-                                                    schedule_child.set("endOffset", "00:00:01:00")
-                                                elif type.endswith("OFF"):
-                                                    schedule_child.set("endType", "Duration")
-                                                    schedule_child.set("endOffset", "00:00:01:00")
+                                                schedule_child.set("endType", "Duration")
+                                                schedule_child.set("endOffset", "00:00:01:00")
                                             elif endtype.get('origin') == "+Start":
                                                 schedule_child.set("endType", "+ParentStart")
                                             elif endtype.get('origin') == "-Start":
@@ -354,7 +357,7 @@ def procesar_etb(lista_archivos: list):
                                             else:
                                                 schedule_child.set("endType", "Duration")
 
-                                            schedule_child.set("endOffset", endtype.get('offset', ''))
+                                            #schedule_child.set("endOffset", endtype.get('offset', ''))
 
                                         if type.startswith("Intuition") or type == "Imagestore":
                                             fields = []
@@ -405,30 +408,23 @@ def procesar_etb(lista_archivos: list):
 
                                         elif type.startswith("ETB") or type.startswith("STR"):
 
-                                            switch_child.set("transition", "Cut")
-                                            switch_child.set("rate", "Fast")
-                                            source1 = ET.SubElement(switch_child, "source")
-                                            source1.set("type", "Auto")
-                                            auto1 = ET.SubElement(source1, "auto")
-                                            auto1.set("type", "MediaStream")
+                                            #switch_child.set("transition", "Cut")
+                                            #switch_child.set("rate", "Fast")
+                                            #source1 = ET.SubElement(switch_child, "source")
                                             #source1.set("type", "Fixed")
                                             #fixed1 = ET.SubElement(source1, "fixed")
-                                            destination1 = ET.SubElement(switch_child, "destination")
-                                            destination1.set("type", "Auto")
-                                            auto2 = ET.SubElement(destination1, "auto")
-                                            auto2.set("type", "PGM")
-                                            #destination1.set("type", "Fixed")
+                                            #destination1 = ET.SubElement(switch_child, "destination")
+                                            #estination1.set("type", "Fixed")
                                             #fixed2 = ET.SubElement(destination1, "fixed")
                                             if "SUB" in type:
-                                                #print(type)
                                                 #fixed2.set("port", "GPO-7")
                                                 #fixed1.set("device", "CIAB-4 GPO: Subtitle")
                                                 if type.endswith("ON"):
                                                     event_child_1.set("type", "Subtitle GPI On")
-                                                #   fixed1.set("port", "On")
+                                                    #fixed1.set("port", "On")
                                                 elif type.endswith("OFF"):
                                                     event_child_1.set("type", "Subtitle GPI Off")
-                                                #    fixed1.set("port", "Off")
+                                                    #fixed1.set("port", "Off")
                                             else:
                                                 #fixed2.set("port", "GPO-10")
                                                 #fixed1.set("device", "CIAB-4 GPO: Logo")
