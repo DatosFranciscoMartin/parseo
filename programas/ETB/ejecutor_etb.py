@@ -6,6 +6,7 @@ from tkinter import filedialog
 import datetime
 from datetime import timedelta, datetime
 import xml.etree.ElementTree as ET
+import re
 import xml.dom.minidom
 
 
@@ -50,7 +51,7 @@ def procesar_etb(lista_archivos: list):
     extension_soportada = [".xml"]
 
     # Cargamos los datos del archivo de configuración
-    tipos_no_procesados = []
+    #tipos_no_procesados = []
     
     # Leemos el fichero que nos llega desde neptune
     for archivo in lista_archivos:
@@ -335,7 +336,14 @@ def procesar_etb(lista_archivos: list):
 
 
                                         if endtype is not None:
-                                            if endtype.get('origin') == "+Start":
+                                            if type.startswith("ETB") or type.startswith("STR"):
+                                                if type.endswith("ON"):
+                                                    schedule_child.set("endType", "+ParentStart")
+                                                    schedule_child.set("endOffset", "00:00:01:00")
+                                                elif type.endswith("OFF"):
+                                                    schedule_child.set("endType", "Duration")
+                                                    schedule_child.set("endOffset", "00:00:01:00")
+                                            elif endtype.get('origin') == "+Start":
                                                 schedule_child.set("endType", "+ParentStart")
                                             elif endtype.get('origin') == "-Start":
                                                 schedule_child.set("endType", "-ParentStart")
@@ -349,10 +357,11 @@ def procesar_etb(lista_archivos: list):
                                             schedule_child.set("endOffset", endtype.get('offset', ''))
 
                                         if type.startswith("Intuition") or type == "Imagestore":
-
+                                            fields = []
                                             # Si el evento secundario tiene 'customdata', extraer sus datos
                                             customdata_secondary = secondary_event.find('ns:customdata', namespaces)
                                             if customdata_secondary is not None:
+
                                                 mediaStream_child = ET.SubElement(properties_child, "mediaStream")
                                                 page = customdata_secondary.find('ns:page', namespaces).text if customdata_secondary.find(
                                                     'ns:page', namespaces) is not None else None
@@ -360,6 +369,16 @@ def procesar_etb(lista_archivos: list):
                                                     'ns:lyr', namespaces) is not None else None
                                                 template = customdata_secondary.find('ns:temp', namespaces).text if customdata_secondary.find(
                                                     'ns:temp', namespaces) is not None else None
+
+                                                # Recorremos todos los hijos de customdata
+                                                for field in customdata_secondary:
+                                                    # Ignoramos el namespace y trabajamos solo con la parte local del tag
+                                                    tag_local = field.tag.split('}')[-1]  # Elimina el namespace, dejando solo 'f0', 'f1', etc.
+                                                    # Usamos una expresión regular para comprobar si la etiqueta empieza con 'f'
+                                                    if re.match(r'^f\d+', tag_local):
+                                                        # Añadimos el elemento completo (no solo el texto) a la lista
+                                                        fields.append(field)
+
 
                                             event_child_1.set("type", "VizRT")
 
@@ -373,6 +392,10 @@ def procesar_etb(lista_archivos: list):
                                                 cg.set("layer", layer)
                                                 cg.set("type", "Template")
                                                 media_child.set("mediaName", template)
+                                                for field2 in fields:
+                                                    f = ET.SubElement(cg, "f")
+                                                    f.text = field2.text
+
                                             else:
                                                 cg = ET.SubElement(mediaStream_child, "cg")
                                                 cg.set("layer", layer)
@@ -381,42 +404,48 @@ def procesar_etb(lista_archivos: list):
 
 
                                         elif type.startswith("ETB") or type.startswith("STR"):
-                                        
+
                                             switch_child.set("transition", "Cut")
                                             switch_child.set("rate", "Fast")
                                             source1 = ET.SubElement(switch_child, "source")
-                                            source1.set("type", "Fixed")
-                                            fixed1 = ET.SubElement(source1, "fixed")
+                                            source1.set("type", "Auto")
+                                            auto1 = ET.SubElement(source1, "auto")
+                                            auto1.set("type", "MediaStream")
+                                            #source1.set("type", "Fixed")
+                                            #fixed1 = ET.SubElement(source1, "fixed")
                                             destination1 = ET.SubElement(switch_child, "destination")
-                                            destination1.set("type", "Fixed")
-                                            fixed2 = ET.SubElement(destination1, "fixed")
+                                            destination1.set("type", "Auto")
+                                            auto2 = ET.SubElement(destination1, "auto")
+                                            auto2.set("type", "PGM")
+                                            #destination1.set("type", "Fixed")
+                                            #fixed2 = ET.SubElement(destination1, "fixed")
                                             if "SUB" in type:
                                                 #print(type)
-                                                fixed2.set("port", "GPO-7")
-                                                fixed1.set("device", "CIAB-4 GPO: Subtitle")
+                                                #fixed2.set("port", "GPO-7")
+                                                #fixed1.set("device", "CIAB-4 GPO: Subtitle")
                                                 if type.endswith("ON"):
                                                     event_child_1.set("type", "Subtitle GPI On")
-                                                    fixed1.set("port", "On")
+                                                #   fixed1.set("port", "On")
                                                 elif type.endswith("OFF"):
                                                     event_child_1.set("type", "Subtitle GPI Off")
-                                                    fixed1.set("port", "Off")
+                                                #    fixed1.set("port", "Off")
                                             else:
-                                                fixed2.set("port", "GPO-10")
-                                                fixed1.set("device", "CIAB-4 GPO: Logo")
+                                                #fixed2.set("port", "GPO-10")
+                                                #fixed1.set("device", "CIAB-4 GPO: Logo")
                                                 if type.endswith("ON"):
                                                     if type.startswith("ETB"):
                                                         event_child_1.set("type", "Logo GPI On")
                                                     else:
                                                         event_child_1.set("type", "Stream GPI On")
-                                                    fixed1.set("port", "On")
+                                                    #fixed1.set("port", "On")
                                                 elif type.endswith("OFF"):
                                                     if type.startswith("ETB"):
                                                         event_child_1.set("type", "Logo GPI Off")
                                                     else:
                                                         event_child_1.set("type", "Stream GPI Off")
-                                                    fixed1.set("port", "Off")
-                                    else:
-                                        tipos_no_procesados.append(type)
+                                                    #fixed1.set("port", "Off")
+                                    #else:
+                                        #tipos_no_procesados.append(type)
                     
 
 
@@ -507,8 +536,8 @@ def procesar_etb(lista_archivos: list):
 
         except Exception as e:
             logging.exception('Error al leer el fichero: %s', archivo)
-    datos_sin_repetidos = list(set(tipos_no_procesados))
-    print(datos_sin_repetidos)
+    #datos_sin_repetidos = list(set(tipos_no_procesados))
+    #print(datos_sin_repetidos)
         
 
 
