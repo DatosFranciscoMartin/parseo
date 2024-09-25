@@ -153,7 +153,7 @@ def procesar_etb(lista_archivos: list):
                                     transition = "Cut Fade"
                                 elif transition =="FadeTake":
                                     transition = "Fade Cut"
-                                elif transition == "TakeTake":
+                                elif transition == "TakeTake" or transition == "FadeFade":
                                     transition = "V-Fade"
                                 else:
                                     transition = "Cut"
