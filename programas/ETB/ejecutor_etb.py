@@ -322,7 +322,8 @@ def procesar_etb(lista_archivos: list):
                                         schedule_child = ET.SubElement(properties_child, "schedule")
                                         #switch_child = ET.SubElement(properties_child, "switch")
 
-                                        if starttype is not None:
+                                        try:
+                                        #if starttype is not None:
                                             if type.startswith("ETB") or type.startswith("STR"):
                                                 if type.endswith("OFF"):
                                                     schedule_child.set("startType", "-ParentStart")
@@ -342,7 +343,7 @@ def procesar_etb(lista_archivos: list):
                                             #schedule_child.set("startOffset", starttype.get('offset', ''))
 
 
-                                        if endtype is not None:
+                                        #if endtype is not None:
                                             if type.startswith("ETB") or type.startswith("STR"):
                                                 schedule_child.set("endType", "Duration")
                                                 schedule_child.set("endOffset", "00:00:01:00")
@@ -356,8 +357,11 @@ def procesar_etb(lista_archivos: list):
                                                 schedule_child.set("endType", "-ParentEnd")
                                             else:
                                                 schedule_child.set("endType", "Duration")
-
                                             #schedule_child.set("endOffset", endtype.get('offset', ''))
+
+                                        except:
+                                            schedule_child.set("startOffset", starttype.get('offset', ''))
+                                            schedule_child.set("endOffset", endtype.get('offset', ''))
 
                                         if type.startswith("Intuition") or type == "Imagestore":
                                             fields = []
