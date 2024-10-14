@@ -223,7 +223,6 @@ for archivo in lista_archivos:
     # Otras operaciones para leer el archivo y escribir en el archivo de salida
     for event in root.findall('.//eventList/event'):
         # Extraemos el startTime
-        
         startTime = event.find('.//asRun').get('startTime')
         hora_comparada = datetime.datetime.strptime(root.get('startTime')[:11] + '06:00:00',"%Y-%m-%dT%H:%M:%S")
         #print(hora_comparada)
@@ -268,27 +267,27 @@ for archivo in lista_archivos:
                 A = DEFAULT[:11]
 
             try:
-#                if reconcileKey is not None and Q != "5":
-#                    if len(reconcileKey) == 45:
-#                        # B = medianame
-#                        B = reconcileKey[18:36]
-#                        B = B[3:] + " " * 3
-#                    elif len(reconcileKey) == 55:
-#                        B = reconcileKey[17:22]
-#                        B = "B" + B + " " * 12
-#                    else:
-#                        B = DEFAULT[:18]
-#                else:
-                    # Busca el mediaName específicamente en la ruta event/properties/media
-                properties = event.find('properties')
-                if properties is not None:
-                    media = properties.find('media')
-                    if media is not None:
-                        B = media.get('mediaName')
+                if event.get('type') == "Live":
+                    if reconcileKey is not None:
+                        if len(reconcileKey) == 45:
+                            # B = medianame
+                            B = reconcileKey[18:36]
+                            B = B[3:] + " " * 3
+                        elif len(reconcileKey) == 55:
+                            B = reconcileKey[17:22]
+                            B = "B" + B + " " * 12
+                        else:
+                            B = DEFAULT[:18]
                     else:
                         B = DEFAULT[:18]
                 else:
-                    B = DEFAULT[:18]
+                   # Busca el mediaName específicamente en la ruta event/properties/media
+                    media = event.find('.//properties/media[@mediaType="Video"]').get('mediaName')
+                    if media is not None:
+                        B = media
+                    else:
+                        B = DEFAULT[:18]
+
             except AttributeError:
                 B = DEFAULT[:18]
 
@@ -533,7 +532,7 @@ for archivo in lista_archivos:
 
             V = DEFAULT[:1]
 
-            if event.get('type') == "D":
+            if event.get('type') == "Live":
                 W = "D"
             else:
                 W = DEFAULT[:1]
