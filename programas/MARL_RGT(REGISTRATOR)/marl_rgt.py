@@ -277,17 +277,18 @@ for archivo in lista_archivos:
                             B = reconcileKey[17:22]
                             B = "B" + B + " " * 12
                         else:
-                            B = DEFAULT[:18]
+                            # B = DEFAULT[:18]
+                            B = "DIRECTO" + " " * 12
                     else:
-                        B = DEFAULT[:18]
+                        #B = DEFAULT[:18]
+                        B = "DIRECTO" + " " * 12
                 else:
                    # Busca el mediaName específicamente en la ruta event/properties/media
                     media = event.find('.//properties/media[@mediaType="Video"]').get('mediaName')
                     if media is not None:
                         B = media
                     else:
-                        #B = DEFAULT[:18]
-                        B = "DIRECTO" + " " * 12
+                        B = DEFAULT[:18]
 
             except AttributeError:
                 B = DEFAULT[:18]
