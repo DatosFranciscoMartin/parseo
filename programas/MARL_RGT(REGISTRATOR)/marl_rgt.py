@@ -286,7 +286,8 @@ for archivo in lista_archivos:
                     if media is not None:
                         B = media
                     else:
-                        B = DEFAULT[:18]
+                        #B = DEFAULT[:18]
+                        B = "DIRECTO" + " " * 12
 
             except AttributeError:
                 B = DEFAULT[:18]
