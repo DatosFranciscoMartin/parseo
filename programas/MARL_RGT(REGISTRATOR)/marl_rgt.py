@@ -278,10 +278,10 @@ for archivo in lista_archivos:
                             B = "B" + B + " " * 12
                         else:
                             # B = DEFAULT[:18]
-                            B = "DIRECTO" + " " * 12
+                            B = "DIRECTO" + " " * 11
                     else:
                         #B = DEFAULT[:18]
-                        B = "DIRECTO" + " " * 12
+                        B = "DIRECTO" + " " * 11
                 else:
                    # Busca el mediaName específicamente en la ruta event/properties/media
                     media = event.find('.//properties/media[@mediaType="Video"]').get('mediaName')
