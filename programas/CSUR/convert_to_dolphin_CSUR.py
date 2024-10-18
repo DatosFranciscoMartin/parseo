@@ -2,7 +2,6 @@ import xml.etree.ElementTree as ET
 import tkinter as tk
 from tkinter import filedialog
 import os
-import datetime
 import time
 import logging
 from watchdog.observers import Observer
@@ -74,7 +73,7 @@ logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s -
 
 def procesar_archivo(archivo):
     """
-    Este fragmento de código Python define una función procesar_archivo que procesa un archivo txt. Extrae información del archivo de entrada, manipula los datos y escribe la salida formateada en un nuevo archivo. 
+    Este fragmento de código Python define una función procesar_archivo que procesa un archivo MPL. Extrae información del archivo de entrada, manipula los datos y escribe la salida formateada en un nuevo archivo. 
     El código incluye operaciones como la lectura de líneas específicas, la extracción de subcadenas y la escritura de datos formateados en un archivo de salida. 
     También registra el nombre del fichero procesado e imprime un mensaje en la consola.
     """
@@ -177,7 +176,7 @@ class FileHandler(FileSystemEventHandler):
     def on_created(self, event):
         """
         Este código define un método on_created que se llama cuando se crea un fichero. Si el elemento creado es un directorio, no devuelve nada y no se llama a ninguna funcion adicional. 
-        Si el elemento creado es un archivo .txt, llama a una función procesar_archivo con la ruta del archivo creado como argumento.
+        Si el elemento creado es un archivo .MPL, llama a una función procesar_archivo con la ruta del archivo creado como argumento.
         """
         if event.is_directory:
             return
