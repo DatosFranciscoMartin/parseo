@@ -106,14 +106,17 @@ def procesar_archivo(archivo):
     # Encontrar todos los elementos <event> que cumplan con la condición
     elementosEvent = root.findall('.//event[@type="Logo"]')
 
-    if len(elementosEvent) > 0:
-        for elementoEvent in elementosEvent:
-            # Buscar y eliminar el bloque de <features> con <feature type="LogoHD">
-            elementoFeatures = elementoEvent.find('./properties/features')
-            elementoFeatureLogoHD = elementoFeatures.find('./feature[@type="LogoHD"]')
+    try:
+        if len(elementosEvent) > 0:
+            for elementoEvent in elementosEvent:
+                # Buscar y eliminar el bloque de <features> con <feature type="LogoHD">
+                elementoFeatures = elementoEvent.find('./properties/features')
+                elementoFeatureLogoHD = elementoFeatures.find('./feature[@type="LogoHD"]')
 
-            if elementoFeatureLogoHD is not None:
-                elementoFeatures.remove(elementoFeatureLogoHD)
+                if elementoFeatureLogoHD is not None:
+                    elementoFeatures.remove(elementoFeatureLogoHD)
+    except:
+        print("No se encontraron elementos <event> con el atributo 'type' igual a 'LogoHD'")
 
     ###### ESTO CAMBIA EL LOGO
 
