@@ -29,8 +29,8 @@ def espejo_carpeta(origen, destino):
                 os.remove(ruta_destino)  # Eliminar archivo
 
 # Ejemplo de uso
-origen = (r'C:\Scripts\TEST\REPO')  # Cambia esto por la ruta de la carpeta de origen
-destino = (r'C:\Scripts\TEST\OUT')  # Cambia esto por la ruta de la carpeta de destino
+origen = (r'Z:\emision')  # Cambia esto por la ruta de la carpeta de origen
+destino = (r'M:\')  # Cambia esto por la ruta de la carpeta de destino
 espejo_carpeta(origen, destino)
 
 print("El espejo de la carpeta se ha creado.")
