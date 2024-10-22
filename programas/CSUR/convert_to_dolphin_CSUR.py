@@ -181,7 +181,9 @@ class FileHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         if event.src_path.endswith('.mpl'):
-            procesar_archivo(event.src_path)
+            time.sleep(1)
+            archivo = event.src_path
+            procesar_archivo(archivo)
 
 
 # La siguiente funcion inicia el monitoreo en el directorio que, nosotros le indiquemos en el GUI que nos salta cuando iniciamos el programa
