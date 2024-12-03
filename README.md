@@ -1,5 +1,3 @@
-Claro, a continuación proporciono una versión más detallada del README:
-
 # README para Scripts en Python
 
 ## Descripción General
