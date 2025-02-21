@@ -4,10 +4,10 @@ import xml.dom.minidom
 import os
 import datetime
 from datetime import timedelta, datetime
-import time
+#import time
 import logging
-import sys
-import ctypes
+#import sys
+#import ctypes
 import configparser
 import ftplib
 import socket
