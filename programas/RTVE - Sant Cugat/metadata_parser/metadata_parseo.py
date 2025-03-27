@@ -215,7 +215,8 @@ class Handler(FileSystemEventHandler):
         elif event.event_type == 'created':
             # Aquí se maneja el evento de creación de archivos.
             if event.src_path.endswith('.xml') or event.src_path.endswith('.dub'):
-                time.sleep(1)
+                # Esperar 10 segundos antes de procesar el archivo
+                time.sleep(10)
                 #print(f"Se ha creado el archivo: {event.src_path}")
                 archivo = event.src_path
                 procesar_archivo(archivo)
