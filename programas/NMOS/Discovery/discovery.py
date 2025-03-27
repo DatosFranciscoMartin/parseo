@@ -143,7 +143,8 @@ def obtener_datos_nodo(servers):
 
 try:
     # Cargamos el fichero de configuracion en la ruta que nosotros le indiquemos
-    config_path = r'C:\Users\franciscojavier.mart\Documents\Repos\parseo\programas\NMOS\Discovery\cf\config.conf'
+    #config_path = r'C:\Users\franciscojavier.mart\Documents\Repos\parseo\programas\NMOS\Discovery\cf\config.conf'
+    config_path = r'/root/nmos/NMOS/Discovery/cf/config.conf'
     # Usamos la funcion para cargar la configuracion 
     configuration = load_config(config_path)
     # Cargamos la configuracion del fichero en una variable para procesarla
