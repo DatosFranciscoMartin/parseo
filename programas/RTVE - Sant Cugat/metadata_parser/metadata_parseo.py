@@ -14,12 +14,16 @@ import shutil
 config = configparser.ConfigParser()
 
 config.read(r"D:/traductor/metadata/cf/config.conf")
-#config.read(r"C:\Users\franciscojavier.mart\Documents\parseo\programas\metadata_parser\cf\config.conf")
+#config.read(r"C:\Users\franciscojavier.mart\Documents\Repos\parseo\programas\RTVE - Sant Cugat\metadata_parser\cf\config.conf")
 
 # Obtener las rutas desde la configuración
 rutas = config['rutas']
 ruta_watch = rutas['ruta_watcher']
 ruta_salida = rutas['ruta_salida']
+
+# Cargamos la configuracion de otros aspectos
+otros = config['otros']
+tiempo_espera = int(otros['tiempo_espera'])
 
 
 # Se indica las rutas donde se van a mover los ficheros que se vayan procesando
@@ -216,7 +220,7 @@ class Handler(FileSystemEventHandler):
             # Aquí se maneja el evento de creación de archivos.
             if event.src_path.endswith('.xml') or event.src_path.endswith('.dub'):
                 # Esperar 10 segundos antes de procesar el archivo
-                time.sleep(10)
+                time.sleep(tiempo_espera)
                 #print(f"Se ha creado el archivo: {event.src_path}")
                 archivo = event.src_path
                 procesar_archivo(archivo)
