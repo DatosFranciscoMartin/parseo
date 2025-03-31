@@ -4,6 +4,9 @@ import requests
 import json
 import logging
 from ast import literal_eval
+import tkinter as tk
+from tkinter import ttk
+
 
 # Obtener el directorio actual donde se ejecuta el script
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -143,8 +146,8 @@ def obtener_datos_nodo(servers):
 
 try:
     # Cargamos el fichero de configuracion en la ruta que nosotros le indiquemos
-    #config_path = r'C:\Users\franciscojavier.mart\Documents\Repos\parseo\programas\NMOS\Discovery\cf\config.conf'
-    config_path = r'/root/nmos/NMOS/Discovery/cf/config.conf'
+    config_path = r'C:\Users\franciscojavier.mart\Documents\Repos\parseo\programas\NMOS\Discovery\cf\config.conf'
+    #config_path = r'/root/nmos/NMOS/Discovery/cf/config.conf'
     # Usamos la funcion para cargar la configuracion 
     configuration = load_config(config_path)
     # Cargamos la configuracion del fichero en una variable para procesarla
@@ -156,5 +159,58 @@ except Exception as e:
 # Cargamos la salida
 datos = obtener_datos_nodo(servers)
 
-datos_formateado = json.dumps(datos, indent=4)
-print(datos_formateado)
+#datos_formateado = json.dumps(datos, indent=4)
+#print(datos_formateado)
+
+def update_lists(*args):
+    server = server_var.get()
+    senders_list.delete(0, tk.END)
+    receivers_list.delete(0, tk.END)
+    
+    if server in datos:
+        senders = datos[server].get("senders", [])
+        receivers = datos[server].get("receivers", [])
+        
+        if isinstance(senders, list):
+            for sender in senders:
+                senders_list.insert(tk.END, sender)
+        else:
+            senders_list.insert(tk.END, senders.get("error", "Desconocido"))
+        
+        if isinstance(receivers, list):
+            for receiver in receivers:
+                receivers_list.insert(tk.END, receiver)
+        else:
+            receivers_list.insert(tk.END, receivers.get("error", "Desconocido"))
+
+
+# Crear la ventana
+root = tk.Tk()
+root.title("Selector de Servidor")
+root.geometry("800x800")  # Ajuste de tamaño
+
+# Dropdown para elegir servidor
+server_var = tk.StringVar()
+server_var.trace_add("write", update_lists)
+server_label = tk.Label(root, text="Selecciona un servidor:", font=("Arial", 12))
+server_label.pack(pady=5)
+server_dropdown = ttk.Combobox(root, textvariable=server_var, values=list(datos.keys()), font=("Arial", 12))
+server_dropdown.pack(pady=5)
+
+# Listbox para Senders
+senders_label = tk.Label(root, text="Senders", font=("Arial", 12, "bold"))
+senders_label.pack(pady=5)
+senders_list = tk.Listbox(root, width=80, height=17, font=("Arial", 10))
+senders_list.pack(pady=5)
+
+# Listbox para Receivers
+receivers_label = tk.Label(root, text="Receivers", font=("Arial", 12, "bold"))
+receivers_label.pack(pady=5)
+receivers_list = tk.Listbox(root, width=80, height=17, font=("Arial", 10))
+receivers_list.pack(pady=5)
+
+# Iniciar con el primer servidor seleccionado
+server_var.set(list(datos.keys())[0])
+
+# Ejecutar la aplicación
+root.mainloop()
