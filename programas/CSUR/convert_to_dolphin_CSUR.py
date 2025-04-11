@@ -87,6 +87,32 @@ def procesar_archivo(archivo):
 
     tree = ET.parse(archivo)
     root = tree.getroot()
+
+    ###### ESTO AÑADE EL SUBTITULO EN DIRECTO
+
+    # Encontrar el evento de tipo 'Live'
+
+    for event in root.findall(".//event[@type='Live']"):
+        # Crear el nuevo feature de subtítulos
+        feature_subtitle = ET.Element("feature", type="Subtitle")
+        properties = ET.SubElement(feature_subtitle, "properties")
+
+        media_stream = ET.SubElement(properties, "mediaStream")
+        subtitle = ET.SubElement(media_stream, "subtitle", source="Live")
+
+        allocation = ET.SubElement(media_stream, "allocation", type="ListStream")
+        list_stream = ET.SubElement(allocation, "listStream", type="Fixed", listStreamNo="0")
+
+        media = ET.SubElement(properties, "media", mediaType="Subtitle", mediaName="LIVE")
+
+        # Agregar el nuevo feature dentro de las características del evento Live
+        features = event.find(".//features")
+        if features is None:
+            features = ET.SubElement(event, "features")
+
+        features.append(feature_subtitle)
+
+
     ###### ESTO CAMBIA EL COMBINADOR DE AUDIO
 
     # Seleccionar todos los elementos <feature> con type="Combinador Audio"
@@ -146,6 +172,19 @@ def procesar_archivo(archivo):
     ###### ESTO CAMBIA EL Orad
 
     # Seleccionar todos los elementos <event> con type="Orad"
+
+    for event in root.findall(".//event[@type='Orad']"):
+        media_stream = event.find(".//mediaStream")
+
+        if media_stream is not None and media_stream.find(".//cg[@type='Template']") is not None:
+            # Encontrar todos los elementos <f> dentro del nodo <cg> de tipo Template
+            cg = media_stream.find(".//cg[@type='Template']")
+            fields = cg.findall("f")
+
+            # Reiniciar el índice a 1 para cada evento CG de tipo Template
+            for idx, field in enumerate(fields, start=1):
+                field.set('name', f'f{idx}')
+
     elementosFeature = root.findall('.//event[@type="Orad"]')
 
     if len(elementosFeature) > 0:
