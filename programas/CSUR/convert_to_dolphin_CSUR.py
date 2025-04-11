@@ -113,7 +113,7 @@ def procesar_archivo(archivo):
         features.append(feature_subtitle)
 
 
-    ###### ESTO CAMBIA EL COMBINADOR DE AUDIO
+    ###### ESTO CAMBIA EL COMBINADOR DE AUDIOc
 
     # Seleccionar todos los elementos <feature> con type="Combinador Audio"
     elementosFeature = root.findall('.//feature[@type="Combinador Audio"]')
