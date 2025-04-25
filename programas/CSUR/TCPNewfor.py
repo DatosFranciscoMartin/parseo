@@ -39,8 +39,8 @@ def close_tcp_connection(local_ip, local_port, remote_ip, remote_port):
         print(f"[!] Error al cerrar conexión {remote_ip}:{remote_port} — Código: {result}")
 
 # === CONFIGURACIÓN ===
-local_ip = "10.236.174.75"
-local_port = 2104
+local_ip = "10.236.174.77"
+local_port = 2107
 inactivity_threshold = 60  # segundos
 
 # === MONITOREO DE CONEXIONES ===
