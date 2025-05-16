@@ -198,7 +198,6 @@ def procesar_archivo(archivo):
 
             if CG_media is not None:
                 CG_mediaName = CG_media.get("mediaName")
-                print(CG_media.get("mediaName"))
 
                 if CG_mediaName == "MoscaCS1":
                     nuevoTipo = "CG 2"
