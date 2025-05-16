@@ -188,11 +188,30 @@ def procesar_archivo(archivo):
     elementosFeature = root.findall('.//event[@type="Orad"]')
 
     if len(elementosFeature) > 0:
-        # Nuevo valor para el atributo "type"
-        nuevoTipo = "CG"
 
         # Iterar a través de los elementos y cambiar el valor del atributo "type"
         for elementoFeature in elementosFeature:
+            # Nuevo valor para el atributo "type"
+
+            CG_media = elementoFeature.find(".//media")
+            nuevoTipo = "CG"
+
+            if CG_media is not None:
+                CG_mediaName = CG_media.get("mediaName")
+                print(CG_media.get("mediaName"))
+
+                if CG_mediaName == "MoscaCS1":
+                    nuevoTipo = "CG 2"
+
+                elif CG_mediaName == "MoscaCS1_Acont":
+                    nuevoTipo = "CG 2"
+
+                elif CG_mediaName == "MoscaATV":
+                    nuevoTipo = "CG 2"
+
+                elif CG_mediaName == "Crawl":
+                    nuevoTipo = "CG 3"
+
             elementoFeature.set("type", nuevoTipo)
 
     ###### ESTO CAMBIA EL LAYER
