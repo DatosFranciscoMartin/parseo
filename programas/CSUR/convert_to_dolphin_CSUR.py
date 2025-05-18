@@ -81,6 +81,37 @@ def procesar_archivo(archivo):
     nombre_archivo = os.path.basename(archivo)
     logging.info(f"Archivo procesado: {nombre_archivo}")
 
+    # Determinar carpeta de salida según el comienzo del nombre
+    if nombre_archivo.startswith("CS1_ALMERIA"):
+        subcarpeta = os.path.join("Provinciales", "ALMERIA")
+    elif nombre_archivo.startswith("CS1_CADIZ"):
+        subcarpeta = os.path.join("Provinciales", "CADIZ")
+    elif nombre_archivo.startswith("CS1_CORDOBA"):
+        subcarpeta = os.path.join("Provinciales", "CORDOBA")
+    elif nombre_archivo.startswith("CS1_GRANADA"):
+        subcarpeta = os.path.join("Provinciales", "GRANADA")
+    elif nombre_archivo.startswith("CS1_JAEN"):
+        subcarpeta = os.path.join("Provinciales", "JAEN")
+    elif nombre_archivo.startswith("CS1_HUELVA"):
+        subcarpeta = os.path.join("Provinciales", "HUELVA")
+    elif nombre_archivo.startswith("CS1_MALAGA"):
+        subcarpeta = os.path.join("Provinciales", "MALAGA")
+    elif nombre_archivo.startswith("CS1"):
+        subcarpeta = "CS1"
+    elif nombre_archivo.startswith("CS2"):
+        subcarpeta = "CS2"
+    elif nombre_archivo.startswith("CS3"):
+        subcarpeta = "CS3"
+    elif nombre_archivo.startswith("CS3_IP"):
+        subcarpeta = "YOUTUBE"
+    elif nombre_archivo.startswith("CS4"):
+        subcarpeta = "ATV"
+    elif nombre_archivo.startswith("CS5"):
+        subcarpeta = "CS5"
+    else:
+        print("Archivo no procesado. Nombre de archivo no compatible:", archivo)
+        return  # No se procesa el archivo si no coincide
+
     #Mensaje en la consola de salida que se indica que fichero se esta procesando.
 
     print("Procesando archivo:", archivo)
@@ -226,8 +257,11 @@ def procesar_archivo(archivo):
         for elementoLayer in elementosLayer:
             elementoLayer.set("layer", nuevoLayer)
 
+    # Crear la ruta completa
+    ruta_salida = os.path.join(directorio_salida, subcarpeta)
+
     # Guardar los cambios en el archivo XML
-    tree.write(directorio_salida + '/' + nombre_archivo, encoding='utf-8', xml_declaration=True)
+    tree.write(ruta_salida + '/' + nombre_archivo, encoding='utf-8', xml_declaration=True)
 
 class FileHandler(FileSystemEventHandler):
     def on_created(self, event):
