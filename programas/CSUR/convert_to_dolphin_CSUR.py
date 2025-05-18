@@ -100,10 +100,10 @@ def procesar_archivo(archivo):
         subcarpeta = "CS1"
     elif nombre_archivo.startswith("CS2"):
         subcarpeta = "CS2"
-    elif nombre_archivo.startswith("CS3"):
-        subcarpeta = "CS3"
     elif nombre_archivo.startswith("CS3_IP"):
         subcarpeta = "YOUTUBE"
+    elif nombre_archivo.startswith("CS3"):
+        subcarpeta = "CS3"
     elif nombre_archivo.startswith("CS4"):
         subcarpeta = "ATV"
     elif nombre_archivo.startswith("CS5"):
@@ -271,11 +271,11 @@ class FileHandler(FileSystemEventHandler):
         """
         if event.is_directory:
             return
+
         if event.src_path.endswith('.mpl'):
             time.sleep(1)
             archivo = event.src_path
             procesar_archivo(archivo)
-
 
 # La siguiente funcion inicia el monitoreo en el directorio que, nosotros le indiquemos en el GUI que nos salta cuando iniciamos el programa
 def iniciar_monitoreo():
