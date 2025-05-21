@@ -42,6 +42,19 @@ ventana.mainloop()
 log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
 
+# --- Historial de archivos procesados persistente ---
+historial_path = os.path.join(directorio_salida, "procesados.txt")
+
+def cargar_historial():
+    if os.path.exists(historial_path):
+        with open(historial_path, "r", encoding="utf-8") as f:
+            return set(line.strip() for line in f)
+    return set()
+
+def guardar_en_historial(ruta_archivo):
+    with open(historial_path, "a", encoding="utf-8") as f:
+        f.write(ruta_archivo + "\n")
+
 # --- Procesamiento de archivos ---
 
 def procesar_archivo(archivo):
@@ -141,7 +154,7 @@ def procesar_archivo(archivo):
 
 # --- Escaneo periódico ---
 
-archivos_procesados = set()
+archivos_procesados = cargar_historial()
 
 def escanear_directorio():
     for carpeta_actual, _, archivos in os.walk(directorio_monitorizar):
@@ -152,6 +165,7 @@ def escanear_directorio():
                     try:
                         procesar_archivo(ruta_archivo)
                         archivos_procesados.add(ruta_archivo)
+                        guardar_en_historial(ruta_archivo)
                     except Exception as e:
                         logging.error(f"Error al procesar {ruta_archivo}: {str(e)}")
 
