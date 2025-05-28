@@ -88,8 +88,15 @@ def ejecutar_proceso_en_bucle(origenes, destino):
                 for origen_base in origenes:
                     cazar_subtitulos(origen_base, destino, log_file)
 
-            print("Esperando 5 minutos...\n")
-            time.sleep(300)
+            # Cuenta atrás de 5 minutos
+            total_segundos = 300
+            print("Esperando 5 minutos para la siguiente ejecución...")
+            for restante in range(total_segundos, 0, -1):
+                mins, secs = divmod(restante, 60)
+                tiempo_str = f"{mins:02d}:{secs:02d}"
+                print(f"\rTiempo restante: {tiempo_str}", end="", flush=True)
+                time.sleep(1)
+            print("\n")
     except KeyboardInterrupt:
         print("\nProceso interrumpido por el usuario.")
 
@@ -112,8 +119,7 @@ def cazar_subtitulos(origen_base, destino, log_file):
             continue
 
         nombre_archivo = archivo
-        archivo_sin_ext = os.path.splitext(archivo)[0]
-        extension = os.path.splitext(archivo)[1]
+        archivo_sin_ext, extension = os.path.splitext(archivo)
 
         base_nombre = None
 
@@ -123,8 +129,13 @@ def cazar_subtitulos(origen_base, destino, log_file):
             base_nombre = archivo_sin_ext[2:]
         else:
             ruta_archivo_origen = os.path.join(origen, archivo)
-            shutil.move(ruta_archivo_origen, otros)
-            msg = f'[ERROR] Nombre inválido, archivo "{nombre_archivo}" movido a carpeta "otros".'
+
+            # Renombrar automáticamente para evitar sobrescribir en 'otros'
+            nuevo_nombre = f"{archivo_sin_ext}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
+            ruta_archivo_destino_otros = os.path.join(otros, nuevo_nombre)
+
+            shutil.move(ruta_archivo_origen, ruta_archivo_destino_otros)
+            msg = f'[ERROR] Nombre inválido, archivo "{nombre_archivo}" renombrado a "{nuevo_nombre}" y movido a carpeta "otros".'
             print(msg)
             log_file.write(msg + "\n")
             continue
