@@ -108,44 +108,4 @@ def cazar_subtitulos(origen_base, destino, log_file):
     log_file.write(f"\nCazando en: {origen}\n")
 
     for archivo in os.listdir(origen):
-        if not archivo.lower().endswith(".stl"):
-            continue
-
-        nombre_archivo = archivo
-        archivo_sin_ext = os.path.splitext(archivo)[0]
-        extension = os.path.splitext(archivo)[1]
-
-        base_nombre = None
-
-        if archivo_sin_ext.isdigit() and len(archivo_sin_ext) == 10:
-            base_nombre = archivo_sin_ext
-        elif archivo_sin_ext.startswith("HD") and archivo_sin_ext[2:].isdigit() and len(archivo_sin_ext) == 12:
-            base_nombre = archivo_sin_ext[2:]
-        else:
-            ruta_archivo_origen = os.path.join(origen, archivo)
-            shutil.move(ruta_archivo_origen, otros)
-            msg = f'[ERROR] Nombre inválido, archivo "{nombre_archivo}" movido a carpeta "otros".'
-            print(msg)
-            log_file.write(msg + "\n")
-            continue
-
-        carpeta = base_nombre[:7] + "000"
-        ruta_carpeta = os.path.join(destino, carpeta)
-        ruta_archivo_destino = os.path.join(ruta_carpeta, nombre_archivo)
-        ruta_archivo_origen = os.path.join(origen, archivo)
-
-        if not os.path.exists(ruta_carpeta):
-            os.makedirs(ruta_carpeta)
-            msg = f"[INFO] Carpeta creada: {ruta_carpeta}"
-            print(msg)
-            log_file.write(msg + "\n")
-
-        shutil.move(ruta_archivo_origen, ruta_carpeta)
-        msg = f'Archivo "{nombre_archivo}" movido a "{ruta_carpeta}"'
-        print(msg)
-        log_file.write(msg + "\n")
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = CazadorSubtitulosApp(root)
-    root.mainloop()
+        if not archivo.lower(
