@@ -2,6 +2,9 @@ import os
 import re
 import xml.etree.ElementTree as ET
 from tkinter import Tk, filedialog, messagebox
+from datetime import datetime
+import time
+from datetime import datetime, timedelta
 
 def seleccionar_carpeta(titulo):
     root = Tk()
@@ -50,16 +53,37 @@ def revertir_cambios_xml(xml_str):
 
 def procesar_archivos(carpeta_entrada, carpeta_salida):
     archivos_modificados = 0
+    hoy = datetime.now()
+
+    patron_fecha = re.compile(r'_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})')
+
     for carpeta_actual, _, archivos in os.walk(carpeta_entrada):
         for archivo in archivos:
             if archivo.lower().endswith('.marl'):
-                ruta_completa = os.path.join(carpeta_actual, archivo)
+                match = patron_fecha.search(archivo)
+                if not match:
+                    print(f"Fecha no encontrada en el archivo: {archivo}")
+                    continue
 
-                # Obtener la ruta relativa para replicar la estructura
+                fecha_str = match.group(1)
+                try:
+                    fecha_archivo = datetime.strptime(fecha_str, "%Y-%m-%d_%H-%M-%S")
+                except ValueError:
+                    print(f"Formato de fecha inválido en: {archivo}")
+                    continue
+
+                if fecha_archivo.date() >= hoy.date():
+                    print(f"Saltado (futura o actual): {archivo}")
+                    continue
+
+                ruta_completa = os.path.join(carpeta_actual, archivo)
                 ruta_relativa = os.path.relpath(ruta_completa, carpeta_entrada)
                 ruta_destino = os.path.join(carpeta_salida, ruta_relativa)
 
-                # Crear carpetas necesarias en la ruta de destino
+                if os.path.exists(ruta_destino):
+                    print(f"Saltado (ya existe): {ruta_destino}")
+                    continue
+
                 os.makedirs(os.path.dirname(ruta_destino), exist_ok=True)
 
                 try:
@@ -80,17 +104,14 @@ def procesar_archivos(carpeta_entrada, carpeta_salida):
                         "<source channelName='Canal Sur Andalucia'/>",
                         "<source channelName='CS3 [A]'/>"
                     )
+
                     nuevo_contenido = eliminar_eventos_blq(nuevo_contenido)
                     nuevo_contenido = revertir_cambios_xml(nuevo_contenido)
 
-                    if contenido != nuevo_contenido:
-                        with open(ruta_destino, 'w', encoding='utf-8') as f:
-                            f.write(nuevo_contenido)
-                        archivos_modificados += 1
-                    else:
-                        # Si no se modificó, igual copia el archivo original
-                        with open(ruta_destino, 'w', encoding='utf-8') as f:
-                            f.write(contenido)
+                    with open(ruta_destino, 'w', encoding='utf-8') as f:
+                        f.write(nuevo_contenido)
+
+                    archivos_modificados += 1
 
                 except Exception as e:
                     print(f"Error al procesar {ruta_completa}: {e}")
@@ -109,5 +130,16 @@ def main():
     modificados = procesar_archivos(carpeta_entrada, carpeta_salida)
     messagebox.showinfo("Proceso terminado", f"Se modificaron {modificados} archivos .marl.")
 
+def esperar_hasta_manana_a_las_9():
+    ahora = datetime.now()
+    manana = ahora + timedelta(days=1)
+    objetivo = datetime.combine(manana.date(), datetime.min.time()).replace(hour=9)
+    segundos_espera = (objetivo - ahora).total_seconds()
+    print(f"Esperando hasta mañana a las 09:00... ({int(segundos_espera)} segundos)")
+    time.sleep(segundos_espera)
+
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        esperar_hasta_manana_a_las_9()
+
