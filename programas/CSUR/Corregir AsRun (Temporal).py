@@ -128,7 +128,7 @@ def main():
         return
 
     modificados = procesar_archivos(carpeta_entrada, carpeta_salida)
-    messagebox.showinfo("Proceso terminado", f"Se modificaron {modificados} archivos .marl.")
+    print(f"Se modificaron {modificados} archivos .marl.")  # Mensaje en consola solamente
 
 def esperar_hasta_manana_a_las_9():
     ahora = datetime.now()
