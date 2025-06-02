@@ -103,7 +103,7 @@ def procesar_archivo(archivo):
     elif nombre_archivo.startswith("CS3_IP"):
         subcarpeta = "YOUTUBE"
     elif nombre_archivo.startswith("CS3"):
-        subcarpeta = "CS3"
+        subcarpeta = "CSA"
     elif nombre_archivo.startswith("CS4"):
         subcarpeta = "ATV"
     elif nombre_archivo.startswith("CS5"):
@@ -196,9 +196,55 @@ def procesar_archivo(archivo):
         # Nuevo valor para el atributo "type"
         nuevoTipo = "CG 3"
 
-        # Iterar a través de los elementos y cambiar el valor del atributo "type"
+        # Iterar a través de los elementos y cambiar el valor del atributo "type" y añadir dingdong
         for elementoFeature in elementosFeature:
+
             elementoFeature.set("type", nuevoTipo)
+#            Logo_media = elementoFeature.find(".//media")
+#
+#            if Logo_media is not None:
+#
+#                Logo_mediaName = Logo_media.get("mediaName")
+            #
+            #   if "_18" in Logo_mediaName:
+            #
+            ##       # Crear el nuevo evento XML
+            #      ding_dong_event = ET.Element("event", {
+            #           "type": "AudioMixer",
+            #           "enabled": "true",
+            #           "timerMarker": "false",
+            #           "uid": "3948"
+            #       })
+            #
+            #       ding_dong_properties = ET.SubElement(ding_dong_event, "properties")
+            #
+            #       ding_dong_schedule = ET.SubElement(ding_dong_properties, "schedule", {
+            #           "startType": "+ParentStart",
+            #           "startOffset": "00:00:02:00",
+            #           "endOffset": "00:00:30:00",
+            #           "endType": "Duration"
+            #       })
+            #
+            #       ding_dong_media_stream = ET.SubElement(ding_dong_properties, "mediaStream")
+            #       ding_dong_allocation = ET.SubElement(ding_dong_media_stream, "allocation", {"type": "ListStream"})
+            #       list_stream = ET.SubElement(ding_dong_allocation, "listStream", {
+            #           "type": "Fixed",
+            #           "listStreamNo": "0"
+            #       })
+            #
+            #       ding_dong_audio_mixer = ET.SubElement(ding_dong_properties, "audioMixer", {
+            #           "type": "file",
+            #           "preset": "VoiceOver"
+            #       })
+            #
+            #       ding_dong_media = ET.SubElement(ding_dong_properties, "media", {
+            #           "mediaType": "Audio",
+            #           "mediaName": "18"
+            #       })
+            #
+            #       # Agregar el nuevo evento al elemento actual (o a donde corresponda)
+    #       elementoFeature.append(ding_dong_event)
+
 
     ###### ESTO CAMBIA EL Orad
 
@@ -264,6 +310,7 @@ def procesar_archivo(archivo):
     tree.write(ruta_salida + '/' + nombre_archivo, encoding='utf-8', xml_declaration=True)
 
 class FileHandler(FileSystemEventHandler):
+    def on_created(self, event):
     def on_created(self, event):
         """
         Este código define un método on_created que se llama cuando se crea un fichero. Si el elemento creado es un directorio, no devuelve nada y no se llama a ninguna funcion adicional. 
