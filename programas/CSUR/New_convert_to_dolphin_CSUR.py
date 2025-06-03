@@ -112,6 +112,24 @@ def procesar_archivo(archivo):
     for elementoFeature in root.findall('.//feature[@type="Combinador Audio"]'):
         elementoFeature.set("type", "AudioShuffle")
 
+        properties = elementoFeature.find('properties')
+        if properties is not None:
+            # Buscamos el único macro
+            macro = properties.find('macro')
+            valor_macro = macro.get('value') if macro is not None else "AUDIO DESCRIPCION"
+
+            # Limpiamos todo dentro de properties (borramos macro también)
+            for child in list(properties):
+                properties.remove(child)
+
+            # Creamos la nueva estructura
+            effect = ET.Element('effect', {'status': 'On', 'type': 'Audio Shuffle'})
+            audioShuffle = ET.SubElement(effect, 'audioShuffle', {'type': 'TrackPreset'})
+            ET.SubElement(audioShuffle, 'trackPreset', {'name': valor_macro})
+
+            # Añadimos effect dentro de properties
+            properties.append(effect)
+
     for elementoEvent in root.findall('.//event[@type="Logo"]'):
         try:
             features = elementoEvent.find('./properties/features')
