@@ -142,6 +142,25 @@ def procesar_archivo(archivo):
     for elementoFeature in root.findall('.//event[@type="Logo"]'):
         elementoFeature.set("type", "CG 4")
 
+        # Buscar el elemento <media> y revisar el atributo mediaName
+        media = elementoFeature.find(".//media[@mediaName]")
+        if '18' in media.attrib.get('mediaName', ''):
+            # Crear childEvents
+            child_events = ET.Element("childEvents")
+            event = ET.SubElement(child_events, "event", {"type": "AudioMixer"})
+            props = ET.SubElement(event, "properties")
+            ET.SubElement(props, "schedule", {
+                "startType": "+ParentStart",
+                "startOffset": "00:00:02:00",
+                "endOffset": "00:00:30:00",
+                "endType": "Duration"
+            })
+            ET.SubElement(props, "audioMixer", {"type": "file", "preset": "VoiceOver"})
+            ET.SubElement(props, "media", {"mediaType": "Audio", "mediaName": "18"})
+
+            # Añadir childEvents al <event> principal
+            elementoFeature.append(child_events)
+
     for elementoFeature in root.findall('.//event[@type="CG"]'):
         elementoFeature.set("type", "CG 3")
 
@@ -193,6 +212,7 @@ def iniciar_monitoreo_periodico():
         while True:
             escanear_directorio()
             time.sleep(60)  # Espera de 1 minuto
+            print("Esperando 1 minuto...")
     except KeyboardInterrupt:
         print("Monitoreo detenido por el usuario.")
 
