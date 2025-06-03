@@ -38,6 +38,7 @@ tk.Button(ventana, text="Ejecutar", command=salir).pack(pady=10)
 
 ventana.mainloop()
 
+
 # --- Configuración de logs ---
 log_file = os.path.join(directorio_salida, "log.log")
 logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M')
