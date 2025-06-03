@@ -56,7 +56,11 @@ def guardar_en_historial(ruta_archivo):
     with open(historial_path, "a", encoding="utf-8") as f:
         f.write(ruta_archivo + "\n")
 
+
+# Definir el nuevo evento a insertar
+
 # --- Procesamiento de archivos ---
+
 
 def procesar_archivo(archivo):
     nombre_archivo = os.path.basename(archivo)
@@ -109,6 +113,67 @@ def procesar_archivo(archivo):
         if features is None:
             features = ET.SubElement(event, "features")
         features.append(feature_subtitle)
+
+        # Crear o encontrar <childEvents>
+        child_events = event.find("childEvents")
+        if child_events is None:
+            child_events = ET.SubElement(event, "childEvents")
+
+        # Añadir el nuevo <event type="CS 2 DVE Background">
+        evento_dve = ET.Element("event", {"type": "CS 2 DVE Background"})
+
+        propiedades = ET.SubElement(evento_dve, "properties")
+        ET.SubElement(propiedades, "schedule", {
+            "startType": "+ParentStart",
+            "startOffset": "00:00:00:00",
+            "endType": "-ParentEnd",
+            "endOffset": "00:00:00:00"
+        })
+
+        media_stream = ET.SubElement(propiedades, "mediaStream")
+        ET.SubElement(media_stream, "cg", {"type": "Sequence", "layer": "0"})
+        allocation = ET.SubElement(media_stream, "allocation", {"type": "ListStream"})
+        ET.SubElement(allocation, "listStream", {"type": "Fixed", "listStreamNo": "0"})
+
+        ET.SubElement(propiedades, "media", {
+            "mediaType": "CG",
+            "mediaName": "DVE Sigando CSur 3"
+        })
+
+        ET.SubElement(propiedades, "event", {"title": "EFECTO SIGNADO CANAL2"})
+
+        # Crear <childEvents> internos del evento nuevo
+        child_events_internos = ET.SubElement(evento_dve, "childEvents")
+
+        # Acción 1
+        action1 = ET.SubElement(child_events_internos, "action", {"type": "Switch"})
+        props1 = ET.SubElement(action1, "properties")
+        ET.SubElement(props1, "schedule", {"startType": "+ParentStart", "startOffset": "00:00:00:00"})
+        switch1 = ET.SubElement(props1, "switch", {"rate": "Fast", "transition": "Cut Fade"})
+        src1 = ET.SubElement(switch1, "source", {"type": "Logical"})
+        ET.SubElement(src1, "logical", {"name": "CS2 F&K"})
+        dst1 = ET.SubElement(switch1, "destination", {"type": "Logical"})
+        ET.SubElement(dst1, "logical", {"name": "DVE INPUT"})
+
+        # Acción 2
+        action2 = ET.SubElement(child_events_internos, "action", {
+            "type": "Switch",
+            "enabled": "true",
+            "timerMarker": "false",
+            "uid": "4845"
+        })
+        props2 = ET.SubElement(action2, "properties")
+        ET.SubElement(props2, "schedule", {"startType": "-ParentEnd", "startOffset": "00:00:00:00"})
+        switch2 = ET.SubElement(props2, "switch", {"rate": "Fast", "transition": "Fade Cut"})
+        src2 = ET.SubElement(switch2, "source", {"type": "Logical"})
+        ET.SubElement(src2, "logical", {"name": "CS2 TL4"})
+        dst2 = ET.SubElement(switch2, "destination", {"type": "Logical"})
+        ET.SubElement(dst2, "logical", {"name": "DVE INPUT"})
+
+        # Añadir el nuevo evento a los <childEvents>
+        child_events.append(evento_dve)
+
+
 
     for elementoFeature in root.findall('.//feature[@type="Combinador Audio"]'):
         elementoFeature.set("type", "AudioShuffle")
