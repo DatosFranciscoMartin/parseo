@@ -89,7 +89,7 @@ def ejecutar_proceso_en_bucle(origenes, destino):
                 for origen_base in origenes:
                     cazar_subtitulos(origen_base, destino, log_file)
 
-            mover_subtitulos(destino)
+                mover_subtitulos(destino, log_file)
 
             # Cuenta atrás de 5 minutos
             total_segundos = 300
@@ -163,7 +163,7 @@ def cazar_subtitulos(origen_base, destino, log_file):
             log_file.write(msg + "\n")
 
 
-def mover_subtitulos(repo_sub, sub_diario="S:\\"):
+def mover_subtitulos(repo_sub, sub_diario="S:\\", log_file):
     # Parámetros de conexión
     server = '10.236.174.70'  # IP o nombre del servidor SQL remoto
     database = 'CanalSur_AutomationDB'
