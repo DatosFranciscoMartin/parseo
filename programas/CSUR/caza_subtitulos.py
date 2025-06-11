@@ -130,12 +130,10 @@ def cazar_subtitulos(origen_base, destino, log_file):
         else:
             ruta_archivo_origen = os.path.join(origen, archivo)
 
-            # Renombrar automáticamente para evitar sobrescribir en 'otros'
-            nuevo_nombre = f"{archivo_sin_ext}_{datetime.now().strftime('%Y%m%d%H%M%S')}{extension}"
-            ruta_archivo_destino_otros = os.path.join(otros, nuevo_nombre)
+            ruta_archivo_destino_otros = os.path.join(otros, nombre_archivo)
 
             shutil.move(ruta_archivo_origen, ruta_archivo_destino_otros)
-            msg = f'[ERROR] Nombre inválido, archivo "{nombre_archivo}" renombrado a "{nuevo_nombre}" y movido a carpeta "otros".'
+            msg = f'[ERROR] Nombre inválido, archivo "{nombre_archivo}" movido a carpeta "otros".'
             print(msg)
             log_file.write(msg + "\n")
             continue

@@ -129,9 +129,9 @@ def procesar_archivo(archivo):
             propiedades = ET.SubElement(evento_dve, "properties")
             ET.SubElement(propiedades, "schedule", {
                 "startType": "+ParentStart",
-                "startOffset": "00:00:00:00",
+                "startOffset": "00:00:02:00",
                 "endType": "-ParentEnd",
-                "endOffset": "00:00:00:00"
+                "endOffset": "00:00:02:00"
             })
 
             media_stream = ET.SubElement(propiedades, "mediaStream")
@@ -152,8 +152,8 @@ def procesar_archivo(archivo):
             # Acción 1
             action1 = ET.SubElement(child_events_internos, "action", {"type": "Switch"})
             props1 = ET.SubElement(action1, "properties")
-            ET.SubElement(props1, "schedule", {"startType": "+ParentStart", "startOffset": "00:00:00:00"})
-            switch1 = ET.SubElement(props1, "switch", {"rate": "Fast", "transition": "Cut Fade"})
+            ET.SubElement(props1, "schedule", {"startType": "+ParentStart", "startOffset": "00:00:02:00"})
+            switch1 = ET.SubElement(props1, "switch", {"rate": "Slow", "transition": "Fade Cut"})
             src1 = ET.SubElement(switch1, "source", {"type": "Logical"})
             ET.SubElement(src1, "logical", {"name": "CS2 F&K"})
             dst1 = ET.SubElement(switch1, "destination", {"type": "Logical"})
@@ -167,8 +167,8 @@ def procesar_archivo(archivo):
                 "uid": "4845"
             })
             props2 = ET.SubElement(action2, "properties")
-            ET.SubElement(props2, "schedule", {"startType": "-ParentEnd", "startOffset": "00:00:00:00"})
-            switch2 = ET.SubElement(props2, "switch", {"rate": "Fast", "transition": "Fade Cut"})
+            ET.SubElement(props2, "schedule", {"startType": "-ParentEnd", "startOffset": "00:00:02:00"})
+            switch2 = ET.SubElement(props2, "switch", {"rate": "Slow", "transition": "Fade Cut"})
             src2 = ET.SubElement(switch2, "source", {"type": "Logical"})
             ET.SubElement(src2, "logical", {"name": "CS2 TL4"})
             dst2 = ET.SubElement(switch2, "destination", {"type": "Logical"})
@@ -284,6 +284,9 @@ def iniciar_monitoreo_periodico():
             print("Esperando 1 minuto...")
     except KeyboardInterrupt:
         print("Monitoreo detenido por el usuario.")
+
+
+
 
 # --- Punto de entrada del programa ---
 
