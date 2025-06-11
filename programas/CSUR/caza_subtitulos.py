@@ -236,6 +236,7 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
         msg = f"Error de conexión o consulta: {e}"
         print(msg)
         log_file.write(msg + "\n")
+
     finally:
         if 'cursor' in locals():
             cursor.close()
