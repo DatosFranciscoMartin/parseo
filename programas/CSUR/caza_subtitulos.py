@@ -180,29 +180,29 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
         f"TrustServerCertificate=yes;"
     )
 
-    # try:
-    conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
-    cursor.execute("""
-        SELECT DISTINCT [MediaName]
-        FROM [dbo].[taListMediaUsage]
-        WHERE [MediaTypeId] = '2'
-    """)
+    try:
+        conn = pyodbc.connect(conn_str)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT DISTINCT [MediaName]
+            FROM [dbo].[taListMediaUsage]
+            WHERE [MediaTypeId] = '2'
+        """)
 
-    for row in cursor.fetchall():
-        media_name = row.MediaName + ".stl"
+        for row in cursor.fetchall():
+            media_name = row.MediaName + ".stl"
 
-        for reposiorio, _, subtitulos in os.walk(repo_sub):
-            if media_name in subtitulos:
-                ruta_actual = os.path.join(reposiorio, media_name)
-                nueva_ruta = os.path.join(sub_diario, media_name)
+            for reposiorio, _, subtitulos in os.walk(repo_sub):
+                if media_name in subtitulos:
+                    ruta_actual = os.path.join(reposiorio, media_name)
+                    nueva_ruta = os.path.join(sub_diario, media_name)
 
-                os.makedirs(sub_diario, exist_ok=True)
-                shutil.copy2(ruta_actual, nueva_ruta)
+                    os.makedirs(sub_diario, exist_ok=True)
+                    shutil.copy2(ruta_actual, nueva_ruta)
 
-                print(f"Archivo movido a: {nueva_ruta}")
-            else:
-                print("Archivo no encontrado.")
+                    print(f"Archivo movido a: {nueva_ruta}")
+                else:
+                    print("Archivo no encontrado.")
 
     except pyodbc.Error as e:
         print(f"Error de conexión o consulta: {e}")
