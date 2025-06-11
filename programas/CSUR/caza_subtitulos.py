@@ -88,6 +88,8 @@ def ejecutar_proceso_en_bucle(origenes, destino):
                 for origen_base in origenes:
                     cazar_subtitulos(origen_base, destino, log_file)
 
+            mover_subtitulos(destino)
+
             # Cuenta atrás de 5 minutos
             total_segundos = 300
             print("Esperando 5 minutos para la siguiente ejecución...")
@@ -158,6 +160,57 @@ def cazar_subtitulos(origen_base, destino, log_file):
             msg = f'Archivo "{nombre_archivo}" movido a "{ruta_carpeta}"'
             print(msg)
             log_file.write(msg + "\n")
+
+
+def mover_subtitulos(repo_sub, sub_diario="S:\\"):
+    # Parámetros de conexión
+    server = '10.236.174.70'  # IP o nombre del servidor SQL remoto
+    database = 'CanalSur_AutomationDB'
+    username = 'pbsdbviewer'
+    password = 'pbsdbviewer'
+    driver = 'ODBC Driver 17 for SQL Server'  # O el que tengas disponible
+
+    conn_str = (
+        f"DRIVER={{{driver}}};"
+        f"SERVER={server};"
+        f"DATABASE={database};"
+        f"UID={username};"
+        f"PWD={password};"
+        f"TrustServerCertificate=yes;"
+    )
+
+    # try:
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT DISTINCT [MediaName]
+        FROM [dbo].[taListMediaUsage]
+        WHERE [MediaTypeId] = '2'
+    """)
+
+    for row in cursor.fetchall():
+        media_name = row.MediaName + ".stl"
+
+        for reposiorio, _, subtitulos in os.walk(repo_sub):
+            if media_name in subtitulos:
+                ruta_actual = os.path.join(reposiorio, media_name)
+                nueva_ruta = os.path.join(sub_diario, media_name)
+
+                os.makedirs(sub_diario, exist_ok=True)
+                shutil.copy2(ruta_actual, nueva_ruta)
+
+                print(f"Archivo movido a: {nueva_ruta}")
+            else:
+                print("Archivo no encontrado.")
+
+    except pyodbc.Error as e:
+        print(f"Error de conexión o consulta: {e}")
+
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
 
 if __name__ == "__main__":
     root = tk.Tk()
