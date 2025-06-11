@@ -115,7 +115,7 @@ def cazar_subtitulos(origen_base, destino, log_file):
     os.makedirs(otros, exist_ok=True)
 
     print(f"\nCazando en: {origen}")
-    log_file.write(f"\nCazando en: {origen}\n")
+    log_file.write(f"\n****CAZANDO EN: {origen}****\n")
 
     for archivo in os.listdir(origen):
         if not archivo.lower().endswith(".stl"):
@@ -189,7 +189,13 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
             WHERE [MediaTypeId] = '2'
         """)
 
+        lista_subtitulos = set()
+        msg = "\n****RECUPERANDO ARCHIVOS DE SUBTITULOS****\n"
+        print(msg)
+        log_file.write(msg + "\n")
+
         for row in cursor.fetchall():
+            lista_subtitulos.add(row.MediaName + ".stl")
             media_name = row.MediaName + ".stl"
             encontrado = False
 
@@ -206,15 +212,30 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
                 shutil.copy2(path_busqueda, sub_diario)
 
             except FileNotFoundError:
-                print("Archivo no encontrado. Intentando copia desde ruta alternativa...")
+                msg = "Archivo no encontrado. Intentando copia desde ruta alternativa..."
+                print(msg)
+                log_file.write(msg + "\n")
                 try:
                     shutil.copy2(ruta_alternativa, sub_diario)
                 except Exception as e:
-                    print(f"Tampoco se pudo copiar desde la ruta alternativa: {e}")
+                    msg = f"Tampoco se pudo copiar desde la ruta alternativa: {e}"
+                    print(msg)
+                    log_file.write(msg + "\n")
+
+        for listado in os.listdir(sub_diario):
+            ruta_archivo = os.path.join(sub_diario, listado)
+
+            # 3. Si no está en la lista válida, lo eliminamos
+            if listado not in lista_subtitulos and os.path.isfile(ruta_archivo):
+                os.remove(ruta_archivo)
+                msg = f"Archivo eliminado: {listado}"
+                print(msg)
+                log_file.write(msg + "\n")
 
     except pyodbc.Error as e:
-        print(f"Error de conexión o consulta: {e}")
-
+        msg = f"Error de conexión o consulta: {e}"
+        print(msg)
+        log_file.write(msg + "\n")
     finally:
         if 'cursor' in locals():
             cursor.close()
