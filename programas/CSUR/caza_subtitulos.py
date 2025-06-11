@@ -213,13 +213,13 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
                 shutil.copy2(path_busqueda, sub_diario)
 
             except FileNotFoundError:
-                msg = "Archivo no encontrado. Intentando copia desde ruta alternativa..."
+                msg = f"Archivo {media_name} no encontrado. Intentando copia desde ruta alternativa..."
                 print(msg)
                 log_file.write(msg + "\n")
                 try:
                     shutil.copy2(ruta_alternativa, sub_diario)
                 except Exception as e:
-                    msg = f"Tampoco se pudo copiar desde la ruta alternativa: {e}"
+                    msg = "          Tampoco se pudo copiar desde la ruta alternativa:"
                     print(msg)
                     log_file.write(msg + "\n")
 
