@@ -80,6 +80,7 @@ class CazadorSubtitulosApp:
 
 def ejecutar_proceso_en_bucle(origenes, destino):
     log_path = os.path.join(destino, "registro.txt")
+    sub_diario = "S:\\"
 
     try:
         while True:
@@ -89,7 +90,7 @@ def ejecutar_proceso_en_bucle(origenes, destino):
                 for origen_base in origenes:
                     cazar_subtitulos(origen_base, destino, log_file)
 
-                mover_subtitulos(destino, log_file)
+                mover_subtitulos(destino, sub_diario, log_file)
 
             # Cuenta atrás de 5 minutos
             total_segundos = 300
@@ -163,7 +164,7 @@ def cazar_subtitulos(origen_base, destino, log_file):
             log_file.write(msg + "\n")
 
 
-def mover_subtitulos(repo_sub, sub_diario="S:\\", log_file):
+def mover_subtitulos(repo_sub, sub_diario, log_file):
     # Parámetros de conexión
     server = '10.236.174.70'  # IP o nombre del servidor SQL remoto
     database = 'CanalSur_AutomationDB'
