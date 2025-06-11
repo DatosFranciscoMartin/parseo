@@ -198,7 +198,7 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
             elif row.MediaName.startswith("0"):
                 carpeta_busqueda = row.MediaName[:6] + "000"
 
-            path_busqueda = repo_sub + "\\" + carpeta_busqueda + "\\" + media_name
+            path_busqueda = os.path.join(repo_sub, carpeta_busqueda, media_name)
 
             print(path_busqueda)
 
