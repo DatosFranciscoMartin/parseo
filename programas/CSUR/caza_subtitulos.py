@@ -194,14 +194,23 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
             encontrado = False
 
             if row.MediaName.startswith("HD"):
-                carpeta_busqueda = row.MediaName[2:8] + "000"
+                carpeta_busqueda = row.MediaName[2:9] + "000"
             elif row.MediaName.startswith("0"):
-                carpeta_busqueda = row.MediaName[:6] + "000"
+                carpeta_busqueda = row.MediaName[:7] + "000"
 
             path_busqueda = os.path.join(repo_sub, carpeta_busqueda, media_name)
+            ruta_alternativa = os.path.join(repo_sub, "otros", media_name)
 
-            print(path_busqueda)
+            try:
+                # Intenta algo que puede fallar
+                shutil.copy2(path_busqueda, sub_diario)
 
+            except FileNotFoundError:
+                print("Archivo no encontrado. Intentando copia desde ruta alternativa...")
+                try:
+                    shutil.copy2(ruta_alternativa, sub_diario)
+                except Exception as e:
+                    print(f"Tampoco se pudo copiar desde la ruta alternativa: {e}")
 
     except pyodbc.Error as e:
         print(f"Error de conexión o consulta: {e}")
