@@ -191,6 +191,7 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
 
         for row in cursor.fetchall():
             media_name = row.MediaName + ".stl"
+            encontrado = False
 
             for reposiorio, _, subtitulos in os.walk(repo_sub):
                 if media_name in subtitulos:
@@ -200,9 +201,12 @@ def mover_subtitulos(repo_sub, sub_diario="S:\\"):
                     os.makedirs(sub_diario, exist_ok=True)
                     shutil.copy2(ruta_actual, nueva_ruta)
 
-                    print(f"Archivo movido a: {nueva_ruta}")
-                else:
-                    print("Archivo no encontrado.")
+                    print(f"Archivo copiado a: {nueva_ruta}")
+                    encontrado = True
+                    break  # opcional: si solo quieres copiar el primero encontrado
+
+            if not encontrado:
+                print(f"Archivo no encontrado: {media_name}")
 
     except pyodbc.Error as e:
         print(f"Error de conexión o consulta: {e}")
