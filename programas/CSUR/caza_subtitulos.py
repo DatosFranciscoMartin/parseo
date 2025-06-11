@@ -84,6 +84,14 @@ def ejecutar_proceso_en_bucle(origenes, destino):
 
     try:
         while True:
+            # Limpiar el log: mantener solo las últimas 1000 líneas
+            if os.path.exists(log_path):
+                with open(log_path, "r", encoding="utf-8") as f:
+                    lineas = f.readlines()[-1000:]
+                with open(log_path, "w", encoding="utf-8") as f:
+                    f.writelines(lineas)
+
+            # Agregar nueva ejecución
             with open(log_path, "a", encoding="utf-8") as log_file:
                 log_file.write(f"\n--- EJECUCIÓN: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
 
