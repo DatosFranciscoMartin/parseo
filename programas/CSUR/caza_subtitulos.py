@@ -219,17 +219,29 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
             try:
                 # Intenta algo que puede fallar
                 shutil.copy2(path_busqueda, sub_diario)
+                msg = f"[+] Archivo {media_name} copiado"
+                print(msg)
+                log_file.write(msg + "\n")
 
             except FileNotFoundError:
-                msg = f"Archivo {media_name} no encontrado. Intentando copia desde ruta alternativa..."
+                msg = f"[-] Archivo {media_name} no encontrado. Intentando copia desde ruta alternativa..."
                 print(msg)
                 log_file.write(msg + "\n")
                 try:
                     shutil.copy2(ruta_alternativa, sub_diario)
+                    msg = f"[+] Archivo {media_name} copiado"
+                    print(msg)
+                    log_file.write(msg + "\n")
+
                 except Exception as e:
                     msg = "          Tampoco se pudo copiar desde la ruta alternativa:"
                     print(msg)
                     log_file.write(msg + "\n")
+
+        lista_subtitulos = set()
+        msg = "\n****LIMPIANDO CARPETA DE SUBTITULOS****\n"
+        print(msg)
+        log_file.write(msg + "\n")
 
         for listado in os.listdir(sub_diario):
             ruta_archivo = os.path.join(sub_diario, listado)
