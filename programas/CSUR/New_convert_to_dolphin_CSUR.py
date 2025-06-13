@@ -275,17 +275,35 @@ def escanear_directorio():
                     except Exception as e:
                         logging.error(f"Error al procesar {ruta_archivo}: {str(e)}")
 
+
+#def iniciar_monitoreo_periodico():
+#   print("Iniciando escaneo periódico del directorio:", directorio_monitorizar)
+#    try:
+#        while True:
+#            escanear_directorio()
+#            time.sleep(60)  # Espera de 1 minuto
+#            print("Esperando 1 minuto...")
+#    except KeyboardInterrupt:
+#        print("Monitoreo detenido por el usuario.")
+
 def iniciar_monitoreo_periodico():
-    print("Iniciando escaneo periódico del directorio:", directorio_monitorizar)
+   print("Iniciando escaneo periódico del directorio:", directorio_monitorizar)
     try:
         while True:
             escanear_directorio()
-            time.sleep(60)  # Espera de 1 minuto
-            print("Esperando 1 minuto...")
+
+            # Cuenta atrás de 10 minutos
+            total_segundos = 600
+            print("Esperando 5 minutos para la siguiente ejecución...")
+            for restante in range(total_segundos, 0, -1):
+                mins, secs = divmod(restante, 60)
+                tiempo_str = f"{mins:02d}:{secs:02d}"
+                print(f"\rTiempo restante: {tiempo_str}", end="", flush=True)
+                time.sleep(1)
+            print("\n")
+
     except KeyboardInterrupt:
         print("Monitoreo detenido por el usuario.")
-
-
 
 
 # --- Punto de entrada del programa ---
