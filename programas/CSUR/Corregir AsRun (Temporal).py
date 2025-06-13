@@ -135,7 +135,7 @@ def esperar_hasta_manana_a_las_9():
 
     # Cuenta atrás
     print("Esperando 5 minutos para la siguiente ejecución...")
-    for restante in range(segundos_espera, 0, -1):
+    for restante in range(int(segundos_espera), 0, -1):
         mins, secs = divmod(restante, 60)
         tiempo_str = f"{mins:02d}:{secs:02d}"
         print(f"\rTiempo restante: {tiempo_str}", end="", flush=True)
