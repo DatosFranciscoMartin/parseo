@@ -131,7 +131,7 @@ def procesar_archivo(archivo):
                 "startType": "+ParentStart",
                 "startOffset": "00:00:02:00",
                 "endType": "-ParentEnd",
-                "endOffset": "00:00:02:00"
+                "endOffset": "00:00:00:00"
             })
 
             media_stream = ET.SubElement(propiedades, "mediaStream")
@@ -141,7 +141,7 @@ def procesar_archivo(archivo):
 
             ET.SubElement(propiedades, "media", {
                 "mediaType": "CG",
-                "mediaName": "DVE Sigando CSur 3"
+                "mediaName": "DVE Signado"
             })
 
             ET.SubElement(propiedades, "event", {"title": "EFECTO SIGNADO CANAL2"})
@@ -153,7 +153,7 @@ def procesar_archivo(archivo):
             action1 = ET.SubElement(child_events_internos, "action", {"type": "Switch"})
             props1 = ET.SubElement(action1, "properties")
             ET.SubElement(props1, "schedule", {"startType": "+ParentStart", "startOffset": "00:00:02:00"})
-            switch1 = ET.SubElement(props1, "switch", {"rate": "Slow", "transition": "Fade Cut"})
+            switch1 = ET.SubElement(props1, "switch", {"rate": "Slow", "transition": "Cut"})
             src1 = ET.SubElement(switch1, "source", {"type": "Logical"})
             ET.SubElement(src1, "logical", {"name": "CS2 F&K"})
             dst1 = ET.SubElement(switch1, "destination", {"type": "Logical"})
@@ -167,8 +167,8 @@ def procesar_archivo(archivo):
                 "uid": "4845"
             })
             props2 = ET.SubElement(action2, "properties")
-            ET.SubElement(props2, "schedule", {"startType": "-ParentEnd", "startOffset": "00:00:02:00"})
-            switch2 = ET.SubElement(props2, "switch", {"rate": "Slow", "transition": "Fade Cut"})
+            ET.SubElement(props2, "schedule", {"startType": "-ParentEnd", "startOffset": "00:00:00:00"})
+            switch2 = ET.SubElement(props2, "switch", {"rate": "Slow", "transition": "Cut"})
             src2 = ET.SubElement(switch2, "source", {"type": "Logical"})
             ET.SubElement(src2, "logical", {"name": "CS2 TL4"})
             dst2 = ET.SubElement(switch2, "destination", {"type": "Logical"})
