@@ -277,7 +277,6 @@ def escanear_directorio():
 
 
 def iniciar_monitoreo_periodico():
-    directorio_monitorizar = "/ruta/al/directorio"  # Asegúrate de definir esto
     print("Iniciando escaneo periódico del directorio:", directorio_monitorizar)
     try:
         while True:
