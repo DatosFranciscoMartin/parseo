@@ -291,7 +291,6 @@ def iniciar_monitoreo_periodico():
     try:
         while True:
             escanear_directorio()
-
             # Cuenta atrás de 10 minutos
             total_segundos = 600
             print("Esperando 5 minutos para la siguiente ejecución...")
