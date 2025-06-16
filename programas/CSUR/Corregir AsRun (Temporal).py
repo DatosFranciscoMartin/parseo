@@ -134,7 +134,6 @@ def esperar_hasta_manana_a_las_9():
     print(f"Esperando hasta las 09:00 del {manana.strftime('%Y-%m-%d')}...")
 
     # Cuenta atrás
-    print("Esperando 5 minutos para la siguiente ejecución...")
     for restante in range(int(segundos_espera), 0, -1):
         mins, secs = divmod(restante, 60)
         tiempo_str = f"{mins:02d}:{secs:02d}"
