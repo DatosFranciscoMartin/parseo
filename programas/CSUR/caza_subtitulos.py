@@ -241,7 +241,7 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
                 print(msg)
                 log_file.write(msg + "\n")
 
-        lista_subtitulos = set()
+
         msg = "\n****LIMPIANDO CARPETA DE SUBTITULOS****\n"
         print(msg)
         log_file.write(msg + "\n")
