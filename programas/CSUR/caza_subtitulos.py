@@ -233,11 +233,11 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
                             print(msg)
                             log_file.write(msg + "\n")
                     except Exception as e:
-                        msg = f"          Tampoco se pudo copiar desde la ruta alternativa: {e}"
+                        msg = f"          Tampoco se pudo copiar desde la ruta alternativa"
                         print(msg)
                         log_file.write(msg + "\n")
             else:
-                msg = f"[AVISO] Archivo ya existe en destino: {media_name}. No se copió."
+                msg = f"[-] Archivo ya existe en destino: {media_name}. No se copió."
                 print(msg)
                 log_file.write(msg + "\n")
 
