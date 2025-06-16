@@ -216,27 +216,30 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
             path_busqueda = os.path.join(repo_sub, carpeta_busqueda, media_name)
             ruta_alternativa = os.path.join(repo_sub, "otros", media_name)
 
-            try:
-                # Intenta algo que puede fallar
-                shutil.copy2(path_busqueda, sub_diario)
-                msg = f"[+] Archivo {media_name} copiado"
-                print(msg)
-                log_file.write(msg + "\n")
-
-            except FileNotFoundError:
-                msg = f"[-] Archivo {media_name} no encontrado. Intentando copia desde ruta alternativa..."
-                print(msg)
-                log_file.write(msg + "\n")
+            if not os.path.exists(os.path.join(sub_diario, media_name)):
                 try:
-                    shutil.copy2(ruta_alternativa, sub_diario)
+                    shutil.copy2(path_busqueda, sub_diario)
                     msg = f"[+] Archivo {media_name} copiado"
                     print(msg)
                     log_file.write(msg + "\n")
-
-                except Exception as e:
-                    msg = "          Tampoco se pudo copiar desde la ruta alternativa:"
+                except FileNotFoundError:
+                    msg = f"[-] Archivo {media_name} no encontrado. Intentando copia desde ruta alternativa..."
                     print(msg)
                     log_file.write(msg + "\n")
+                    try:
+                        if not os.path.exists(os.path.join(sub_diario, media_name)):
+                            shutil.copy2(ruta_alternativa, sub_diario)
+                            msg = f"[+] Archivo {media_name} copiado desde ruta alternativa"
+                            print(msg)
+                            log_file.write(msg + "\n")
+                    except Exception as e:
+                        msg = f"          Tampoco se pudo copiar desde la ruta alternativa: {e}"
+                        print(msg)
+                        log_file.write(msg + "\n")
+            else:
+                msg = f"[AVISO] Archivo ya existe en destino: {media_name}. No se copió."
+                print(msg)
+                log_file.write(msg + "\n")
 
         lista_subtitulos = set()
         msg = "\n****LIMPIANDO CARPETA DE SUBTITULOS****\n"
