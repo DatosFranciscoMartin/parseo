@@ -87,7 +87,7 @@ def ejecutar_proceso_en_bucle(origenes, destino):
             # Limpiar el log: mantener solo las últimas 1000 líneas
             if os.path.exists(log_path):
                 with open(log_path, "r", encoding="utf-8") as f:
-                    lineas = f.readlines()[-1000:]
+                    lineas = f.readlines()[-10000:]
                 with open(log_path, "w", encoding="utf-8") as f:
                     f.writelines(lineas)
 
@@ -101,8 +101,8 @@ def ejecutar_proceso_en_bucle(origenes, destino):
                 mover_subtitulos(destino, sub_diario, log_file)
 
             # Cuenta atrás de 5 minutos
-            total_segundos = 300
-            print("Esperando 5 minutos para la siguiente ejecución...")
+            total_segundos = 600
+            print("Esperando 10 minutos para la siguiente ejecución...")
             for restante in range(total_segundos, 0, -1):
                 mins, secs = divmod(restante, 60)
                 tiempo_str = f"{mins:02d}:{secs:02d}"
