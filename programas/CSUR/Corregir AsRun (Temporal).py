@@ -131,14 +131,14 @@ def esperar_hasta_manana_a_las_9():
     manana = ahora + timedelta(days=1)
     objetivo = datetime.combine(manana.date(), datetime.min.time()).replace(hour=9)
     segundos_espera = (objetivo - ahora).total_seconds()
+    minutos_espera = int(segundos_espera // 60)
+
     print(f"Esperando hasta las 09:00 del {manana.strftime('%Y-%m-%d')}...")
 
-    # Cuenta atrás
-    for restante in range(int(segundos_espera), 0, -1):
-        mins, secs = divmod(restante, 60)
-        tiempo_str = f"{mins:02d}:{secs:02d}"
-        print(f"\rTiempo restante: {tiempo_str}", end="", flush=True)
-        time.sleep(1)
+    # Cuenta atrás en minutos
+    for restante in range(minutos_espera, 0, -1):
+        print(f"\rTiempo restante: {restante:02d}:00", end="", flush=True)
+        time.sleep(60)  # Esperar 1 minuto
     print("\n")
 
 if __name__ == "__main__":
