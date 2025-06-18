@@ -113,35 +113,27 @@ def procesar_archivos(carpeta_entrada, carpeta_salida):
 
     return archivos_modificados
 
+def iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida):
+    print("Iniciando escaneo periódico del directorio:", carpeta_entrada)
+    try:
+        while True:
+            modificados = procesar_archivos(carpeta_entrada, carpeta_salida)
+            print(f"Se modificaron {modificados} archivos .marl.")  # Mensaje en consola solamente
 
-def main():
-    carpeta_entrada = seleccionar_carpeta("Selecciona la carpeta de entrada")
-    if not carpeta_entrada:
-        return
+            total_segundos = 3600  # 60 minutos
+            print("Esperando 1 hora para la siguiente ejecución...")
+            for restante in range(total_segundos, 0, -1):
+                mins, secs = divmod(restante, 60)
+                tiempo_str = f"{mins:02d}:{secs:02d}"
+                print(f"\rTiempo restante: {tiempo_str}", end="", flush=True)
+                time.sleep(1)
+            print("\n")
+    except KeyboardInterrupt:
+        print("\nMonitoreo detenido por el usuario.")
 
-    carpeta_salida = seleccionar_carpeta("Selecciona la carpeta de salida")
-    if not carpeta_salida:
-        return
 
-    modificados = procesar_archivos(carpeta_entrada, carpeta_salida)
-    print(f"Se modificaron {modificados} archivos .marl.")  # Mensaje en consola solamente
+carpeta_entrada = seleccionar_carpeta("Selecciona la carpeta de entrada")
 
-def esperar_hasta_manana_a_las_9():
-    ahora = datetime.now()
-    manana = ahora + timedelta(days=1)
-    objetivo = datetime.combine(manana.date(), datetime.min.time()).replace(hour=9)
-    segundos_espera = (objetivo - ahora).total_seconds()
-    minutos_espera = int(segundos_espera // 60)
+carpeta_salida = seleccionar_carpeta("Selecciona la carpeta de salida")
 
-    print(f"Esperando hasta las 09:00 del {manana.strftime('%Y-%m-%d')}...")
-
-    # Cuenta atrás en minutos
-    for restante in range(minutos_espera, 0, -1):
-        print(f"\rTiempo restante: {restante:02d}:00", end="", flush=True)
-        time.sleep(60)  # Esperar 1 minuto
-    print("\n")
-
-if __name__ == "__main__":
-    while True:
-        main()
-        esperar_hasta_manana_a_las_9()
+iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida)
