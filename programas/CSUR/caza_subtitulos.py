@@ -252,7 +252,7 @@ def mover_subtitulos(repo_sub, sub_diario, log_file):
             # 3. Si no está en la lista válida, lo eliminamos
             if listado not in lista_subtitulos and os.path.isfile(ruta_archivo):
                 os.remove(ruta_archivo)
-                msg = f"Archivo eliminado: {listado}"
+                msg = f"Archivo eliminado: {listado}."
                 print(msg)
                 log_file.write(msg + "\n")
 
