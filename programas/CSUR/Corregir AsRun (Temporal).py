@@ -43,23 +43,19 @@ def eliminar_eventos_manual_secondary(root):
             ):
                 parent.remove(event)
 
-def borra_carpeta_destino(carpeta):
-
-    # Tiempo actual en segundos
+def borrar_carpeta_destino(carpeta):
     ahora = time.time()
-
-    # Número de segundos en 7 días
     siete_dias = 7 * 24 * 60 * 60
-
-    # Recorrer la carpeta y subcarpetas
     for carpeta_actual, subcarpetas, archivos in os.walk(carpeta):
         for archivo in archivos:
             ruta_archivo = os.path.join(carpeta_actual, archivo)
-            # Obtener la última fecha de modificación del archivo
-            tiempo_modificacion = os.path.getmtime(ruta_archivo)
-            # Si es más antiguo que 7 días, eliminarlo
-            if ahora - tiempo_modificacion > siete_dias:
-                os.remove(ruta_archivo)
+            try:
+                tiempo_modificacion = os.path.getmtime(ruta_archivo)
+                if ahora - tiempo_modificacion > siete_dias:
+                    os.remove(ruta_archivo)
+                    print(f"Archivo eliminado por antigüedad: {ruta_archivo}")
+            except Exception as e:
+                print(f"Error al eliminar {ruta_archivo}: {e}")
 
 def procesar_archivos(carpeta_entrada, carpeta_salida):
     archivos_modificados = 0
@@ -119,13 +115,14 @@ def procesar_archivos(carpeta_entrada, carpeta_salida):
                     # Cambiar txList en <asRun>
                     for asrun in root.findall('.//asRun'):
                         txlist = asrun.attrib.get('txList')
-                        if asrun == 'CS 1 [A]':
+                        if txlist == 'CS 1 [A]':
                             source.set('txList', 'CS1 [A]')
-                        elif asrun == 'Canal Sur Andalucia':
+                        elif txlist == 'Canal Sur Andalucia':
                             source.set('txList', 'CS3 [A]')
 
                     # Guardar XML modificado
                     tree.write(ruta_destino, encoding='utf-8', xml_declaration=True)
+                    archivos_modificados += 1
 
                 except Exception as e:
                     print(f"Error al procesar {ruta_completa}: {e}")
@@ -154,8 +151,7 @@ def iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida):
         print("\nMonitoreo detenido por el usuario.")
 
 
-carpeta_entrada = seleccionar_carpeta("Selecciona la carpeta de entrada")
-
-carpeta_salida = seleccionar_carpeta("Selecciona la carpeta de salida")
-
-iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida)
+if __name__ == "__main__":
+    carpeta_entrada = seleccionar_carpeta("Selecciona la carpeta de entrada")
+    carpeta_salida = seleccionar_carpeta("Selecciona la carpeta de salida")
+    iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida)
