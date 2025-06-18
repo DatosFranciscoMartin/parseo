@@ -42,6 +42,25 @@ def eliminar_eventos_manual_secondary(root):
                 event.attrib.get('manualSecondary', '').lower() == 'true'
             ):
                 parent.remove(event)
+
+def borra_carpeta_destino(carpeta):
+
+    # Tiempo actual en segundos
+    ahora = time.time()
+
+    # Número de segundos en 7 días
+    siete_dias = 7 * 24 * 60 * 60
+
+    # Recorrer la carpeta y subcarpetas
+    for carpeta_actual, subcarpetas, archivos in os.walk(carpeta):
+        for archivo in archivos:
+            ruta_archivo = os.path.join(carpeta_actual, archivo)
+            # Obtener la última fecha de modificación del archivo
+            tiempo_modificacion = os.path.getmtime(ruta_archivo)
+            # Si es más antiguo que 7 días, eliminarlo
+            if ahora - tiempo_modificacion > siete_dias:
+                os.remove(ruta_archivo)
+
 def procesar_archivos(carpeta_entrada, carpeta_salida):
     archivos_modificados = 0
     hoy = datetime.now()
@@ -118,6 +137,9 @@ def iniciar_monitoreo_periodico(carpeta_entrada, carpeta_salida):
     try:
         while True:
             modificados = procesar_archivos(carpeta_entrada, carpeta_salida)
+
+            borrar_carpeta_destino(carpeta_salida)
+
             print(f"Se modificaron {modificados} archivos .marl.")  # Mensaje en consola solamente
 
             total_segundos = 3600  # 60 minutos

@@ -1,38 +1,68 @@
-import pyodbc
+from flask import Flask, render_template_string
+import psutil
 
-# Parámetros de conexión
-server = '10.236.174.70'  # IP o nombre del servidor SQL remoto
-database = 'CanalSur_AutomationDB'
-username = 'pbsdbviewer'
-password = 'pbsdbviewer'
-driver = 'ODBC Driver 17 for SQL Server'  # O el que tengas disponible
+app = Flask(__name__)
 
-conn_str = (
-    f"DRIVER={{{driver}}};"
-    f"SERVER={server};"
-    f"DATABASE={database};"
-    f"UID={username};"
-    f"PWD={password};"
-    f"TrustServerCertificate=yes;"
-)
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TCPView Web</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f0f0f0; }
+        tr:hover { background-color: #f1f9ff; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Conexiones TCP Activas</h1>
+    <table>
+        <tr>
+            <th>PID</th>
+            <th>Proceso</th>
+            <th>Local</th>
+            <th>Remoto</th>
+            <th>Estado</th>
+        </tr>
+        {% for conn in conns %}
+        <tr>
+            <td>{{ conn.pid }}</td>
+            <td>{{ conn.name }}</td>
+            <td>{{ conn.laddr }}</td>
+            <td>{{ conn.raddr }}</td>
+            <td>{{ conn.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+"""
 
-try:
-    conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
-    cursor.execute("""
-        SELECT [MediaName]
-        FROM [dbo].[taListMediaUsage]
-        WHERE [FUListActiveObjectId] = '5086'
-          AND [MediaSetId] = '8'
-          AND [MediaTypeId] = '0'
-    """)
-    for row in cursor.fetchall():
-        print(row.MediaName)
+def get_tcp_connections():
+    conns = []
+    for c in psutil.net_connections(kind='tcp'):
+        if not c.raddr:  # Skip if there's no remote address
+            continue
+        try:
+            pname = psutil.Process(c.pid).name() if c.pid else ""
+        except psutil.NoSuchProcess:
+            pname = "<unknown>"
+        conns.append({
+            'pid': c.pid,
+            'name': pname,
+            'laddr': f"{c.laddr.ip}:{c.laddr.port}" if c.laddr else "",
+            'raddr': f"{c.raddr.ip}:{c.raddr.port}" if c.raddr else "",
+            'status': c.status
+        })
+    return conns
 
-    cursor.close()
-    conn.close()
+@app.route("/")
+def index():
+    conns = get_tcp_connections()
+    return render_template_string(HTML_TEMPLATE, conns=conns)
 
-except Exception as e:
-    print("❌ Error:", e)
-
-input("\nPresiona ENTER para salir...")
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
